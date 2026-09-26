@@ -1,23 +1,27 @@
 import { useEffect, useState } from 'react'
 import { fetchImageObjectUrl } from '../api'
-import { RISK_COLOR } from '../theme'
-import type { DetectionObj, EventInfo, RunResult, Vehicle } from '../types'
+import { colorOf, inkOn } from '../vehicleColors'
+import { zoneLabel } from '../zoneLabels'
+import type { DetectionObj, EventInfo, RunResult } from '../types'
 
 interface Props {
   result: RunResult | null
   event: EventInfo | null
-  vehicles: Vehicle[]
+  /** araç renkleri (track_id → renk): haritadaki iz ve araç sekmesiyle AYNI */
+  colors: Record<string, string>
   selectedId: string | null
   onSelect: (id: string) => void
+  /** küçük önizleme (özet kart): yalnızca görüntü + kutular; etiket, saat bandı ve alt yazı yok */
+  compact?: boolean
+  /** panel kutusuna sığdırma oranı (0.8 = kutunun %80'i, en-boy oranı korunur); verilmezse genişliğe yayılır */
+  fit?: number
 }
 
 const PAD = 14 // küçük araç kutularını okunur kılmak için görsel dolgu (kaynak piksel)
 
-function boxColor(d: DetectionObj, vehicles: Vehicle[], risk: string | undefined): string {
-  const v = vehicles.find((x) => x.vehicle_id === d.vehicle_id)
-  if (v?.risk_level) return RISK_COLOR[v.risk_level]
-  if (risk && (risk === 'LOW' || risk === 'MEDIUM' || risk === 'HIGH')) return RISK_COLOR[risk]
-  return '#4cc9f0'
+/** İzli araç: kendi sabit rengi (harita/sekmeyle aynı). İzsiz nesne: gri kesikli. Olay dışı (eski/demo akış) tespit: nötr. */
+function boxColor(d: DetectionObj, colors: Record<string, string>): string {
+  return d.vehicle_id ? colorOf(colors, d.vehicle_id) : '#8b98a8'
 }
 
 /** Gerçek görüntü yoksa (mock mod) kutulardan sentetik bir hava sahnesi çizer. */
@@ -45,7 +49,7 @@ function SyntheticScene({ w, h, dets }: { w: number; h: number; dets: DetectionO
   )
 }
 
-export default function ImageViewer({ result, event, vehicles, selectedId, onSelect }: Props) {
+export default function ImageViewer({ result, event, colors, selectedId, onSelect, compact = false, fit }: Props) {
   const image = result?.image ?? null
   const dets = result?.detections ?? []
   const [src, setSrc] = useState<string | null>(null)
@@ -74,55 +78,55 @@ export default function ImageViewer({ result, event, vehicles, selectedId, onSel
   }, [imageId])
 
   if (!image) {
-    return <div className="empty">Henüz görüntü yok. Listeden bir olay seçip değerlendirin.</div>
+    return compact ? <div className="thumb-empty">görüntü yok</div> : <div className="empty">Henüz görüntü yok. Listeden bir olay seçip değerlendirin.</div>
   }
   const { width: w, height: h } = image
-  const risk = result?.assessment?.risk_level
   const fs = Math.max(11, w / 55)
 
   return (
-    <div className="imgview">
-      <svg viewBox={`0 0 ${w} ${h}`} className="imgsvg" role="img" aria-label="Drone görüntüsü ve tespit kutuları">
+    <div className={`imgview ${compact ? 'compact' : ''} ${fit ? 'fit' : ''}`}>
+      <div className="imgbox">
+      <svg viewBox={`0 0 ${w} ${h}`} style={fit ? { width: `${fit * 100}%`, height: `${fit * 100}%` } : undefined} className="imgsvg" role="img" aria-label="Drone görüntüsü ve tespit kutuları">
         {src ? <image href={src} x={0} y={0} width={w} height={h} preserveAspectRatio="none" /> : <SyntheticScene w={w} h={h} dets={dets} />}
         {dets.map((d) => {
           const untracked = !d.vehicle_id && !!event // olay akışında izle eşleşmeyen nesne
-          const color = untracked ? '#8b98a8' : boxColor(d, vehicles, risk)
+          const color = untracked ? '#8b98a8' : boxColor(d, colors)
+          const ink = inkOn(color)
           const sel = d.vehicle_id === selectedId
           const x = d.bbox.x1 - PAD
           const y = d.bbox.y1 - PAD
           const bw = d.bbox.x2 - d.bbox.x1 + 2 * PAD
           const bh = d.bbox.y2 - d.bbox.y1 + 2 * PAD
           const label = `${d.class} ${(d.conf * 100).toFixed(0)}%${d.vehicle_id ? ' · ' + d.vehicle_id : untracked ? ' · izsiz' : ''}`
+          // Etiket kutunun üstüne; görüntü kenarına taşarsa kutunun İÇİNE / sola kaydırılır (kadraj dışına kesik etiket çıkmasın)
+          const lw = label.length * fs * 0.62 + 8
+          const ly = y - fs * 1.5 >= 0 ? y - fs * 1.5 : Math.max(0, y)
+          const lx = Math.max(0, Math.min(x, w - lw))
           return (
-            <g key={d.box_index} onClick={() => d.vehicle_id && onSelect(d.vehicle_id)} style={{ cursor: d.vehicle_id ? 'pointer' : 'default' }}>
-              <rect x={x} y={y} width={bw} height={bh} fill="none" stroke={color} strokeWidth={sel ? 5 : 3} strokeDasharray={untracked ? '8 6' : undefined} />
-              <rect x={x} y={y - fs * 1.5} width={label.length * fs * 0.62 + 8} height={fs * 1.5} fill={color} />
-              <text x={x + 4} y={y - fs * 0.42} fontSize={fs} fontWeight={700} fill="#0b0f14" fontFamily="ui-monospace, monospace">
+            <g key={d.box_index} onClick={() => !compact && d.vehicle_id && onSelect(d.vehicle_id)} style={{ cursor: d.vehicle_id && !compact ? 'pointer' : undefined }}>
+              <rect x={x} y={y} width={bw} height={bh} fill="none" stroke={color} strokeWidth={(sel ? 6 : 3.5) * (compact ? w / 500 : 1)} strokeDasharray={untracked ? '8 6' : undefined} />
+              {sel && !compact && <rect x={x - 3} y={y - 3} width={bw + 6} height={bh + 6} fill="none" stroke="#ffffff" strokeWidth={1.5} />}
+              {!compact && (<>
+              <rect x={lx} y={ly} width={lw} height={fs * 1.5} fill={color} />
+              <text x={lx + 4} y={ly + fs * 1.08} fontSize={fs} fontWeight={700} fill={ink} fontFamily="ui-monospace, monospace">
                 {label}
               </text>
+              </>)}
             </g>
           )
         })}
-        {event && (
-          <g pointerEvents="none">
-            <rect x={0} y={0} width={fs * 11.5} height={fs * 2.2} fill="rgba(11,15,20,0.82)" />
-            <text x={fs * 0.6} y={fs * 1.55} fontSize={fs * 1.25} fontWeight={800} fill="#4cc9f0" fontFamily="ui-monospace, monospace">
-              {event.capture_time}
-              <tspan fontSize={fs} fontWeight={500} fill="#c7d2de"> itibarıyla</tspan>
-            </text>
-          </g>
-        )}
       </svg>
-      <div className="img-caption">
+      </div>
+      {!compact && !fit && <div className="img-caption">
         <span>{image.image_id}</span>
-        {event && <span>çekim: <b>{event.capture_time}</b> · {event.zone.name}</span>}
+        {event && <span>çekim: <b>{event.capture_time}</b> · {zoneLabel(event.zone.name)}</span>}
         <span>
           {w}×{h} · {image.mode === 'mock' ? 'MOCK dedektör (ground-truth bbox)' : `model: ${image.backend === 'dfine' ? 'D-FINE' : image.backend === 'ultralytics' ? 'YOLO' : (image.backend ?? '?')}`} · {dets.length} tespit
           {event ? ` · ${dets.filter((d) => d.vehicle_id).length} izle eşleşti` : ''}
         </span>
         {image.fallback_reason && <span className="chip chip-warn" title={image.fallback_reason}>model yüklenemedi → mock</span>}
         {!src && <span className="chip chip-warn">{loadError ? 'görüntü alınamadı' : 'sentetik kare (görüntü yok)'}</span>}
-      </div>
+      </div>}
     </div>
   )
 }

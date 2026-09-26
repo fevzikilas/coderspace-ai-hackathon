@@ -174,7 +174,7 @@ class Pipeline:
         res["detections"] = [
             {
                 "vehicle_id": d.get("vehicle_id"), "class": d["class"], "conf": d["conf"], "lat": d["lat"], "lon": d["lon"],
-                "box_index": d["box_index"], "match_distance_m": d.get("match_distance_m"),
+                "box_index": d["box_index"], "match_distance_m": d.get("match_distance_m"), "match_method": d.get("match_method"),
                 "bbox": {k: boxes[d["box_index"]][k] for k in ("x1", "y1", "x2", "y2")},
             }
             for d in geo["detections"]

@@ -16,7 +16,10 @@ RUN npm run build
 
 FROM nginxinc/nginx-unprivileged:1.27-alpine
 ENV GATEWAY_URL=http://gateway:8000
+# UI_GATEWAY_API_KEY: /api isteklerine sunucu tarafında eklenen gateway anahtarı (boş: enjeksiyon yok, UI anahtar sorar)
+ENV UI_GATEWAY_API_KEY=
 COPY nginx/default.conf.template /etc/nginx/templates/default.conf.template
+COPY --chmod=755 nginx/15-ui-api-key.envsh /docker-entrypoint.d/15-ui-api-key.envsh
 COPY --from=build /app/dist /usr/share/nginx/html
 EXPOSE 8080
 HEALTHCHECK --interval=15s --timeout=3s --start-period=5s --retries=3 \

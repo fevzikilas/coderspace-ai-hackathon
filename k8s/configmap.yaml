@@ -27,12 +27,15 @@ data:
   RISK_AGENT_SVC_URL: "http://risk-agent-svc:8005"
   GATEWAY_URL: "http://gateway:8000"
   # risk-agent-svc (GLM)
-  GLM_BASE_URL: "https://open.bigmodel.cn/api/paas/v4"
-  GLM_MODEL: "glm-4.5"
-  BUDGET_DAILY_TOKENS: "200000"
-  BUDGET_REQUESTS_PER_HOUR: "120"
-  BUDGET_ASSESSMENTS_PER_HOUR: "60"
-  BUDGET_TOKENS_PER_ASSESSMENT: "30000"
+  GLM_BASE_URL: "https://berriailitellm-databasev1826rc3-production-d691.up.railway.app/v1"  # sohbet (/v1); key/info kök URL'den türetilir
+  GLM_MODEL: "glm-5.3-flash"
+  GLM_REASONING_EFFORT: "low"
+  GLM_MAX_TOKENS: "4000"
+  BUDGET_TOTAL_USD: "15"
+  BUDGET_RESERVE_USD: "1"
+  BUDGET_REQUESTS_PER_MINUTE: "50"
+  BUDGET_TOKENS_PER_MINUTE: "400000"
+  BUDGET_TOKENS_PER_ASSESSMENT: "60000"
   ON_BUDGET_EXCEEDED: "fallback"
   # gateway
   CORS_ORIGINS: "http://uskoruma.local"

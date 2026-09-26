@@ -66,6 +66,8 @@ export interface IntelItem {
 }
 
 export interface ReportItem {
+  /** mock-data-svc rapor kimliği (assessment.report_verification.items[].id ile eşleşir) */
+  id?: string
   text: string
   reporter?: string
   /** official (resmî) | third_party (üçüncü taraf) | ... */
@@ -99,6 +101,20 @@ export interface ToolCallLog {
   ts: string
 }
 
+export type ReportVerdict = 'compatible' | 'incompatible' | 'unverifiable' | 'irrelevant'
+
+/** Raporların KENDİ tespit+iz verimizle nicel karşılaştırması (risk-agent → core-svc /verify-claims) */
+export interface ReportVerification {
+  total: number
+  by_verdict: Partial<Record<ReportVerdict, number>>
+  by_source: Record<string, Partial<Record<ReportVerdict, number>>>
+  irrelevant_reasons: Record<string, number>
+  identity_claims: number
+  identity_claims_describing_an_approaching_vehicle: number
+  /** ilgisizler hariç; uyumsuz → uyumlu → doğrulanamadı */
+  items: { id: string; time?: string; source?: string; text: string; verdict: ReportVerdict; summary: string }[]
+}
+
 export interface Assessment {
   assessment_id: string
   zone_id: string
@@ -120,6 +136,9 @@ export interface Assessment {
   reference_time: string | null
   capture_time: string | null
   pattern: { pattern: PatternName; confidence: number; matched: PatternName[]; involved_vehicles: string[] } | null
+  report_verification?: ReportVerification | null
+  /** risk hesabına katılamayan nesneler: izsiz tespitler (hareket verisi YOK) ve analiz sınırını aşan araçlar */
+  data_gaps?: { untracked_detections: number; untracked_classes: Record<string, number>; vehicles_over_limit: string[]; note: string } | null
   usage: { total_tokens: number; llm_calls: number }
   duration_ms: number
   created_at: string
@@ -152,6 +171,8 @@ export interface DetectionObj {
   bbox: BBox
   /** olay akışı: eşleşen iz noktasına uzaklık (m); null = izsiz nesne */
   match_distance_m?: number | null
+  /** 'exact': time == capture_time satırı (resmî yol) | 'interpolated': ızgara dışı yedek yol | null: iz bulunamadı */
+  match_method?: 'exact' | 'interpolated' | null
 }
 
 export type CornerName = 'top_left' | 'top_right' | 'bottom_left' | 'bottom_right'
@@ -183,12 +204,21 @@ export interface CatalogEvent {
   last_run: RunSummary | null
 }
 
+/** zones.json bölgesi: üssün etrafındaki yol/sektör merkezi (pusula yönü `bearing_from_base_deg`) */
+export interface ZoneInfo {
+  zone_id: string
+  name: string
+  center?: { lat: number; lon: number }
+  distance_from_base_m?: number
+  bearing_from_base_deg?: number
+}
+
 export interface EventsResponse {
   dataset_date: string | null
   errors: string[]
   n_tracks: number
   base: Base | null
-  zones: { zone_id: string; name: string }[]
+  zones: ZoneInfo[]
   events: CatalogEvent[]
 }
 

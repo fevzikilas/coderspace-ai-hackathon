@@ -1,18 +1,19 @@
 import { useMemo } from 'react'
 import { fmtClock, fmtDist, haversine } from '../geo'
-import { PATTERN_COLOR, PATTERN_LABEL, RISK_COLOR } from '../theme'
+import { PATTERN_COLOR, PATTERN_LABEL } from '../theme'
+import { colorOf } from '../vehicleColors'
 import type { Base, EventInfo, Vehicle } from '../types'
 
 interface Props {
   base: Base
   event: EventInfo | null
-  vehicles: Vehicle[]
   selected: Vehicle | null
-  onSelect: (id: string) => void
+  /** araç renkleri (sekmeler ve harita ile aynı) */
+  colors: Record<string, string>
 }
 
 /** Üsse mesafe (m) – zaman grafiği: eğim aşağı = yaklaşıyor. */
-function DistanceChart({ v, base }: { v: Vehicle; base: Base }) {
+function DistanceChart({ v, base, color }: { v: Vehicle; base: Base; color: string }) {
   const series = useMemo(
     () => v.trace.map((p) => ({ t: new Date(p.ts).getTime(), d: haversine(p.lat, p.lon, base.lat, base.lon) })),
     [v.trace, base.lat, base.lon],
@@ -26,7 +27,6 @@ function DistanceChart({ v, base }: { v: Vehicle; base: Base }) {
   const x = (t: number) => 6 + ((t - t0) / Math.max(1, t1 - t0)) * (W - 12)
   const y = (d: number) => H - 14 - (d / dMax) * (H - 24)
   const pts = series.map((s) => `${x(s.t).toFixed(1)},${y(s.d).toFixed(1)}`).join(' ')
-  const color = v.analysis.approaching ? '#ff453a' : '#8b98a8'
   return (
     <svg viewBox={`0 0 ${W} ${H}`} className="chart" role="img" aria-label="Üsse mesafe grafiği">
       <line x1={6} x2={W - 6} y1={y(base.radius_m)} y2={y(base.radius_m)} stroke="#ff453a" strokeDasharray="4 4" opacity={0.6} />
@@ -68,28 +68,15 @@ function ApproachGauge({ v, base }: { v: Vehicle; base: Base }) {
   )
 }
 
-export default function MovementPanel({ base, event, vehicles, selected, onSelect }: Props) {
-  const ordered = [...vehicles].sort((a, b) => Number(b.in_latest_detection) - Number(a.in_latest_detection) || a.vehicle_id.localeCompare(b.vehicle_id))
+export default function MovementPanel({ base, event, selected, colors }: Props) {
   return (
     <div className="movement">
-      <div className="chips">
-        {ordered.map((v) => (
-          <button
-            key={v.vehicle_id}
-            className={`chip chip-btn ${selected?.vehicle_id === v.vehicle_id ? 'active' : ''}`}
-            style={{ borderColor: v.risk_level && v.in_latest_detection ? RISK_COLOR[v.risk_level] : undefined }}
-            onClick={() => onSelect(v.vehicle_id)}
-          >
-            {v.vehicle_id}
-            {v.analysis.approaching && <span className="dot-red" title="yaklaşıyor" />}
-          </button>
-        ))}
-      </div>
       {!selected ? (
-        <div className="empty">Araç seçin.</div>
+        <div className="empty">Görüntünün altındaki sekmelerden bir araç seçin.</div>
       ) : (
         <>
           <div className="mv-head">
+            <i className="vtab-dot" style={{ background: colorOf(colors, selected.vehicle_id) }} />
             <b>{selected.vehicle_id}</b> <span className="muted">{selected.class}</span>
             {selected.pattern && (
               <span className="chip" style={{ color: PATTERN_COLOR[selected.pattern], borderColor: PATTERN_COLOR[selected.pattern] }}>
@@ -106,7 +93,7 @@ export default function MovementPanel({ base, event, vehicles, selected, onSelec
             <div><label>Kapanma hızı</label><b>{selected.analysis.closing_speed_mps.toFixed(1)} m/s</b></div>
           </div>
           <div className="sub-title">Üsse mesafe — {event ? `iz (${event.capture_time}'a kadar, 5 dk adım)` : 'iz (son 30 dk)'}</div>
-          <DistanceChart v={selected} base={base} />
+          <DistanceChart v={selected} base={base} color={colorOf(colors, selected.vehicle_id)} />
         </>
       )}
     </div>

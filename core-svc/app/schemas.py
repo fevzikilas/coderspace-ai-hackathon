@@ -107,6 +107,19 @@ class LatLonIn(BaseModel):
     lon: float = Field(..., ge=-180, le=180)
 
 
+class ClaimIn(BaseModel):
+    id: str
+    ts: str | float = Field(..., description="Rapor zamanı (ISO | epoch | 'HH:MM')")
+    lat: float | None = Field(None, ge=-90, le=90)
+    lon: float | None = Field(None, ge=-180, le=180)
+    claim: dict[str, Any] = Field(..., description="mock-data-svc claims.parse_claim çıktısı")
+
+
+class VerifyClaimsRequest(BaseModel):
+    claims: list[ClaimIn] = Field(..., max_length=200)
+    base_location: BaseLocation | None = None
+
+
 class AnalyzeRequest(BaseModel):
     vehicle_id: str | None = None
     coords: list[Coord] | None = Field(None, description="vehicle_id yerine ham iz (ts zorunlu, ≥2 nokta)")

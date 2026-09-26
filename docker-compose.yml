@@ -2,7 +2,8 @@
 #   cp .env.example .env   # GLM_API_KEY, GATEWAY_API_KEYS, POSTGRES_PASSWORD'u düzenleyin
 #   docker compose up --build
 # NOT: Bu dosya YAZILDI; bu depoda `docker compose up` ÇALIŞTIRILMADI.
-# Yalnızca web-ui (8080) ve gateway (8000) dışarı açılır; diğer servisler iç ağda (yalnızca HTTP ile birbirine bağlı).
+# Dışarı YALNIZCA auth-proxy açılır: host :8080 → web-ui, host :8000 → gateway; ikisi de giriş sayfası (auth-svc) arkasında.
+# web-ui ve gateway'in kendi portları artık host'a yayınlanmaz. Tünel: cloudflared tunnel --url http://localhost:8080 (ve :8000)
 name: uskoruma
 
 x-python-env: &common-env
@@ -51,10 +52,13 @@ services:
         WITH_MODEL: ${DETECTION_WITH_MODEL:-false}
     environment:
       <<: *common-env
-      MOCK_MODE: ${MOCK_MODE:-true}
-      MODEL_PATH: /srv/models/stage1.pt
+      MOCK_MODE: ${MOCK_MODE:-true}            # false: gerçek model (yüklenemezse servis AÇILMAZ; MOCK_FALLBACK=true ile mock'a düşer ve /health "degraded" olur)
+      MOCK_FALLBACK: ${MOCK_FALLBACK:-false}
+      MODEL_BACKEND: ${MODEL_BACKEND:-ultralytics}   # ultralytics | dfine
+      MODEL_PATH: ${MODEL_PATH:-/srv/models/stage1.pt}
+      CONF_THRESHOLD: ${CONF_THRESHOLD:-0.4}   # 0.25: daha yüksek recall, daha çok izsiz gürültü kutusu
     volumes:
-      - ./detection-svc/models:/srv/models:ro   # Stage 1 ağırlığı: detection-svc/models/stage1.pt
+      - ./detection-svc/models:/srv/models:ro   # ağırlık: detection-svc/models/stage1.pt (YOLO) veya dfine.pt (D-FINE)
       - ./data:/data:ro
     restart: unless-stopped
 
@@ -90,13 +94,28 @@ services:
       dockerfile: ../docker/risk-agent-svc.Dockerfile
     environment:
       <<: *common-env
-      GLM_API_KEY: ${GLM_API_KEY:-}            # boşsa kural tabanlı (LLM'siz) mod
-      GLM_BASE_URL: ${GLM_BASE_URL:-https://open.bigmodel.cn/api/paas/v4}
-      GLM_MODEL: ${GLM_MODEL:-glm-4.5}
-      BUDGET_DAILY_TOKENS: ${BUDGET_DAILY_TOKENS:-200000}
-      BUDGET_REQUESTS_PER_HOUR: ${BUDGET_REQUESTS_PER_HOUR:-120}
-      BUDGET_ASSESSMENTS_PER_HOUR: ${BUDGET_ASSESSMENTS_PER_HOUR:-60}
-      BUDGET_TOKENS_PER_ASSESSMENT: ${BUDGET_TOKENS_PER_ASSESSMENT:-30000}
+      # LLM sağlayıcı: LLM_PROVIDER=openrouter (BİRİNCİL, varsayılan) | glm (ikincil, organizatör gateway'i). Anahtar yoksa kural tabanlı (LLM'siz) mod.
+      LLM_PROVIDER: ${LLM_PROVIDER:-openrouter}
+      LLM_BASE_URL: ${LLM_BASE_URL:-}          # boş: sağlayıcı varsayılanı; dolu: sağlayıcıdan bağımsız geçersiz kılma
+      LLM_MODEL: ${LLM_MODEL:-}
+      LLM_API_KEY: ${LLM_API_KEY:-}
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}
+      OPENROUTER_BASE_URL: ${OPENROUTER_BASE_URL:-}
+      OPENROUTER_MODEL: ${OPENROUTER_MODEL:-}   # boş: nvidia/nemotron-3-ultra-550b-a55b:free
+      LLM_MAX_REQUESTS_PER_DAY: ${LLM_MAX_REQUESTS_PER_DAY:-}   # boş: openrouter=40 (ücretsiz katman 50/gün), glm=sınırsız
+      LLM_SEND_REASONING_EFFORT: ${LLM_SEND_REASONING_EFFORT:-}  # boş: yalnızca glm'de gönderilir
+      AGENT_MAX_ROUNDS: ${AGENT_MAX_ROUNDS:-12}              # modeller araçları tek tek çağırırsa 8 tur yetmiyordu
+      GLM_API_KEY: ${GLM_API_KEY:-}
+      GLM_BASE_URL: ${GLM_BASE_URL:-https://berriailitellm-databasev1826rc3-production-d691.up.railway.app/v1}   # /v1 ile biter (sohbet)
+      GLM_ROOT_URL: ${GLM_ROOT_URL:-}          # key/info için kök URL (/v1'siz); boşsa GLM_BASE_URL'den türetilir
+      GLM_MODEL: ${GLM_MODEL:-glm-5.3-flash}
+      GLM_REASONING_EFFORT: ${GLM_REASONING_EFFORT:-low}   # low|high|max — 'thinking' parametresi gönderilmez
+      GLM_MAX_TOKENS: ${GLM_MAX_TOKENS:-4000}
+      BUDGET_TOTAL_USD: ${BUDGET_TOTAL_USD:-15}
+      BUDGET_RESERVE_USD: ${BUDGET_RESERVE_USD:-1}
+      BUDGET_REQUESTS_PER_MINUTE: ${BUDGET_REQUESTS_PER_MINUTE:-}   # boş: glm=50, openrouter=15
+      BUDGET_TOKENS_PER_MINUTE: ${BUDGET_TOKENS_PER_MINUTE:-400000}
+      BUDGET_TOKENS_PER_ASSESSMENT: ${BUDGET_TOKENS_PER_ASSESSMENT:-60000}
       ON_BUDGET_EXCEEDED: ${ON_BUDGET_EXCEEDED:-fallback}
       CORE_SVC_URL: http://core-svc:8002
       PATTERN_SVC_URL: http://pattern-svc:8003
@@ -122,8 +141,8 @@ services:
       PATTERN_SVC_URL: http://pattern-svc:8003
       MOCK_DATA_SVC_URL: http://mock-data-svc:8004
       RISK_AGENT_SVC_URL: http://risk-agent-svc:8005
-    ports:
-      - "8000:8000"
+    expose:
+      - "8000"   # host'a YAYINLANMAZ: dış erişim auth-proxy :8000 üzerinden
     depends_on:
       - detection-svc
       - core-svc
@@ -138,9 +157,39 @@ services:
       dockerfile: ../docker/web-ui.Dockerfile
     environment:
       GATEWAY_URL: http://gateway:8000
-    ports:
-      - "8080:8080"
+      # UI anahtar SORMAZ: nginx bu anahtarı /api isteklerine sunucu tarafında ekler (varsayılan: gateway'in anahtarı). Boş bırakırsanız UI anahtar sorar.
+      UI_GATEWAY_API_KEY: ${UI_GATEWAY_API_KEY-${GATEWAY_API_KEYS:-dev-key-change-me}}
+    expose:
+      - "8080"   # host'a YAYINLANMAZ: dış erişim auth-proxy :8080 üzerinden
     depends_on:
+      - gateway
+    restart: unless-stopped
+
+  # Oturum kapısı: giriş sayfası + imzalı çerez doğrulama (auth-proxy'nin auth_request hedefi; yalnızca iç ağ)
+  auth-svc:
+    build:
+      context: ./auth-svc
+      dockerfile: ../docker/auth-svc.Dockerfile
+    environment:
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+      # Kimlik bilgilerinin VARSAYILANI YOK: .env'de yoksa compose hata verir (repoda bilinen bir şifreyle açık kalmasın)
+      AUTH_USERNAME: ${AUTH_USERNAME:?AUTH_USERNAME .env içinde tanımlanmalı}
+      AUTH_PASSWORD: ${AUTH_PASSWORD:?AUTH_PASSWORD .env içinde tanımlanmalı (en az 12 karakter)}
+      AUTH_SECRET: ${AUTH_SECRET:?AUTH_SECRET .env içinde tanımlanmalı (openssl rand -hex 32)}
+      AUTH_SESSION_HOURS: ${AUTH_SESSION_HOURS:-12}
+    restart: unless-stopped
+
+  # Dışarı açılan TEK servis (cloudflared tünelinin hedefi). Doğrulanmamış hiçbir istek web-ui/gateway'e iletilmez.
+  auth-proxy:
+    build:
+      context: ./auth-proxy
+      dockerfile: ../docker/auth-proxy.Dockerfile
+    ports:
+      - "8080:8080"   # → web-ui
+      - "8000:8000"   # → gateway
+    depends_on:
+      - auth-svc
+      - web-ui
       - gateway
     restart: unless-stopped
 

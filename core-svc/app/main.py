@@ -23,7 +23,8 @@ from .dataset import Dataset, load_dataset
 from .db import Persistence
 from .georef import DroneMeta as GeoMeta
 from .georef import bbox_center, box_anchor, pixel_to_ground, pixel_to_ground_corners
-from .schemas import AnalyzeRequest, Corners, GeoDetection, GeoRequest, GeoResponse
+from .schemas import AnalyzeRequest, Corners, GeoDetection, GeoRequest, GeoResponse, VerifyClaimsRequest
+from .verify import verify_claims
 from .store import Point, TrackStore, Vehicle, match_detections
 from .timeutil import iso, parse_ts, parse_window
 
@@ -106,7 +107,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     # ------------------------------------------------------------------------------ georeferans
     @app.post("/georeference", response_model=GeoResponse, response_model_by_alias=True)
     def georeference(req: GeoRequest, bg: BackgroundTasks) -> GeoResponse:
-        """bbox → GPS. Köşe koordinatları (bilinear) veya drone_meta (kamera modeli) ile.
+        """bbox → GPS. Köşe koordinatları (resmî doğrusal formül) veya drone_meta (kamera modeli) ile.
 
         `match_tracks=true`: tespitler reference_time anındaki tracks.csv izlerine eşlenir (depo değişmez).
         `ingest=true` (eski/demo): tespitler tracker'a işlenir, araç ID'si atanır.
@@ -329,6 +330,29 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         if ev is None:
             raise HTTPException(404, f"Bilinmeyen detection_id: {detection_id}")
         return ev
+
+    @app.post("/detections/{detection_id}/verify-claims")
+    def verify_report_claims(detection_id: str, req: VerifyClaimsRequest) -> dict:
+        """Saha raporu iddialarını (tip/sayı/hareket/konum) bu olayın tespitleri ve tracks.csv iz geçmişiyle NİCELİKSEL karşılaştırır.
+        Yalnızca rapor saatine ve öncesine bakılır (olay anından sonrası kullanılmaz)."""
+        ev = store.get_event(detection_id)
+        if ev is None:
+            raise HTTPException(404, f"Bilinmeyen detection_id: {detection_id}")
+        base = default_base()
+        if req.base_location:
+            bl = req.base_location
+            base = Base(bl.lat, bl.lon, bl.radius_m if bl.radius_m is not None else base.radius_m)
+        items = []
+        for c in req.claims:
+            t = ts_of(c.ts)
+            if t is None or t > ev["ts"] + 1.0:
+                raise HTTPException(422, f"Rapor {c.id}: zamanı olay anından (reference_time) sonra ya da geçersiz")
+            items.append({"id": c.id, "ts": t, "lat": c.lat, "lon": c.lon, "claim": c.claim})
+        results = verify_claims(store, cfg, ev, base, items)
+        counts: dict[str, int] = {}
+        for r in results:
+            counts[r["verdict"]] = counts.get(r["verdict"], 0) + 1
+        return {"detection_id": detection_id, "reference_time": ev["reference_time"], "counts": counts, "results": results}
 
     @app.get("/detections")
     def list_detections(limit: int = Query(10, ge=1, le=100)) -> dict:

@@ -15,6 +15,10 @@ class Facts:
     pattern: dict[str, Any] | None = None  # pattern-svc sonucu (ham)
     intel: list[dict[str, Any]] | None = None
     reports: list[dict[str, Any]] | None = None
+    # max_vehicles sınırı yüzünden analize ALINMAYAN izli araçlar (sessizce atlanmasın)
+    dropped_vehicle_ids: list[str] = field(default_factory=list)
+    # Raporların KENDİ verimizle nicel karşılaştırması (core-svc /verify-claims): özet sayaçlar + kısa maddeler; yoksa None
+    report_verification: dict[str, Any] | None = None
     drone: dict[str, Any] | None = None
     # Olay anı (capture_time, ISO). Tüm "yaş"/geçmiş hesapları buna göre; duvar saati kullanılmaz.
     reference_time: str | None = None
@@ -24,6 +28,31 @@ class Facts:
     @property
     def vehicle_ids(self) -> list[str]:
         return list(self.detection.get("vehicle_ids") or [])
+
+    def untracked(self) -> list[dict[str, Any]]:
+        """İz kaydıyla eşleşmeyen tespitler: HAREKET VERİSİ YOK (park halindeki araç, izi olmayan araç ya da yanlış pozitif olabilir)."""
+        return [d for d in self.detection.get("detections", []) if not d.get("vehicle_id")]
+
+    def data_gaps(self) -> dict[str, Any] | None:
+        """Risk hesabına KATILAMAYAN nesneler: açıkça raporlanır; 'hareket verisi yok' 'zararsız/LOW' demek değildir."""
+        un = self.untracked()
+        if not un and not self.dropped_vehicle_ids:
+            return None
+        classes: dict[str, int] = {}
+        for d in un:
+            classes[str(d.get("class", "?"))] = classes.get(str(d.get("class", "?")), 0) + 1
+        parts = []
+        if un:
+            parts.append(f"{len(un)} nesne izsiz ({', '.join(f'{v} {k}' for k, v in sorted(classes.items()))}): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı")
+        if self.dropped_vehicle_ids:
+            parts.append(f"{len(self.dropped_vehicle_ids)} izli araç analiz sınırı (AGENT_MAX_VEHICLES) nedeniyle değerlendirilmedi: {', '.join(self.dropped_vehicle_ids)}")
+        return {
+            "untracked_detections": len(un),
+            "untracked_classes": classes,
+            "untracked": [{"class": d.get("class"), "conf": d.get("conf"), "lat": d.get("lat"), "lon": d.get("lon")} for d in un[:40]],
+            "vehicles_over_limit": list(self.dropped_vehicle_ids),
+            "note": "; ".join(parts) + ".",
+        }
 
     @property
     def drone_id(self) -> str | None:

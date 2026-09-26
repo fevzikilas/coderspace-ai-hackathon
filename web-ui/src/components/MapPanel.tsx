@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
 import L from 'leaflet'
 import { Circle, CircleMarker, MapContainer, Marker, Pane, Polygon, Polyline, TileLayer, Tooltip, useMap } from 'react-leaflet'
-import { fmtClock, fovSector } from '../geo'
+import { destination, fmtClock, fovSector } from '../geo'
+import { colorOf } from '../vehicleColors'
+import ZoneRose from './ZoneRose'
 import { DRONE_STATUS_COLOR, PATTERN_COLOR, PATTERN_LABEL, RISK_COLOR, RISK_LABEL, TILE_URL } from '../theme'
-import type { Base, DetectionObj, Drone, EventInfo, Vehicle } from '../types'
+import type { Base, DetectionObj, Drone, EventInfo, Vehicle, ZoneInfo } from '../types'
 
 const iconCache = new Map<string, L.DivIcon>()
 
@@ -37,22 +39,33 @@ function vehicleColor(v: Vehicle): string {
   return PATTERN_COLOR.RANDOM
 }
 
-function FitOnDemand({ base, trigger }: { base: Base; trigger: number }) {
+function FitOnDemand({ base, trigger, insetRight }: { base: Base; trigger: number; insetRight: number }) {
   const map = useMap()
   useEffect(() => {
-    map.fitBounds(L.latLng(base.lat, base.lon).toBounds(base.alert_radius_m * 2.2), { animate: trigger > 1 })
+    map.fitBounds(L.latLng(base.lat, base.lon).toBounds(base.alert_radius_m * 2.2), { animate: trigger > 1, paddingBottomRight: [insetRight, 0] })
     // yalnızca tetikleyici değişince (ilk yükleme, kullanıcı butonu veya üs değişimi)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [trigger, map, base.lat, base.lon])
   return null
 }
 
-/** Son tespite (olayın izi + ayak izi + üs, veya demo araçları) yakınlaşır. `tick` değişince tetiklenir. */
-function FocusOnDemand({ points, tick, pad }: { points: [number, number][]; tick: string; pad: number }) {
+/** Harita kabı boyut değiştirince (pencere, dar ekran düzeni) Leaflet'e haber verir; yoksa karolar eksik çizilir. */
+function AutoResize() {
+  const map = useMap()
+  useEffect(() => {
+    const ro = new ResizeObserver(() => map.invalidateSize({ animate: false }))
+    ro.observe(map.getContainer())
+    return () => ro.disconnect()
+  }, [map])
+  return null
+}
+
+/** Son tespite (olayın izi + ayak izi + üs, veya demo araçları) yakınlaşır. `tick` değişince tetiklenir. `insetRight`: sağ üstteki özet kartın kapladığı genişlik (px). */
+function FocusOnDemand({ points, tick, pad, maxZoom = 16, insetRight = 0 }: { points: [number, number][]; tick: string; pad: number; maxZoom?: number; insetRight?: number }) {
   const map = useMap()
   useEffect(() => {
     if (!tick || points.length === 0) return
-    map.fitBounds(L.latLngBounds(points.map(([a, b]) => L.latLng(a, b))).pad(pad), { maxZoom: 16, animate: true })
+    map.fitBounds(L.latLngBounds(points.map(([a, b]) => L.latLng(a, b))).pad(pad), { maxZoom, animate: true, paddingTopLeft: [10, 10], paddingBottomRight: [insetRight + 10, 10] })
     // yalnızca tetikleyici değişince
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tick, map])
@@ -71,11 +84,21 @@ interface Props {
   /** Yeni başarılı koşu kimliği: değişince harita tespite odaklanır */
   focusKey: string | null
   focusDroneId: string | null
+  /** araç renkleri (track_id → renk): görüntüdeki kutu ve araç sekmesiyle AYNI */
+  colors: Record<string, string>
+  /** zones.json bölgeleri: pusula gülü dilimleri */
+  zones: ZoneInfo[]
+  activeZoneId: string | null
+  /** haritanın sağ üstüne bindirilen özet kartın genişliği (px, dar ekranda 0): odaklanırken bu alan boş bırakılır */
+  insetRight?: number
 }
+
+// Dar ekranda harita küçük: lejand kapalı (tek satır) başlar, kullanıcı açabilir
+const legendOpenInitially = typeof window === 'undefined' || window.matchMedia('(min-width: 1100px)').matches
 
 const CORNER_ORDER = ['top_left', 'top_right', 'bottom_right', 'bottom_left'] as const
 
-export default function MapPanel({ base, drones, vehicles, detections, event, selectedId, onSelect, focusKey, focusDroneId }: Props) {
+export default function MapPanel({ base, drones, vehicles, detections, event, selectedId, onSelect, focusKey, focusDroneId, colors, zones, activeZoneId, insetRight = 0 }: Props) {
   const [fitTick, setFitTick] = useState(1)
   const [manualFocus, setManualFocus] = useState(0)
   const center: [number, number] = [base.lat, base.lon]
@@ -85,6 +108,8 @@ export default function MapPanel({ base, drones, vehicles, detections, event, se
   const detPos = new Map(detections.filter((d) => d.vehicle_id).map((d) => [d.vehicle_id as string, [d.lat, d.lon] as [number, number]]))
   const untracked = event ? detections.filter((d) => !d.vehicle_id) : []
 
+  // Olay modunda otomatik odak = tüm pusula gülü (uyarı halkası); "Tespite odaklan" düğmesi ayak izi + izlere yakınlaşır
+  const rosePoints: [number, number][] = [0, 90, 180, 270].map((b) => destination(base.lat, base.lon, b, base.alert_radius_m))
   const focusPoints: [number, number][] = event
     ? [center, ...(footprint ?? []), ...vehicles.flatMap((v) => v.trace.map((p) => [p.lat, p.lon] as [number, number]))]
     : [
@@ -94,10 +119,23 @@ export default function MapPanel({ base, drones, vehicles, detections, event, se
 
   return (
     <div className="map-wrap">
-      <MapContainer center={center} zoom={12} className="map" scrollWheelZoom>
-        <TileLayer url={TILE_URL} attribution='&copy; OpenStreetMap' maxZoom={19} className="dark-tiles" />
-        <FitOnDemand base={base} trigger={fitTick} />
-        <FocusOnDemand points={focusPoints} tick={manualFocus ? `m${manualFocus}` : focusKey ? `r${focusKey}` : ''} pad={event ? 0.2 : 0.6} />
+      <MapContainer center={center} zoom={12} zoomSnap={0.25} zoomDelta={0.5} className="map" scrollWheelZoom>
+        {/* OSM karo kullanım kuralı Referer ister; sayfa geneli 'no-referrer' (nginx) olduğu için karolara YALNIZCA köken (yol/sorgu değil) gönderilir,
+            yoksa yakın zoom'da (önbellekte olmayan karolar) "Access blocked" karosu döner. */}
+        <TileLayer url={TILE_URL} attribution='&copy; OpenStreetMap' maxZoom={19} className="dark-tiles" referrerPolicy="strict-origin-when-cross-origin" />
+        <AutoResize />
+        <FitOnDemand base={base} trigger={fitTick} insetRight={insetRight} />
+        {event ? (
+          <>
+            <FocusOnDemand points={rosePoints} tick={focusKey ? `r${focusKey}` : ''} pad={0.04} maxZoom={14} insetRight={insetRight} />
+            <FocusOnDemand points={focusPoints} tick={manualFocus ? `m${manualFocus}` : ''} pad={0.2} insetRight={insetRight} />
+          </>
+        ) : (
+          <FocusOnDemand points={focusPoints} tick={manualFocus ? `m${manualFocus}` : focusKey ? `r${focusKey}` : ''} pad={0.6} />
+        )}
+
+        {/* Bölge pusula gülü (olay akışı): üssü merkez alan 8 dilim, olayın bölgesi vurgulu */}
+        {event && <ZoneRose base={base} zones={zones} activeZoneId={activeZoneId} />}
 
         {/* Üs sınırı + uyarı halkası */}
         <Circle center={center} radius={base.alert_radius_m} pathOptions={{ color: '#f5a524', weight: 1, dashArray: '6 8', fillOpacity: 0.02 }} />
@@ -110,7 +148,7 @@ export default function MapPanel({ base, drones, vehicles, detections, event, se
 
         {/* Olay: görüntünün yer ayak izi (köşe koordinatları) */}
         {footprint && (
-          <Polygon positions={footprint} pathOptions={{ color: '#4cc9f0', weight: 2, dashArray: '4 4', fillOpacity: 0.1 }}>
+          <Polygon positions={footprint} pathOptions={{ color: '#e2e8f0', weight: 2, dashArray: '4 4', fillColor: '#e2e8f0', fillOpacity: 0.07 }}>
             <Tooltip sticky>
               Görüntü ayak izi — {event?.image_id} · {event?.capture_time}
               {event?.footprint_m ? ` · ${Math.round(event.footprint_m.width)}×${Math.round(event.footprint_m.height)} m` : ''}
@@ -145,7 +183,7 @@ export default function MapPanel({ base, drones, vehicles, detections, event, se
         {/* Araçlar: drone ikonlarının ÜSTÜNDE ayrı pane (çakışınca da tıklanabilir kalsın) */}
         <Pane name="vehicles" style={{ zIndex: 640 }}>
           {vehicles.map((v) => {
-            const color = vehicleColor(v)
+            const color = event ? colorOf(colors, v.vehicle_id) : vehicleColor(v)
             const pos: [number, number] = detPos.get(v.vehicle_id) ?? [v.last_position.lat, v.last_position.lon]
             const selected = v.vehicle_id === selectedId
             return (
@@ -153,13 +191,13 @@ export default function MapPanel({ base, drones, vehicles, detections, event, se
                 {v.trace.length > 1 && (
                   <Polyline
                     positions={v.trace.map((p) => [p.lat, p.lon] as [number, number])}
-                    pathOptions={{ color, weight: v.in_latest_detection ? 3 : 2, opacity: v.in_latest_detection ? 0.9 : 0.5 }}
+                    pathOptions={{ color, weight: v.in_latest_detection ? 3 : 2, opacity: v.in_latest_detection ? 0.95 : 0.5 }}
                   />
                 )}
                 {/* olay akışı: geçmiş iz noktaları (5 dk) saat etiketiyle */}
                 {event &&
                   v.trace.map((p) => (
-                    <CircleMarker key={p.ts} center={[p.lat, p.lon]} radius={3} pathOptions={{ color, weight: 1, fillColor: '#0b0f14', fillOpacity: 1 }}>
+                    <CircleMarker key={p.ts} center={[p.lat, p.lon]} radius={3.5} pathOptions={{ color, weight: 1.5, fillColor: color, fillOpacity: 0.85 }}>
                       <Tooltip direction="top" offset={[0, -4]}>{v.vehicle_id} · {fmtClock(p.ts)}</Tooltip>
                     </CircleMarker>
                   ))}
@@ -201,32 +239,42 @@ export default function MapPanel({ base, drones, vehicles, detections, event, se
 
       <div className="map-btns">
         <button className="map-btn" onClick={() => setManualFocus((n) => n + 1)} disabled={focusPoints.length === 0} title="Son tespite yakınlaş">
-          ⌖ Tespite odaklan
+          Tespite odaklan
         </button>
         <button className="map-btn" onClick={() => setFitTick((n) => n + 1)} title="Üssü ortala">
-          ◎ Üssü ortala
+          Üssü ortala
         </button>
       </div>
-      <div className="map-legend">
-        <div className="legend-title">Harita{event ? ` — ${event.capture_time} itibarıyla` : ''}</div>
-        {event ? (
-          <>
-            <div><i className="legend-dot" style={{ background: RISK_COLOR.HIGH }} /> Araç: görüntüden hesaplanan konum</div>
-            <div><i className="legend-dot legend-small" /> İz noktası (5 dk, saat etiketli)</div>
-            <div><i className="legend-dot lg-fp" /> Görüntü yer ayak izi</div>
-            <div><i className="legend-dot" style={{ background: '#8b98a8', opacity: 0.6 }} /> İzsiz nesne</div>
-          </>
-        ) : (
-          <>
-            <div><i className="legend-dot lg-drone" /> Drone (yön + görüş alanı)</div>
-            <div><i className="legend-dot" style={{ background: RISK_COLOR.HIGH }} /> Araç — risk (son tespit)</div>
-            <div><i className="legend-dot" style={{ background: PATTERN_COLOR.LOITERING }} /> Bekleme (LOITERING)</div>
-            <div><i className="legend-dot" style={{ background: PATTERN_COLOR.RANDOM }} /> Rastgele</div>
-          </>
-        )}
-        <div><i className="legend-dot lg-line" /> Yaklaşma vektörü</div>
-        <div><i className="legend-dot lg-ring" /> Üs sınırı / uyarı halkası</div>
-      </div>
+      {/* LEJAND: ayrı panel değil, haritanın sol altına bindirilmiş yarı saydam kutu (başlığa tıklayınca küçülür) */}
+      <details className="map-legend" open={legendOpenInitially}>
+        <summary>Lejand{event ? ` · ${event.capture_time}` : ''}</summary>
+        <div className="lg-grid">
+          {event ? (
+            <>
+              <i className="lg-sym legend-multi" /><span>Araç (renk = görüntüdeki kutu ve sekmeyle aynı)</span>
+              <i className="lg-sym legend-small" /><span>Aracın geçmiş konumları (5 dk arayla)</span>
+              <i className="lg-sym lg-line" /><span>Üsse yaklaşma yönü</span>
+              <i className="lg-sym lg-untracked" /><span>Hareketi bilinmeyen araç</span>
+            </>
+          ) : (
+            <>
+              <i className="lg-sym lg-drone" /><span>Drone (yön + görüş alanı)</span>
+              <i className="lg-sym" style={{ background: RISK_COLOR.HIGH }} /><span>Araç — risk (son tespit)</span>
+              <i className="lg-sym" style={{ background: PATTERN_COLOR.LOITERING }} /><span>Bekleyen araç</span>
+              <i className="lg-sym lg-line" /><span>Üsse yaklaşma yönü</span>
+            </>
+          )}
+          <i className="lg-sym lg-base">★</i><span>Üs</span>
+          <i className="lg-sym lg-ring" /><span>Üs sınırı</span>
+          <i className="lg-sym lg-alert" /><span>Uyarı halkası</span>
+          {event && (
+            <>
+              <i className="lg-sym lg-slice" /><span>Olayın bölgesi (vurgulu dilim)</span>
+              <i className="lg-sym lg-fp" /><span>Görüntünün kapladığı alan</span>
+            </>
+          )}
+        </div>
+      </details>
     </div>
   )
 }

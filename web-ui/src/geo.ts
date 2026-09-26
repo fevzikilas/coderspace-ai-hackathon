@@ -54,3 +54,51 @@ export const ageMin = (iso: string, refIso?: string | null, precomputed?: number
   if (m < 90) return `${Math.round(m)} dk ${suffix}`
   return `${(m / 60).toFixed(1)} sa ${suffix}`
 }
+
+/** İki açı (derece) arasındaki 0..360 saat yönlü fark. */
+const cw = (from: number, to: number): number => (((to - from) % 360) + 360) % 360
+
+export interface ZoneSector {
+  zoneId: string
+  name: string
+  bearing: number
+  start: number
+  end: number
+}
+
+/** Bölgelerin üsse göre yönlerinden pusula gülü dilimleri: her dilim kendi bölgesinin yönü etrafında, sınırlar komşu yönlerin ORTASINDA
+ *  (8 eşit aralıklı bölgede tam 45°'lik dilimler: K = 337.5°–22.5°). Tek bölgede tam daire. */
+export function zoneSectors(zones: { zone_id: string; name: string; bearing_from_base_deg?: number }[]): ZoneSector[] {
+  const zs = zones.filter((z) => typeof z.bearing_from_base_deg === 'number').sort((a, b) => (a.bearing_from_base_deg as number) - (b.bearing_from_base_deg as number))
+  return zs.map((z, i) => {
+    const b = z.bearing_from_base_deg as number
+    if (zs.length === 1) return { zoneId: z.zone_id, name: z.name, bearing: b, start: b - 180, end: b + 180 }
+    const prev = zs[(i - 1 + zs.length) % zs.length].bearing_from_base_deg as number
+    const next = zs[(i + 1) % zs.length].bearing_from_base_deg as number
+    return { zoneId: z.zone_id, name: z.name, bearing: b, start: b - cw(prev, b) / 2, end: b + cw(b, next) / 2 }
+  })
+}
+
+/** Üsten `radius` metreye uzanan dilim poligonu (merkez + yay). */
+export function sectorPolygon(lat: number, lon: number, start: number, end: number, radius: number, stepDeg = 5): [number, number][] {
+  const pts: [number, number][] = [[lat, lon]]
+  const n = Math.max(2, Math.ceil((end - start) / stepDeg))
+  for (let i = 0; i <= n; i++) pts.push(destination(lat, lon, start + ((end - start) * i) / n, radius))
+  return pts
+}
+
+/** "Guney Kapisi Yaklasimi" → ["Guney Kapisi", "Yaklasimi"]: harita etiketi için iki dengeli satır. */
+export function balanceName(name: string): string[] {
+  const words = name.trim().split(/\s+/)
+  if (words.length < 2) return [name]
+  let best = 1
+  let bestDiff = Infinity
+  for (let i = 1; i < words.length; i++) {
+    const diff = Math.abs(words.slice(0, i).join(' ').length - words.slice(i).join(' ').length)
+    if (diff < bestDiff) {
+      bestDiff = diff
+      best = i
+    }
+  }
+  return [words.slice(0, best).join(' '), words.slice(best).join(' ')]
+}

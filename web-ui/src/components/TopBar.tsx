@@ -1,5 +1,6 @@
 import { RiskBadge } from './RiskCard'
 import { fmtDist } from '../geo'
+import { zoneLabel } from '../zoneLabels'
 import type { DashboardState, Drone, EventInfo, Risk, ServiceHealth } from '../types'
 
 const SERVICE_LABEL: Record<string, string> = {
@@ -30,7 +31,7 @@ function EventChip({ mode, event }: { mode: Props['mode']; event: EventInfo | nu
         <span className="ec-time">{event.capture_time}</span>
         <span className="ec-label">itibarıyla<br />değerlendirme</span>
         <span className="ec-meta">
-          <b>{event.image_id ?? 'yüklenen görüntü'}</b> · {event.zone.name}
+          <b>{event.image_id ?? 'yüklenen görüntü'}</b> · {zoneLabel(event.zone.name)}
           <br />
           {event.base.name ?? 'Üs'} · üs sınırı {fmtDist(event.base.radius_m)}
         </span>

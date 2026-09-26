@@ -1,0 +1,18 @@
+#!/bin/sh
+# nginx-unprivileged giriş betiği (*.envsh dosyaları SOURCE edilir): /api isteklerine gateway anahtarını SUNUCU TARAFINDA ekler,
+# böylece tarayıcı ana sayfada anahtar sormaz. Gateway'in kendi kimlik doğrulaması açık kalır (doğrudan :8000'e anahtarsız erişim 401).
+#   UI_GATEWAY_API_KEY  gateway'e iletilecek TEK anahtar (virgüllü liste verilirse ilki). Boşsa enjeksiyon YOK: tarayıcının gönderdiği anahtar iletilir.
+key="${UI_GATEWAY_API_KEY%%,*}"
+case "$key" in
+  *[!A-Za-z0-9._~+=:@/-]*)
+    echo "15-ui-api-key: UI_GATEWAY_API_KEY nginx yapılandırmasına güvenle konamayacak karakterler içeriyor; enjeksiyon KAPALI" >&2
+    key=""
+    ;;
+esac
+if [ -n "$key" ]; then
+  export UI_API_KEY_HEADER="proxy_set_header X-API-Key \"$key\";"
+  echo "15-ui-api-key: /api istekleri için gateway anahtarı sunucu tarafında eklenecek"
+else
+  export UI_API_KEY_HEADER=""
+  echo "15-ui-api-key: anahtar enjeksiyonu kapalı (tarayıcı anahtarı iletilir)"
+fi

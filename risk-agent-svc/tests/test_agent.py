@@ -41,7 +41,7 @@ def context_round():
 async def test_rule_based_without_api_key_demo_convoy(make_harness):
     h = make_harness(World(), None)
     a = await h.agent.assess("ZONE-ALPHA", "det-1")
-    assert a["mode"] == "rule-based" and a["fallback_reason"] == "GLM_API_KEY tanımlı değil"
+    assert a["mode"] == "rule-based" and a["fallback_reason"] == "LLM anahtarı tanımlı değil (sağlayıcı: glm)"
     assert a["risk_level"] == "HIGH"
     assert a["evidence_breakdown"], "evidence_breakdown boş olamaz"
     assert abs(sum(e["weight"] for e in a["evidence_breakdown"]) - 1.0) < 0.002
@@ -57,7 +57,7 @@ async def test_llm_happy_path_enforces_floor_and_normalizes_evidence(make_harnes
     g = script(full_round(), context_round(), glm_reply([submit("LOW")]))
     h = make_harness(World(), g)
     a = await h.agent.assess("ZONE-ALPHA", "det-1")
-    assert a["mode"] == "llm" and a["model"] == "glm-4.5"
+    assert a["mode"] == "llm" and a["model"] == "glm-5.3-flash"
     assert a["risk_level"] == "HIGH"
     assert any("politika" in n.lower() for n in a["policy_adjustments"])
     ev = {e["source"]: e for e in a["evidence_breakdown"]}
@@ -116,23 +116,30 @@ async def test_llm_auth_error_falls_back_to_rules(make_harness):
 
 async def test_per_assessment_token_budget_falls_back(make_harness):
     g = script(glm_reply([tool_call("get_intel", {"zone_id": "ZONE-ALPHA"}, "i")], tokens=40_000), glm_reply([submit("HIGH")]))
-    h = make_harness(World(), g)
+    h = make_harness(World(), g, budget_tokens_per_assessment=30_000)
     a = await h.agent.assess("ZONE-ALPHA", "det-1")
     assert a["mode"] == "rule-based" and "token" in a["fallback_reason"]
     assert len(g.seen) == 1  # ikinci LLM isteği bütçe yüzünden hiç atılmadı
 
 
-async def test_hourly_assessment_quota_reject_mode(make_harness):
+async def _nearly_spent():
+    return {"spend": 14.5, "max_budget": 15.0}  # kalan 0.5 USD ≤ rezerv 1.0 USD
+
+
+async def test_total_budget_nearly_spent_reject_mode(make_harness):
     g = script(full_round(), glm_reply([submit("HIGH")]))
-    h = make_harness(World(), g, budget_assessments_per_hour=0, on_budget_exceeded="reject")
-    with pytest.raises(BudgetExceeded):
+    h = make_harness(World(), g, key_info=_nearly_spent, on_budget_exceeded="reject")
+    with pytest.raises(BudgetExceeded, match="toplam bütçe doldu"):
         await h.agent.assess("ZONE-ALPHA", "det-1")
+    assert len(g.seen) == 0  # LLM'e hiç istek atılmadı
 
 
-async def test_hourly_assessment_quota_fallback_mode(make_harness):
-    h = make_harness(World(), script(), budget_assessments_per_hour=0)
+async def test_total_budget_nearly_spent_fallback_mode(make_harness):
+    g = script()
+    h = make_harness(World(), g, key_info=_nearly_spent)
     a = await h.agent.assess("ZONE-ALPHA", "det-1")
-    assert a["mode"] == "rule-based" and "kota" in a["fallback_reason"]
+    assert a["mode"] == "rule-based" and "bütçe" in a["fallback_reason"] and a["risk_level"] == "HIGH"
+    assert a["budget"]["remaining_usd"] == 0.5 and g.seen == []
 
 
 async def test_cache_and_force(make_harness):
@@ -208,3 +215,11 @@ async def test_empty_intel_gets_no_evidence_weight(make_harness):
     a = await h.agent.assess("ZONE-ALPHA", "det-1")
     assert "intel" not in {e["source"] for e in a["evidence_breakdown"]}
     assert "reports" in {e["source"] for e in a["evidence_breakdown"]}
+
+
+def test_default_round_limit_and_parallel_tool_call_instruction():
+    from app.config import Settings
+    from app.prompts import SYSTEM_PROMPT
+
+    assert Settings().max_rounds == 12
+    assert "AYNI turda, paralel çağır" in " ".join(SYSTEM_PROMPT.replace("\\\n", " ").split())

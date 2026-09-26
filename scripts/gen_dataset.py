@@ -9,7 +9,7 @@ Girdi : scenarios.yaml (8 bölge x 5 olay; hareket senaryoları, saha raporları
         ground_truth.json      (görüntüdeki araçların GERÇEK bbox'ları; gerçek YOLO modeli gelene kadar mock dedektörü besler)
         expected.json          (olay başına tasarım niyeti: desen + risk; scripts/eval_events.py ile karşılaştırılır)
 
-Koordinat dönüşümü, çekirdek georeferansla AYNI bilinear eşlemeyi kullanır (eksene paralel dikdörtgen köşeler), bu yüzden
+Koordinat dönüşümü, çekirdek georeferansla AYNI (resmî) formülü kullanır — boylam üst kenardan, enlem sol kenardan, doğrusal —, bu yüzden
 ground-truth bbox merkezi georeferanslanınca aracın gerçek konumuna ~0.1 m'de düşer.
 """
 from __future__ import annotations

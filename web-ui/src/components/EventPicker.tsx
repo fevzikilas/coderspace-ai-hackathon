@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { fetchImageObjectUrl } from '../api'
 import { RISK_COLOR, RISK_LABEL } from '../theme'
+import { inkOn } from '../vehicleColors'
+import { zoneLabel } from '../zoneLabels'
 import type { CatalogEvent, EventsResponse } from '../types'
 
 const thumbCache = new Map<string, string>()
@@ -50,14 +52,19 @@ interface Props {
 }
 
 const MAX_IMAGE_BYTES = 10 * 1024 * 1024
+const byTime = (a: CatalogEvent, b: CatalogEvent): number => a.capture_iso.localeCompare(b.capture_iso) || a.image_id.localeCompare(b.image_id)
 
+/** SOL ŞERİT: üstte bölge süzgeci (Tümü + bölgeler, pusula sırasıyla), altında olaylar capture_time'a göre KRONOLOJİK (en erken üstte). */
 export default function EventPicker({ data, error, selectedId, runningId, busy, onSelect, onRun }: Props) {
   const [zone, setZone] = useState<string>('all')
   const [uploadMsg, setUploadMsg] = useState<string | null>(null)
   const fileRef = useRef<HTMLInputElement>(null)
+  const listRef = useRef<HTMLUListElement>(null)
 
-  const events = data?.events ?? []
+  const events = useMemo(() => [...(data?.events ?? [])].sort(byTime), [data?.events])
+  // Süzgeç düğmeleri: yalnızca olayı olan bölgeler; sıra = üsten pusula yönü (K → KD → D …), yönü bilinmeyen sonda
   const zones = useMemo(() => {
+    const bearing = new Map((data?.zones ?? []).map((z) => [z.zone_id, z.bearing_from_base_deg ?? 999]))
     const counts = new Map<string, { name: string; n: number }>()
     for (const e of events) {
       const key = e.zone_id ?? '—'
@@ -65,17 +72,25 @@ export default function EventPicker({ data, error, selectedId, runningId, busy, 
       cur.n += 1
       counts.set(key, cur)
     }
-    return [...counts.entries()].map(([id, v]) => ({ id, ...v }))
-  }, [events])
+    return [...counts.entries()].map(([id, v]) => ({ id, ...v })).sort((a, b) => (bearing.get(a.id) ?? 999) - (bearing.get(b.id) ?? 999))
+  }, [events, data?.zones])
   const visible = zone === 'all' ? events : events.filter((e) => (e.zone_id ?? '—') === zone)
-  const selected = events.find((e) => e.image_id === selectedId) ?? null
+
+  useEffect(() => {
+    const box = listRef.current
+    const el = box?.querySelector<HTMLElement>(`li[data-id="${selectedId}"]`)
+    if (!el || !box) return
+    if (el.offsetTop < box.scrollTop || el.offsetTop + el.offsetHeight > box.scrollTop + box.clientHeight) {
+      box.scrollTo({ top: Math.max(0, el.offsetTop - box.clientHeight / 3), behavior: 'smooth' })
+    }
+  }, [selectedId, zone])
 
   const onFile = (file: File | undefined) => {
     setUploadMsg(null)
     if (!file) return
     const stem = file.name.replace(/\.[^.]+$/, '')
     if (!events.some((e) => e.image_id === stem)) {
-      setUploadMsg(`“${file.name}” hiçbir olayla eşleşmiyor: dosya adı bir image_id olmalı (örn. ${events[0]?.image_id ?? 'img_000860'}.jpg), çünkü köşe koordinatları/çekim zamanı image_meta.json'dan gelir.`)
+      setUploadMsg(`“${file.name}” hiçbir olayla eşleşmiyor: dosya adı bir image_id olmalı (örn. ${events[0]?.image_id ?? 'img_000860'}.jpg).`)
       return
     }
     if (file.size > MAX_IMAGE_BYTES) {
@@ -91,69 +106,73 @@ export default function EventPicker({ data, error, selectedId, runningId, busy, 
     reader.readAsDataURL(file)
   }
 
-  if (error && !data) return <div className="empty">Olay kataloğu alınamadı: {error}</div>
-  if (!data) return <div className="empty">Olaylar yükleniyor…</div>
+  const header = (
+    <div className="rail-head">
+      <b>Olaylar</b>
+      <span className="muted">{data ? `${visible.length}/${events.length}` : ''}</span>
+      <input ref={fileRef} type="file" accept="image/*" hidden onChange={(e) => { onFile(e.target.files?.[0]); e.target.value = '' }} />
+      <button className="rail-upload" disabled={busy || !data} onClick={() => fileRef.current?.click()} title="Görüntü yükle — dosya adı bir image_id ile eşleşmeli (ör. img_000860.jpg); zaman ve konum image_meta.json’dan gelir">
+        ⤒ Yükle
+      </button>
+    </div>
+  )
+
+  if (error && !data) return <div className="rail">{header}<div className="empty small">Olay kataloğu alınamadı: {error}</div></div>
+  if (!data) return <div className="rail">{header}<div className="empty small">Olaylar yükleniyor…</div></div>
   if (events.length === 0) {
     return (
-      <div className="empty">
-        Veri setinde görüntü yok.
-        {data.errors.length > 0 && <div className="note warn">{data.errors.join(' · ')}</div>}
-        <div className="muted">DATA_DIR altında image_meta.json ve tracks.csv bulunmalı.</div>
+      <div className="rail">
+        {header}
+        <div className="empty small">
+          Veri setinde görüntü yok.
+          {data.errors.length > 0 && <div className="note warn">{data.errors.join(' · ')}</div>}
+        </div>
       </div>
     )
   }
 
   return (
-    <div className="evpicker">
-      <div className="chips zonechips">
-        <button className={`chip chip-btn ${zone === 'all' ? 'active' : ''}`} onClick={() => setZone('all')}>
-          Tümü ({events.length})
+    <div className="rail">
+      {header}
+      <div className="zonefilter" role="radiogroup" aria-label="Bölge süzgeci">
+        <button role="radio" aria-checked={zone === 'all'} className={`zf zf-all ${zone === 'all' ? 'active' : ''}`} onClick={() => setZone('all')}>
+          Tümü <small>{events.length}</small>
         </button>
         {zones.map((z) => (
-          <button key={z.id} className={`chip chip-btn ${zone === z.id ? 'active' : ''}`} onClick={() => setZone(z.id)}>
-            {z.name} ({z.n})
+          <button key={z.id} role="radio" aria-checked={zone === z.id} className={`zf ${zone === z.id ? 'active' : ''}`} onClick={() => setZone(z.id)} title={zoneLabel(z.name)}>
+            <span>{zoneLabel(z.name)}</span> <small>{z.n}</small>
           </button>
         ))}
       </div>
+      {uploadMsg && <div className="note warn small">{uploadMsg}</div>}
 
-      <ul className="evlist" role="listbox" aria-label="Olaylar">
-        {visible.map((e: CatalogEvent) => {
+      <ul className="evlist" role="listbox" aria-label="Olaylar (saat sırasıyla)" ref={listRef}>
+        {visible.map((e) => {
           const risk = e.last_run?.risk_level ?? null
           const active = e.image_id === selectedId
           const running = e.image_id === runningId
           return (
-            <li key={e.image_id} role="option" aria-selected={active}>
-              <button className={`evrow ${active ? 'active' : ''}`} onClick={() => onSelect(e.image_id)} onDoubleClick={() => !busy && onRun({ imageId: e.image_id })}>
+            <li key={e.image_id} role="option" aria-selected={active} data-id={e.image_id}>
+              <button className={`evrow ${active ? 'active' : ''}`} onClick={() => onSelect(e.image_id)} onDoubleClick={() => !busy && onRun({ imageId: e.image_id })} title={`${e.image_id} · ${zoneLabel(e.zone_name)} — çift tıkla: değerlendir`}>
                 <Thumb imageId={e.image_id} />
-                <span className="ev-time">{e.capture_time}</span>
-                <span className="ev-id">{e.image_id}</span>
-                <span className="ev-zone">{e.zone_name ?? '—'}</span>
-                <span className="ev-res">
+                <span className="ev-meta">
+                  <span className="ev-time">{e.capture_time}</span>
                   {running ? (
-                    <span className="chip chip-run">çalışıyor…</span>
+                    <span className="rpill run">çalışıyor…</span>
                   ) : risk ? (
-                    <span className="chip" style={{ color: RISK_COLOR[risk], borderColor: RISK_COLOR[risk] }}>{RISK_LABEL[risk]}</span>
+                    <span className="rpill" style={{ background: RISK_COLOR[risk], color: inkOn(RISK_COLOR[risk]) }}>{RISK_LABEL[risk]}</span>
                   ) : e.last_run?.status === 'failed' ? (
-                    <span className="chip chip-warn">hata</span>
-                  ) : null}
+                    <span className="rpill fail">hata</span>
+                  ) : (
+                    <span className="rpill none">—</span>
+                  )}
+                  <span className="ev-zone">{zoneLabel(e.zone_name)}</span>
                 </span>
               </button>
             </li>
           )
         })}
       </ul>
-
-      <div className="evactions">
-        <button className="btn primary" disabled={busy || !selected} onClick={() => selected && onRun({ imageId: selected.image_id })}>
-          {busy && runningId ? '⏳ Değerlendiriliyor…' : selected ? `▶ ${selected.capture_time} olayını değerlendir` : '▶ Olay seçin'}
-        </button>
-        <input ref={fileRef} type="file" accept="image/*" hidden onChange={(e) => { onFile(e.target.files?.[0]); e.target.value = '' }} />
-        <button className="btn ghost" disabled={busy} onClick={() => fileRef.current?.click()} title="Dosya adı bir image_id ile eşleşmeli (ör. img_000860.jpg)">
-          🖼 Görüntü yükle
-        </button>
-      </div>
-      {uploadMsg && <div className="note warn">{uploadMsg}</div>}
-      <div className="muted small-note">Çift tıklama = hemen değerlendir. Yüklenen dosyanın adı bir image_id olmalı; zaman ve konum image_meta.json’dan gelir.</div>
     </div>
   )
 }

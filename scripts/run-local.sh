@@ -16,9 +16,10 @@ export MOCK_MODE="${MOCK_MODE:-true}"
 export DATA_DIR="${DATA_DIR:-$PWD/data/synthetic}"
 export DATASET_DATE="${DATASET_DATE:-2025-06-01}"
 export DEMO_MODE="${DEMO_MODE:-false}"
+export LLM_PROVIDER="${LLM_PROVIDER:-openrouter}"
 export DETECTION_SVC_URL="http://$HOST:8001" CORE_SVC_URL="http://$HOST:8002" PATTERN_SVC_URL="http://$HOST:8003"
 export MOCK_DATA_SVC_URL="http://$HOST:8004" RISK_AGENT_SVC_URL="http://$HOST:8005"
-# GLM_API_KEY yoksa risk-agent kural tabanlı modda çalışır; GATEWAY_API_KEYS boşsa gateway auth'suzdur (yalnızca yerel geliştirme).
+# LLM: birincil sağlayıcı OpenRouter (OPENROUTER_API_KEY), ikincil GLM (LLM_PROVIDER=glm GLM_API_KEY=…). Anahtar yoksa risk-agent kural tabanlı modda çalışır; GATEWAY_API_KEYS boşsa gateway auth'suzdur (yalnızca yerel geliştirme).
 
 start() { # dizin port
   (cd "$1" && exec "$PY" -m uvicorn app.main:app --host "$HOST" --port "$2") &

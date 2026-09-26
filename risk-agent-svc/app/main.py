@@ -28,14 +28,19 @@ _state: dict[str, Any] = {}
 async def lifespan(_: FastAPI):
     up = Upstreams(settings)
     glm = GLMClient(settings) if settings.glm_api_key else None
-    budget = Budget(settings)
+    budget = Budget(settings, glm.key_info if glm and settings.llm_provider == "glm" else None)  # key/info yalnızca GLM gateway'inde var
     store = AssessmentStore(settings.cache_size)
     persistence = Persistence(settings.database_url)
     _state.update(agent=RiskAgent(settings, up, glm, budget, store, persistence), budget=budget, store=store, glm=glm)
     if glm is None:
-        log.warning("GLM_API_KEY tanımlı değil → yalnızca kural tabanlı (rule-based) değerlendirme yapılacak")
+        log.warning("LLM anahtarı tanımlı değil (LLM_PROVIDER=%s) → yalnızca kural tabanlı (rule-based) değerlendirme yapılacak", settings.llm_provider)
     else:
-        log.info("GLM hazır: model=%s base=%s", settings.glm_model, settings.glm_base_url)
+        log.info("LLM hazır: sağlayıcı=%s model=%s base=%s reasoning_effort=%s günlük tavan=%s", settings.llm_provider, settings.glm_model, settings.glm_base_url,
+                 settings.glm_reasoning_effort if settings.send_reasoning_effort else "(gönderilmiyor)", settings.llm_max_requests_per_day or "yok")
+        await budget.refresh(force=True)  # yalnızca GLM: açılışta gerçek harcamayı oku (okunamazsa uyarı, servis çalışır)
+        log.info("GLM bütçesi: %s", {k: v for k, v in budget.status().items() if k in ("spend_usd", "remaining_usd", "total_budget_usd", "key_info_error")})
+    if os.getenv("GLM_THINKING"):
+        log.warning("GLM_THINKING artık desteklenmiyor ve yok sayıldı: gateway 'thinking' parametresini reddeder. Bunun yerine GLM_REASONING_EFFORT=low|high|max kullanın.")
     yield
     if glm is not None:
         await glm.aclose()
@@ -63,7 +68,7 @@ def health() -> dict:
     return {
         "status": "ok",
         "service": "risk-agent-svc",
-        "llm": "glm" if _state.get("glm") is not None else "disabled (rule-based)",
+        "llm": settings.llm_provider if _state.get("glm") is not None else "disabled (rule-based)",
         "model": settings.glm_model if _state.get("glm") is not None else None,
     }
 
@@ -95,5 +100,7 @@ def get_assessment(assessment_id: str) -> dict:
 
 
 @app.get("/budget")
-def budget() -> dict:
-    return _state["budget"].status()
+async def budget(refresh: bool = Query(False, description="true: key/info'yu şimdi oku (aksi halde TTL'li önbellek)")) -> dict:
+    b = _state["budget"]
+    await b.refresh(force=refresh)
+    return b.status()

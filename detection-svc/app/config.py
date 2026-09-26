@@ -31,7 +31,8 @@ class Settings:
     dfine_use_ema: bool = field(default_factory=lambda: _bool("DFINE_USE_EMA", True))
     # Modelin sınıf sıralaması (id 0..N-1). D-FINE için eğitimdeki sıra: car,van,truck,bus
     class_names: list[str] = field(default_factory=lambda: _list("CLASS_NAMES", "car,van,truck,bus"))
-    conf_threshold: float = field(default_factory=lambda: float(os.getenv("CONF_THRESHOLD", "0.25")))
+    # Varsayılan 0.4 (gerçek 40 görüntüde ölçüldü: 0.25'e göre izsiz gürültü kutuları 219→89, izli araç recall %99→%96). Daha yüksek recall için CONF_THRESHOLD=0.25.
+    conf_threshold: float = field(default_factory=lambda: float(os.getenv("CONF_THRESHOLD", "0.4")))
     max_detections: int = field(default_factory=lambda: int(os.getenv("MAX_DETECTIONS", "300")))
     iou_threshold: float = field(default_factory=lambda: float(os.getenv("IOU_THRESHOLD", "0.45")))
     img_size: int = field(default_factory=lambda: int(os.getenv("IMG_SIZE", "1280")))

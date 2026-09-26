@@ -128,3 +128,10 @@ def test_real_dfine_weights_load_and_report_in_health(monkeypatch):
             b64 = base64.b64encode(open(img, "rb").read()).decode()
             boxes = c.post("/detect", json={"image_b64": b64}).json()["boxes"]
             assert len(boxes) >= 3 and {b["class"] for b in boxes} <= {"car", "van", "truck", "bus"}
+
+
+def test_default_confidence_threshold_is_0_4_and_env_overridable(monkeypatch):
+    monkeypatch.delenv("CONF_THRESHOLD", raising=False)
+    assert Settings().conf_threshold == 0.4
+    monkeypatch.setenv("CONF_THRESHOLD", "0.25")
+    assert Settings().conf_threshold == 0.25

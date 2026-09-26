@@ -9,6 +9,7 @@ from typing import Any
 
 from .config import Settings
 from .geo import haversine_m
+from .claims import parse_claim
 from .loaders.field_reports import FieldReport, load_reports
 from .loaders.zones import BaseInfo, DatasetError, Zone, fold, load_zones
 from .timeutil import iso
@@ -102,7 +103,7 @@ class Catalog:
         """
         zid = zone_id.lower()
         out: list[dict[str, Any]] = []
-        for r in self.reports:
+        for idx, r in enumerate(self.reports):
             if as_of is not None and r.ts > as_of:
                 continue
             dist: float | None = None
@@ -117,6 +118,8 @@ class Catalog:
                     continue
             out.append(
                 {
+                    "id": f"r{idx:03d}",
+                    "claim": parse_claim(r.text),  # yapılandırılmış iddia (tip/sayı/hareket/kimlik); doğrulaması core-svc'de
                     "text": r.text,
                     "reporter": r.source,
                     "source": r.source,

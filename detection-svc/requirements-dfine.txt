@@ -1,0 +1,12 @@
+# MODEL_BACKEND=dfine (resmî D-FINE, https://github.com/Peterande/D-FINE) için ek bağımlılıklar.
+# torch/torchvision CPU-only ayrıca kurulur (docker/detection-svc.Dockerfile, WITH_MODEL=dfine).
+# D-FINE reposunun kendi requirements.txt'i ile aynı küme (+ matplotlib: repo içe aktarımında gerekir).
+-r requirements.txt
+faster-coco-eval>=1.6.6
+PyYAML
+scipy
+calflops
+transformers
+loguru
+matplotlib
+tensorboard  # src/core/_config.py: torch.utils.tensorboard içe aktarır

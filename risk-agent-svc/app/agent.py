@@ -14,7 +14,7 @@ from . import policy, rules
 from .budget import Budget, BudgetExceeded, Usage
 from .config import Settings
 from .facts import Facts
-from .glm_client import GLMClient, GLMError
+from .glm_client import GLMBudgetError, GLMClient, GLMError
 from .policy import LEVELS, level_index
 from .prompts import FEEDBACK_NO_SUBMIT, SYSTEM_PROMPT, build_user_message
 from .store import AssessmentStore
@@ -131,7 +131,9 @@ class RiskAgent:
             raise
         s = self._s
         detection = dict(detection)
-        detection["vehicle_ids"] = list(detection.get("vehicle_ids") or [])[: s.max_vehicles]
+        all_ids = list(detection.get("vehicle_ids") or [])
+        detection["vehicle_ids"] = all_ids[: s.max_vehicles]
+        dropped = all_ids[s.max_vehicles :]
         dets = [d for d in detection.get("detections", []) if d.get("lat") is not None]
         event_point = {"lat": sum(d["lat"] for d in dets) / len(dets), "lon": sum(d["lon"] for d in dets) / len(dets)} if dets else None
         # Üs: çağıranın (gateway) verdiği; yoksa ortam varsayılanı (eski/demo)
@@ -145,6 +147,7 @@ class RiskAgent:
             base=base,
             reference_time=detection.get("reference_time"),
             event_point=event_point,
+            dropped_vehicle_ids=dropped,
         )
         runner = ToolRunner(s, self._up, facts)
         runner.add_log(
@@ -163,7 +166,7 @@ class RiskAgent:
         if not facts.vehicle_ids:
             fallback_reason = "tespitte izle eşleşen araç yok"
         elif self._glm is None:
-            fallback_reason = "GLM_API_KEY tanımlı değil"
+            fallback_reason = f"LLM anahtarı tanımlı değil (sağlayıcı: {s.llm_provider})"
         else:
             try:
                 await self._budget.reserve_assessment()
@@ -176,6 +179,10 @@ class RiskAgent:
                     outcome = await self._run_llm(facts, runner, usage)
                     mode = "llm"
                 except BudgetExceeded as exc:  # tur ortasında sınır aşımı: her zaman fallback
+                    fallback_reason = f"bütçe/kota: {exc}"
+                except GLMBudgetError as exc:  # gateway: 400 "Budget has been exceeded" — sonraki değerlendirmeler LLM'i denemez
+                    self._budget.mark_exhausted()
+                    log.error("GLM bütçesi bitti: %s", exc)
                     fallback_reason = f"bütçe/kota: {exc}"
                 except (GLMError, LLMProtocolError) as exc:
                     log.warning("LLM başarısız, kural motoruna düşülüyor: %s", exc)
@@ -200,6 +207,12 @@ class RiskAgent:
             confidence = rules.build_confidence(facts, own)
         if own.convoy_bumped:
             adjustments.insert(0, next(r for r in own.reasons if "CONVOY" in r))
+        gaps = facts.data_gaps()
+        own_reasons = list(own.reasons)
+        if gaps:
+            own_reasons.append("Veri boşluğu: " + gaps["note"])
+            if outcome is not None:  # LLM gerekçesi bunu anmasa da boşluk her zaman görünür
+                rationale += " (Veri boşluğu: " + gaps["note"] + ")"
 
         pattern = None
         if facts.pattern:
@@ -227,8 +240,10 @@ class RiskAgent:
             "model": s.glm_model if mode == "llm" else None,
             "fallback_reason": fallback_reason,
             "own_data_level": LEVELS[own.idx],
-            "own_data_reasons": own.reasons,
+            "own_data_reasons": own_reasons,
+            "data_gaps": gaps,
             "policy_adjustments": adjustments,
+            "report_verification": facts.report_verification,
             "pattern": pattern,
             "usage": usage.as_dict(),
             "budget": self._budget.status(),

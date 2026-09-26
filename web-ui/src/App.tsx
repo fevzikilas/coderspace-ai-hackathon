@@ -1,28 +1,31 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { fetchEvents, fetchState, startPipeline } from './api'
 import ApiKeyGate from './components/ApiKeyGate'
+import DetailsModal from './components/DetailsModal'
 import EventPicker from './components/EventPicker'
-import ImageViewer from './components/ImageViewer'
-import IntelPanel from './components/IntelPanel'
-import LogPanel from './components/LogPanel'
+import EventSummary, { type DetailsTab } from './components/EventSummary'
+import ImagePanel from './components/ImagePanel'
 import MapPanel from './components/MapPanel'
-import MovementPanel from './components/MovementPanel'
-import RiskCard from './components/RiskCard'
 import TopBar from './components/TopBar'
 import { usePolling } from './usePolling'
+import { assignVehicleColors } from './vehicleColors'
 
 const DEMO_DRONE = 'DRN-03'
+/** Bu genişliğin altında özet kart ve görüntü haritanın ÜSTÜNE değil ALTINA gelir (styles.css'teki kırılım ile aynı). */
+const OVERLAY_MIN_WIDTH = 1100
+/** Haritanın sağına bindirilen sütunun (özet kart / görüntü) genişliği, px — styles.css'teki --overlay-w ile aynı */
+const OVERLAY_WIDTH = 420
 
-function Panel({ title, children, className = '', badge }: { title: string; children: React.ReactNode; className?: string; badge?: React.ReactNode }) {
-  return (
-    <section className={`panel ${className}`}>
-      <h2>
-        {title}
-        {badge}
-      </h2>
-      <div className="panel-body">{children}</div>
-    </section>
-  )
+function useWide(minWidth: number): boolean {
+  const query = `(min-width: ${minWidth}px)`
+  const [wide, setWide] = useState(() => window.matchMedia(query).matches)
+  useEffect(() => {
+    const mq = window.matchMedia(query)
+    const on = () => setWide(mq.matches)
+    mq.addEventListener('change', on)
+    return () => mq.removeEventListener('change', on)
+  }, [query])
+  return wide
 }
 
 export default function App() {
@@ -34,6 +37,10 @@ export default function App() {
   const [selectedId, setSelectedId] = useState<string | null>(null)
   const [starting, setStarting] = useState(false)
   const [actionError, setActionError] = useState<string | null>(null)
+  // Teknik ayrıntılar (tam gerekçe, kanıt yüzdeleri, araç çağrıları, hareket sayıları, raporlar) MODAL içinde; null = kapalı
+  const [detailsTab, setDetailsTab] = useState<DetailsTab | null>(null)
+  const closeDetails = useCallback(() => setDetailsTab(null), [])
+  const wide = useWide(OVERLAY_MIN_WIDTH)
 
   const latest = data?.latest_run ?? null
   const busy = starting || latest?.status === 'queued' || latest?.status === 'running'
@@ -47,6 +54,12 @@ export default function App() {
     if (fromRun) setSelectedEvent(fromRun)
     else if (events.data?.events.length) setSelectedEvent(events.data.events[0].image_id)
   }, [selectedEvent, latest?.request.image_id, events.data?.events])
+
+  // Koşu bitince soldaki şeridin risk rozetini beklemeden güncelle (katalog aksi halde 8 sn'de bir yoklanır)
+  const finishedRun = latest && (latest.status === 'succeeded' || latest.status === 'failed') ? latest.run_id : null
+  useEffect(() => {
+    if (finishedRun) refreshEvents()
+  }, [finishedRun, refreshEvents])
 
   // Demo (eski akış): varsayılan drone
   useEffect(() => {
@@ -66,6 +79,10 @@ export default function App() {
     return detected.find((v) => v.analysis.approaching) ?? detected[0] ?? vs.find((v) => v.analysis.approaching) ?? vs[0] ?? null
   }, [data?.vehicles, selectedId])
 
+  // Araç → renk (sabit, deterministik; ≤10 araçta çakışmasız). Görüntüdeki kutu, haritadaki iz ve araç sekmesi AYNI renk haritasını kullanır.
+  const vehicleKey = (data?.vehicles ?? []).map((v) => v.vehicle_id).sort().join('|')
+  const colors = useMemo(() => assignVehicleColors(vehicleKey ? vehicleKey.split('|') : []), [vehicleKey])
+
   const start = useCallback(
     async (body: Parameters<typeof startPipeline>[0]) => {
       setActionError(null)
@@ -73,6 +90,7 @@ export default function App() {
       try {
         await startPipeline(body)
         setSelectedId(null)
+        setDetailsTab(null)
         refresh()
         refreshEvents()
       } catch (e) {
@@ -94,11 +112,11 @@ export default function App() {
 
   const runDemo = useCallback(() => start({ drone_id: droneId || DEMO_DRONE, reset_demo: true }), [start, droneId])
 
-  if (unauthorized) return <ApiKeyGate onSaved={refresh} />
+  if (unauthorized) return <ApiKeyGate onSaved={() => { refresh(); refreshEvents() }} />
 
   const errorEntries = Object.entries(data?.errors ?? {})
   const mode = data?.mode ?? 'idle'
-  const zoneName = event?.zone.name ?? data?.zone_id ?? '—'
+  const picked = events.data?.events.find((e) => e.image_id === selectedEvent) ?? null
 
   return (
     <div className="app">
@@ -121,57 +139,68 @@ export default function App() {
         </div>
       )}
 
-      <main className="grid">
-        <Panel title="Harita" className="p-map">
-          {data ? (
-            <MapPanel
-              base={data.base}
-              drones={data.drones}
-              vehicles={data.vehicles}
-              detections={latest?.result.detections ?? []}
-              event={event}
-              selectedId={selected?.vehicle_id ?? null}
-              onSelect={setSelectedId}
-              focusKey={latest?.status === 'succeeded' && latest.result.detections.length > 0 ? latest.run_id : null}
-              focusDroneId={latest?.request.drone_id ?? null}
-            />
-          ) : (
-            <div className="empty">Gateway’den veri bekleniyor…</div>
-          )}
-        </Panel>
+      {/* SOL: bölge süzgeci + kronolojik olay şeridi · SAĞ SÜTUN: harita (ana eleman) + üstüne bindirilmiş özet kart, görüntü ve lejand */}
+      <div className="workspace">
+        <EventPicker
+          data={events.data}
+          error={events.error}
+          selectedId={selectedEvent}
+          runningId={runningImageId}
+          busy={busy}
+          onSelect={setSelectedEvent}
+          onRun={runEvent}
+        />
 
-        <Panel title="Risk kartı" className="p-risk" badge={latest ? <small className={`run-status ${latest.status}`}>{latest.status}</small> : null}>
-          <RiskCard assessment={data?.assessment ?? null} run={latest} />
-        </Panel>
-
-        <Panel title="Görüntü — bbox overlay" className="p-image">
-          <ImageViewer result={latest?.result ?? null} event={event} vehicles={data?.vehicles ?? []} selectedId={selected?.vehicle_id ?? null} onSelect={setSelectedId} />
-        </Panel>
-
-        <Panel title="Hareket" className="p-move">
-          {data ? <MovementPanel base={data.base} event={event} vehicles={data.vehicles} selected={selected} onSelect={setSelectedId} /> : <div className="empty">—</div>}
-        </Panel>
-
-        <Panel title="Olay seçici" className="p-evt" badge={events.data ? <small className="chip">{events.data.events.length} görüntü</small> : null}>
-          <EventPicker
-            data={events.data}
-            error={events.error}
-            selectedId={selectedEvent}
-            runningId={runningImageId}
+        <main className="stage">
+          {/* Harita sağ sütunun tamamı; üstüne bindirilir: özet kart (sağ üst), görüntü + kutular (sağ alt), lejand (sol alt, MapPanel içinde) */}
+          <div className="stage-map">
+            {data ? (
+              <MapPanel
+                base={data.base}
+                drones={data.drones}
+                vehicles={data.vehicles}
+                detections={latest?.result.detections ?? []}
+                event={event}
+                selectedId={selected?.vehicle_id ?? null}
+                onSelect={setSelectedId}
+                focusKey={latest?.status === 'succeeded' && latest.result.detections.length > 0 ? latest.run_id : null}
+                focusDroneId={latest?.request.drone_id ?? null}
+                colors={colors}
+                zones={events.data?.zones ?? []}
+                activeZoneId={event?.zone.zone_id ?? null}
+                insetRight={wide ? OVERLAY_WIDTH + 20 : 0}
+              />
+            ) : (
+              <div className="empty">Gateway’den veri bekleniyor…</div>
+            )}
+          </div>
+          <EventSummary
+            assessment={data?.assessment ?? null}
+            run={latest}
+            event={event}
+            picked={picked}
             busy={busy}
-            onSelect={setSelectedEvent}
-            onRun={runEvent}
+            vehicles={data?.vehicles ?? []}
+            colors={colors}
+            selected={selected}
+            onSelectVehicle={setSelectedId}
+            onRun={(imageId) => runEvent({ imageId })}
+            onOpenDetails={setDetailsTab}
           />
-        </Panel>
+          <ImagePanel
+            result={latest?.result ?? null}
+            event={event}
+            colors={colors}
+            selectedId={selected?.vehicle_id ?? null}
+            onSelect={setSelectedId}
+            onEnlarge={() => setDetailsTab('image')}
+          />
+        </main>
+      </div>
 
-        <Panel title="İstihbarat / saha raporları" className="p-intel" badge={<small className="chip chip-low">düşük güven</small>}>
-          <IntelPanel zoneName={zoneName} refIso={event?.reference_time ?? null} captureTime={event?.capture_time ?? null} intel={data?.intel ?? []} reports={data?.reports ?? []} />
-        </Panel>
-
-        <Panel title="Pipeline / log" className="p-log">
-          <LogPanel run={latest} logs={data?.logs ?? []} />
-        </Panel>
-      </main>
+      {detailsTab && data && (
+        <DetailsModal tab={detailsTab} onTab={setDetailsTab} onClose={closeDetails} data={data} colors={colors} selected={selected} onSelectVehicle={setSelectedId} />
+      )}
     </div>
   )
 }

@@ -112,12 +112,12 @@ def submit(level: str = "HIGH", evidence: list | None = None, conf: float = 0.9,
 
 
 class Harness:
-    def __init__(self, world: World, glm_handler: Callable[[httpx.Request], httpx.Response] | None, **settings_kw: Any) -> None:
+    def __init__(self, world: World, glm_handler: Callable[[httpx.Request], httpx.Response] | None, key_info: Any = None, **settings_kw: Any) -> None:
         self.settings = Settings(glm_api_key="test-key" if glm_handler else None, glm_retries=0, **settings_kw)
         self.world = world
         self.up = Upstreams(self.settings, httpx.AsyncClient(transport=httpx.MockTransport(world.handler)))
         self.glm = GLMClient(self.settings, transport=httpx.MockTransport(glm_handler)) if glm_handler else None
-        self.budget = Budget(self.settings)
+        self.budget = Budget(self.settings, key_info)
         self.store = AssessmentStore(50)
         self.agent = RiskAgent(self.settings, self.up, self.glm, self.budget, self.store)
 

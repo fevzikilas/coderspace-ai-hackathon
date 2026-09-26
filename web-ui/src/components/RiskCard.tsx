@@ -1,13 +1,15 @@
 import { useState } from 'react'
 import { fmtTime } from '../geo'
 import { PATTERN_COLOR, PATTERN_LABEL, RISK_COLOR, RISK_LABEL, SOURCE_META, TRUST_LABEL } from '../theme'
-import type { Assessment, EvidenceItem, Run, ToolCallLog } from '../types'
+import { shortModelName } from '../rationale'
+import { zoneLabel } from '../zoneLabels'
+import type { Assessment, EvidenceItem, ToolCallLog } from '../types'
 
 export function RiskBadge({ level, size = 'md' }: { level: Assessment['risk_level'] | null; size?: 'md' | 'lg' }) {
   if (!level) return <span className={`risk-badge none size-${size}`}>—</span>
   return (
-    <span className={`risk-badge size-${size} ${level === 'HIGH' ? 'pulse' : ''}`} style={{ background: RISK_COLOR[level] }} aria-label={`Risk seviyesi ${level}`}>
-      {level} <small>{RISK_LABEL[level]}</small>
+    <span className={`risk-badge size-${size} ${level === 'HIGH' ? 'pulse' : ''}`} style={{ background: RISK_COLOR[level] }} aria-label={`Risk seviyesi: ${RISK_LABEL[level]}`}>
+      {RISK_LABEL[level]} RİSK
     </span>
   )
 }
@@ -83,21 +85,11 @@ function ToolTimeline({ log }: { log: ToolCallLog[] }) {
   )
 }
 
-export default function RiskCard({ assessment, run }: { assessment: Assessment | null; run: Run | null }) {
-  if (!assessment) {
-    const failed = run?.status === 'failed'
-    return (
-      <div className="riskcard empty-state">
-        <RiskBadge level={null} size="lg" />
-        <p>
-          {failed
-            ? `Son pipeline başarısız: [${run?.error?.step ?? '?'}] ${run?.error?.message ?? ''}`
-            : run?.result.message ?? 'Henüz risk değerlendirmesi yok. Bir drone seçip pipeline’ı çalıştırın.'}
-        </p>
-      </div>
-    )
-  }
-  const a = assessment
+/** DETAY MODALI — gerekçe: tam gerekçe metni, güven, çalışma modu, veri boşluğu / izsiz nesne uyarıları. */
+export function RiskReasoning({ assessment: a }: { assessment: Assessment | null }) {
+  if (!a) return <div className="empty small">Henüz değerlendirme yok</div>
+  const gaps = a.data_gaps
+  const classes = gaps ? Object.entries(gaps.untracked_classes).map(([k, n]) => `${n} ${k}`).join(', ') : ''
   return (
     <div className={`riskcard level-${a.risk_level}`}>
       <div className="rc-head">
@@ -107,40 +99,63 @@ export default function RiskCard({ assessment, run }: { assessment: Assessment |
           <div className="conf-track"><div style={{ width: `${a.confidence * 100}%`, background: RISK_COLOR[a.risk_level] }} /></div>
           <b>{Math.round(a.confidence * 100)}%</b>
         </div>
-        <span className={`chip mode-${a.mode}`} title={a.fallback_reason ?? ''}>
-          {a.mode === 'llm' ? `LLM · ${a.model}` : 'KURAL TABANLI'}
+        <span className={`chip mode-${a.mode}`} title={a.mode === 'llm' ? (a.model ?? '') : (a.fallback_reason ?? '')}>
+          {a.mode === 'llm' ? `LLM · ${shortModelName(a.model)}` : 'KURAL TABANLI'}
         </span>
       </div>
-
-      {a.capture_time && (
-        <div className="asof">
-          ⏱ <b>{a.capture_time}</b> itibarıyla değerlendirme <span className="muted">(görüntünün çekim zamanı; bu andan sonraki bilgi kullanılmadı)</span>
+      {a.capture_time && <div className="asof"><b>{a.capture_time}</b> itibarıyla değerlendirme <span className="muted">· görüntü çekim anı</span></div>}
+      <div className="sub-title">Gerekçe (tam metin)</div>
+      <p className="rationale">{a.rationale}</p>
+      {a.fallback_reason && <div className="note warn small">LLM devre dışı → kural motoru: {a.fallback_reason}</div>}
+      {a.pattern && (
+        <div className="kf-chips">
+          {a.pattern.matched.map((p) => (
+            <span key={p} className="chip" style={{ color: PATTERN_COLOR[p], borderColor: PATTERN_COLOR[p] }}>{PATTERN_LABEL[p]}</span>
+          ))}
+          {a.pattern.matched.length === 0 && <span className="chip">{PATTERN_LABEL[a.pattern.pattern]}</span>}
         </div>
       )}
-
-      <div className="rc-meta">
-        {a.pattern?.matched.map((p) => (
-          <span key={p} className="chip" style={{ color: PATTERN_COLOR[p], borderColor: PATTERN_COLOR[p] }}>{PATTERN_LABEL[p]}</span>
-        ))}
-        {a.pattern && a.pattern.matched.length === 0 && <span className="chip">{PATTERN_LABEL[a.pattern.pattern]}</span>}
-        <span className="muted">{a.vehicle_ids.join(', ')} · {a.zone_id} · {fmtTime(a.created_at)}</span>
-      </div>
-
-      {a.fallback_reason && <div className="note warn">LLM devre dışı → kural motoru: {a.fallback_reason}</div>}
-
-      <p className="rationale">{a.rationale}</p>
-
-      {a.policy_adjustments.filter((p) => !a.rationale.includes(p)).length > 0 && (
-        <ul className="policy">
-          {a.policy_adjustments.filter((p) => !a.rationale.includes(p)).map((p, i) => <li key={i}>⚑ {p}</li>)}
-        </ul>
+      <div className="sub-title">Veri boşlukları (data_gaps)</div>
+      {gaps && (gaps.untracked_detections > 0 || gaps.vehicles_over_limit.length > 0) ? (
+        <div className="note warn" role="note">
+          {gaps.untracked_detections > 0 && <div>⚠ <b>{gaps.untracked_detections} izsiz nesne</b>{classes ? ` (${classes})` : ''}: tracks.csv’de izi yok → hareket verisi YOK, risk DÜŞÜK varsayılmadı.</div>}
+          {gaps.vehicles_over_limit.length > 0 && <div>⚠ Analiz sınırı dışında kalan araçlar: {gaps.vehicles_over_limit.join(', ')}</div>}
+          <div className="muted small">{gaps.note}</div>
+        </div>
+      ) : (
+        <div className="empty small">Veri boşluğu yok — görüntüdeki tüm araçların izi bulundu.</div>
       )}
+    </div>
+  )
+}
 
+/** DETAY MODALI — kanıt: ağırlık yüzdeleri (evidence_breakdown), kaynak listesi, politika düzeltmeleri. */
+export function RiskEvidence({ assessment: a }: { assessment: Assessment | null }) {
+  if (!a) return <div className="empty small">Henüz değerlendirme yok</div>
+  const adj = a.policy_adjustments.filter((p) => !a.rationale.includes(p))
+  return (
+    <div className="riskcard">
       <div className="sub-title">Kanıt dağılımı (evidence_breakdown)</div>
       <EvidenceBar items={a.evidence_breakdown} />
       <EvidenceList items={a.evidence_breakdown} />
       <div className="ev-legend"><span className="hatch-sample" /> çizgili = düşük güvenli kaynak (ağırlık en çok %20)</div>
+      {adj.length > 0 && (
+        <ul className="policy">
+          {adj.map((p, i) => <li key={i}>⚑ {p}</li>)}
+        </ul>
+      )}
+      <div className="rc-meta muted">
+        {a.vehicle_ids.join(', ')} · {zoneLabel(a.zone_id)} · {fmtTime(a.created_at)} · kendi veri seviyesi: {a.own_data_level}
+      </div>
+    </div>
+  )
+}
 
+/** DETAY MODALI — araç çağrısı zaman çizelgesi (tool_calls_log). */
+export function RiskToolCalls({ assessment: a }: { assessment: Assessment | null }) {
+  if (!a) return <div className="empty small">Henüz değerlendirme yok</div>
+  return (
+    <div className="riskcard">
       <div className="sub-title">Araç çağrısı zaman çizelgesi ({a.tool_calls_log.length}) <small className="muted">— tıklayınca açılır</small></div>
       <ToolTimeline log={a.tool_calls_log} />
       <div className="rc-foot muted">

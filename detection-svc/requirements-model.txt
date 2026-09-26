@@ -1,0 +1,4 @@
+# Gerçek YOLO inference (MOCK_MODE=false) için ek bağımlılıklar.
+# CPU-only kurulum için: pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+-r requirements.txt
+ultralytics==8.3.40

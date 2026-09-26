@@ -1,0 +1,11 @@
+.env
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+node_modules/
+dist/
+*.pt
+detection-svc/models/*
+!detection-svc/models/.gitkeep

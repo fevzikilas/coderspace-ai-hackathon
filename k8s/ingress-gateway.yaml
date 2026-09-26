@@ -1,0 +1,25 @@
+# gateway Ingress: aynı host altında /api öneki doğrudan gateway'e gider (UI ile tek origin).
+# Gateway rotalarını hem kökte hem /api altında sunduğu için yol yeniden yazımı (rewrite) gerekmez.
+# ingress-nginx için ek olarak:
+#   nginx.ingress.kubernetes.io/proxy-body-size: "20m"      # base64 görüntü yükleme
+#   nginx.ingress.kubernetes.io/proxy-read-timeout: "180"   # LLM'li değerlendirme
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: gateway
+  namespace: uskoruma
+  labels:
+    app.kubernetes.io/part-of: uskoruma
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: uskoruma.local
+      http:
+        paths:
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: gateway
+                port:
+                  number: 8000

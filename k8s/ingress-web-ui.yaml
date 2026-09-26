@@ -1,0 +1,21 @@
+# web-ui Ingress. k3s varsayılanı Traefik'tir; ingress-nginx kullanıyorsanız ingressClassName: nginx yapın.
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: web-ui
+  namespace: uskoruma
+  labels:
+    app.kubernetes.io/part-of: uskoruma
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: uskoruma.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: web-ui
+                port:
+                  number: 80

@@ -1,0 +1,687 @@
+[
+ {
+  "time": "13:05",
+  "source": "official",
+  "text": "39.9374N 32.8483E civarinda 1 kamyon goruldu, yukleri tespit edilemedi."
+ },
+ {
+  "time": "10:05",
+  "source": "official",
+  "text": "Kuzeybati Yolu bolgesinde trafik akisi normal seyrediyor."
+ },
+ {
+  "time": "11:55",
+  "source": "third_party",
+  "text": "Planli tatbikat nedeniyle gun icinde bolgede dost unsurlar bulunacak."
+ },
+ {
+  "time": "14:45",
+  "source": "official",
+  "text": "Hava acik, gorus mesafesi iyi."
+ },
+ {
+  "time": "09:50",
+  "source": "third_party",
+  "text": "39.9250N 32.8844E cevresinde 3 kamyon bulundugu yonunde ihbar alindi."
+ },
+ {
+  "time": "10:20",
+  "source": "official",
+  "text": "39.90999N 32.86813E konumundan usse dogru ilerleyen otomobil planli ikmal aracidir, kimlik teyidi yapilmistir."
+ },
+ {
+  "time": "14:15",
+  "source": "official",
+  "text": "39.90152N 32.87029E civarindan usse gelen otomobil bize bagli unsurdur, gelisi onceden bildirilmistir."
+ },
+ {
+  "time": "10:30",
+  "source": "third_party",
+  "text": "Sabah devriyesi Guneybati Yolu bolgesinde olagandisi bir durum bildirmedi."
+ },
+ {
+  "time": "10:00",
+  "source": "third_party",
+  "text": "39.9249N 32.8849E yakininda mavi bir kamyon var; transit geciyor."
+ },
+ {
+  "time": "09:45",
+  "source": "official",
+  "text": "39.9307N 32.8380E yakininda 5 kamyonun durdugu bildirildi."
+ },
+ {
+  "time": "14:40",
+  "source": "official",
+  "text": "Dun gece Kuzey Yolu cevresinde arac hareketliligi oldugu yonunde dogrulanmamis bir ihbar var."
+ },
+ {
+  "time": "10:35",
+  "source": "official",
+  "text": "Guneybati Yolu bolgesinde agir arac hareketi yok, yalnizca binek araclar goruluyor."
+ },
+ {
+  "time": "09:50",
+  "source": "official",
+  "text": "Dun gece Dogu Yolu cevresinde arac hareketliligi oldugu yonunde dogrulanmamis bir ihbar var."
+ },
+ {
+  "time": "08:55",
+  "source": "third_party",
+  "text": "Hava acik, gorus mesafesi iyi."
+ },
+ {
+  "time": "14:15",
+  "source": "official",
+  "text": "39.97018N 32.85580E civarinda bir otomobil uzun suredir hareketsiz duruyor."
+ },
+ {
+  "time": "14:20",
+  "source": "official",
+  "text": "Kuzeydogu Kavsagi bolgesinde agir arac hareketi yok, yalnizca binek araclar goruluyor."
+ },
+ {
+  "time": "10:20",
+  "source": "official",
+  "text": "Guney Kapisi Yaklasimi bolgesinde agir arac hareketi yok, yalnizca binek araclar goruluyor."
+ },
+ {
+  "time": "11:05",
+  "source": "official",
+  "text": "39.9283N 32.8120E yakininda 5 kamyonun durdugu bildirildi."
+ },
+ {
+  "time": "13:20",
+  "source": "official",
+  "text": "39.87314N 32.85228E civarinda bir otomobil uzun suredir hareketsiz duruyor."
+ },
+ {
+  "time": "08:40",
+  "source": "official",
+  "text": "39.9094N 32.8281E cevresinde trafik olagandan yogun; bu bolgede genellikle 4 arac civari gorulur."
+ },
+ {
+  "time": "11:00",
+  "source": "third_party",
+  "text": "Guney Kapisi Yaklasimi cevresinden gelen bir ihbar incelendi, dogrulanamadi."
+ },
+ {
+  "time": "13:50",
+  "source": "third_party",
+  "text": "39.8960N 32.8292E civarindaki kirmizi kamyon bolgeden uzaklasiyor."
+ },
+ {
+  "time": "12:50",
+  "source": "official",
+  "text": "39.9522N 32.9040E yakininda kirmizi bir otomobil var; beklemede."
+ },
+ {
+  "time": "09:55",
+  "source": "official",
+  "text": "Dun gece Kuzeydogu Kavsagi cevresinde arac hareketliligi oldugu yonunde dogrulanmamis bir ihbar var."
+ },
+ {
+  "time": "13:30",
+  "source": "official",
+  "text": "39.9699N 32.8562E cevresinde 2 kamyon bulundugu yonunde ihbar alindi."
+ },
+ {
+  "time": "13:50",
+  "source": "third_party",
+  "text": "39.9446N 32.8095E civarinda 2 kamyon goruldu, yukleri tespit edilemedi."
+ },
+ {
+  "time": "14:30",
+  "source": "official",
+  "text": "Lojistik konvoyu yakit ikmali icin planlanan saatte yola cikacak."
+ },
+ {
+  "time": "11:05",
+  "source": "official",
+  "text": "Lojistik konvoyu yakit ikmali icin planlanan saatte yola cikacak."
+ },
+ {
+  "time": "14:10",
+  "source": "third_party",
+  "text": "39.8947N 32.8736E cevresinde 1 kamyon bulundugu yonunde ihbar alindi."
+ },
+ {
+  "time": "13:25",
+  "source": "official",
+  "text": "Lojistik konvoyu yakit ikmali icin planlanan saatte yola cikacak."
+ },
+ {
+  "time": "11:55",
+  "source": "third_party",
+  "text": "Sabah devriyesi Guney Kapisi Yaklasimi bolgesinde olagandisi bir durum bildirmedi."
+ },
+ {
+  "time": "11:00",
+  "source": "third_party",
+  "text": "Sabah devriyesi Kuzey Yolu bolgesinde olagandisi bir durum bildirmedi."
+ },
+ {
+  "time": "09:50",
+  "source": "official",
+  "text": "39.92850N 32.81195E civarinda bir kamyon uzun suredir hareketsiz duruyor."
+ },
+ {
+  "time": "13:05",
+  "source": "third_party",
+  "text": "Lojistik konvoyu yakit ikmali icin planlanan saatte yola cikacak."
+ },
+ {
+  "time": "14:30",
+  "source": "official",
+  "text": "Planli tatbikat nedeniyle gun icinde bolgede dost unsurlar bulunacak."
+ },
+ {
+  "time": "14:50",
+  "source": "official",
+  "text": "Hava acik, gorus mesafesi iyi."
+ },
+ {
+  "time": "11:25",
+  "source": "third_party",
+  "text": "39.8912N 32.9014E cevresinde 1 kamyon bulundugu yonunde ihbar alindi."
+ },
+ {
+  "time": "12:25",
+  "source": "third_party",
+  "text": "39.8876N 32.8813E civarinda 2 kamyon goruldu, yukleri tespit edilemedi."
+ },
+ {
+  "time": "12:25",
+  "source": "third_party",
+  "text": "39.94643N 32.82861E konumunda yuklu bir kamyonun uzun suredir park halinde oldugu bildirildi."
+ },
+ {
+  "time": "14:25",
+  "source": "third_party",
+  "text": "39.96132N 32.81999E civarinda bir kamyon uzun suredir hareketsiz duruyor."
+ },
+ {
+  "time": "10:30",
+  "source": "official",
+  "text": "Lojistik konvoyu yakit ikmali icin planlanan saatte yola cikacak."
+ },
+ {
+  "time": "15:00",
+  "source": "official",
+  "text": "Kuzeybati Yolu cevresinde kayda deger bir hareketlilik bulunmuyor."
+ },
+ {
+  "time": "13:40",
+  "source": "third_party",
+  "text": "39.95238N 32.90158E konumunda yuklu bir kamyonun uzun suredir park halinde oldugu bildirildi."
+ },
+ {
+  "time": "13:55",
+  "source": "official",
+  "text": "39.94432N 32.80993E civarindan usse gelen otomobil bize bagli unsurdur, gelisi onceden bildirilmistir."
+ },
+ {
+  "time": "09:30",
+  "source": "third_party",
+  "text": "39.93069N 32.83823E civarinda bir kamyon uzun suredir hareketsiz duruyor."
+ },
+ {
+  "time": "11:40",
+  "source": "official",
+  "text": "39.8913N 32.8191E yakininda gorulen mavi arac bize bagli devriyedir, teyitlidir."
+ },
+ {
+  "time": "14:45",
+  "source": "official",
+  "text": "Hava acik, gorus mesafesi iyi."
+ },
+ {
+  "time": "13:00",
+  "source": "official",
+  "text": "Dun gece Kuzeybati Yolu cevresinde arac hareketliligi oldugu yonunde dogrulanmamis bir ihbar var."
+ },
+ {
+  "time": "09:45",
+  "source": "official",
+  "text": "39.90639N 32.85084E konumundan usse dogru ilerleyen otomobil planli ikmal aracidir, kimlik teyidi yapilmistir."
+ },
+ {
+  "time": "10:20",
+  "source": "official",
+  "text": "39.92516N 32.88412E civarindan usse gelen otomobil bize bagli unsurdur, gelisi onceden bildirilmistir."
+ },
+ {
+  "time": "10:40",
+  "source": "official",
+  "text": "39.9248N 32.8226E civarinda 2 kamyon goruldu, yukleri tespit edilemedi."
+ },
+ {
+  "time": "11:00",
+  "source": "official",
+  "text": "39.89101N 32.84724E civarinda bir otomobil uzun suredir hareketsiz duruyor."
+ },
+ {
+  "time": "08:50",
+  "source": "official",
+  "text": "39.92087N 32.89536E konumundaki kamyon bir saatten uzun suredir yerinden ayrilmadi."
+ },
+ {
+  "time": "09:30",
+  "source": "official",
+  "text": "39.90944N 32.82808E konumundaki otomobil bir saatten uzun suredir yerinden ayrilmadi."
+ },
+ {
+  "time": "14:25",
+  "source": "official",
+  "text": "39.8960N 32.8292E yakininda 1 kamyonun durdugu bildirildi."
+ },
+ {
+  "time": "14:45",
+  "source": "official",
+  "text": "39.94316N 32.88225E konumundaki otomobil bir saatten uzun suredir yerinden ayrilmadi."
+ },
+ {
+  "time": "12:40",
+  "source": "official",
+  "text": "Hava acik, gorus mesafesi iyi."
+ },
+ {
+  "time": "12:30",
+  "source": "third_party",
+  "text": "39.9612N 32.8476E cevresinde 4 kamyon bulundugu yonunde ihbar alindi."
+ },
+ {
+  "time": "11:50",
+  "source": "official",
+  "text": "39.95395N 32.84430E konumundan usse dogru ilerleyen otomobil planli ikmal aracidir, kimlik teyidi yapilmistir."
+ },
+ {
+  "time": "12:15",
+  "source": "third_party",
+  "text": "Lojistik konvoyu yakit ikmali icin planlanan saatte yola cikacak."
+ },
+ {
+  "time": "14:50",
+  "source": "official",
+  "text": "39.88544N 32.81296E konumundan usse dogru ilerleyen otomobil planli ikmal aracidir, kimlik teyidi yapilmistir."
+ },
+ {
+  "time": "13:10",
+  "source": "official",
+  "text": "Kuzeybati Yolu cevresinden gelen bir ihbar incelendi, dogrulanamadi."
+ },
+ {
+  "time": "14:30",
+  "source": "official",
+  "text": "Hava acik, gorus mesafesi iyi."
+ },
+ {
+  "time": "14:50",
+  "source": "official",
+  "text": "Lojistik konvoyu yakit ikmali icin planlanan saatte yola cikacak."
+ },
+ {
+  "time": "12:20",
+  "source": "official",
+  "text": "Kuzey Yolu bolgesindeki devriyeyle telsiz baglantisi 40 dakikadir kurulamiyor."
+ },
+ {
+  "time": "09:05",
+  "source": "official",
+  "text": "Guneydogu Yerlesimi cevresinden gelen bir ihbar incelendi, dogrulanamadi."
+ },
+ {
+  "time": "12:40",
+  "source": "third_party",
+  "text": "Guneydogu Yerlesimi bolgesindeki devriyeyle telsiz baglantisi 40 dakikadir kurulamiyor."
+ },
+ {
+  "time": "12:15",
+  "source": "third_party",
+  "text": "Bir kaynak, 39.92043N 32.83416E konumunda agir bir aracin beklemede oldugunu iletti."
+ },
+ {
+  "time": "13:15",
+  "source": "official",
+  "text": "Dun gece Kuzeydogu Kavsagi cevresinde arac hareketliligi oldugu yonunde dogrulanmamis bir ihbar var."
+ },
+ {
+  "time": "10:15",
+  "source": "official",
+  "text": "Dogu Yolu cevresinden gelen bir ihbar incelendi, dogrulanamadi."
+ },
+ {
+  "time": "12:50",
+  "source": "third_party",
+  "text": "39.91309N 32.80343E konumunda uzeri ortulu bir agir arac bekliyor."
+ },
+ {
+  "time": "11:30",
+  "source": "official",
+  "text": "Kuzey Yolu cevresinden gelen bir ihbar incelendi, dogrulanamadi."
+ },
+ {
+  "time": "12:45",
+  "source": "official",
+  "text": "Sabah devriyesi Kuzeydogu Kavsagi bolgesinde olagandisi bir durum bildirmedi."
+ },
+ {
+  "time": "14:35",
+  "source": "third_party",
+  "text": "39.8816N 32.8455E cevresinde 4 kamyon bulundugu yonunde ihbar alindi."
+ },
+ {
+  "time": "09:30",
+  "source": "official",
+  "text": "Lojistik konvoyu yakit ikmali icin planlanan saatte yola cikacak."
+ },
+ {
+  "time": "09:35",
+  "source": "official",
+  "text": "39.9403N 32.8739E cevresinde 3 kamyon bulundugu yonunde ihbar alindi."
+ },
+ {
+  "time": "12:40",
+  "source": "third_party",
+  "text": "Kuzey Yolu bolgesindeki devriyeyle telsiz baglantisi 40 dakikadir kurulamiyor."
+ },
+ {
+  "time": "10:40",
+  "source": "official",
+  "text": "39.93140N 32.86801E konumundan usse dogru ilerleyen otomobil planli ikmal aracidir, kimlik teyidi yapilmistir."
+ },
+ {
+  "time": "13:35",
+  "source": "third_party",
+  "text": "Hava acik, gorus mesafesi iyi."
+ },
+ {
+  "time": "12:35",
+  "source": "third_party",
+  "text": "39.9502N 32.8901E civarinda 1 kamyon goruldu, yukleri tespit edilemedi."
+ },
+ {
+  "time": "08:40",
+  "source": "official",
+  "text": "Sabah devriyesi Dogu Yolu bolgesinde olagandisi bir durum bildirmedi."
+ },
+ {
+  "time": "09:45",
+  "source": "official",
+  "text": "39.92510N 32.88407E konumundaki kamyon bir saatten uzun suredir yerinden ayrilmadi."
+ },
+ {
+  "time": "08:50",
+  "source": "official",
+  "text": "39.92083N 32.89617E konumundan usse dogru ilerleyen otomobil planli ikmal aracidir, kimlik teyidi yapilmistir."
+ },
+ {
+  "time": "15:05",
+  "source": "official",
+  "text": "39.8856N 32.8132E cevresinde 1 agir arac bulunuyor, hareketleri olagan."
+ },
+ {
+  "time": "12:35",
+  "source": "official",
+  "text": "Kuzey Yolu cevresinden gelen bir ihbar incelendi, dogrulanamadi."
+ },
+ {
+  "time": "13:40",
+  "source": "official",
+  "text": "Sabah devriyesi Guneybati Yolu bolgesinde olagandisi bir durum bildirmedi."
+ },
+ {
+  "time": "14:15",
+  "source": "third_party",
+  "text": "39.9017N 32.8702E civarinda 3 araclik bir kamyon konvoyu ilerliyor."
+ },
+ {
+  "time": "09:35",
+  "source": "official",
+  "text": "Dun gece Bati Yerlesimi cevresinde arac hareketliligi oldugu yonunde dogrulanmamis bir ihbar var."
+ },
+ {
+  "time": "12:40",
+  "source": "official",
+  "text": "39.93740N 32.84903E civarinda bir otomobil uzun suredir hareketsiz duruyor."
+ },
+ {
+  "time": "11:55",
+  "source": "official",
+  "text": "Guneybati Yolu cevresinden gelen bir ihbar incelendi, dogrulanamadi."
+ },
+ {
+  "time": "13:30",
+  "source": "third_party",
+  "text": "39.89472N 32.87427E konumundaki otomobil bir saatten uzun suredir yerinden ayrilmadi."
+ },
+ {
+  "time": "09:35",
+  "source": "official",
+  "text": "Kuzeydogu Kavsagi bolgesinde agir arac hareketi yok, yalnizca binek araclar goruluyor."
+ },
+ {
+  "time": "09:30",
+  "source": "third_party",
+  "text": "Dun gece Guneybati Yolu cevresinde arac hareketliligi oldugu yonunde dogrulanmamis bir ihbar var."
+ },
+ {
+  "time": "08:45",
+  "source": "official",
+  "text": "39.9209N 32.8953E yakininda 2 kamyonun durdugu bildirildi."
+ },
+ {
+  "time": "09:00",
+  "source": "official",
+  "text": "39.90653N 32.84972E civarinda bir panelvan uzun suredir hareketsiz duruyor."
+ },
+ {
+  "time": "13:35",
+  "source": "third_party",
+  "text": "Hava acik, gorus mesafesi iyi."
+ },
+ {
+  "time": "10:55",
+  "source": "official",
+  "text": "Guneydogu Yerlesimi bolgesinde trafik akisi normal seyrediyor."
+ },
+ {
+  "time": "13:30",
+  "source": "official",
+  "text": "Guney Kapisi Yaklasimi bolgesinde trafik akisi normal seyrediyor."
+ },
+ {
+  "time": "11:30",
+  "source": "official",
+  "text": "Kuzey Yolu bolgesinde trafik akisi normal seyrediyor."
+ },
+ {
+  "time": "11:40",
+  "source": "official",
+  "text": "Guney Kapisi Yaklasimi bolgesinde agir arac hareketi yok, yalnizca binek araclar goruluyor."
+ },
+ {
+  "time": "11:40",
+  "source": "official",
+  "text": "39.9453N 32.8582E yakininda 7 kamyonun durdugu bildirildi."
+ },
+ {
+  "time": "15:15",
+  "source": "official",
+  "text": "39.91928N 32.79201E civarindan usse gelen otomobil bize bagli unsurdur, gelisi onceden bildirilmistir."
+ },
+ {
+  "time": "13:10",
+  "source": "third_party",
+  "text": "39.96132N 32.84761E civarinda bir kamyon uzun suredir hareketsiz duruyor."
+ },
+ {
+  "time": "12:15",
+  "source": "official",
+  "text": "39.9542N 32.8454E civarinda 2 kamyon goruldu, yukleri tespit edilemedi."
+ },
+ {
+  "time": "13:55",
+  "source": "official",
+  "text": "Guney Kapisi Yaklasimi bolgesinde trafik akisi normal seyrediyor."
+ },
+ {
+  "time": "12:25",
+  "source": "third_party",
+  "text": "Bir ihbara gore 39.9254N 32.9037E yakinindaki mavi otomobil bolgeden uzaklasiyor."
+ },
+ {
+  "time": "12:30",
+  "source": "official",
+  "text": "39.94437N 32.80966E konumundaki otomobil bir saatten uzun suredir yerinden ayrilmadi."
+ },
+ {
+  "time": "08:35",
+  "source": "official",
+  "text": "Kuzeydogu Kavsagi bolgesindeki devriyeyle telsiz baglantisi 40 dakikadir kurulamiyor."
+ },
+ {
+  "time": "12:35",
+  "source": "third_party",
+  "text": "Guneydogu Yerlesimi bolgesinde trafik akisi normal seyrediyor."
+ },
+ {
+  "time": "11:00",
+  "source": "third_party",
+  "text": "39.8912N 32.9014E yakininda kirmizi bir kamyon oldugu bildirildi."
+ },
+ {
+  "time": "10:30",
+  "source": "official",
+  "text": "Bati Yerlesimi bolgesindeki devriyeyle telsiz baglantisi 40 dakikadir kurulamiyor."
+ },
+ {
+  "time": "14:10",
+  "source": "official",
+  "text": "Planli tatbikat nedeniyle gun icinde bolgede dost unsurlar bulunacak."
+ },
+ {
+  "time": "12:15",
+  "source": "official",
+  "text": "39.89067N 32.84737E civarindan usse gelen otomobil bize bagli unsurdur, gelisi onceden bildirilmistir."
+ },
+ {
+  "time": "10:10",
+  "source": "official",
+  "text": "39.9331N 32.9147E civarinda 1 kamyon goruldu, yukleri tespit edilemedi."
+ },
+ {
+  "time": "09:35",
+  "source": "official",
+  "text": "Hava acik, gorus mesafesi iyi."
+ },
+ {
+  "time": "14:00",
+  "source": "official",
+  "text": "Sabah devriyesi Kuzeydogu Kavsagi bolgesinde olagandisi bir durum bildirmedi."
+ },
+ {
+  "time": "13:15",
+  "source": "official",
+  "text": "39.9255N 32.9039E bolgesinde beklenmedik bir yogunluk var; olagan trafik 4 arac civaridir."
+ },
+ {
+  "time": "09:50",
+  "source": "official",
+  "text": "39.9102N 32.8678E cevresinde 1 agir arac bulunuyor, hareketleri olagan."
+ },
+ {
+  "time": "13:50",
+  "source": "third_party",
+  "text": "Dun gece Guneydogu Yerlesimi cevresinde arac hareketliligi oldugu yonunde dogrulanmamis bir ihbar var."
+ },
+ {
+  "time": "12:25",
+  "source": "official",
+  "text": "39.92538N 32.87130E civarindan usse gelen otomobil bize bagli unsurdur, gelisi onceden bildirilmistir."
+ },
+ {
+  "time": "13:00",
+  "source": "third_party",
+  "text": "Sabah devriyesi Kuzeybati Yolu bolgesinde olagandisi bir durum bildirmedi."
+ },
+ {
+  "time": "11:35",
+  "source": "official",
+  "text": "Planli tatbikat nedeniyle gun icinde bolgede dost unsurlar bulunacak."
+ },
+ {
+  "time": "10:10",
+  "source": "official",
+  "text": "39.9097N 32.8675E civarindaki mavi arac dost devriye unsurudur, kimlik teyidi yapilmistir."
+ },
+ {
+  "time": "14:40",
+  "source": "official",
+  "text": "39.88173N 32.84526E konumundan usse dogru ilerleyen otomobil planli ikmal aracidir, kimlik teyidi yapilmistir."
+ },
+ {
+  "time": "10:15",
+  "source": "official",
+  "text": "39.9091N 32.8282E civarindaki sari arac dost devriye unsurudur, kimlik teyidi yapilmistir."
+ },
+ {
+  "time": "12:35",
+  "source": "official",
+  "text": "39.9253N 32.8718E cevresinde 1 agir arac bulunuyor, hareketleri olagan."
+ },
+ {
+  "time": "14:50",
+  "source": "official",
+  "text": "39.9612N 32.8202E civarinda 3 kamyon goruldu, yukleri tespit edilemedi."
+ },
+ {
+  "time": "13:40",
+  "source": "official",
+  "text": "Kuzeydogu Kavsagi bolgesindeki devriyeyle telsiz baglantisi 40 dakikadir kurulamiyor."
+ },
+ {
+  "time": "13:55",
+  "source": "official",
+  "text": "39.87316N 32.85198E konumundan usse dogru ilerleyen panelvan planli ikmal aracidir, kimlik teyidi yapilmistir."
+ },
+ {
+  "time": "13:15",
+  "source": "official",
+  "text": "39.8732N 32.8522E civarinda 1 agir arac (kamyon/otobus) gozlendi."
+ },
+ {
+  "time": "08:45",
+  "source": "official",
+  "text": "Hava acik, gorus mesafesi iyi."
+ },
+ {
+  "time": "10:15",
+  "source": "official",
+  "text": "39.89187N 32.82012E konumundan usse dogru ilerleyen otomobil planli ikmal aracidir, kimlik teyidi yapilmistir."
+ },
+ {
+  "time": "14:40",
+  "source": "third_party",
+  "text": "39.9193N 32.7922E civarinda 1 kamyon goruldu, yukleri tespit edilemedi."
+ },
+ {
+  "time": "09:15",
+  "source": "official",
+  "text": "39.9065N 32.8497E civarinda 1 kamyon goruldu, yukleri tespit edilemedi."
+ },
+ {
+  "time": "09:35",
+  "source": "third_party",
+  "text": "39.91219N 32.83754E konumundaki otomobil bir saatten uzun suredir yerinden ayrilmadi."
+ },
+ {
+  "time": "09:50",
+  "source": "official",
+  "text": "Bati Yerlesimi bolgesinde trafik akisi normal seyrediyor."
+ },
+ {
+  "time": "11:10",
+  "source": "official",
+  "text": "Guneybati Yolu bolgesinde agir arac hareketi yok, yalnizca binek araclar goruluyor."
+ }
+]

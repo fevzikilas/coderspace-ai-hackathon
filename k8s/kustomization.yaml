@@ -1,0 +1,20 @@
+# kubectl apply -k k8s/   (README'deki sırayı izleyin; secret ayrıca oluşturulur)
+# NOT: Bu manifestler YAZILDI; bu depoda uygulanmadı/deploy edilmedi.
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: uskoruma
+resources:
+  - namespace.yaml
+  - configmap.yaml
+  - db-init-configmap.yaml
+  - data-pvc.yaml
+  - db.yaml
+  - mock-data-svc.yaml
+  - detection-svc.yaml
+  - core-svc.yaml
+  - pattern-svc.yaml
+  - risk-agent-svc.yaml
+  - gateway.yaml
+  - web-ui.yaml
+  - ingress-gateway.yaml
+  - ingress-web-ui.yaml

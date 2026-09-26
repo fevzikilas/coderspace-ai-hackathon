@@ -1,0 +1,467 @@
+{
+  "img_000114": {
+    "zone": "Kuzey Yolu",
+    "capture_time": "13:00",
+    "scenario": "convoy_direct_approach",
+    "subjects": [
+      "T0101",
+      "T0102",
+      "T0103"
+    ],
+    "n_objects": 3,
+    "expected_pattern": "CONVOY",
+    "expected_risk": "HIGH"
+  },
+  "img_000123": {
+    "zone": "Kuzey Yolu",
+    "capture_time": "13:05",
+    "scenario": "convoy_direct_approach",
+    "subjects": [
+      "T0101",
+      "T0102",
+      "T0103"
+    ],
+    "n_objects": 3,
+    "expected_pattern": "CONVOY",
+    "expected_risk": "HIGH"
+  },
+  "img_000136": {
+    "zone": "Kuzey Yolu",
+    "capture_time": "13:10",
+    "scenario": "convoy_direct_approach",
+    "subjects": [
+      "T0101",
+      "T0102",
+      "T0103"
+    ],
+    "n_objects": 3,
+    "expected_pattern": "CONVOY",
+    "expected_risk": "HIGH"
+  },
+  "img_000152": {
+    "zone": "Kuzey Yolu",
+    "capture_time": "13:15",
+    "scenario": "convoy_direct_approach",
+    "subjects": [
+      "T0101",
+      "T0102",
+      "T0103"
+    ],
+    "n_objects": 4,
+    "expected_pattern": "CONVOY",
+    "expected_risk": "HIGH"
+  },
+  "img_000188": {
+    "zone": "Kuzey Yolu",
+    "capture_time": "13:20",
+    "scenario": "convoy_direct_approach",
+    "subjects": [
+      "T0101",
+      "T0102",
+      "T0103"
+    ],
+    "n_objects": 3,
+    "expected_pattern": "CONVOY",
+    "expected_risk": "HIGH"
+  },
+  "img_000217": {
+    "zone": "Kuzeydogu Yolu",
+    "capture_time": "13:10",
+    "scenario": "single_direct_approach",
+    "subjects": [
+      "T0201"
+    ],
+    "n_objects": 1,
+    "expected_pattern": "RANDOM",
+    "expected_risk": "LOW"
+  },
+  "img_000232": {
+    "zone": "Kuzeydogu Yolu",
+    "capture_time": "13:15",
+    "scenario": "single_direct_approach",
+    "subjects": [
+      "T0201"
+    ],
+    "n_objects": 1,
+    "expected_pattern": "RANDOM",
+    "expected_risk": "MEDIUM"
+  },
+  "img_000252": {
+    "zone": "Kuzeydogu Yolu",
+    "capture_time": "13:20",
+    "scenario": "single_direct_approach",
+    "subjects": [
+      "T0201"
+    ],
+    "n_objects": 1,
+    "expected_pattern": "DIRECT_APPROACH",
+    "expected_risk": "MEDIUM"
+  },
+  "img_000282": {
+    "zone": "Kuzeydogu Yolu",
+    "capture_time": "13:25",
+    "scenario": "single_direct_approach",
+    "subjects": [
+      "T0201"
+    ],
+    "n_objects": 1,
+    "expected_pattern": "DIRECT_APPROACH",
+    "expected_risk": "MEDIUM"
+  },
+  "img_000319": {
+    "zone": "Kuzeydogu Yolu",
+    "capture_time": "13:30",
+    "scenario": "single_direct_approach",
+    "subjects": [
+      "T0201"
+    ],
+    "n_objects": 2,
+    "expected_pattern": "DIRECT_APPROACH",
+    "expected_risk": "MEDIUM"
+  },
+  "img_000334": {
+    "zone": "Dogu Yolu",
+    "capture_time": "14:00",
+    "scenario": "loiter_near_base",
+    "subjects": [
+      "T0301"
+    ],
+    "n_objects": 1,
+    "expected_pattern": "LOITERING",
+    "expected_risk": "MEDIUM"
+  },
+  "img_000341": {
+    "zone": "Dogu Yolu",
+    "capture_time": "14:05",
+    "scenario": "loiter_near_base",
+    "subjects": [
+      "T0301"
+    ],
+    "n_objects": 1,
+    "expected_pattern": "LOITERING",
+    "expected_risk": "MEDIUM"
+  },
+  "img_000374": {
+    "zone": "Dogu Yolu",
+    "capture_time": "14:10",
+    "scenario": "loiter_near_base",
+    "subjects": [
+      "T0301"
+    ],
+    "n_objects": 2,
+    "expected_pattern": "LOITERING",
+    "expected_risk": "MEDIUM"
+  },
+  "img_000395": {
+    "zone": "Dogu Yolu",
+    "capture_time": "14:15",
+    "scenario": "loiter_near_base",
+    "subjects": [
+      "T0301"
+    ],
+    "n_objects": 1,
+    "expected_pattern": "LOITERING",
+    "expected_risk": "MEDIUM"
+  },
+  "img_000402": {
+    "zone": "Dogu Yolu",
+    "capture_time": "14:20",
+    "scenario": "loiter_near_base",
+    "subjects": [
+      "T0301"
+    ],
+    "n_objects": 1,
+    "expected_pattern": "LOITERING",
+    "expected_risk": "MEDIUM"
+  },
+  "img_000425": {
+    "zone": "Guneydogu Yolu",
+    "capture_time": "13:40",
+    "scenario": "loiter_far_civil",
+    "subjects": [
+      "T0401"
+    ],
+    "n_objects": 1,
+    "expected_pattern": "LOITERING",
+    "expected_risk": "LOW"
+  },
+  "img_000451": {
+    "zone": "Guneydogu Yolu",
+    "capture_time": "13:45",
+    "scenario": "loiter_far_civil",
+    "subjects": [
+      "T0401"
+    ],
+    "n_objects": 1,
+    "expected_pattern": "LOITERING",
+    "expected_risk": "LOW"
+  },
+  "img_000479": {
+    "zone": "Guneydogu Yolu",
+    "capture_time": "13:50",
+    "scenario": "loiter_far_civil",
+    "subjects": [
+      "T0401"
+    ],
+    "n_objects": 1,
+    "expected_pattern": "LOITERING",
+    "expected_risk": "LOW"
+  },
+  "img_000495": {
+    "zone": "Guneydogu Yolu",
+    "capture_time": "13:55",
+    "scenario": "loiter_far_civil",
+    "subjects": [
+      "T0401"
+    ],
+    "n_objects": 2,
+    "expected_pattern": "LOITERING",
+    "expected_risk": "LOW"
+  },
+  "img_000505": {
+    "zone": "Guneydogu Yolu",
+    "capture_time": "14:00",
+    "scenario": "loiter_far_civil",
+    "subjects": [
+      "T0401"
+    ],
+    "n_objects": 1,
+    "expected_pattern": "LOITERING",
+    "expected_risk": "LOW"
+  },
+  "img_000514": {
+    "zone": "Guney Yolu",
+    "capture_time": "13:10",
+    "scenario": "random_civil_traffic",
+    "subjects": [
+      "T0501"
+    ],
+    "n_objects": 1,
+    "expected_pattern": "RANDOM",
+    "expected_risk": "LOW"
+  },
+  "img_000525": {
+    "zone": "Guney Yolu",
+    "capture_time": "13:25",
+    "scenario": "random_civil_traffic",
+    "subjects": [
+      "T0502"
+    ],
+    "n_objects": 1,
+    "expected_pattern": "RANDOM",
+    "expected_risk": "LOW"
+  },
+  "img_000543": {
+    "zone": "Guney Yolu",
+    "capture_time": "13:40",
+    "scenario": "random_civil_traffic",
+    "subjects": [
+      "T0501"
+    ],
+    "n_objects": 2,
+    "expected_pattern": "RANDOM",
+    "expected_risk": "LOW"
+  },
+  "img_000553": {
+    "zone": "Guney Yolu",
+    "capture_time": "13:55",
+    "scenario": "random_civil_traffic",
+    "subjects": [
+      "T0502"
+    ],
+    "n_objects": 1,
+    "expected_pattern": "RANDOM",
+    "expected_risk": "LOW"
+  },
+  "img_000568": {
+    "zone": "Guney Yolu",
+    "capture_time": "14:10",
+    "scenario": "random_civil_traffic",
+    "subjects": [
+      "T0501"
+    ],
+    "n_objects": 1,
+    "expected_pattern": "RANDOM",
+    "expected_risk": "LOW"
+  },
+  "img_000591": {
+    "zone": "Guneybati Yolu",
+    "capture_time": "13:10",
+    "scenario": "convoy_outbound",
+    "subjects": [
+      "T0601",
+      "T0602",
+      "T0603"
+    ],
+    "n_objects": 3,
+    "expected_pattern": "CONVOY",
+    "expected_risk": "MEDIUM"
+  },
+  "img_000618": {
+    "zone": "Guneybati Yolu",
+    "capture_time": "13:15",
+    "scenario": "convoy_outbound",
+    "subjects": [
+      "T0601",
+      "T0602",
+      "T0603"
+    ],
+    "n_objects": 3,
+    "expected_pattern": "CONVOY",
+    "expected_risk": "MEDIUM"
+  },
+  "img_000642": {
+    "zone": "Guneybati Yolu",
+    "capture_time": "13:20",
+    "scenario": "convoy_outbound",
+    "subjects": [
+      "T0601",
+      "T0602",
+      "T0603"
+    ],
+    "n_objects": 4,
+    "expected_pattern": "CONVOY",
+    "expected_risk": "MEDIUM"
+  },
+  "img_000656": {
+    "zone": "Guneybati Yolu",
+    "capture_time": "13:25",
+    "scenario": "convoy_outbound",
+    "subjects": [
+      "T0601",
+      "T0602",
+      "T0603"
+    ],
+    "n_objects": 3,
+    "expected_pattern": "CONVOY",
+    "expected_risk": "MEDIUM"
+  },
+  "img_000679": {
+    "zone": "Guneybati Yolu",
+    "capture_time": "13:30",
+    "scenario": "convoy_outbound",
+    "subjects": [
+      "T0601",
+      "T0602",
+      "T0603"
+    ],
+    "n_objects": 3,
+    "expected_pattern": "CONVOY",
+    "expected_risk": "MEDIUM"
+  },
+  "img_000691": {
+    "zone": "Bati Yolu",
+    "capture_time": "13:10",
+    "scenario": "slow_approach_conflicting_reports",
+    "subjects": [
+      "T0701"
+    ],
+    "n_objects": 1,
+    "expected_pattern": "DIRECT_APPROACH",
+    "expected_risk": "MEDIUM"
+  },
+  "img_000699": {
+    "zone": "Bati Yolu",
+    "capture_time": "13:15",
+    "scenario": "slow_approach_conflicting_reports",
+    "subjects": [
+      "T0701"
+    ],
+    "n_objects": 1,
+    "expected_pattern": "DIRECT_APPROACH",
+    "expected_risk": "MEDIUM"
+  },
+  "img_000719": {
+    "zone": "Bati Yolu",
+    "capture_time": "13:20",
+    "scenario": "slow_approach_conflicting_reports",
+    "subjects": [
+      "T0701"
+    ],
+    "n_objects": 2,
+    "expected_pattern": "DIRECT_APPROACH",
+    "expected_risk": "MEDIUM"
+  },
+  "img_000737": {
+    "zone": "Bati Yolu",
+    "capture_time": "13:25",
+    "scenario": "slow_approach_conflicting_reports",
+    "subjects": [
+      "T0701"
+    ],
+    "n_objects": 1,
+    "expected_pattern": "DIRECT_APPROACH",
+    "expected_risk": "MEDIUM"
+  },
+  "img_000759": {
+    "zone": "Bati Yolu",
+    "capture_time": "13:30",
+    "scenario": "slow_approach_conflicting_reports",
+    "subjects": [
+      "T0701"
+    ],
+    "n_objects": 1,
+    "expected_pattern": "DIRECT_APPROACH",
+    "expected_risk": "HIGH"
+  },
+  "img_000791": {
+    "zone": "Kuzeybati Yolu",
+    "capture_time": "13:00",
+    "scenario": "perimeter_breach",
+    "subjects": [
+      "T0801",
+      "T0802"
+    ],
+    "n_objects": 2,
+    "expected_pattern": "RANDOM",
+    "expected_risk": "HIGH"
+  },
+  "img_000825": {
+    "zone": "Kuzeybati Yolu",
+    "capture_time": "13:05",
+    "scenario": "perimeter_breach",
+    "subjects": [
+      "T0801",
+      "T0802"
+    ],
+    "n_objects": 2,
+    "expected_pattern": "CONVOY",
+    "expected_risk": "HIGH"
+  },
+  "img_000849": {
+    "zone": "Kuzeybati Yolu",
+    "capture_time": "13:10",
+    "scenario": "perimeter_breach",
+    "subjects": [
+      "T0801",
+      "T0802"
+    ],
+    "n_objects": 3,
+    "expected_pattern": "CONVOY",
+    "expected_risk": "HIGH"
+  },
+  "img_000874": {
+    "zone": "Kuzeybati Yolu",
+    "capture_time": "13:15",
+    "scenario": "perimeter_breach",
+    "subjects": [
+      "T0801",
+      "T0802"
+    ],
+    "n_objects": 2,
+    "expected_pattern": "CONVOY",
+    "expected_risk": "HIGH"
+  },
+  "img_000882": {
+    "zone": "Kuzeybati Yolu",
+    "capture_time": "13:20",
+    "scenario": "perimeter_breach",
+    "subjects": [
+      "T0801",
+      "T0802"
+    ],
+    "n_objects": 2,
+    "expected_pattern": "DIRECT_APPROACH",
+    "expected_risk": "HIGH"
+  }
+}

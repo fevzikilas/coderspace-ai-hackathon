@@ -1,0 +1,86 @@
+# core-svc: İz/tracker durumu bellek-içi olduğu için tek replika. DB write-through (opsiyonel).
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: core-svc
+  namespace: uskoruma
+  labels:
+    app.kubernetes.io/name: core-svc
+    app.kubernetes.io/part-of: uskoruma
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: core-svc
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: core-svc
+        app.kubernetes.io/part-of: uskoruma
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: core-svc
+          image: uskoruma/core-svc:latest   # yerel k3s: imajı `k3s ctr images import` ile yükleyin (README)
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8002
+          envFrom:
+            - configMapRef:
+                name: uskoruma-config
+          env:
+            - name: DATABASE_URL
+              valueFrom: {secretKeyRef: {name: uskoruma-secrets, key: DATABASE_URL, optional: true}}
+            - name: DEMO_MODE
+              valueFrom: {configMapKeyRef: {name: uskoruma-config, key: DEMO_MODE}}
+          readinessProbe:
+            httpGet: {path: /health, port: http}
+            initialDelaySeconds: 3
+            periodSeconds: 5
+          livenessProbe:
+            httpGet: {path: /health, port: http}
+            initialDelaySeconds: 10
+            periodSeconds: 15
+          resources:
+            requests: {cpu: 100m, memory: 128Mi}
+            limits: {cpu: "500m", memory: 512Mi}
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+          volumeMounts:
+            - name: tmp
+              mountPath: /tmp
+            - name: data            # olay veri seti (image_meta.json, tracks.csv, zones.json, ...); README: PVC'ye kopyalama
+              mountPath: /data
+              readOnly: true
+      volumes:
+        - name: tmp
+          emptyDir: {}
+        - name: data
+          persistentVolumeClaim:
+            claimName: uskoruma-data
+            readOnly: true
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: core-svc
+  namespace: uskoruma
+  labels:
+    app.kubernetes.io/name: core-svc
+    app.kubernetes.io/part-of: uskoruma
+spec:
+  type: ClusterIP   # yalnızca iç ağ; dış erişim yalnızca web-ui/gateway Ingress'i üzerinden
+  selector:
+    app.kubernetes.io/name: core-svc
+  ports:
+    - name: http
+      port: 8002
+      targetPort: http

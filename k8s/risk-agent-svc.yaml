@@ -1,0 +1,79 @@
+# risk-agent-svc: Bütçe sayaçları ve değerlendirme önbelleği bellek-içi olduğu için tek replika (çoklu replika için paylaşımlı sayaç gerekir).
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: risk-agent-svc
+  namespace: uskoruma
+  labels:
+    app.kubernetes.io/name: risk-agent-svc
+    app.kubernetes.io/part-of: uskoruma
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: risk-agent-svc
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: risk-agent-svc
+        app.kubernetes.io/part-of: uskoruma
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: risk-agent-svc
+          image: uskoruma/risk-agent-svc:latest   # yerel k3s: imajı `k3s ctr images import` ile yükleyin (README)
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8005
+          envFrom:
+            - configMapRef:
+                name: uskoruma-config
+          env:
+            - name: GLM_API_KEY
+              valueFrom: {secretKeyRef: {name: uskoruma-secrets, key: GLM_API_KEY, optional: true}}
+            - name: DATABASE_URL
+              valueFrom: {secretKeyRef: {name: uskoruma-secrets, key: DATABASE_URL, optional: true}}
+          readinessProbe:
+            httpGet: {path: /health, port: http}
+            initialDelaySeconds: 3
+            periodSeconds: 5
+          livenessProbe:
+            httpGet: {path: /health, port: http}
+            initialDelaySeconds: 10
+            periodSeconds: 15
+          resources:
+            requests: {cpu: 100m, memory: 128Mi}
+            limits: {cpu: "500m", memory: 256Mi}
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+          volumeMounts:
+            - name: tmp
+              mountPath: /tmp
+      volumes:
+        - name: tmp
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: risk-agent-svc
+  namespace: uskoruma
+  labels:
+    app.kubernetes.io/name: risk-agent-svc
+    app.kubernetes.io/part-of: uskoruma
+spec:
+  type: ClusterIP   # yalnızca iç ağ; dış erişim yalnızca web-ui/gateway Ingress'i üzerinden
+  selector:
+    app.kubernetes.io/name: risk-agent-svc
+  ports:
+    - name: http
+      port: 8005
+      targetPort: http

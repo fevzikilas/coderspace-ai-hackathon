@@ -1,0 +1,922 @@
+{
+ "img_003839": {
+  "width_px": 960,
+  "height_px": 540,
+  "capture_time": "13:25",
+  "corner_coordinates": {
+   "top_left": [
+    39.93778,
+    32.847904
+   ],
+   "top_right": [
+    39.93778,
+    32.849658
+   ],
+   "bottom_left": [
+    39.937024,
+    32.847904
+   ],
+   "bottom_right": [
+    39.937024,
+    32.849658
+   ]
+  }
+ },
+ "img_000926": {
+  "width_px": 1360,
+  "height_px": 765,
+  "capture_time": "11:35",
+  "corner_coordinates": {
+   "top_left": [
+    39.93141,
+    32.866814
+   ],
+   "top_right": [
+    39.93141,
+    32.86855
+   ],
+   "bottom_left": [
+    39.930662,
+    32.866814
+   ],
+   "bottom_right": [
+    39.930662,
+    32.86855
+   ]
+  }
+ },
+ "img_000860": {
+  "width_px": 960,
+  "height_px": 540,
+  "capture_time": "14:10",
+  "corner_coordinates": {
+   "top_left": [
+    39.925651,
+    32.870729
+   ],
+   "top_right": [
+    39.925651,
+    32.872131
+   ],
+   "bottom_left": [
+    39.925045,
+    32.870729
+   ],
+   "bottom_right": [
+    39.925045,
+    32.872131
+   ]
+  }
+ },
+ "img_006673": {
+  "width_px": 1360,
+  "height_px": 765,
+  "capture_time": "10:30",
+  "corner_coordinates": {
+   "top_left": [
+    39.910284,
+    32.865679
+   ],
+   "top_right": [
+    39.910284,
+    32.868473
+   ],
+   "bottom_left": [
+    39.909078,
+    32.865679
+   ],
+   "bottom_right": [
+    39.909078,
+    32.868473
+   ]
+  }
+ },
+ "img_004530": {
+  "width_px": 1360,
+  "height_px": 765,
+  "capture_time": "10:45",
+  "corner_coordinates": {
+   "top_left": [
+    39.907167,
+    32.84883
+   ],
+   "top_right": [
+    39.907167,
+    32.851236
+   ],
+   "bottom_left": [
+    39.906129,
+    32.84883
+   ],
+   "bottom_right": [
+    39.906129,
+    32.851236
+   ]
+  }
+ },
+ "img_005672": {
+  "width_px": 960,
+  "height_px": 540,
+  "capture_time": "11:00",
+  "corner_coordinates": {
+   "top_left": [
+    39.912509,
+    32.836523
+   ],
+   "top_right": [
+    39.912509,
+    32.838195
+   ],
+   "bottom_left": [
+    39.911787,
+    32.836523
+   ],
+   "bottom_right": [
+    39.911787,
+    32.838195
+   ]
+  }
+ },
+ "img_002900": {
+  "width_px": 1360,
+  "height_px": 765,
+  "capture_time": "13:50",
+  "corner_coordinates": {
+   "top_left": [
+    39.921088,
+    32.833091
+   ],
+   "top_right": [
+    39.921088,
+    32.835331
+   ],
+   "bottom_left": [
+    39.920122,
+    32.833091
+   ],
+   "bottom_right": [
+    39.920122,
+    32.835331
+   ]
+  }
+ },
+ "img_006388": {
+  "width_px": 1360,
+  "height_px": 765,
+  "capture_time": "10:35",
+  "corner_coordinates": {
+   "top_left": [
+    39.930833,
+    32.836144
+   ],
+   "top_right": [
+    39.930833,
+    32.838318
+   ],
+   "bottom_left": [
+    39.929895,
+    32.836144
+   ],
+   "bottom_right": [
+    39.929895,
+    32.838318
+   ]
+  }
+ },
+ "img_003464": {
+  "width_px": 1360,
+  "height_px": 765,
+  "capture_time": "12:15",
+  "corner_coordinates": {
+   "top_left": [
+    39.945679,
+    32.856448
+   ],
+   "top_right": [
+    39.945679,
+    32.859548
+   ],
+   "bottom_left": [
+    39.944343,
+    32.856448
+   ],
+   "bottom_right": [
+    39.944343,
+    32.859548
+   ]
+  }
+ },
+ "img_008333": {
+  "width_px": 1360,
+  "height_px": 765,
+  "capture_time": "10:10",
+  "corner_coordinates": {
+   "top_left": [
+    39.940508,
+    32.871572
+   ],
+   "top_right": [
+    39.940508,
+    32.874722
+   ],
+   "bottom_left": [
+    39.93915,
+    32.871572
+   ],
+   "bottom_right": [
+    39.93915,
+    32.874722
+   ]
+  }
+ },
+ "img_005368": {
+  "width_px": 1360,
+  "height_px": 765,
+  "capture_time": "10:25",
+  "corner_coordinates": {
+   "top_left": [
+    39.92531,
+    32.883173
+   ],
+   "top_right": [
+    39.92531,
+    32.885055
+   ],
+   "bottom_left": [
+    39.924498,
+    32.883173
+   ],
+   "bottom_right": [
+    39.924498,
+    32.885055
+   ]
+  }
+ },
+ "img_001230": {
+  "width_px": 960,
+  "height_px": 540,
+  "capture_time": "15:15",
+  "corner_coordinates": {
+   "top_left": [
+    39.901901,
+    32.869247
+   ],
+   "top_right": [
+    39.901901,
+    32.871241
+   ],
+   "bottom_left": [
+    39.901041,
+    32.869247
+   ],
+   "bottom_right": [
+    39.901041,
+    32.871241
+   ]
+  }
+ },
+ "img_005561": {
+  "width_px": 1360,
+  "height_px": 765,
+  "capture_time": "12:10",
+  "corner_coordinates": {
+   "top_left": [
+    39.898513,
+    32.857395
+   ],
+   "top_right": [
+    39.898513,
+    32.859925
+   ],
+   "bottom_left": [
+    39.897421,
+    32.857395
+   ],
+   "bottom_right": [
+    39.897421,
+    32.859925
+   ]
+  }
+ },
+ "img_005978": {
+  "width_px": 960,
+  "height_px": 540,
+  "capture_time": "10:20",
+  "corner_coordinates": {
+   "top_left": [
+    39.909646,
+    32.827455
+   ],
+   "top_right": [
+    39.909646,
+    32.828755
+   ],
+   "bottom_left": [
+    39.909086,
+    32.827455
+   ],
+   "bottom_right": [
+    39.909086,
+    32.828755
+   ]
+  }
+ },
+ "img_006591": {
+  "width_px": 960,
+  "height_px": 540,
+  "capture_time": "11:15",
+  "corner_coordinates": {
+   "top_left": [
+    39.92542,
+    32.822065
+   ],
+   "top_right": [
+    39.92542,
+    32.824003
+   ],
+   "bottom_left": [
+    39.924584,
+    32.822065
+   ],
+   "bottom_right": [
+    39.924584,
+    32.824003
+   ]
+  }
+ },
+ "img_001733": {
+  "width_px": 1360,
+  "height_px": 765,
+  "capture_time": "15:05",
+  "corner_coordinates": {
+   "top_left": [
+    39.935015,
+    32.825054
+   ],
+   "top_right": [
+    39.935015,
+    32.827726
+   ],
+   "bottom_left": [
+    39.933863,
+    32.825054
+   ],
+   "bottom_right": [
+    39.933863,
+    32.827726
+   ]
+  }
+ },
+ "img_004388": {
+  "width_px": 1360,
+  "height_px": 765,
+  "capture_time": "12:55",
+  "corner_coordinates": {
+   "top_left": [
+    39.954552,
+    32.843202
+   ],
+   "top_right": [
+    39.954552,
+    32.846364
+   ],
+   "bottom_left": [
+    39.953188,
+    32.843202
+   ],
+   "bottom_right": [
+    39.953188,
+    32.846364
+   ]
+  }
+ },
+ "img_007171": {
+  "width_px": 1360,
+  "height_px": 765,
+  "capture_time": "15:00",
+  "corner_coordinates": {
+   "top_left": [
+    39.943193,
+    32.881358
+   ],
+   "top_right": [
+    39.943193,
+    32.88381
+   ],
+   "bottom_left": [
+    39.942135,
+    32.881358
+   ],
+   "bottom_right": [
+    39.942135,
+    32.88381
+   ]
+  }
+ },
+ "img_000267": {
+  "width_px": 1920,
+  "height_px": 1080,
+  "capture_time": "10:15",
+  "corner_coordinates": {
+   "top_left": [
+    39.921192,
+    32.893427
+   ],
+   "top_right": [
+    39.921192,
+    32.897753
+   ],
+   "bottom_left": [
+    39.919326,
+    32.893427
+   ],
+   "bottom_right": [
+    39.919326,
+    32.897753
+   ]
+  }
+ },
+ "img_008562": {
+  "width_px": 960,
+  "height_px": 540,
+  "capture_time": "14:20",
+  "corner_coordinates": {
+   "top_left": [
+    39.895169,
+    32.873256
+   ],
+   "top_right": [
+    39.895169,
+    32.87454
+   ],
+   "bottom_left": [
+    39.894615,
+    32.873256
+   ],
+   "bottom_right": [
+    39.894615,
+    32.87454
+   ]
+  }
+ },
+ "img_000733": {
+  "width_px": 1360,
+  "height_px": 765,
+  "capture_time": "13:00",
+  "corner_coordinates": {
+   "top_left": [
+    39.891318,
+    32.845977
+   ],
+   "top_right": [
+    39.891318,
+    32.848585
+   ],
+   "bottom_left": [
+    39.890192,
+    32.845977
+   ],
+   "bottom_right": [
+    39.890192,
+    32.848585
+   ]
+  }
+ },
+ "img_001147": {
+  "width_px": 960,
+  "height_px": 540,
+  "capture_time": "15:20",
+  "corner_coordinates": {
+   "top_left": [
+    39.896338,
+    32.827997
+   ],
+   "top_right": [
+    39.896338,
+    32.829711
+   ],
+   "bottom_left": [
+    39.895598,
+    32.827997
+   ],
+   "bottom_right": [
+    39.895598,
+    32.829711
+   ]
+  }
+ },
+ "img_005788": {
+  "width_px": 1360,
+  "height_px": 765,
+  "capture_time": "11:10",
+  "corner_coordinates": {
+   "top_left": [
+    39.928509,
+    32.810957
+   ],
+   "top_right": [
+    39.928509,
+    32.813151
+   ],
+   "bottom_left": [
+    39.927563,
+    32.810957
+   ],
+   "bottom_right": [
+    39.927563,
+    32.813151
+   ]
+  }
+ },
+ "img_003189": {
+  "width_px": 1920,
+  "height_px": 1080,
+  "capture_time": "13:20",
+  "corner_coordinates": {
+   "top_left": [
+    39.94706,
+    32.82732
+   ],
+   "top_right": [
+    39.94706,
+    32.829756
+   ],
+   "bottom_left": [
+    39.94601,
+    32.82732
+   ],
+   "bottom_right": [
+    39.94601,
+    32.829756
+   ]
+  }
+ },
+ "img_002661": {
+  "width_px": 960,
+  "height_px": 540,
+  "capture_time": "14:00",
+  "corner_coordinates": {
+   "top_left": [
+    39.961505,
+    32.846729
+   ],
+   "top_right": [
+    39.961505,
+    32.848477
+   ],
+   "bottom_left": [
+    39.960751,
+    32.846729
+   ],
+   "bottom_right": [
+    39.960751,
+    32.848477
+   ]
+  }
+ },
+ "img_004512": {
+  "width_px": 1920,
+  "height_px": 1080,
+  "capture_time": "13:05",
+  "corner_coordinates": {
+   "top_left": [
+    39.950596,
+    32.888273
+   ],
+   "top_right": [
+    39.950596,
+    32.891917
+   ],
+   "bottom_left": [
+    39.949024,
+    32.888273
+   ],
+   "bottom_right": [
+    39.949024,
+    32.891917
+   ]
+  }
+ },
+ "img_008001": {
+  "width_px": 960,
+  "height_px": 540,
+  "capture_time": "14:25",
+  "corner_coordinates": {
+   "top_left": [
+    39.925815,
+    32.903278
+   ],
+   "top_right": [
+    39.925815,
+    32.904528
+   ],
+   "bottom_left": [
+    39.925275,
+    32.903278
+   ],
+   "bottom_right": [
+    39.925275,
+    32.904528
+   ]
+  }
+ },
+ "img_004416": {
+  "width_px": 960,
+  "height_px": 540,
+  "capture_time": "14:15",
+  "corner_coordinates": {
+   "top_left": [
+    39.888318,
+    32.880323
+   ],
+   "top_right": [
+    39.888318,
+    32.882307
+   ],
+   "bottom_left": [
+    39.887462,
+    32.880323
+   ],
+   "bottom_right": [
+    39.887462,
+    32.882307
+   ]
+  }
+ },
+ "img_007664": {
+  "width_px": 960,
+  "height_px": 540,
+  "capture_time": "15:25",
+  "corner_coordinates": {
+   "top_left": [
+    39.881991,
+    32.844382
+   ],
+   "top_right": [
+    39.881991,
+    32.846086
+   ],
+   "bottom_left": [
+    39.881255,
+    32.844382
+   ],
+   "bottom_right": [
+    39.881255,
+    32.846086
+   ]
+  }
+ },
+ "img_000531": {
+  "width_px": 1360,
+  "height_px": 765,
+  "capture_time": "12:05",
+  "corner_coordinates": {
+   "top_left": [
+    39.892013,
+    32.817601
+   ],
+   "top_right": [
+    39.892013,
+    32.820647
+   ],
+   "bottom_left": [
+    39.890699,
+    32.817601
+   ],
+   "bottom_right": [
+    39.890699,
+    32.820647
+   ]
+  }
+ },
+ "img_005611": {
+  "width_px": 1360,
+  "height_px": 765,
+  "capture_time": "13:45",
+  "corner_coordinates": {
+   "top_left": [
+    39.913745,
+    32.802163
+   ],
+   "top_right": [
+    39.913745,
+    32.804111
+   ],
+   "bottom_left": [
+    39.912905,
+    32.802163
+   ],
+   "bottom_right": [
+    39.912905,
+    32.804111
+   ]
+  }
+ },
+ "img_002256": {
+  "width_px": 1360,
+  "height_px": 765,
+  "capture_time": "14:05",
+  "corner_coordinates": {
+   "top_left": [
+    39.944816,
+    32.807875
+   ],
+   "top_right": [
+    39.944816,
+    32.810929
+   ],
+   "bottom_left": [
+    39.943498,
+    32.807875
+   ],
+   "bottom_right": [
+    39.943498,
+    32.810929
+   ]
+  }
+ },
+ "img_001643": {
+  "width_px": 1360,
+  "height_px": 765,
+  "capture_time": "15:10",
+  "corner_coordinates": {
+   "top_left": [
+    39.970529,
+    32.853993
+   ],
+   "top_right": [
+    39.970529,
+    32.856825
+   ],
+   "bottom_left": [
+    39.969309,
+    32.853993
+   ],
+   "bottom_right": [
+    39.969309,
+    32.856825
+   ]
+  }
+ },
+ "img_003880": {
+  "width_px": 1920,
+  "height_px": 1080,
+  "capture_time": "14:35",
+  "corner_coordinates": {
+   "top_left": [
+    39.953273,
+    32.900924
+   ],
+   "top_right": [
+    39.953273,
+    32.904122
+   ],
+   "bottom_left": [
+    39.951895,
+    32.900924
+   ],
+   "bottom_right": [
+    39.951895,
+    32.904122
+   ]
+  }
+ },
+ "img_008589": {
+  "width_px": 960,
+  "height_px": 540,
+  "capture_time": "10:40",
+  "corner_coordinates": {
+   "top_left": [
+    39.933505,
+    32.914076
+   ],
+   "top_right": [
+    39.933505,
+    32.915446
+   ],
+   "bottom_left": [
+    39.932915,
+    32.914076
+   ],
+   "bottom_right": [
+    39.932915,
+    32.915446
+   ]
+  }
+ },
+ "img_005359": {
+  "width_px": 1360,
+  "height_px": 765,
+  "capture_time": "11:30",
+  "corner_coordinates": {
+   "top_left": [
+    39.891657,
+    32.90057
+   ],
+   "top_right": [
+    39.891657,
+    32.903442
+   ],
+   "bottom_left": [
+    39.890417,
+    32.90057
+   ],
+   "bottom_right": [
+    39.890417,
+    32.903442
+   ]
+  }
+ },
+ "img_003201": {
+  "width_px": 960,
+  "height_px": 540,
+  "capture_time": "14:55",
+  "corner_coordinates": {
+   "top_left": [
+    39.87347,
+    32.851566
+   ],
+   "top_right": [
+    39.87347,
+    32.852906
+   ],
+   "bottom_left": [
+    39.872892,
+    32.851566
+   ],
+   "bottom_right": [
+    39.872892,
+    32.852906
+   ]
+  }
+ },
+ "img_006444": {
+  "width_px": 960,
+  "height_px": 540,
+  "capture_time": "15:35",
+  "corner_coordinates": {
+   "top_left": [
+    39.886113,
+    32.812058
+   ],
+   "top_right": [
+    39.886113,
+    32.814046
+   ],
+   "bottom_left": [
+    39.885255,
+    32.812058
+   ],
+   "bottom_right": [
+    39.885255,
+    32.814046
+   ]
+  }
+ },
+ "img_004318": {
+  "width_px": 1920,
+  "height_px": 1080,
+  "capture_time": "15:45",
+  "corner_coordinates": {
+   "top_left": [
+    39.919752,
+    32.790882
+   ],
+   "top_right": [
+    39.919752,
+    32.79342
+   ],
+   "bottom_left": [
+    39.918656,
+    32.790882
+   ],
+   "bottom_right": [
+    39.918656,
+    32.79342
+   ]
+  }
+ },
+ "img_004423": {
+  "width_px": 960,
+  "height_px": 540,
+  "capture_time": "15:50",
+  "corner_coordinates": {
+   "top_left": [
+    39.961493,
+    32.819159
+   ],
+   "top_right": [
+    39.961493,
+    32.820769
+   ],
+   "bottom_left": [
+    39.960799,
+    32.819159
+   ],
+   "bottom_right": [
+    39.960799,
+    32.820769
+   ]
+  }
+ }
+}

@@ -1,0 +1,65 @@
+{
+  "base": {
+    "name": "Merkez Us",
+    "lat": 39.92184,
+    "lon": 32.85306
+  },
+  "zones": [
+    {
+      "name": "Kuzey Yolu",
+      "center": [
+        39.950618,
+        32.85306
+      ]
+    },
+    {
+      "name": "Kuzeydogu Yolu",
+      "center": [
+        39.942186,
+        32.879602
+      ]
+    },
+    {
+      "name": "Dogu Yolu",
+      "center": [
+        39.921834,
+        32.890584
+      ]
+    },
+    {
+      "name": "Guneydogu Yolu",
+      "center": [
+        39.901488,
+        32.879586
+      ]
+    },
+    {
+      "name": "Guney Yolu",
+      "center": [
+        39.893062,
+        32.85306
+      ]
+    },
+    {
+      "name": "Guneybati Yolu",
+      "center": [
+        39.901488,
+        32.826534
+      ]
+    },
+    {
+      "name": "Bati Yolu",
+      "center": [
+        39.921834,
+        32.815536
+      ]
+    },
+    {
+      "name": "Kuzeybati Yolu",
+      "center": [
+        39.942186,
+        32.826518
+      ]
+    }
+  ]
+}

@@ -1,0 +1,148 @@
+# Üs Koruma Sistemi — yerel/demo orkestrasyonu.
+#   cp .env.example .env   # GLM_API_KEY, GATEWAY_API_KEYS, POSTGRES_PASSWORD'u düzenleyin
+#   docker compose up --build
+# NOT: Bu dosya YAZILDI; bu depoda `docker compose up` ÇALIŞTIRILMADI.
+# Yalnızca web-ui (8080) ve gateway (8000) dışarı açılır; diğer servisler iç ağda (yalnızca HTTP ile birbirine bağlı).
+name: uskoruma
+
+x-python-env: &common-env
+  LOG_LEVEL: ${LOG_LEVEL:-INFO}
+  # Olay akışında üs zones.json'dan gelir; BASE_* yalnızca eski/demo akışı ve varsayılan yarıçap içindir.
+  BASE_LAT: ${BASE_LAT:-39.9000}
+  BASE_LON: ${BASE_LON:-32.7500}
+  BASE_RADIUS_M: ${BASE_RADIUS_M:-1500}
+  # Olay veri seti (image_meta.json, tracks.csv, zones.json, field_reports.json, images/, ground_truth.json).
+  # Host'taki ./data klasörü /data olarak salt-okunur bağlanır; gerçek veri için DATA_DIR=/data verin.
+  DATA_DIR: ${DATA_DIR:-/data/synthetic}
+  DATASET_DATE: ${DATASET_DATE:-2025-06-01}
+
+services:
+  db:
+    image: postgis/postgis:16-3.4
+    environment:
+      POSTGRES_DB: uskoruma
+      POSTGRES_USER: uskoruma
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-change-me}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./db/init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U uskoruma -d uskoruma"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+
+  mock-data-svc:
+    build:
+      context: ./mock-data-svc
+      dockerfile: ../docker/mock-data-svc.Dockerfile
+    environment:
+      <<: *common-env
+    volumes:
+      - ./data:/data:ro
+    restart: unless-stopped
+
+  detection-svc:
+    build:
+      context: ./detection-svc
+      dockerfile: ../docker/detection-svc.Dockerfile
+      args:
+        WITH_MODEL: ${DETECTION_WITH_MODEL:-false}
+    environment:
+      <<: *common-env
+      MOCK_MODE: ${MOCK_MODE:-true}
+      MODEL_PATH: /srv/models/stage1.pt
+    volumes:
+      - ./detection-svc/models:/srv/models:ro   # Stage 1 ağırlığı: detection-svc/models/stage1.pt
+      - ./data:/data:ro
+    restart: unless-stopped
+
+  core-svc:
+    build:
+      context: ./core-svc
+      dockerfile: ../docker/core-svc.Dockerfile
+    environment:
+      <<: *common-env
+      DEMO_MODE: ${DEMO_MODE:-false}   # true: eski drone/kafile demo akışı (duvar saatine çapalı sentetik izler)
+      DATABASE_URL: postgresql://uskoruma:${POSTGRES_PASSWORD:-change-me}@db:5432/uskoruma
+    volumes:
+      - ./data:/data:ro
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  pattern-svc:
+    build:
+      context: ./pattern-svc
+      dockerfile: ../docker/pattern-svc.Dockerfile
+    environment:
+      <<: *common-env
+      CORE_SVC_URL: http://core-svc:8002
+    depends_on:
+      - core-svc
+    restart: unless-stopped
+
+  risk-agent-svc:
+    build:
+      context: ./risk-agent-svc
+      dockerfile: ../docker/risk-agent-svc.Dockerfile
+    environment:
+      <<: *common-env
+      GLM_API_KEY: ${GLM_API_KEY:-}            # boşsa kural tabanlı (LLM'siz) mod
+      GLM_BASE_URL: ${GLM_BASE_URL:-https://open.bigmodel.cn/api/paas/v4}
+      GLM_MODEL: ${GLM_MODEL:-glm-4.5}
+      BUDGET_DAILY_TOKENS: ${BUDGET_DAILY_TOKENS:-200000}
+      BUDGET_REQUESTS_PER_HOUR: ${BUDGET_REQUESTS_PER_HOUR:-120}
+      BUDGET_ASSESSMENTS_PER_HOUR: ${BUDGET_ASSESSMENTS_PER_HOUR:-60}
+      BUDGET_TOKENS_PER_ASSESSMENT: ${BUDGET_TOKENS_PER_ASSESSMENT:-30000}
+      ON_BUDGET_EXCEEDED: ${ON_BUDGET_EXCEEDED:-fallback}
+      CORE_SVC_URL: http://core-svc:8002
+      PATTERN_SVC_URL: http://pattern-svc:8003
+      MOCK_DATA_SVC_URL: http://mock-data-svc:8004
+      DATABASE_URL: postgresql://uskoruma:${POSTGRES_PASSWORD:-change-me}@db:5432/uskoruma
+    depends_on:
+      - core-svc
+      - pattern-svc
+      - mock-data-svc
+      - db
+    restart: unless-stopped
+
+  gateway:
+    build:
+      context: ./gateway
+      dockerfile: ../docker/gateway.Dockerfile
+    environment:
+      <<: *common-env
+      GATEWAY_API_KEYS: ${GATEWAY_API_KEYS:-dev-key-change-me}
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:8080}
+      DETECTION_SVC_URL: http://detection-svc:8001
+      CORE_SVC_URL: http://core-svc:8002
+      PATTERN_SVC_URL: http://pattern-svc:8003
+      MOCK_DATA_SVC_URL: http://mock-data-svc:8004
+      RISK_AGENT_SVC_URL: http://risk-agent-svc:8005
+    ports:
+      - "8000:8000"
+    depends_on:
+      - detection-svc
+      - core-svc
+      - pattern-svc
+      - mock-data-svc
+      - risk-agent-svc
+    restart: unless-stopped
+
+  web-ui:
+    build:
+      context: ./web-ui
+      dockerfile: ../docker/web-ui.Dockerfile
+    environment:
+      GATEWAY_URL: http://gateway:8000
+    ports:
+      - "8080:8080"
+    depends_on:
+      - gateway
+    restart: unless-stopped
+
+volumes:
+  pgdata:

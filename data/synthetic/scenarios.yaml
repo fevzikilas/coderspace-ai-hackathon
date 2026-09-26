@@ -1,0 +1,174 @@
+# =====================================================================================================
+# Sentetik olay veri seti — KAYNAK TANIM (bu dosyadan `scripts/gen_dataset.py` tüm dosyaları üretir).
+#
+# 8 bölge x 5 görüntü = 40 olay. Her görüntü tek bir olaydır: drone'dan, aracın (araçların) bulunduğu yere
+# merkezlenmiş bir kare + o ana (capture_time) kadar 5 dk aralıklı iz (tracks.csv) + saha raporları.
+# Şema (kullanıcının örnek dosyalarıyla aynı): image_meta.json, zones.json, tracks.csv, field_reports.json.
+# Koordinatlar KURGUSALDIR. `expect`: senaryonun TASARIM niyeti (insan yargısı); sistem çıktısı scripts/eval_events.py ile karşılaştırılır.
+# Konum yer tutucuları (rapor metinlerinde):  {pos@HH:MM} = bölgenin ilk aracının o andaki konumu,  {ring@B:D} = üsten B° yönünde D m.
+# =====================================================================================================
+dataset:
+  seed: 20250601
+  date: "2025-06-01"           # yalnızca HH:MM -> epoch eşlemesi için (tüm servislerde DATASET_DATE)
+  step_min: 5                  # iz örnekleme aralığı
+  gps_noise_m: 3.0             # iz noktalarındaki GPS gürültüsü (σ)
+  image: {width_px: 960, height_px: 540, footprint_width_m: 150, center_jitter_m: 6}
+  base: {name: "Merkez Us", lat: 39.92184, lon: 32.85306}   # zones.json örneğindeki üs
+  zone_ring_km: 3.2            # bölge merkezlerinin üsse uzaklığı (örnekteki Kuzey/Dogu Yolu gibi)
+  first_image_number: 101
+
+zones:
+  # ---------------------------------------------------------------------------------------------- 1
+  - name: "Kuzey Yolu"
+    bearing_deg: 0
+    scenario: convoy_direct_approach
+    summary: "3 araçlık kafile üsse doğrudan yaklaşıyor; son karede üs sınırı içinde."
+    motion: {type: approach, from_m: 12000, speed_mps: 4.5, start: "12:40", spacing_m: 30}
+    vehicles:
+      - {track: T0101, class: pickup}
+      - {track: T0102, class: truck}
+      - {track: T0103, class: pickup}
+    events:
+      - {time: "13:00", expect: {pattern: CONVOY, risk: HIGH}}
+      - {time: "13:05", expect: {pattern: CONVOY, risk: HIGH}}
+      - {time: "13:10", expect: {pattern: CONVOY, risk: HIGH}}
+      - {time: "13:15", distractor: true, expect: {pattern: CONVOY, risk: HIGH}}
+      - {time: "13:20", expect: {pattern: CONVOY, risk: HIGH}}
+    reports:
+      - {time: "12:30", source: third_party, text: "Kuzey yolunda yol bakim ekipleri calisiyor, agir vasitalar yolda olabilir."}
+      - {time: "12:58", source: official, text: "{pos@12:58} civarinda 3 arac art arda, yuklu olarak guneye ilerliyor."}
+      - {time: "13:12", source: official, text: "{pos@13:12} civarinda 3 aracli kafile hizini korudu, ustlerine brandalar ortulu."}
+      - {time: "13:18", source: third_party, text: "Kuzey yolunda koylu bildirimi: uc arac cok hizli gecti, tozdan gorulmedi."}
+  # ---------------------------------------------------------------------------------------------- 2
+  - name: "Kuzeydogu Yolu"
+    bearing_deg: 45
+    scenario: single_direct_approach
+    summary: "Tek araç yavaşça ve doğrudan üsse yaklaşıyor; ilk karede henüz uzak."
+    motion: {type: approach, from_m: 9000, speed_mps: 3.0, start: "13:00", spacing_m: 0}
+    vehicles:
+      - {track: T0201, class: pickup}
+    events:
+      - {time: "13:10", expect: {pattern: RANDOM, risk: LOW}}
+      - {time: "13:15", expect: {pattern: RANDOM, risk: MEDIUM}}
+      - {time: "13:20", expect: {pattern: DIRECT_APPROACH, risk: MEDIUM}}
+      - {time: "13:25", expect: {pattern: DIRECT_APPROACH, risk: MEDIUM}}
+      - {time: "13:30", distractor: true, expect: {pattern: DIRECT_APPROACH, risk: MEDIUM}}
+    reports:
+      - {time: "12:50", source: third_party, text: "Kuzeydogu yolunda tek bir pikap goruldu, yon: guneybati."}
+      - {time: "13:22", source: official, text: "{pos@13:22} civarinda 1 pikap uzun suredir ayni istikamette duzgun hizla ilerliyor."}
+  # ---------------------------------------------------------------------------------------------- 3
+  - name: "Dogu Yolu"
+    bearing_deg: 90
+    scenario: loiter_near_base
+    summary: "Tek araç üsse 2.7 km mesafede 2 saattir aynı noktada bekliyor (loitering)."
+    motion: {type: loiter, dist_m: 2700, radius_m: 35, start: "11:45"}
+    vehicles:
+      - {track: T0301, class: pickup}
+    events:
+      - {time: "14:00", expect: {pattern: LOITERING, risk: MEDIUM}}
+      - {time: "14:05", expect: {pattern: LOITERING, risk: MEDIUM}}
+      - {time: "14:10", distractor: true, expect: {pattern: LOITERING, risk: MEDIUM}}
+      - {time: "14:15", expect: {pattern: LOITERING, risk: MEDIUM}}
+      - {time: "14:20", expect: {pattern: LOITERING, risk: MEDIUM}}
+    reports:
+      - {time: "13:10", source: official, text: "{pos@13:10} civarinda 1 pikap yol kenarinda duruyor, surucu aractan inmedi."}
+      - {time: "14:12", source: third_party, text: "Dogu yolundaki aracin arizalandigi ve yardim bekledigi soyleniyor."}
+  # ---------------------------------------------------------------------------------------------- 4
+  - name: "Guneydogu Yolu"
+    bearing_deg: 135
+    scenario: loiter_far_civil
+    summary: "Tek sivil minibüs üsse 8.5 km uzakta uzun süredir duruyor (zararsız bekleme)."
+    motion: {type: loiter, dist_m: 8500, radius_m: 30, start: "11:30"}
+    vehicles:
+      - {track: T0401, class: van}
+    events:
+      - {time: "13:40", expect: {pattern: LOITERING, risk: LOW}}
+      - {time: "13:45", expect: {pattern: LOITERING, risk: LOW}}
+      - {time: "13:50", expect: {pattern: LOITERING, risk: LOW}}
+      - {time: "13:55", distractor: true, expect: {pattern: LOITERING, risk: LOW}}
+      - {time: "14:00", expect: {pattern: LOITERING, risk: LOW}}
+    reports:
+      - {time: "12:00", source: official, text: "{pos@12:00} civarinda sivil minibus park halinde, tarim isciler tasiyor."}
+      - {time: "13:30", source: third_party, text: "Koy pazari nedeniyle guneydogu yolunda bekleyen araclar var."}
+  # ---------------------------------------------------------------------------------------------- 5
+  - name: "Guney Yolu"
+    bearing_deg: 180
+    scenario: random_civil_traffic
+    summary: "İki sivil araç 5-8 km çevrede rastgele dolaşıyor; tehdit yok."
+    motion: {type: random_walk, dist_m: 6500, radius_m: 1400, speed_mps: 5.0, start: "12:00"}
+    vehicles:
+      - {track: T0501, class: car}
+      - {track: T0502, class: van}
+    events:
+      - {time: "13:10", subjects: [T0501], expect: {pattern: RANDOM, risk: LOW}}
+      - {time: "13:25", subjects: [T0502], expect: {pattern: RANDOM, risk: LOW}}
+      - {time: "13:40", subjects: [T0501], distractor: true, expect: {pattern: RANDOM, risk: LOW}}
+      - {time: "13:55", subjects: [T0502], expect: {pattern: RANDOM, risk: LOW}}
+      - {time: "14:10", subjects: [T0501], expect: {pattern: RANDOM, risk: LOW}}
+    reports:
+      - {time: "12:40", source: third_party, text: "Guney yolunda dugun konvoyu var, cok sayida sivil arac kornaya basiyor."}
+      - {time: "13:20", source: official, text: "{pos@13:20} civarinda sivil plakali 1 otomobil dolasiyor."}
+  # ---------------------------------------------------------------------------------------------- 6
+  - name: "Guneybati Yolu"
+    bearing_deg: 225
+    scenario: convoy_outbound
+    summary: "3 araçlık kafile üsten uzaklaşıyor; yaklaşma yok ama kafile yapısı dikkat gerektirir."
+    motion: {type: outbound, from_m: 3000, speed_mps: 4.0, course_offset_deg: 15, start: "12:50", spacing_m: 30}
+    vehicles:
+      - {track: T0601, class: truck}
+      - {track: T0602, class: pickup}
+      - {track: T0603, class: pickup}
+    events:
+      - {time: "13:10", expect: {pattern: CONVOY, risk: MEDIUM}}
+      - {time: "13:15", expect: {pattern: CONVOY, risk: MEDIUM}}
+      - {time: "13:20", distractor: true, expect: {pattern: CONVOY, risk: MEDIUM}}
+      - {time: "13:25", expect: {pattern: CONVOY, risk: MEDIUM}}
+      - {time: "13:30", expect: {pattern: CONVOY, risk: MEDIUM}}
+    reports:
+      - {time: "12:57", source: official, text: "{pos@12:55} civarindan 3 aracli bir grup uzaklasma istikametinde cikis yapti."}
+      - {time: "13:22", source: third_party, text: "Guneybati yolunda ihtiyac tasiyan yardim araclari gorulmus olabilir."}
+  # ---------------------------------------------------------------------------------------------- 7
+  - name: "Bati Yolu"
+    bearing_deg: 270
+    scenario: slow_approach_conflicting_reports
+    summary: "Tek araç yavaş ama doğrudan yaklaşıyor; saha raporları birbiriyle çelişiyor."
+    motion: {type: approach, from_m: 7000, speed_mps: 2.0, start: "12:50", spacing_m: 0}
+    vehicles:
+      - {track: T0701, class: pickup}
+    events:
+      - {time: "13:10", expect: {pattern: DIRECT_APPROACH, risk: MEDIUM}}
+      - {time: "13:15", expect: {pattern: DIRECT_APPROACH, risk: MEDIUM}}
+      - {time: "13:20", distractor: true, expect: {pattern: DIRECT_APPROACH, risk: MEDIUM}}
+      - {time: "13:25", expect: {pattern: DIRECT_APPROACH, risk: MEDIUM}}
+      - {time: "13:30", expect: {pattern: DIRECT_APPROACH, risk: HIGH}}
+    reports:
+      - {time: "12:20", source: third_party, text: "Bati yolundaki pikap yerel ciftciye ait, tarlaya gidiyor."}
+      - {time: "13:05", source: official, text: "{pos@13:05} civarinda 1 pikap batidan yaklasiyor, surucu tanimlanamadi."}
+      - {time: "13:18", source: third_party, text: "Bati yolundaki pikapta kisiler silahli gibi gorunuyordu ama emin degilim."}
+      - {time: "13:24", source: official, text: "{pos@13:24} civarinda pikap yavaslamadan ilerlemeye devam ediyor, yuk gorunmuyor."}
+  # ---------------------------------------------------------------------------------------------- 8
+  - name: "Kuzeybati Yolu"
+    bearing_deg: 315
+    scenario: perimeter_breach
+    summary: "2 araç hızla üsse yaklaşıp üs sınırı içinde duruyor."
+    motion: {type: approach, from_m: 9000, speed_mps: 6.0, stop_at_m: 900, start: "12:45", spacing_m: 40}
+    vehicles:
+      - {track: T0801, class: pickup}
+      - {track: T0802, class: car}
+    events:
+      - {time: "13:00", expect: {pattern: RANDOM, risk: HIGH}}
+      - {time: "13:05", expect: {pattern: CONVOY, risk: HIGH}}
+      - {time: "13:10", distractor: true, expect: {pattern: CONVOY, risk: HIGH}}
+      - {time: "13:15", expect: {pattern: CONVOY, risk: HIGH}}
+      - {time: "13:20", expect: {pattern: DIRECT_APPROACH, risk: HIGH}}
+    reports:
+      - {time: "12:58", source: official, text: "{pos@12:55} civarinda 2 arac yuksek hizla us istikametinde ilerliyor."}
+      - {time: "13:08", source: official, text: "{pos@13:05} civarinda 2 arac giris kontrol noktasini gecmeden duraksadi."}
+      - {time: "13:14", source: third_party, text: "Kuzeybati yolunda us cevresinde araclarin ani duruslari duyuldu, cok gurultu vardi."}
+
+# Bölgelerden bağımsız (konumsuz) genel raporlar — tüm olaylara görünür (zamanı gelmişse)
+general_reports:
+  - {time: "09:50", source: third_party, text: "Bolgede yol bakim calismasi yapiliyor, is makineleri yollarda olabilir."}
+  - {time: "10:30", source: official, text: "Sabah saatlerinde sisli hava nedeniyle gorus mesafesi dusuk olabilir."}
+  - {time: "11:55", source: third_party, text: "Planli tatbikat nedeniyle gun icinde bolgede dost unsurlar bulunacak."}
+  - {time: "13:35", source: official, text: "Tum birimlere: ust komutanliktan gelen bilgiye gore bolgede yetkisiz arac hareketi izlenmektedir."}

@@ -1,0 +1,11 @@
+{
+  "base":  {"name": "Merkez Us",
+            "lat": 39.92184, "lon": 32.85306},
+  "zones": [
+    {"name": "Kuzey Yolu",
+     "center": [39.950586, 32.853060]},
+    {"name": "Dogu Yolu",
+     "center": [39.921840, 32.890542]},
+    
+  ]
+}

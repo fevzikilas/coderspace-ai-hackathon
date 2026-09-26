@@ -1,0 +1,85 @@
+# PostgreSQL + PostGIS. Şema db/init.sql'den üretilen `uskoruma-db-init` ConfigMap'inden yüklenir
+# (yalnızca BOŞ veri dizininde, ilk açılışta çalışır).
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: db
+  namespace: uskoruma
+  labels:
+    app.kubernetes.io/name: db
+    app.kubernetes.io/part-of: uskoruma
+spec:
+  serviceName: db
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: db
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: db
+        app.kubernetes.io/part-of: uskoruma
+    spec:
+      containers:
+        - name: postgres
+          image: postgis/postgis:16-3.4
+          ports:
+            - name: pg
+              containerPort: 5432
+          env:
+            - name: POSTGRES_DB
+              value: uskoruma
+            - name: POSTGRES_USER
+              value: uskoruma
+            - name: POSTGRES_PASSWORD
+              valueFrom: {secretKeyRef: {name: uskoruma-secrets, key: POSTGRES_PASSWORD}}
+            - name: PGDATA
+              value: /var/lib/postgresql/data/pgdata
+          readinessProbe:
+            exec:
+              command: ["pg_isready", "-U", "uskoruma", "-d", "uskoruma"]
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          livenessProbe:
+            exec:
+              command: ["pg_isready", "-U", "uskoruma", "-d", "uskoruma"]
+            initialDelaySeconds: 30
+            periodSeconds: 15
+          resources:
+            requests: {cpu: 100m, memory: 256Mi}
+            limits: {cpu: "1", memory: 1Gi}
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/postgresql/data
+            - name: init
+              mountPath: /docker-entrypoint-initdb.d
+              readOnly: true
+      volumes:
+        - name: init
+          configMap:
+            name: uskoruma-db-init
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 5Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: db
+  namespace: uskoruma
+  labels:
+    app.kubernetes.io/name: db
+    app.kubernetes.io/part-of: uskoruma
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: db
+  ports:
+    - name: pg
+      port: 5432
+      targetPort: pg

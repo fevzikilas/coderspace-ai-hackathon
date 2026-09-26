@@ -1,0 +1,16 @@
+# Olay veri seti (image_meta.json, tracks.csv, zones.json, field_reports.json, images/, ground_truth.json).
+# core-svc, mock-data-svc ve detection-svc bunu SALT-OKUNUR bağlar (aynı düğümde ReadWriteOnce yeterli). Doldurma (örnek, çalıştırılmadı):
+#   kubectl -n uskoruma run data-loader --image=busybox --restart=Never --overrides='{"spec":{"containers":[{"name":"l","image":"busybox","command":["sleep","3600"],"volumeMounts":[{"name":"d","mountPath":"/data"}]}],"volumes":[{"name":"d","persistentVolumeClaim":{"claimName":"uskoruma-data"}}]}}'
+#   kubectl -n uskoruma cp data/synthetic data-loader:/data/synthetic
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: uskoruma-data
+  namespace: uskoruma
+  labels:
+    app.kubernetes.io/part-of: uskoruma
+spec:
+  accessModes: ["ReadWriteOnce"]
+  resources:
+    requests:
+      storage: 1Gi

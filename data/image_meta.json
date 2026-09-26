@@ -1,0 +1,11 @@
+"img_000860": {
+  "width_px": 960,
+  "height_px": 540,
+  "capture_time": "14:10",
+  "corner_coordinates": {
+    "top_left":     [39.925651, 32.870729],
+    "top_right":    [39.925651, 32.872131],
+    "bottom_left":  [39.925045, 32.870729],
+    "bottom_right": [39.925045, 32.872131]
+  }
+}

@@ -1,0 +1,38 @@
+# Gizli OLMAYAN ayarlar. Gizli değerler için secret.example.yaml'a bakın.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: uskoruma-config
+  namespace: uskoruma
+  labels:
+    app.kubernetes.io/part-of: uskoruma
+data:
+  LOG_LEVEL: "INFO"
+  # Üs (kurgusal koordinatlar; tüm servislerde aynı)
+  BASE_LAT: "39.9000"
+  BASE_LON: "32.7500"
+  BASE_RADIUS_M: "1500"
+  # detection-svc
+  MOCK_MODE: "true"
+  # core-svc: eski/demo akışı (duvar saatine çapalı sentetik izler) — varsayılan KAPALI
+  DEMO_MODE: "false"
+  # Olay veri seti (PVC `uskoruma-data` /data altına bağlanır; sentetik set: /data/synthetic)
+  DATA_DIR: "/data/synthetic"
+  DATASET_DATE: "2025-06-01"
+  # Servisler arası (yalnızca HTTP) adresler — küme içi DNS
+  DETECTION_SVC_URL: "http://detection-svc:8001"
+  CORE_SVC_URL: "http://core-svc:8002"
+  PATTERN_SVC_URL: "http://pattern-svc:8003"
+  MOCK_DATA_SVC_URL: "http://mock-data-svc:8004"
+  RISK_AGENT_SVC_URL: "http://risk-agent-svc:8005"
+  GATEWAY_URL: "http://gateway:8000"
+  # risk-agent-svc (GLM)
+  GLM_BASE_URL: "https://open.bigmodel.cn/api/paas/v4"
+  GLM_MODEL: "glm-4.5"
+  BUDGET_DAILY_TOKENS: "200000"
+  BUDGET_REQUESTS_PER_HOUR: "120"
+  BUDGET_ASSESSMENTS_PER_HOUR: "60"
+  BUDGET_TOKENS_PER_ASSESSMENT: "30000"
+  ON_BUDGET_EXCEEDED: "fallback"
+  # gateway
+  CORS_ORIGINS: "http://uskoruma.local"

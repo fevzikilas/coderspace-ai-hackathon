@@ -35,3 +35,19 @@ class DetectResponse(BaseModel):
     backend: str = Field("mock", description="'mock' | 'ultralytics' | 'dfine'")
     fallback_reason: str | None = Field(None, description="Dolu ise model yüklenemedi ve mock'a düşüldü (degraded)")
     inference_ms: float
+
+
+class AppearanceCrop(BaseModel):
+    track_id: str
+    bbox: dict[str, float]
+
+
+class AppearanceRequest(BaseModel):
+    image_id: str
+    crops: list[AppearanceCrop] = Field(..., max_length=300)
+
+
+class AppearanceResponse(BaseModel):
+    image_id: str
+    model: str
+    tracks: list[dict]

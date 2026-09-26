@@ -6,22 +6,24 @@
 FROM python:3.12-slim
 
 ARG WITH_MODEL=false
+ARG WITH_REID=true
 # Resmî D-FINE reposu (Apache-2.0), sabitlenmiş commit
 ARG DFINE_COMMIT=956d1709314c2c6a4df6f34de232054578a7449f
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     PIP_NO_CACHE_DIR=1 \
-    PIP_DISABLE_PIP_VERSION_CHECK=1
+    PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    TORCH_HOME=/srv/.cache/torch
 
 WORKDIR /srv
 COPY requirements.txt requirements-model.txt requirements-dfine.txt ./
 # 1) torch (en ağır katman; bağımlılık değişince yeniden indirilmesin diye ayrı)
 RUN set -eu; \
+    if [ "$WITH_MODEL" = "true" ] || [ "$WITH_MODEL" = "dfine" ] || [ "$WITH_REID" = "true" ]; then \
+      pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu ; \
+    fi; \
     if [ "$WITH_MODEL" = "true" ]; then \
       apt-get update && apt-get install -y --no-install-recommends libgl1 libglib2.0-0 && rm -rf /var/lib/apt/lists/* \
-      && pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu ; \
-    elif [ "$WITH_MODEL" = "dfine" ]; then \
-      pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu ; \
     fi
 # 2) geri kalan bağımlılıklar (+ dfine: resmî repo, sabit commit)
 RUN set -eu; \
@@ -33,6 +35,11 @@ RUN set -eu; \
       && mv /opt/D-FINE-${DFINE_COMMIT} /opt/D-FINE ; \
     else \
       pip install -r requirements.txt ; \
+    fi
+RUN set -eu; \
+    if [ "$WITH_REID" = "true" ]; then \
+      mkdir -p "$TORCH_HOME" \
+      && python -c "from torchvision.models import MobileNet_V3_Small_Weights, mobilenet_v3_small; mobilenet_v3_small(weights=MobileNet_V3_Small_Weights.DEFAULT)" ; \
     fi
 COPY app ./app
 

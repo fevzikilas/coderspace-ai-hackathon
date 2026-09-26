@@ -9,6 +9,7 @@ from datetime import datetime, timezone
 
 from fastapi import FastAPI, HTTPException, Response
 
+from .appearance import AppearanceExtractor, AppearanceUnavailable
 from .config import get_settings
 from .dataset import find_image, media_type, safe_id
 from .detector import Detector, build_detector
@@ -20,7 +21,7 @@ from .images import (
     make_image_id,
     open_image,
 )
-from .schemas import Box, DetectRequest, DetectResponse
+from .schemas import AppearanceRequest, AppearanceResponse, Box, DetectRequest, DetectResponse
 
 logging.basicConfig(level=os.getenv("LOG_LEVEL", "INFO"))
 log = logging.getLogger("detection-svc")
@@ -33,6 +34,11 @@ _state: dict[str, object] = {}
 async def lifespan(_: FastAPI):
     _state["detector"] = build_detector(settings)
     _state["cache"] = ImageCache(settings.image_cache_size)
+    _state["appearance"] = AppearanceExtractor(
+        cache_size=settings.appearance_cache_size,
+        crop_padding=settings.appearance_crop_padding,
+        min_crop_pixels=settings.appearance_min_crop_pixels,
+    )
     det = _state["detector"]
     log.info("detection-svc hazır (mode=%s backend=%s%s)", det.mode, det.backend, f" DEGRADED: {det.fallback_reason}" if det.fallback_reason else "")  # type: ignore[attr-defined]
     yield
@@ -47,6 +53,10 @@ def _detector() -> Detector:
 
 def _cache() -> ImageCache:
     return _state["cache"]  # type: ignore[return-value]
+
+
+def _appearance() -> AppearanceExtractor:
+    return _state["appearance"]  # type: ignore[return-value]
 
 
 @app.get("/health")
@@ -136,3 +146,25 @@ def get_image(image_id: str) -> Response:
     if path is None:
         raise HTTPException(404, "Görüntü önbellekte ve veri setinde yok")
     return Response(content=path.read_bytes(), media_type=media_type(path), headers={"Cache-Control": "private, max-age=3600"})
+
+
+@app.post("/appearance/embed", response_model=AppearanceResponse)
+def appearance_embed(req: AppearanceRequest) -> AppearanceResponse:
+    """Return normalized crop features as candidate evidence, never an identity decision."""
+    if not safe_id(req.image_id):
+        raise HTTPException(400, "Geçersiz image_id")
+    item = _cache().get(req.image_id)
+    try:
+        if item is not None:
+            image, _ = open_image(item[0])
+        else:
+            path = find_image(settings.data_dir, req.image_id)
+            if path is None:
+                raise HTTPException(404, "Görüntü önbellekte ve veri setinde yok")
+            image, _ = open_image(path.read_bytes())
+        tracks = _appearance().embed(req.image_id, image, [crop.model_dump() for crop in req.crops])
+    except ImageError as exc:
+        raise HTTPException(400, str(exc)) from exc
+    except AppearanceUnavailable as exc:
+        raise HTTPException(503, str(exc)) from exc
+    return AppearanceResponse(image_id=req.image_id, model=_appearance().model_name, tracks=tracks)

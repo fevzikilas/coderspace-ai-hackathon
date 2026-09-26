@@ -46,6 +46,9 @@ class Settings:
     data_dir: str = field(default_factory=lambda: os.getenv("DATA_DIR", ""))
     max_image_bytes: int = field(default_factory=lambda: int(os.getenv("MAX_IMAGE_BYTES", str(15 * 1024 * 1024))))
     image_cache_size: int = field(default_factory=lambda: int(os.getenv("IMAGE_CACHE_SIZE", "16")))
+    appearance_cache_size: int = field(default_factory=lambda: int(os.getenv("APPEARANCE_CACHE_SIZE", "256")))
+    appearance_crop_padding: float = field(default_factory=lambda: float(os.getenv("APPEARANCE_CROP_PADDING", "0.08")))
+    appearance_min_crop_pixels: int = field(default_factory=lambda: int(os.getenv("APPEARANCE_MIN_CROP_PIXELS", "8")))
     fetch_timeout_s: float = field(default_factory=lambda: float(os.getenv("FETCH_TIMEOUT_S", "10")))
     # image_url güvenliği (SSRF): boş allowlist = serbest, ama özel/loopback IP'ler yine yasak
     image_url_allowlist: list[str] = field(default_factory=lambda: _list("IMAGE_URL_ALLOWLIST"))

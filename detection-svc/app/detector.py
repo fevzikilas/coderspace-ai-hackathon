@@ -1,4 +1,4 @@
-"""Dedektörler: gerçek model (ultralytics YOLO | D-FINE) ve mock. Model yüklenemezse sessizce mock'a DÜŞMEZ."""
+"""Dedektörler: gerçek model (ultralytics D-fine | D-FINE) ve mock. Model yüklenemezse sessizce mock'a DÜŞMEZ."""
 from __future__ import annotations
 
 import hashlib
@@ -114,7 +114,7 @@ class MockDetector:
 
 
 class YoloDetector:
-    """Ultralytics YOLO (Stage 1) sarmalayıcısı. `ultralytics` yalnızca burada, tembel import edilir."""
+    """Ultralytics D-fine (Stage 1) sarmalayıcısı. `ultralytics` yalnızca burada, tembel import edilir."""
 
     mode = "model"
     backend = "ultralytics"
@@ -128,7 +128,7 @@ class YoloDetector:
         self._model = YOLO(settings.model_path)
         self._s = settings
         self._wanted = {c.lower() for c in settings.vehicle_classes}
-        log.info("YOLO modeli yüklendi: %s (sınıflar: %s)", settings.model_path, self._model.names)
+        log.info("D-fine modeli yüklendi: %s (sınıflar: %s)", settings.model_path, self._model.names)
 
     def detect(self, img: Image.Image | None, drone_id: str | None, seed_key: str, image_id: str | None = None) -> tuple[list[Det], int, int]:
         if img is None:

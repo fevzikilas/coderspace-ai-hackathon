@@ -121,7 +121,7 @@ export default function ImageViewer({ result, event, colors, selectedId, onSelec
         <span>{image.image_id}</span>
         {event && <span>çekim: <b>{event.capture_time}</b> · {zoneLabel(event.zone.name)}</span>}
         <span>
-          {w}×{h} · {image.mode === 'mock' ? 'MOCK dedektör (ground-truth bbox)' : `model: ${image.backend === 'dfine' ? 'D-FINE' : image.backend === 'ultralytics' ? 'YOLO' : (image.backend ?? '?')}`} · {dets.length} tespit
+          {w}×{h} · {image.mode === 'mock' ? 'MOCK dedektör (ground-truth bbox)' : `model: ${image.backend === 'dfine' ? 'D-FINE' : image.backend === 'ultralytics' ? 'D-fine' : (image.backend ?? '?')}`} · {dets.length} tespit
           {event ? ` · ${dets.filter((d) => d.vehicle_id).length} izle eşleşti` : ''}
         </span>
         {image.fallback_reason && <span className="chip chip-warn" title={image.fallback_reason}>model yüklenemedi → mock</span>}

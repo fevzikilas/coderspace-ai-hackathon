@@ -22,7 +22,7 @@ class Settings:
     #                    açıkça verilirse mock'a düşer; bu durumda /health "degraded" + fallback_reason raporlar.
     mock_mode: bool = field(default_factory=lambda: _bool("MOCK_MODE", True))
     mock_fallback: bool = field(default_factory=lambda: _bool("MOCK_FALLBACK", False))
-    # ultralytics: YOLO .pt (Stage 1) | dfine: resmî D-FINE (Peterande/D-FINE) eğitim checkpoint'i
+    # ultralytics: D-fine .pt (Stage 1) | dfine: resmî D-FINE (Peterande/D-FINE) eğitim checkpoint'i
     model_backend: str = field(default_factory=lambda: os.getenv("MODEL_BACKEND", "ultralytics").strip().lower())
     model_path: str = field(default_factory=lambda: os.getenv("MODEL_PATH", "models/stage1.pt"))
     # dfine backend: resmî repo checkout'u (PYTHONPATH'e eklenir) ve onun yapılandırma dosyası

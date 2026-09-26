@@ -1,0 +1,9174 @@
+{
+ "generated_at": "2026-09-26T23:40:04Z",
+ "note": "Önceden hesaplanmış kural tabanlı sonuçlar (LLM kullanılmadı). Canlı sisteme bağlı değildir.",
+ "base": {
+  "name": "Üs",
+  "lat": 39.92184,
+  "lon": 32.85306,
+  "radius_m": 1500.0
+ },
+ "zones": [
+  {
+   "zone_id": "kuzey-yolu",
+   "name": "Kuzey Yolu",
+   "lat": 39.950586,
+   "lon": 32.85306
+  },
+  {
+   "zone_id": "kuzeydogu-kavsagi",
+   "name": "Kuzeydoğu Kavşağı",
+   "lat": 39.942166,
+   "lon": 32.879564
+  },
+  {
+   "zone_id": "dogu-yolu",
+   "name": "Doğu Yolu",
+   "lat": 39.92184,
+   "lon": 32.890542
+  },
+  {
+   "zone_id": "guneydogu-yerlesimi",
+   "name": "Güneydoğu Yerleşimi",
+   "lat": 39.901514,
+   "lon": 32.879564
+  },
+  {
+   "zone_id": "guney-kapisi-yaklasimi",
+   "name": "Güney Kapısı Yaklaşımı",
+   "lat": 39.893094,
+   "lon": 32.85306
+  },
+  {
+   "zone_id": "guneybati-yolu",
+   "name": "Güneybatı Yolu",
+   "lat": 39.901514,
+   "lon": 32.826556
+  },
+  {
+   "zone_id": "bati-yerlesimi",
+   "name": "Batı Yerleşimi",
+   "lat": 39.92184,
+   "lon": 32.815578
+  },
+  {
+   "zone_id": "kuzeybati-yolu",
+   "name": "Kuzeybatı Yolu",
+   "lat": 39.942166,
+   "lon": 32.826556
+  }
+ ],
+ "events": [
+  {
+   "image_id": "img_008333",
+   "image": "images/img_008333.jpg",
+   "width": 1360,
+   "height": 765,
+   "capture_time": "10:10",
+   "capture_iso": "2025-06-01T10:10:00Z",
+   "zone_id": "kuzeydogu-kavsagi",
+   "zone": "Kuzeydoğu Kavşağı",
+   "risk_level": "MEDIUM",
+   "summary": "İzlenen 2 aracın hiçbiri üsse yaklaşmıyor.",
+   "notes": [
+    "5 aracın nereye gittiği bilinmiyor.",
+    "1 saha raporu gördüklerimizle çelişiyor, dikkate alınmadı."
+   ],
+   "rationale": "2 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 5 nesne izsiz (2 car, 3 van): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. Hiçbir araç üsse yaklaşmıyor. Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: MEDIUM.",
+   "explanation": "2 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 5 nesne izsiz (2 otomobil, 3 kamyonet): hareket verisi YOK — risk kademesine katılmadı, DÜŞÜK/zararsız varsayılmadı. Hiçbir araç üsse yaklaşmıyor. Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: ORTA.",
+   "explanation_source": "rule-based",
+   "explanation_model": null,
+   "footprint": [
+    [
+     39.940508,
+     32.871572
+    ],
+    [
+     39.940508,
+     32.874722
+    ],
+    [
+     39.93915,
+     32.874722
+    ],
+    [
+     39.93915,
+     32.871572
+    ]
+   ],
+   "map_vehicles": [
+    {
+     "lat": 39.9401432,
+     "lon": 32.8728511,
+     "state": "other",
+     "label": "kamyonet",
+     "eta_min": null,
+     "trail": [
+      [
+       39.901555,
+       32.878377
+      ],
+      [
+       39.918821,
+       32.87741
+      ],
+      [
+       39.940141,
+       32.872868
+      ]
+     ]
+    },
+    {
+     "lat": 39.9401252,
+     "lon": 32.8733694,
+     "state": "unknown",
+     "label": "kamyonet",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.9402865,
+     "lon": 32.8728107,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.9403213,
+     "lon": 32.874041,
+     "state": "other",
+     "label": "kamyon",
+     "eta_min": null,
+     "trail": [
+      [
+       39.943358,
+       32.82549
+      ],
+      [
+       39.942111,
+       32.849968
+      ],
+      [
+       39.940321,
+       32.87404
+      ]
+     ]
+    },
+    {
+     "lat": 39.9403213,
+     "lon": 32.874041,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.9402865,
+     "lon": 32.8728107,
+     "state": "unknown",
+     "label": "kamyonet",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.9404784,
+     "lon": 32.8729194,
+     "state": "unknown",
+     "label": "kamyonet",
+     "eta_min": null,
+     "trail": []
+    }
+   ],
+   "vehicles": 7,
+   "approaching": 0,
+   "boxes": [
+    {
+     "x1": 518.0,
+     "y1": 148.8,
+     "x2": 586.5,
+     "y2": 262.2,
+     "label": "kamyonet",
+     "state": "other"
+    },
+    {
+     "x1": 747.7,
+     "y1": 162.4,
+     "x2": 804.3,
+     "y2": 268.9,
+     "label": "kamyonet",
+     "state": "unknown"
+    },
+    {
+     "x1": 508.4,
+     "y1": 85.0,
+     "x2": 561.2,
+     "y2": 164.6,
+     "label": "otomobil",
+     "state": "unknown"
+    },
+    {
+     "x1": 1028.0,
+     "y1": 73.6,
+     "x2": 1104.0,
+     "y2": 136.8,
+     "label": "kamyon",
+     "state": "other"
+    },
+    {
+     "x1": 1028.0,
+     "y1": 73.6,
+     "x2": 1104.0,
+     "y2": 136.8,
+     "label": "otomobil",
+     "state": "unknown"
+    },
+    {
+     "x1": 508.4,
+     "y1": 85.0,
+     "x2": 561.2,
+     "y2": 164.6,
+     "label": "kamyonet",
+     "state": "unknown"
+    },
+    {
+     "x1": 568.7,
+     "y1": 0.5,
+     "x2": 594.8,
+     "y2": 32.8,
+     "label": "kamyonet",
+     "state": "unknown"
+    }
+   ],
+   "source": {
+    "detection_id": "det-bf16231fdef5",
+    "computed_at": "2026-09-26T23:02:58+00:00",
+    "mode": "rule-based"
+   }
+  },
+  {
+   "image_id": "img_000267",
+   "image": "images/img_000267.jpg",
+   "width": 1920,
+   "height": 1080,
+   "capture_time": "10:15",
+   "capture_iso": "2025-06-01T10:15:00Z",
+   "zone_id": "dogu-yolu",
+   "zone": "Doğu Yolu",
+   "risk_level": "HIGH",
+   "summary": "2 araç üsse yaklaşıyor, en yakını yaklaşık 8 dakika içinde üsse varabilir.",
+   "notes": [
+    "4 aracın nereye gittiği bilinmiyor."
+   ],
+   "rationale": "4 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 4 nesne izsiz (2 car, 1 truck, 1 van): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 2 araç üsse yaklaşıyor (en yakını T0134: 3603 m, 3.2 m/s, tahmini varış ~10.8 dk). Patern: LOITERING. Saha raporları kendi verimizle karşılaştırıldı (3 uyumlu, 0 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: HIGH.",
+   "explanation": "4 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 4 nesne izsiz (2 otomobil, 1 kamyon, 1 kamyonet): hareket verisi YOK — risk kademesine katılmadı, DÜŞÜK/zararsız varsayılmadı. 2 araç üsse yaklaşıyor (en yakını T0134: 3603 m, 3.2 m/s, tahmini varış ~10.8 dk). Patern: bekleme. Saha raporları kendi verimizle karşılaştırıldı (3 uyumlu, 0 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: YÜKSEK.",
+   "explanation_source": "rule-based",
+   "explanation_model": null,
+   "footprint": [
+    [
+     39.921192,
+     32.893427
+    ],
+    [
+     39.921192,
+     32.897753
+    ],
+    [
+     39.919326,
+     32.897753
+    ],
+    [
+     39.919326,
+     32.893427
+    ]
+   ],
+   "map_vehicles": [
+    {
+     "lat": 39.9208271,
+     "lon": 32.8961639,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 8.5,
+     "trail": [
+      [
+       39.92014,
+       32.925521
+      ],
+      [
+       39.920536,
+       32.908655
+      ],
+      [
+       39.920829,
+       32.896165
+      ]
+     ]
+    },
+    {
+     "lat": 39.9208668,
+     "lon": 32.8953557,
+     "state": "other",
+     "label": "kamyon",
+     "eta_min": null,
+     "trail": [
+      [
+       39.920901,
+       32.895389
+      ],
+      [
+       39.920899,
+       32.895402
+      ],
+      [
+       39.920867,
+       32.895357
+      ]
+     ]
+    },
+    {
+     "lat": 39.9209469,
+     "lon": 32.8954531,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.921014,
+       32.895443
+      ],
+      [
+       39.920991,
+       32.895483
+      ],
+      [
+       39.920947,
+       32.895455
+      ]
+     ]
+    },
+    {
+     "lat": 39.9209884,
+     "lon": 32.8954161,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.9210027,
+     "lon": 32.8952947,
+     "state": "approaching",
+     "label": "kamyonet",
+     "eta_min": 10.82,
+     "trail": [
+      [
+       39.920389,
+       32.926348
+      ],
+      [
+       39.920669,
+       32.912205
+      ],
+      [
+       39.921004,
+       32.895296
+      ]
+     ]
+    },
+    {
+     "lat": 39.9210528,
+     "lon": 32.8951404,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.9210528,
+     "lon": 32.8951404,
+     "state": "unknown",
+     "label": "kamyonet",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.9210027,
+     "lon": 32.8952947,
+     "state": "unknown",
+     "label": "kamyon",
+     "eta_min": null,
+     "trail": []
+    }
+   ],
+   "vehicles": 8,
+   "approaching": 2,
+   "boxes": [
+    {
+     "x1": 1182.8,
+     "y1": 191.4,
+     "x2": 1246.6,
+     "y2": 231.0,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 832.9,
+     "y1": 163.7,
+     "x2": 879.1,
+     "y2": 212.7,
+     "label": "kamyon",
+     "state": "other"
+    },
+    {
+     "x1": 884.5,
+     "y1": 129.1,
+     "x2": 914.0,
+     "y2": 154.6,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 871.7,
+     "y1": 107.9,
+     "x2": 893.9,
+     "y2": 127.8,
+     "label": "otomobil",
+     "state": "unknown"
+    },
+    {
+     "x1": 817.6,
+     "y1": 96.1,
+     "x2": 840.3,
+     "y2": 123.0,
+     "label": "kamyonet",
+     "state": "approaching"
+    },
+    {
+     "x1": 753.1,
+     "y1": 73.4,
+     "x2": 767.8,
+     "y2": 87.7,
+     "label": "otomobil",
+     "state": "unknown"
+    },
+    {
+     "x1": 753.1,
+     "y1": 73.4,
+     "x2": 767.8,
+     "y2": 87.7,
+     "label": "kamyonet",
+     "state": "unknown"
+    },
+    {
+     "x1": 817.6,
+     "y1": 96.1,
+     "x2": 840.3,
+     "y2": 123.0,
+     "label": "kamyon",
+     "state": "unknown"
+    }
+   ],
+   "source": {
+    "detection_id": "det-c21dd746b8f3",
+    "computed_at": "2026-09-26T23:03:00+00:00",
+    "mode": "rule-based"
+   }
+  },
+  {
+   "image_id": "img_005978",
+   "image": "images/img_005978.jpg",
+   "width": 960,
+   "height": 540,
+   "capture_time": "10:20",
+   "capture_iso": "2025-06-01T10:20:00Z",
+   "zone_id": "guneybati-yolu",
+   "zone": "Güneybatı Yolu",
+   "risk_level": "HIGH",
+   "summary": "Bir araç üsse yaklaşıyor, yaklaşık 4 dakika içinde üsse varabilir.",
+   "notes": [
+    "8 aracın nereye gittiği bilinmiyor."
+   ],
+   "rationale": "8 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 8 nesne izsiz (8 car): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 1 araç üsse yaklaşıyor (en yakını T0079: 2568 m, 4.5 m/s, tahmini varış ~4.0 dk). Patern: LOITERING. Saha raporları kendi verimizle karşılaştırıldı (3 uyumlu, 0 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: HIGH.",
+   "explanation": "8 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 8 nesne izsiz (8 otomobil): hareket verisi YOK — risk kademesine katılmadı, DÜŞÜK/zararsız varsayılmadı. 1 araç üsse yaklaşıyor (en yakını T0079: 2568 m, 4.5 m/s, tahmini varış ~4.0 dk). Patern: bekleme. Saha raporları kendi verimizle karşılaştırıldı (3 uyumlu, 0 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: YÜKSEK.",
+   "explanation_source": "rule-based",
+   "explanation_model": null,
+   "footprint": [
+    [
+     39.909646,
+     32.827455
+    ],
+    [
+     39.909646,
+     32.828755
+    ],
+    [
+     39.909086,
+     32.828755
+    ],
+    [
+     39.909086,
+     32.827455
+    ]
+   ],
+   "map_vehicles": [
+    {
+     "lat": 39.9091166,
+     "lon": 32.8281279,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.906798,
+       32.864858
+      ],
+      [
+       39.907637,
+       32.846825
+      ],
+      [
+       39.909117,
+       32.828129
+      ]
+     ]
+    },
+    {
+     "lat": 39.9091233,
+     "lon": 32.8279332,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 3.98,
+     "trail": [
+      [
+       39.895121,
+       32.786891
+      ],
+      [
+       39.902707,
+       32.809404
+      ],
+      [
+       39.909121,
+       32.827934
+      ]
+     ]
+    },
+    {
+     "lat": 39.9091268,
+     "lon": 32.8282481,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.905002,
+       32.852453
+      ],
+      [
+       39.906912,
+       32.840205
+      ],
+      [
+       39.909127,
+       32.828249
+      ]
+     ]
+    },
+    {
+     "lat": 39.909267,
+     "lon": 32.8281389,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.940886,
+       32.806023
+      ],
+      [
+       39.922593,
+       32.818514
+      ],
+      [
+       39.909266,
+       32.82814
+      ]
+     ]
+    },
+    {
+     "lat": 39.9093333,
+     "lon": 32.8280842,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.9093403,
+     "lon": 32.828154,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.898381,
+       32.842514
+      ],
+      [
+       39.898372,
+       32.842501
+      ],
+      [
+       39.909338,
+       32.828154
+      ]
+     ]
+    },
+    {
+     "lat": 39.9092763,
+     "lon": 32.8280067,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.9093933,
+     "lon": 32.82816,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.893768,
+       32.85743
+      ],
+      [
+       39.90099,
+       32.84283
+      ],
+      [
+       39.909392,
+       32.828159
+      ]
+     ]
+    },
+    {
+     "lat": 39.9094346,
+     "lon": 32.8281542,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.948908,
+       32.82533
+      ],
+      [
+       39.929744,
+       32.824405
+      ],
+      [
+       39.909434,
+       32.828152
+      ]
+     ]
+    },
+    {
+     "lat": 39.9094508,
+     "lon": 32.8281655,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.9094396,
+     "lon": 32.8280787,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.909438,
+       32.828102
+      ],
+      [
+       39.909428,
+       32.828079
+      ],
+      [
+       39.90944,
+       32.828079
+      ]
+     ]
+    },
+    {
+     "lat": 39.9094365,
+     "lon": 32.8282023,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.9094545,
+     "lon": 32.8281332,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.9093863,
+     "lon": 32.8280438,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.9092619,
+     "lon": 32.8282427,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.9094099,
+     "lon": 32.828207,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    }
+   ],
+   "vehicles": 16,
+   "approaching": 1,
+   "boxes": [
+    {
+     "x1": 479.5,
+     "y1": 481.1,
+     "x2": 514.3,
+     "y2": 539.8,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 328.8,
+     "y1": 468.4,
+     "x2": 377.5,
+     "y2": 539.7,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 568.4,
+     "y1": 472.4,
+     "x2": 602.9,
+     "y2": 529.0,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 492.6,
+     "y1": 346.8,
+     "x2": 517.4,
+     "y2": 384.1,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 453.7,
+     "y1": 285.9,
+     "x2": 475.6,
+     "y2": 317.2,
+     "label": "otomobil",
+     "state": "unknown"
+    },
+    {
+     "x1": 505.8,
+     "y1": 281.1,
+     "x2": 526.5,
+     "y2": 308.4,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 389.9,
+     "y1": 335.8,
+     "x2": 424.9,
+     "y2": 377.1,
+     "label": "otomobil",
+     "state": "unknown"
+    },
+    {
+     "x1": 512.1,
+     "y1": 233.6,
+     "x2": 529.2,
+     "y2": 253.7,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 508.6,
+     "y1": 195.6,
+     "x2": 524.0,
+     "y2": 212.1,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 517.3,
+     "y1": 180.1,
+     "x2": 532.1,
+     "y2": 196.3,
+     "label": "otomobil",
+     "state": "unknown"
+    },
+    {
+     "x1": 452.7,
+     "y1": 189.4,
+     "x2": 468.4,
+     "y2": 208.7,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 544.7,
+     "y1": 194.4,
+     "x2": 559.0,
+     "y2": 209.6,
+     "label": "otomobil",
+     "state": "unknown"
+    },
+    {
+     "x1": 494.0,
+     "y1": 176.6,
+     "x2": 507.7,
+     "y2": 192.8,
+     "label": "otomobil",
+     "state": "unknown"
+    },
+    {
+     "x1": 420.5,
+     "y1": 237.4,
+     "x2": 449.1,
+     "y2": 263.5,
+     "label": "otomobil",
+     "state": "unknown"
+    },
+    {
+     "x1": 571.9,
+     "y1": 356.6,
+     "x2": 591.5,
+     "y2": 384.1,
+     "label": "otomobil",
+     "state": "unknown"
+    },
+    {
+     "x1": 547.5,
+     "y1": 218.4,
+     "x2": 563.2,
+     "y2": 237.0,
+     "label": "otomobil",
+     "state": "unknown"
+    }
+   ],
+   "source": {
+    "detection_id": "det-ffcf2ba4bdca",
+    "computed_at": "2026-09-26T23:03:03+00:00",
+    "mode": "rule-based"
+   }
+  },
+  {
+   "image_id": "img_005368",
+   "image": "images/img_005368.jpg",
+   "width": 1360,
+   "height": 765,
+   "capture_time": "10:25",
+   "capture_iso": "2025-06-01T10:25:00Z",
+   "zone_id": "dogu-yolu",
+   "zone": "Doğu Yolu",
+   "risk_level": "HIGH",
+   "summary": "Bir araç üsse yaklaşıyor, yaklaşık 10 dakika içinde üsse varabilir.",
+   "notes": [
+    "1 aracın nereye gittiği bilinmiyor.",
+    "2 saha raporu gördüklerimizle çelişiyor, dikkate alınmadı."
+   ],
+   "rationale": "5 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 1 nesne izsiz (1 bus): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 1 araç üsse yaklaşıyor (en yakını T0070: 2661 m, 2.3 m/s, tahmini varış ~9.6 dk). Patern: LOITERING. Saha raporları kendi verimizle karşılaştırıldı (2 uyumlu, 2 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: HIGH.",
+   "explanation": "5 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 1 nesne izsiz (1 otobüs): hareket verisi YOK — risk kademesine katılmadı, DÜŞÜK/zararsız varsayılmadı. 1 araç üsse yaklaşıyor (en yakını T0070: 2661 m, 2.3 m/s, tahmini varış ~9.6 dk). Patern: bekleme. Saha raporları kendi verimizle karşılaştırıldı (2 uyumlu, 2 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: YÜKSEK.",
+   "explanation_source": "rule-based",
+   "explanation_model": null,
+   "footprint": [
+    [
+     39.92531,
+     32.883173
+    ],
+    [
+     39.92531,
+     32.885055
+    ],
+    [
+     39.924498,
+     32.885055
+    ],
+    [
+     39.924498,
+     32.883173
+    ]
+   ],
+   "map_vehicles": [
+    {
+     "lat": 39.9248783,
+     "lon": 32.8849205,
+     "state": "other",
+     "label": "kamyon",
+     "eta_min": null,
+     "trail": [
+      [
+       39.943212,
+       32.845501
+      ],
+      [
+       39.932924,
+       32.867461
+      ],
+      [
+       39.924877,
+       32.884921
+      ]
+     ]
+    },
+    {
+     "lat": 39.9251573,
+     "lon": 32.8841149,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.941602,
+       32.898499
+      ],
+      [
+       39.927286,
+       32.904049
+      ],
+      [
+       39.925157,
+       32.884115
+      ]
+     ]
+    },
+    {
+     "lat": 39.9245591,
+     "lon": 32.884058,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 9.55,
+     "trail": [
+      [
+       39.926294,
+       32.903861
+      ],
+      [
+       39.925572,
+       32.895628
+      ],
+      [
+       39.924558,
+       32.884059
+      ]
+     ]
+    },
+    {
+     "lat": 39.9250899,
+     "lon": 32.8840667,
+     "state": "other",
+     "label": "kamyon",
+     "eta_min": null,
+     "trail": [
+      [
+       39.925141,
+       32.884029
+      ],
+      [
+       39.925118,
+       32.884056
+      ],
+      [
+       39.925096,
+       32.884068
+      ]
+     ]
+    },
+    {
+     "lat": 39.9251583,
+     "lon": 32.8840646,
+     "state": "other",
+     "label": "kamyon",
+     "eta_min": null,
+     "trail": [
+      [
+       39.925115,
+       32.884065
+      ],
+      [
+       39.925141,
+       32.884028
+      ],
+      [
+       39.925158,
+       32.884064
+      ]
+     ]
+    },
+    {
+     "lat": 39.9251583,
+     "lon": 32.8840646,
+     "state": "unknown",
+     "label": "otobüs",
+     "eta_min": null,
+     "trail": []
+    }
+   ],
+   "vehicles": 6,
+   "approaching": 1,
+   "boxes": [
+    {
+     "x1": 1165.8,
+     "y1": 315.3,
+     "x2": 1359.8,
+     "y2": 498.1,
+     "label": "kamyon",
+     "state": "other"
+    },
+    {
+     "x1": 669.1,
+     "y1": 131.6,
+     "x2": 692.2,
+     "y2": 156.1,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 602.1,
+     "y1": 650.0,
+     "x2": 677.0,
+     "y2": 764.9,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 628.2,
+     "y1": 181.1,
+     "x2": 663.4,
+     "y2": 233.6,
+     "label": "kamyon",
+     "state": "other"
+    },
+    {
+     "x1": 627.8,
+     "y1": 113.3,
+     "x2": 660.8,
+     "y2": 172.6,
+     "label": "kamyon",
+     "state": "other"
+    },
+    {
+     "x1": 627.8,
+     "y1": 113.3,
+     "x2": 660.8,
+     "y2": 172.6,
+     "label": "otobüs",
+     "state": "unknown"
+    }
+   ],
+   "source": {
+    "detection_id": "det-8a58c3d97e5e",
+    "computed_at": "2026-09-26T23:03:06+00:00",
+    "mode": "rule-based"
+   }
+  },
+  {
+   "image_id": "img_006673",
+   "image": "images/img_006673.jpg",
+   "width": 1360,
+   "height": 765,
+   "capture_time": "10:30",
+   "capture_iso": "2025-06-01T10:30:00Z",
+   "zone_id": "guneydogu-yerlesimi",
+   "zone": "Güneydoğu Yerleşimi",
+   "risk_level": "HIGH",
+   "summary": "3 araç üsse yaklaşıyor, en yakını yaklaşık 1 dakika içinde üsse varabilir.",
+   "notes": [
+    "3 aracın nereye gittiği bilinmiyor.",
+    "1 saha raporu gördüklerimizle çelişiyor, dikkate alınmadı."
+   ],
+   "rationale": "6 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 3 nesne izsiz (2 car, 1 van): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 3 araç üsse yaklaşıyor (en yakını T0095: 1803 m, 5.2 m/s, tahmini varış ~1.0 dk). Patern: DIRECT_APPROACH. Saha raporları kendi verimizle karşılaştırıldı (2 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: HIGH.",
+   "explanation": "Kendi hareket verisinde T0095 (kamyon, 5.19 m/s) ve T0102 (otomobil, 2.82 m/s) doğrudan yaklaşma paterniyle üsse doğru yaklaşıyor; tahmini varış sırasıyla 1.0 ve 2.0 dakika (≤10 dk kuralı). T0091 de yaklaşıyor ancak tahmini varış 4.7 dk. 3 izsiz nesne (2 otomobil, 1 kamyonet) hareket verisi YOK, risk kademesine katılmadı. Kafile tespit edilmedi; doğrudan yaklaşma + tahmini varış ≤10 dk = YÜKSEK. Raporlar: 2 uyumlu (varlık onayı), 1 uyumsuz (T0109 yaklaşım iddiası çelişiyor), 17 ilgisiz; istihbarat boş.",
+   "explanation_source": "llm",
+   "explanation_model": "nemotron-3-ultra-550b-a55b",
+   "footprint": [
+    [
+     39.910284,
+     32.865679
+    ],
+    [
+     39.910284,
+     32.868473
+    ],
+    [
+     39.909078,
+     32.868473
+    ],
+    [
+     39.909078,
+     32.865679
+    ]
+   ],
+   "map_vehicles": [
+    {
+     "lat": 39.9099868,
+     "lon": 32.8681266,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.891984,
+       32.855828
+      ],
+      [
+       39.898761,
+       32.882398
+      ],
+      [
+       39.909987,
+       32.868128
+      ]
+     ]
+    },
+    {
+     "lat": 39.9094681,
+     "lon": 32.8679013,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 4.74,
+     "trail": [
+      [
+       39.888278,
+       32.864622
+      ],
+      [
+       39.898029,
+       32.88162
+      ],
+      [
+       39.909467,
+       32.867901
+      ]
+     ]
+    },
+    {
+     "lat": 39.9096754,
+     "lon": 32.8675071,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 2.0,
+     "trail": [
+      [
+       39.897176,
+       32.890922
+      ],
+      [
+       39.902925,
+       32.879305
+      ],
+      [
+       39.909675,
+       32.867505
+      ]
+     ]
+    },
+    {
+     "lat": 39.9099831,
+     "lon": 32.8678877,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.9102467,
+     "lon": 32.8672016,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.925661,
+       32.847598
+      ],
+      [
+       39.917699,
+       32.858111
+      ],
+      [
+       39.910247,
+       32.867201
+      ]
+     ]
+    },
+    {
+     "lat": 39.9099632,
+     "lon": 32.8683881,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.93639,
+       32.863775
+      ],
+      [
+       39.92347,
+       32.874745
+      ],
+      [
+       39.909964,
+       32.868389
+      ]
+     ]
+    },
+    {
+     "lat": 39.9102201,
+     "lon": 32.867804,
+     "state": "approaching",
+     "label": "kamyon",
+     "eta_min": 1.0,
+     "trail": [
+      [
+       39.895286,
+       32.896275
+      ],
+      [
+       39.902188,
+       32.883366
+      ],
+      [
+       39.910219,
+       32.867804
+      ]
+     ]
+    },
+    {
+     "lat": 39.9102394,
+     "lon": 32.867428,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.9102394,
+     "lon": 32.867428,
+     "state": "unknown",
+     "label": "kamyonet",
+     "eta_min": null,
+     "trail": []
+    }
+   ],
+   "vehicles": 9,
+   "approaching": 3,
+   "boxes": [
+    {
+     "x1": 1123.4,
+     "y1": 143.2,
+     "x2": 1259.4,
+     "y2": 233.9,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 955.7,
+     "y1": 463.7,
+     "x2": 1207.7,
+     "y2": 571.4,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 787.8,
+     "y1": 339.2,
+     "x2": 991.9,
+     "y2": 432.9,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 1009.2,
+     "y1": 140.4,
+     "x2": 1141.0,
+     "y2": 241.3,
+     "label": "otomobil",
+     "state": "unknown"
+    },
+    {
+     "x1": 687.4,
+     "y1": 0.0,
+     "x2": 794.9,
+     "y2": 47.3,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 1277.3,
+     "y1": 154.3,
+     "x2": 1360.0,
+     "y2": 252.7,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 960.0,
+     "y1": 0.0,
+     "x2": 1108.7,
+     "y2": 81.1,
+     "label": "kamyon",
+     "state": "approaching"
+    },
+    {
+     "x1": 825.0,
+     "y1": 0.0,
+     "x2": 877.7,
+     "y2": 56.6,
+     "label": "otomobil",
+     "state": "unknown"
+    },
+    {
+     "x1": 825.0,
+     "y1": 0.0,
+     "x2": 877.7,
+     "y2": 56.6,
+     "label": "kamyonet",
+     "state": "unknown"
+    }
+   ],
+   "source": {
+    "detection_id": "det-fcaa10d4a0ff",
+    "computed_at": "2026-09-26T23:03:09+00:00",
+    "mode": "rule-based"
+   }
+  },
+  {
+   "image_id": "img_006388",
+   "image": "images/img_006388.jpg",
+   "width": 1360,
+   "height": 765,
+   "capture_time": "10:35",
+   "capture_iso": "2025-06-01T10:35:00Z",
+   "zone_id": "kuzeybati-yolu",
+   "zone": "Kuzeybatı Yolu",
+   "risk_level": "MEDIUM",
+   "summary": "İzlenen 6 aracın hiçbiri üsse yaklaşmıyor, bazıları bölgede bekliyor.",
+   "notes": [
+    "3 aracın nereye gittiği bilinmiyor.",
+    "2 saha raporu gördüklerimizle çelişiyor, dikkate alınmadı."
+   ],
+   "rationale": "6 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 3 nesne izsiz (2 bus, 1 car): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. Hiçbir araç üsse yaklaşmıyor. Patern: LOITERING. Saha raporları kendi verimizle karşılaştırıldı (1 uyumlu, 2 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: MEDIUM.",
+   "explanation": "6 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 3 nesne izsiz (2 otobüs, 1 otomobil): hareket verisi YOK — risk kademesine katılmadı, DÜŞÜK/zararsız varsayılmadı. Hiçbir araç üsse yaklaşmıyor. Patern: bekleme. Saha raporları kendi verimizle karşılaştırıldı (1 uyumlu, 2 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: ORTA.",
+   "explanation_source": "rule-based",
+   "explanation_model": null,
+   "footprint": [
+    [
+     39.930833,
+     32.836144
+    ],
+    [
+     39.930833,
+     32.838318
+    ],
+    [
+     39.929895,
+     32.838318
+    ],
+    [
+     39.929895,
+     32.836144
+    ]
+   ],
+   "map_vehicles": [
+    {
+     "lat": 39.9305731,
+     "lon": 32.8378572,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.908859,
+       32.861677
+      ],
+      [
+       39.912135,
+       32.838897
+      ],
+      [
+       39.930572,
+       32.837858
+      ]
+     ]
+    },
+    {
+     "lat": 39.9306072,
+     "lon": 32.8371942,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.930583,
+       32.837221
+      ],
+      [
+       39.930596,
+       32.837245
+      ],
+      [
+       39.930607,
+       32.837195
+      ]
+     ]
+    },
+    {
+     "lat": 39.9305748,
+     "lon": 32.8382728,
+     "state": "other",
+     "label": "kamyon",
+     "eta_min": null,
+     "trail": [
+      [
+       39.89859,
+       32.841569
+      ],
+      [
+       39.915934,
+       32.84059
+      ],
+      [
+       39.930574,
+       32.838268
+      ]
+     ]
+    },
+    {
+     "lat": 39.9306326,
+     "lon": 32.8382563,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.930781,
+       32.838137
+      ],
+      [
+       39.930784,
+       32.838195
+      ],
+      [
+       39.930759,
+       32.838233
+      ]
+     ]
+    },
+    {
+     "lat": 39.9306628,
+     "lon": 32.8381693,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.930677,
+       32.838246
+      ],
+      [
+       39.930684,
+       32.838219
+      ],
+      [
+       39.930687,
+       32.838228
+      ]
+     ]
+    },
+    {
+     "lat": 39.9307131,
+     "lon": 32.8371202,
+     "state": "other",
+     "label": "kamyon",
+     "eta_min": null,
+     "trail": [
+      [
+       39.928491,
+       32.870743
+      ],
+      [
+       39.936878,
+       32.854897
+      ],
+      [
+       39.930712,
+       32.837121
+      ]
+     ]
+    },
+    {
+     "lat": 39.9307131,
+     "lon": 32.8371202,
+     "state": "unknown",
+     "label": "otobüs",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.9305748,
+     "lon": 32.8382728,
+     "state": "unknown",
+     "label": "otobüs",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.9307482,
+     "lon": 32.8371404,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    }
+   ],
+   "vehicles": 9,
+   "approaching": 0,
+   "boxes": [
+    {
+     "x1": 1057.2,
+     "y1": 199.2,
+     "x2": 1086.3,
+     "y2": 224.8,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 642.9,
+     "y1": 168.9,
+     "x2": 671.0,
+     "y2": 199.4,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 1303.4,
+     "y1": 163.5,
+     "x2": 1360.0,
+     "y2": 257.7,
+     "label": "kamyon",
+     "state": "other"
+    },
+    {
+     "x1": 1307.0,
+     "y1": 153.5,
+     "x2": 1335.8,
+     "y2": 173.4,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 1256.4,
+     "y1": 129.0,
+     "x2": 1277.5,
+     "y2": 148.6,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 598.1,
+     "y1": 75.9,
+     "x2": 623.3,
+     "y2": 119.7,
+     "label": "kamyon",
+     "state": "other"
+    },
+    {
+     "x1": 598.1,
+     "y1": 75.9,
+     "x2": 623.3,
+     "y2": 119.7,
+     "label": "otobüs",
+     "state": "unknown"
+    },
+    {
+     "x1": 1303.4,
+     "y1": 163.5,
+     "x2": 1360.0,
+     "y2": 257.7,
+     "label": "otobüs",
+     "state": "unknown"
+    },
+    {
+     "x1": 616.2,
+     "y1": 63.1,
+     "x2": 630.4,
+     "y2": 75.3,
+     "label": "otomobil",
+     "state": "unknown"
+    }
+   ],
+   "source": {
+    "detection_id": "det-5164129f6a25",
+    "computed_at": "2026-09-26T23:03:12+00:00",
+    "mode": "rule-based"
+   }
+  },
+  {
+   "image_id": "img_008589",
+   "image": "images/img_008589.jpg",
+   "width": 960,
+   "height": 540,
+   "capture_time": "10:40",
+   "capture_iso": "2025-06-01T10:40:00Z",
+   "zone_id": "dogu-yolu",
+   "zone": "Doğu Yolu",
+   "risk_level": "LOW",
+   "summary": "2 araç üsse yaklaşıyor, en yakını yaklaşık 36 dakika içinde üsse varabilir.",
+   "notes": [
+    "1 aracın nereye gittiği bilinmiyor.",
+    "1 saha raporu gördüklerimizle çelişiyor, dikkate alınmadı."
+   ],
+   "rationale": "5 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 1 nesne izsiz (1 car): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 2 araç üsse yaklaşıyor (en yakını T0017: 5398 m, 2.2 m/s, tahmini varış ~36.3 dk). Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: LOW.",
+   "explanation": "5 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 1 nesne izsiz (1 otomobil): hareket verisi YOK — risk kademesine katılmadı, DÜŞÜK/zararsız varsayılmadı. 2 araç üsse yaklaşıyor (en yakını T0017: 5398 m, 2.2 m/s, tahmini varış ~36.3 dk). Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: DÜŞÜK.",
+   "explanation_source": "rule-based",
+   "explanation_model": null,
+   "footprint": [
+    [
+     39.933505,
+     32.914076
+    ],
+    [
+     39.933505,
+     32.915446
+    ],
+    [
+     39.932915,
+     32.915446
+    ],
+    [
+     39.932915,
+     32.914076
+    ]
+   ],
+   "map_vehicles": [
+    {
+     "lat": 39.932966,
+     "lon": 32.9146722,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.932497,
+       32.913294
+      ],
+      [
+       39.935517,
+       32.930391
+      ],
+      [
+       39.932965,
+       32.914673
+      ]
+     ]
+    },
+    {
+     "lat": 39.9330854,
+     "lon": 32.9146371,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 36.26,
+     "trail": [
+      [
+       39.927034,
+       32.935087
+      ],
+      [
+       39.930424,
+       32.925006
+      ],
+      [
+       39.933085,
+       32.914638
+      ]
+     ]
+    },
+    {
+     "lat": 39.9330539,
+     "lon": 32.9148168,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.909416,
+       32.886026
+      ],
+      [
+       39.921174,
+       32.899398
+      ],
+      [
+       39.933054,
+       32.914817
+      ]
+     ]
+    },
+    {
+     "lat": 39.9330952,
+     "lon": 32.9147402,
+     "state": "other",
+     "label": "kamyonet",
+     "eta_min": null,
+     "trail": [
+      [
+       39.966795,
+       32.888039
+      ],
+      [
+       39.94982,
+       32.903524
+      ],
+      [
+       39.933095,
+       32.914739
+      ]
+     ]
+    },
+    {
+     "lat": 39.9332455,
+     "lon": 32.9147948,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.9332173,
+     "lon": 32.9146735,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 50.68,
+     "trail": [
+      [
+       39.936732,
+       32.933725
+      ],
+      [
+       39.936428,
+       32.932078
+      ],
+      [
+       39.933216,
+       32.914678
+      ]
+     ]
+    }
+   ],
+   "vehicles": 6,
+   "approaching": 2,
+   "boxes": [
+    {
+     "x1": 382.6,
+     "y1": 447.3,
+     "x2": 452.9,
+     "y2": 539.4,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 371.7,
+     "y1": 357.8,
+     "x2": 414.7,
+     "y2": 410.3,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 497.2,
+     "y1": 385.7,
+     "x2": 541.0,
+     "y2": 440.0,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 444.8,
+     "y1": 342.8,
+     "x2": 486.0,
+     "y2": 407.4,
+     "label": "kamyonet",
+     "state": "other"
+    },
+    {
+     "x1": 492.1,
+     "y1": 225.9,
+     "x2": 515.3,
+     "y2": 249.1,
+     "label": "otomobil",
+     "state": "unknown"
+    },
+    {
+     "x1": 404.3,
+     "y1": 249.4,
+     "x2": 433.1,
+     "y2": 277.3,
+     "label": "otomobil",
+     "state": "approaching"
+    }
+   ],
+   "source": {
+    "detection_id": "det-0c68d7c971aa",
+    "computed_at": "2026-09-26T23:03:16+00:00",
+    "mode": "rule-based"
+   }
+  },
+  {
+   "image_id": "img_004530",
+   "image": "images/img_004530.jpg",
+   "width": 1360,
+   "height": 765,
+   "capture_time": "10:45",
+   "capture_iso": "2025-06-01T10:45:00Z",
+   "zone_id": "guney-kapisi-yaklasimi",
+   "zone": "Güney Kapısı Yaklaşımı",
+   "risk_level": "HIGH",
+   "summary": "4 araç üsse yaklaşıyor, en yakını 1 dakikadan kısa sürede üsse varabilir.",
+   "notes": [
+    "1 saha raporu gördüklerimizle çelişiyor, dikkate alınmadı."
+   ],
+   "rationale": "7 araç için kendi tespit ve hareket verisi değerlendirildi. 4 araç üsse yaklaşıyor (en yakını T0165: 1655 m, 4.8 m/s, tahmini varış ~0.6 dk). Patern: DIRECT_APPROACH + LOITERING. Saha raporları kendi verimizle karşılaştırıldı (3 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: HIGH.",
+   "explanation": "Kendi hareket verisinde 4 araç (T0006, T0089, T0151, T0165) üsse doğrudan yaklaşıyor; T0006 ve T0165 doğrudan yaklaşma paterniyle tahmini varış 0.5-0.6 dk, mesafe ~1.65-1.69 km (üs yarıçapı 1.5 km). Kafile tespit edilmediği için kademeyi yükseltmedi; ancak çoklu doğrudan yaklaşma ve çok kısa tahmini varış YÜKSEK seviyesini gerektirir. İstihbarat boş; raporlar kısmen uyumlu (3 uyumlu, 1 uyumsuz) ama kimlik/dostluk iddiaları doğrulanamaz ve riski düşürmez.",
+   "explanation_source": "llm",
+   "explanation_model": "nemotron-3-ultra-550b-a55b",
+   "footprint": [
+    [
+     39.907167,
+     32.84883
+    ],
+    [
+     39.907167,
+     32.851236
+    ],
+    [
+     39.906129,
+     32.851236
+    ],
+    [
+     39.906129,
+     32.84883
+    ]
+   ],
+   "map_vehicles": [
+    {
+     "lat": 39.906267,
+     "lon": 32.8494389,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 0.97,
+     "trail": [
+      [
+       39.876959,
+       32.842603
+      ],
+      [
+       39.891501,
+       32.845991
+      ],
+      [
+       39.906269,
+       32.849432
+      ]
+     ]
+    },
+    {
+     "lat": 39.9063902,
+     "lon": 32.8508418,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 1.29,
+     "trail": [
+      [
+       39.884209,
+       32.847657
+      ],
+      [
+       39.895202,
+       32.849236
+      ],
+      [
+       39.906391,
+       32.850842
+      ]
+     ]
+    },
+    {
+     "lat": 39.9066298,
+     "lon": 32.8510606,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.906596,
+       32.851053
+      ],
+      [
+       39.906601,
+       32.851053
+      ],
+      [
+       39.90663,
+       32.851056
+      ]
+     ]
+    },
+    {
+     "lat": 39.9065307,
+     "lon": 32.8497184,
+     "state": "other",
+     "label": "kamyonet",
+     "eta_min": null,
+     "trail": [
+      [
+       39.906524,
+       32.849684
+      ],
+      [
+       39.906546,
+       32.849679
+      ],
+      [
+       39.906533,
+       32.849722
+      ]
+     ]
+    },
+    {
+     "lat": 39.9070855,
+     "lon": 32.8505097,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.907191,
+       32.850464
+      ],
+      [
+       39.907123,
+       32.850531
+      ],
+      [
+       39.907088,
+       32.850511
+      ]
+     ]
+    },
+    {
+     "lat": 39.9071207,
+     "lon": 32.8502047,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 0.56,
+     "trail": [
+      [
+       39.883733,
+       32.835955
+      ],
+      [
+       39.89618,
+       32.843551
+      ],
+      [
+       39.907121,
+       32.850203
+      ]
+     ]
+    },
+    {
+     "lat": 39.9069876,
+     "lon": 32.8489297,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 0.5,
+     "trail": [
+      [
+       39.876114,
+       32.828632
+      ],
+      [
+       39.892193,
+       32.83932
+      ],
+      [
+       39.906979,
+       32.848932
+      ]
+     ]
+    }
+   ],
+   "vehicles": 7,
+   "approaching": 4,
+   "boxes": [
+    {
+     "x1": 194.0,
+     "y1": 588.6,
+     "x2": 494.4,
+     "y2": 738.0,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 987.5,
+     "y1": 496.5,
+     "x2": 1286.9,
+     "y2": 648.5,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 1161.7,
+     "y1": 332.6,
+     "x2": 1360.0,
+     "y2": 459.3,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 392.1,
+     "y1": 405.1,
+     "x2": 612.2,
+     "y2": 532.8,
+     "label": "kamyonet",
+     "state": "other"
+    },
+    {
+     "x1": 909.6,
+     "y1": 14.8,
+     "x2": 989.3,
+     "y2": 105.4,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 738.3,
+     "y1": 0.0,
+     "x2": 815.8,
+     "y2": 68.3,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 0.6,
+     "y1": 63.0,
+     "x2": 112.1,
+     "y2": 201.5,
+     "label": "otomobil",
+     "state": "approaching"
+    }
+   ],
+   "source": {
+    "detection_id": "det-760690c4c7c5",
+    "computed_at": "2026-09-26T23:03:19+00:00",
+    "mode": "rule-based"
+   }
+  },
+  {
+   "image_id": "img_005672",
+   "image": "images/img_005672.jpg",
+   "width": 960,
+   "height": 540,
+   "capture_time": "11:00",
+   "capture_iso": "2025-06-01T11:00:00Z",
+   "zone_id": "guneybati-yolu",
+   "zone": "Güneybatı Yolu",
+   "risk_level": "HIGH",
+   "summary": "2 araç üsse yaklaşıyor, en yakını 1 dakikadan kısa sürede üsse varabilir.",
+   "notes": [
+    "3 aracın nereye gittiği bilinmiyor.",
+    "1 saha raporu gördüklerimizle çelişiyor, dikkate alınmadı."
+   ],
+   "rationale": "4 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 3 nesne izsiz (3 car): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 2 araç üsse yaklaşıyor (en yakını T0163: 1694 m, 2.8 m/s, tahmini varış ~1.1 dk). Patern: LOITERING. Saha raporları kendi verimizle karşılaştırıldı (2 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: HIGH.",
+   "explanation": "4 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 3 nesne izsiz (3 otomobil): hareket verisi YOK — risk kademesine katılmadı, DÜŞÜK/zararsız varsayılmadı. 2 araç üsse yaklaşıyor (en yakını T0163: 1694 m, 2.8 m/s, tahmini varış ~1.1 dk). Patern: bekleme. Saha raporları kendi verimizle karşılaştırıldı (2 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: YÜKSEK.",
+   "explanation_source": "rule-based",
+   "explanation_model": null,
+   "footprint": [
+    [
+     39.912509,
+     32.836523
+    ],
+    [
+     39.912509,
+     32.838195
+    ],
+    [
+     39.911787,
+     32.838195
+    ],
+    [
+     39.911787,
+     32.836523
+    ]
+   ],
+   "map_vehicles": [
+    {
+     "lat": 39.9121888,
+     "lon": 32.837654,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.9121917,
+     "lon": 32.8375434,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.9122,
+       32.837549
+      ],
+      [
+       39.912181,
+       32.837522
+      ],
+      [
+       39.912191,
+       32.837544
+      ]
+     ]
+    },
+    {
+     "lat": 39.9120898,
+     "lon": 32.8371043,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 0.93,
+     "trail": [
+      [
+       39.897427,
+       32.813103
+      ],
+      [
+       39.904982,
+       32.825468
+      ],
+      [
+       39.912093,
+       32.837107
+      ]
+     ]
+    },
+    {
+     "lat": 39.9122433,
+     "lon": 32.8376426,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 1.14,
+     "trail": [
+      [
+       39.900005,
+       32.817988
+      ],
+      [
+       39.906202,
+       32.827942
+      ],
+      [
+       39.912242,
+       32.837643
+      ]
+     ]
+    },
+    {
+     "lat": 39.9122145,
+     "lon": 32.8375172,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.91779,
+       32.859298
+      ],
+      [
+       39.917902,
+       32.846701
+      ],
+      [
+       39.912214,
+       32.837517
+      ]
+     ]
+    },
+    {
+     "lat": 39.9121297,
+     "lon": 32.837114,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.9122931,
+     "lon": 32.8372498,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    }
+   ],
+   "vehicles": 7,
+   "approaching": 2,
+   "boxes": [
+    {
+     "x1": 625.7,
+     "y1": 229.6,
+     "x2": 673.0,
+     "y2": 249.4,
+     "label": "otomobil",
+     "state": "unknown"
+    },
+    {
+     "x1": 573.3,
+     "y1": 226.9,
+     "x2": 598.4,
+     "y2": 247.8,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 317.9,
+     "y1": 290.2,
+     "x2": 349.6,
+     "y2": 336.9,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 630.8,
+     "y1": 189.8,
+     "x2": 654.9,
+     "y2": 207.7,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 558.2,
+     "y1": 211.2,
+     "x2": 583.5,
+     "y2": 229.4,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 325.5,
+     "y1": 269.6,
+     "x2": 353.2,
+     "y2": 297.8,
+     "label": "otomobil",
+     "state": "unknown"
+    },
+    {
+     "x1": 410.1,
+     "y1": 153.9,
+     "x2": 424.5,
+     "y2": 169.1,
+     "label": "otomobil",
+     "state": "unknown"
+    }
+   ],
+   "source": {
+    "detection_id": "det-40eb91dfbba9",
+    "computed_at": "2026-09-26T23:03:22+00:00",
+    "mode": "rule-based"
+   }
+  },
+  {
+   "image_id": "img_005788",
+   "image": "images/img_005788.jpg",
+   "width": 1360,
+   "height": 765,
+   "capture_time": "11:10",
+   "capture_iso": "2025-06-01T11:10:00Z",
+   "zone_id": "bati-yerlesimi",
+   "zone": "Batı Yerleşimi",
+   "risk_level": "HIGH",
+   "summary": "5 araç üsse yaklaşıyor, en yakını yaklaşık 8 dakika içinde üsse varabilir.",
+   "notes": [
+    "2 aracın nereye gittiği bilinmiyor.",
+    "2 saha raporu gördüklerimizle çelişiyor, dikkate alınmadı."
+   ],
+   "rationale": "7 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 2 nesne izsiz (1 car, 1 van): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 5 araç üsse yaklaşıyor (en yakını T0090: 3564 m, 5.0 m/s, tahmini varış ~7.8 dk). Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 2 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: HIGH.",
+   "explanation": "Kendi hareket verisi: 7 izli araçtan 5'i (T0090, T0104, T0144, T0136, T0112) üsse doğrudan yaklaşıyor (yön sapması 27–36°). T0090 ve T0104 tahmini varış ≤ 10 dk (7.8 ve 8.3 dk), mesafe ~3.5 km; kurala göre doğrudan yaklaşma + tahmini varış ≤ 10 dk = YÜKSEK. Patern rastgele, kafile yok; kural uygulanmadı. İstihbarat boş; raporlar (18) çoğu ilgisiz, 2 tanesi (r050, r025) durdurulmuş kamyon iddiasıyla KENDİ verimizle UYUMSUZ (araçlar hareket halinde). 2 izsiz nesne (otomobil, kamyonet) hareket verisi YOK, risk değerlendirmesine dahil edilmedi.",
+   "explanation_source": "llm",
+   "explanation_model": "nemotron-3-ultra-550b-a55b",
+   "footprint": [
+    [
+     39.928509,
+     32.810957
+    ],
+    [
+     39.928509,
+     32.813151
+    ],
+    [
+     39.927563,
+     32.813151
+    ],
+    [
+     39.927563,
+     32.810957
+    ]
+   ],
+   "map_vehicles": [
+    {
+     "lat": 39.9277691,
+     "lon": 32.8120075,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.914655,
+       32.822823
+      ],
+      [
+       39.914672,
+       32.822875
+      ],
+      [
+       39.927769,
+       32.812008
+      ]
+     ]
+    },
+    {
+     "lat": 39.9283488,
+     "lon": 32.8119976,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 21.01,
+     "trail": [
+      [
+       39.93162,
+       32.791354
+      ],
+      [
+       39.930607,
+       32.797748
+      ],
+      [
+       39.928348,
+       32.811998
+      ]
+     ]
+    },
+    {
+     "lat": 39.9283428,
+     "lon": 32.8120521,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 8.27,
+     "trail": [
+      [
+       39.9351,
+       32.769426
+      ],
+      [
+       39.933318,
+       32.780668
+      ],
+      [
+       39.928342,
+       32.812052
+      ]
+     ]
+    },
+    {
+     "lat": 39.9276732,
+     "lon": 32.8121085,
+     "state": "other",
+     "label": "kamyon",
+     "eta_min": null,
+     "trail": [
+      [
+       39.953782,
+       32.853206
+      ],
+      [
+       39.946645,
+       32.826819
+      ],
+      [
+       39.927673,
+       32.81211
+      ]
+     ]
+    },
+    {
+     "lat": 39.9284115,
+     "lon": 32.8120048,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 11.14,
+     "trail": [
+      [
+       39.934237,
+       32.77562
+      ],
+      [
+       39.932084,
+       32.78907
+      ],
+      [
+       39.928412,
+       32.812006
+      ]
+     ]
+    },
+    {
+     "lat": 39.9283746,
+     "lon": 32.8121384,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 7.79,
+     "trail": [
+      [
+       39.918162,
+       32.764047
+      ],
+      [
+       39.924414,
+       32.78859
+      ],
+      [
+       39.928375,
+       32.812138
+      ]
+     ]
+    },
+    {
+     "lat": 39.9284854,
+     "lon": 32.8119563,
+     "state": "approaching",
+     "label": "kamyon",
+     "eta_min": 10.19,
+     "trail": [
+      [
+       39.951691,
+       32.783719
+      ],
+      [
+       39.939144,
+       32.798866
+      ],
+      [
+       39.928483,
+       32.811959
+      ]
+     ]
+    },
+    {
+     "lat": 39.9276732,
+     "lon": 32.8121085,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.9283746,
+     "lon": 32.8121384,
+     "state": "unknown",
+     "label": "kamyonet",
+     "eta_min": null,
+     "trail": []
+    }
+   ],
+   "vehicles": 9,
+   "approaching": 5,
+   "boxes": [
+    {
+     "x1": 600.4,
+     "y1": 548.1,
+     "x2": 702.0,
+     "y2": 648.5,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 634.9,
+     "y1": 118.9,
+     "x2": 655.2,
+     "y2": 140.2,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 668.4,
+     "y1": 123.0,
+     "x2": 689.2,
+     "y2": 145.8,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 678.1,
+     "y1": 611.4,
+     "x2": 749.5,
+     "y2": 740.4,
+     "label": "kamyon",
+     "state": "other"
+    },
+    {
+     "x1": 640.5,
+     "y1": 69.3,
+     "x2": 658.5,
+     "y2": 88.4,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 722.8,
+     "y1": 97.8,
+     "x2": 741.8,
+     "y2": 119.6,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 610.5,
+     "y1": 5.0,
+     "x2": 628.4,
+     "y2": 33.1,
+     "label": "kamyon",
+     "state": "approaching"
+    },
+    {
+     "x1": 678.1,
+     "y1": 611.4,
+     "x2": 749.5,
+     "y2": 740.4,
+     "label": "otomobil",
+     "state": "unknown"
+    },
+    {
+     "x1": 722.8,
+     "y1": 97.8,
+     "x2": 741.8,
+     "y2": 119.6,
+     "label": "kamyonet",
+     "state": "unknown"
+    }
+   ],
+   "source": {
+    "detection_id": "det-6427739fb33f",
+    "computed_at": "2026-09-26T23:03:25+00:00",
+    "mode": "rule-based"
+   }
+  },
+  {
+   "image_id": "img_006591",
+   "image": "images/img_006591.jpg",
+   "width": 960,
+   "height": 540,
+   "capture_time": "11:15",
+   "capture_iso": "2025-06-01T11:15:00Z",
+   "zone_id": "bati-yerlesimi",
+   "zone": "Batı Yerleşimi",
+   "risk_level": "HIGH",
+   "summary": "Bir araç üsse yaklaşıyor, yaklaşık 5 dakika içinde üsse varabilir.",
+   "notes": [
+    "1 aracın nereye gittiği bilinmiyor.",
+    "1 saha raporu gördüklerimizle çelişiyor, dikkate alınmadı."
+   ],
+   "rationale": "5 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 1 nesne izsiz (1 van): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 1 araç üsse yaklaşıyor (en yakını T0219: 2546 m, 5.0 m/s, tahmini varış ~4.8 dk). Patern: LOITERING. Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: HIGH.",
+   "explanation": "T0219 aracı üse doğrudan yaklaşıyor, tahmini varış 4.8 dakika (≤10 dk eşiği) ve kapanma hızı 3.63 m/s ile YÜKSEK kriterini karşılıyor. Diğer 4 izli araç (T0003, T0015, T0051, T0118) uzaklaşıyor veya duruyor; T0051 bekleme paterni gösteriyor ama 2.6 km mesafede. Kafile tespit edilmedi. 1 izsiz kamyonet (hareket verisi yok) risk değerlendirmesine dahil edilmedi. İstihbarat boş; 18 rapordan 16'sı ilgisiz, 1 uyumsuz (kamyon iddiası tespitlerimizle çelişiyor), 1 doğrulanamadı — raporlar karar değiştirmez.",
+   "explanation_source": "llm",
+   "explanation_model": "nemotron-3-ultra-550b-a55b",
+   "footprint": [
+    [
+     39.92542,
+     32.822065
+    ],
+    [
+     39.92542,
+     32.824003
+    ],
+    [
+     39.924584,
+     32.824003
+    ],
+    [
+     39.924584,
+     32.822065
+    ]
+   ],
+   "map_vehicles": [
+    {
+     "lat": 39.924632,
+     "lon": 32.8223045,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.924594,
+       32.822309
+      ],
+      [
+       39.924609,
+       32.82232
+      ],
+      [
+       39.924631,
+       32.822304
+      ]
+     ]
+    },
+    {
+     "lat": 39.9247199,
+     "lon": 32.822423,
+     "state": "unknown",
+     "label": "kamyonet",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.9248277,
+     "lon": 32.822745,
+     "state": "other",
+     "label": "kamyonet",
+     "eta_min": null,
+     "trail": [
+      [
+       39.922091,
+       32.858755
+      ],
+      [
+       39.923711,
+       32.841699
+      ],
+      [
+       39.924828,
+       32.822744
+      ]
+     ]
+    },
+    {
+     "lat": 39.9247473,
+     "lon": 32.8234401,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 4.8,
+     "trail": [
+      [
+       39.954482,
+       32.791228
+      ],
+      [
+       39.941509,
+       32.806359
+      ],
+      [
+       39.924746,
+       32.823441
+      ]
+     ]
+    },
+    {
+     "lat": 39.924846,
+     "lon": 32.822515,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.924829,
+       32.822501
+      ],
+      [
+       39.92481,
+       32.822498
+      ],
+      [
+       39.924855,
+       32.822509
+      ]
+     ]
+    },
+    {
+     "lat": 39.9251171,
+     "lon": 32.8228136,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.902905,
+       32.835069
+      ],
+      [
+       39.914247,
+       32.82416
+      ],
+      [
+       39.92512,
+       32.822812
+      ]
+     ]
+    }
+   ],
+   "vehicles": 6,
+   "approaching": 1,
+   "boxes": [
+    {
+     "x1": 85.3,
+     "y1": 478.0,
+     "x2": 152.0,
+     "y2": 540.0,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 146.7,
+     "y1": 419.1,
+     "x2": 208.0,
+     "y2": 485.4,
+     "label": "kamyonet",
+     "state": "unknown"
+    },
+    {
+     "x1": 317.8,
+     "y1": 352.9,
+     "x2": 355.9,
+     "y2": 412.3,
+     "label": "kamyonet",
+     "state": "other"
+    },
+    {
+     "x1": 645.4,
+     "y1": 415.3,
+     "x2": 716.9,
+     "y2": 453.8,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 201.8,
+     "y1": 349.7,
+     "x2": 244.0,
+     "y2": 391.8,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 359.1,
+     "y1": 184.3,
+     "x2": 382.5,
+     "y2": 207.0,
+     "label": "otomobil",
+     "state": "other"
+    }
+   ],
+   "source": {
+    "detection_id": "det-28bcaa153a32",
+    "computed_at": "2026-09-26T23:03:28+00:00",
+    "mode": "rule-based"
+   }
+  },
+  {
+   "image_id": "img_005359",
+   "image": "images/img_005359.jpg",
+   "width": 1360,
+   "height": 765,
+   "capture_time": "11:30",
+   "capture_iso": "2025-06-01T11:30:00Z",
+   "zone_id": "guneydogu-yerlesimi",
+   "zone": "Güneydoğu Yerleşimi",
+   "risk_level": "LOW",
+   "summary": "İzlenen 3 aracın hiçbiri üsse yaklaşmıyor.",
+   "notes": [
+    "1 aracın nereye gittiği bilinmiyor.",
+    "2 saha raporu gördüklerimizle çelişiyor, dikkate alınmadı."
+   ],
+   "rationale": "3 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 1 nesne izsiz (1 car): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. Hiçbir araç üsse yaklaşmıyor. Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 2 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: LOW.",
+   "explanation": "3 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 1 nesne izsiz (1 otomobil): hareket verisi YOK — risk kademesine katılmadı, DÜŞÜK/zararsız varsayılmadı. Hiçbir araç üsse yaklaşmıyor. Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 2 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: DÜŞÜK.",
+   "explanation_source": "rule-based",
+   "explanation_model": null,
+   "footprint": [
+    [
+     39.891657,
+     32.90057
+    ],
+    [
+     39.891657,
+     32.903442
+    ],
+    [
+     39.890417,
+     32.903442
+    ],
+    [
+     39.890417,
+     32.90057
+    ]
+   ],
+   "map_vehicles": [
+    {
+     "lat": 39.8911116,
+     "lon": 32.901746,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.8911,
+       32.901807
+      ],
+      [
+       39.891084,
+       32.901766
+      ],
+      [
+       39.891112,
+       32.901746
+      ]
+     ]
+    },
+    {
+     "lat": 39.8911641,
+     "lon": 32.9013574,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.886902,
+       32.89455
+      ],
+      [
+       39.879651,
+       32.919482
+      ],
+      [
+       39.891163,
+       32.901358
+      ]
+     ]
+    },
+    {
+     "lat": 39.8915968,
+     "lon": 32.9032998,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.8916143,
+     "lon": 32.9023984,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.880348,
+       32.920787
+      ],
+      [
+       39.881142,
+       32.91949
+      ],
+      [
+       39.891613,
+       32.902399
+      ]
+     ]
+    }
+   ],
+   "vehicles": 4,
+   "approaching": 0,
+   "boxes": [
+    {
+     "x1": 466.6,
+     "y1": 284.9,
+     "x2": 647.2,
+     "y2": 388.0,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 301.2,
+     "y1": 259.3,
+     "x2": 444.5,
+     "y2": 348.9,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 1263.1,
+     "y1": 19.0,
+     "x2": 1322.2,
+     "y2": 55.3,
+     "label": "otomobil",
+     "state": "unknown"
+    },
+    {
+     "x1": 833.5,
+     "y1": 8.2,
+     "x2": 898.1,
+     "y2": 44.5,
+     "label": "otomobil",
+     "state": "other"
+    }
+   ],
+   "source": {
+    "detection_id": "det-9f4eaf3cf3bf",
+    "computed_at": "2026-09-26T23:03:30+00:00",
+    "mode": "rule-based"
+   }
+  },
+  {
+   "image_id": "img_000926",
+   "image": "images/img_000926.jpg",
+   "width": 1360,
+   "height": 765,
+   "capture_time": "11:35",
+   "capture_iso": "2025-06-01T11:35:00Z",
+   "zone_id": "kuzeydogu-kavsagi",
+   "zone": "Kuzeydoğu Kavşağı",
+   "risk_level": "HIGH",
+   "summary": "2 araç üsse yaklaşıyor, en yakını 1 dakikadan kısa sürede üsse varabilir.",
+   "notes": [
+    "2 aracın nereye gittiği bilinmiyor."
+   ],
+   "rationale": "5 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 2 nesne izsiz (1 car, 1 van): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 2 araç üsse yaklaşıyor (en yakını T0168: 1660 m, 4.1 m/s, tahmini varış ~0.6 dk). Patern: DIRECT_APPROACH + LOITERING. Saha raporları kendi verimizle karşılaştırıldı (1 uyumlu, 0 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: HIGH.",
+   "explanation": "Belirleyici veri kendi hareket+patern verimizdir: T0168 doğrudan üsse 4,14 m/s ile yaklaşıyor, tahmini varış ~40 saniye ve mesafe ~1,66 km; bu, doğrudan yaklaşma + tahmini varış ≤ 10 dk kriteriyle YÜKSEK kademesini gerektirir. T0185 de yaklaşmakta (tahmini varış ~1,5 dk), T0154 ise üs sınırına yakın bekleme (bekleme) paterni göstermektedir; kafile tespit edilmediği için patern otomatik yükseltme kuralı uygulanmadı. T0172 ve T0179 uzaklaşmaktadır; 2 izsiz nesne (1 otomobil, 1 kamyonet) hareket verisi olmadığından kademelemeye katılmadı ve DÜŞÜK sayılmadı. R044 resmî rapor T0168'in konum, tip ve hareketi açısından tespitimizle uyumlu ancak 'dost unsur' kimlik iddiası kendi verimizle doğrulanamadığından riski düşürmedi; istihbarat/raporlar yalnızca destekleyici değerlendirildi.",
+   "explanation_source": "llm",
+   "explanation_model": "glm-5.3-flash",
+   "footprint": [
+    [
+     39.93141,
+     32.866814
+    ],
+    [
+     39.93141,
+     32.86855
+    ],
+    [
+     39.930662,
+     32.86855
+    ],
+    [
+     39.930662,
+     32.866814
+    ]
+   ],
+   "map_vehicles": [
+    {
+     "lat": 39.9313991,
+     "lon": 32.8683137,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.906778,
+       32.851511
+      ],
+      [
+       39.913156,
+       32.869182
+      ],
+      [
+       39.931402,
+       32.868314
+      ]
+     ]
+    },
+    {
+     "lat": 39.9313789,
+     "lon": 32.8684387,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 1.49,
+     "trail": [
+      [
+       39.943483,
+       32.887946
+      ],
+      [
+       39.942057,
+       32.885648
+      ],
+      [
+       39.931381,
+       32.868439
+      ]
+     ]
+    },
+    {
+     "lat": 39.9313952,
+     "lon": 32.8685177,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.914239,
+       32.850391
+      ],
+      [
+       39.926781,
+       32.86105
+      ],
+      [
+       39.931398,
+       32.868516
+      ]
+     ]
+    },
+    {
+     "lat": 39.9314003,
+     "lon": 32.8684464,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.9313989,
+     "lon": 32.8680046,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 0.64,
+     "trail": [
+      [
+       39.945244,
+       32.889663
+      ],
+      [
+       39.939286,
+       32.880344
+      ],
+      [
+       39.931398,
+       32.868008
+      ]
+     ]
+    },
+    {
+     "lat": 39.9313934,
+     "lon": 32.8678636,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.931392,
+       32.86784
+      ],
+      [
+       39.931385,
+       32.867871
+      ],
+      [
+       39.931393,
+       32.867863
+      ]
+     ]
+    },
+    {
+     "lat": 39.9313952,
+     "lon": 32.8685177,
+     "state": "unknown",
+     "label": "kamyonet",
+     "eta_min": null,
+     "trail": []
+    }
+   ],
+   "vehicles": 7,
+   "approaching": 2,
+   "boxes": [
+    {
+     "x1": 1136.2,
+     "y1": 0.1,
+     "x2": 1213.6,
+     "y2": 22.1,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 1222.1,
+     "y1": 14.5,
+     "x2": 1323.5,
+     "y2": 49.2,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 1309.5,
+     "y1": 0.2,
+     "x2": 1359.9,
+     "y2": 30.1,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 1258.7,
+     "y1": 0.0,
+     "x2": 1298.9,
+     "y2": 19.9,
+     "label": "otomobil",
+     "state": "unknown"
+    },
+    {
+     "x1": 901.7,
+     "y1": 0.0,
+     "x2": 963.7,
+     "y2": 22.8,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 797.5,
+     "y1": 1.9,
+     "x2": 847.0,
+     "y2": 32.1,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 1309.5,
+     "y1": 0.2,
+     "x2": 1359.9,
+     "y2": 30.1,
+     "label": "kamyonet",
+     "state": "unknown"
+    }
+   ],
+   "source": {
+    "detection_id": "det-6fd6104d99cb",
+    "computed_at": "2026-09-26T23:03:33+00:00",
+    "mode": "rule-based"
+   }
+  },
+  {
+   "image_id": "img_000531",
+   "image": "images/img_000531.jpg",
+   "width": 1360,
+   "height": 765,
+   "capture_time": "12:05",
+   "capture_iso": "2025-06-01T12:05:00Z",
+   "zone_id": "guneybati-yolu",
+   "zone": "Güneybatı Yolu",
+   "risk_level": "MEDIUM",
+   "summary": "4 araç üsse yaklaşıyor, en yakını yaklaşık 16 dakika içinde üsse varabilir.",
+   "notes": [
+    "1 aracın nereye gittiği bilinmiyor."
+   ],
+   "rationale": "8 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 1 nesne izsiz (1 car): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 4 araç üsse yaklaşıyor (en yakını T0098: 4359 m, 3.5 m/s, tahmini varış ~15.5 dk). Saha raporları kendi verimizle karşılaştırıldı (2 uyumlu, 0 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: MEDIUM.",
+   "explanation": "8 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 1 nesne izsiz (1 otomobil): hareket verisi YOK — risk kademesine katılmadı, DÜŞÜK/zararsız varsayılmadı. 4 araç üsse yaklaşıyor (en yakını T0098: 4359 m, 3.5 m/s, tahmini varış ~15.5 dk). Saha raporları kendi verimizle karşılaştırıldı (2 uyumlu, 0 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: ORTA.",
+   "explanation_source": "rule-based",
+   "explanation_model": null,
+   "footprint": [
+    [
+     39.892013,
+     32.817601
+    ],
+    [
+     39.892013,
+     32.820647
+    ],
+    [
+     39.890699,
+     32.820647
+    ],
+    [
+     39.890699,
+     32.817601
+    ]
+   ],
+   "map_vehicles": [
+    {
+     "lat": 39.8908945,
+     "lon": 32.81934,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 18.07,
+     "trail": [
+      [
+       39.89226,
+       32.774046
+      ],
+      [
+       39.891046,
+       32.797495
+      ],
+      [
+       39.890896,
+       32.81935
+      ]
+     ]
+    },
+    {
+     "lat": 39.8913107,
+     "lon": 32.8190726,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 39.59,
+     "trail": [
+      [
+       39.883153,
+       32.786491
+      ],
+      [
+       39.886904,
+       32.803186
+      ],
+      [
+       39.891314,
+       32.819079
+      ]
+     ]
+    },
+    {
+     "lat": 39.8911752,
+     "lon": 32.8181017,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.874896,
+       32.861046
+      ],
+      [
+       39.882999,
+       32.83694
+      ],
+      [
+       39.891182,
+       32.818102
+      ]
+     ]
+    },
+    {
+     "lat": 39.8917542,
+     "lon": 32.8200352,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 46.47,
+     "trail": [
+      [
+       39.901351,
+       32.789378
+      ],
+      [
+       39.896238,
+       32.806073
+      ],
+      [
+       39.891754,
+       32.820034
+      ]
+     ]
+    },
+    {
+     "lat": 39.8916655,
+     "lon": 32.8183047,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.906031,
+       32.838691
+      ],
+      [
+       39.899789,
+       32.830033
+      ],
+      [
+       39.891673,
+       32.818288
+      ]
+     ]
+    },
+    {
+     "lat": 39.8918666,
+     "lon": 32.820119,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 15.54,
+     "trail": [
+      [
+       39.875206,
+       32.801816
+      ],
+      [
+       39.881929,
+       32.809204
+      ],
+      [
+       39.891865,
+       32.820122
+      ]
+     ]
+    },
+    {
+     "lat": 39.8919847,
+     "lon": 32.8189771,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.883885,
+       32.837965
+      ],
+      [
+       39.8877,
+       32.826687
+      ],
+      [
+       39.891984,
+       32.818977
+      ]
+     ]
+    },
+    {
+     "lat": 39.8917589,
+     "lon": 32.8178815,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.884138,
+       32.840084
+      ],
+      [
+       39.888228,
+       32.828391
+      ],
+      [
+       39.891762,
+       32.817865
+      ]
+     ]
+    },
+    {
+     "lat": 39.8918092,
+     "lon": 32.8176515,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    }
+   ],
+   "vehicles": 9,
+   "approaching": 4,
+   "boxes": [
+    {
+     "x1": 642.1,
+     "y1": 537.4,
+     "x2": 910.8,
+     "y2": 765.0,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 545.3,
+     "y1": 323.3,
+     "x2": 768.8,
+     "y2": 494.5,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 67.1,
+     "y1": 415.9,
+     "x2": 380.0,
+     "y2": 559.6,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 1037.2,
+     "y1": 106.2,
+     "x2": 1136.5,
+     "y2": 195.1,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 226.9,
+     "y1": 156.3,
+     "x2": 401.5,
+     "y2": 248.3,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 1085.0,
+     "y1": 48.2,
+     "x2": 1163.5,
+     "y2": 122.3,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 553.3,
+     "y1": 0.0,
+     "x2": 675.5,
+     "y2": 33.0,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 41.6,
+     "y1": 111.4,
+     "x2": 208.9,
+     "y2": 184.5,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 0.0,
+     "y1": 84.8,
+     "x2": 45.1,
+     "y2": 152.5,
+     "label": "otomobil",
+     "state": "unknown"
+    }
+   ],
+   "source": {
+    "detection_id": "det-4579774959a2",
+    "computed_at": "2026-09-26T23:03:36+00:00",
+    "mode": "rule-based"
+   }
+  },
+  {
+   "image_id": "img_005561",
+   "image": "images/img_005561.jpg",
+   "width": 1360,
+   "height": 765,
+   "capture_time": "12:10",
+   "capture_iso": "2025-06-01T12:10:00Z",
+   "zone_id": "guney-kapisi-yaklasimi",
+   "zone": "Güney Kapısı Yaklaşımı",
+   "risk_level": "MEDIUM",
+   "summary": "Bir araç üsse yaklaşıyor, yaklaşık 12 dakika içinde üsse varabilir.",
+   "notes": [
+    "2 aracın nereye gittiği bilinmiyor.",
+    "1 saha raporu gördüklerimizle çelişiyor, dikkate alınmadı."
+   ],
+   "rationale": "5 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 2 nesne izsiz (2 car): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 1 araç üsse yaklaşıyor (en yakını T0042: 2716 m, 2.1 m/s, tahmini varış ~11.7 dk). Saha raporları kendi verimizle karşılaştırıldı (1 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: MEDIUM.",
+   "explanation": "5 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 2 nesne izsiz (2 otomobil): hareket verisi YOK — risk kademesine katılmadı, DÜŞÜK/zararsız varsayılmadı. 1 araç üsse yaklaşıyor (en yakını T0042: 2716 m, 2.1 m/s, tahmini varış ~11.7 dk). Saha raporları kendi verimizle karşılaştırıldı (1 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: ORTA.",
+   "explanation_source": "rule-based",
+   "explanation_model": null,
+   "footprint": [
+    [
+     39.898513,
+     32.857395
+    ],
+    [
+     39.898513,
+     32.859925
+    ],
+    [
+     39.897421,
+     32.859925
+    ],
+    [
+     39.897421,
+     32.857395
+    ]
+   ],
+   "map_vehicles": [
+    {
+     "lat": 39.8978381,
+     "lon": 32.8590026,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.920656,
+       32.872576
+      ],
+      [
+       39.907904,
+       32.864786
+      ],
+      [
+       39.897838,
+       32.859002
+      ]
+     ]
+    },
+    {
+     "lat": 39.8978278,
+     "lon": 32.8589522,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.912625,
+       32.895345
+      ],
+      [
+       39.903,
+       32.875051
+      ],
+      [
+       39.897826,
+       32.85895
+      ]
+     ]
+    },
+    {
+     "lat": 39.8978407,
+     "lon": 32.8590578,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.915899,
+       32.856611
+      ],
+      [
+       39.906387,
+       32.857774
+      ],
+      [
+       39.897842,
+       32.859056
+      ]
+     ]
+    },
+    {
+     "lat": 39.8978533,
+     "lon": 32.8591049,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.915794,
+       32.871074
+      ],
+      [
+       39.906068,
+       32.865354
+      ],
+      [
+       39.897856,
+       32.859096
+      ]
+     ]
+    },
+    {
+     "lat": 39.8978611,
+     "lon": 32.8591457,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 11.73,
+     "trail": [
+      [
+       39.873502,
+       32.886485
+      ],
+      [
+       39.884268,
+       32.873512
+      ],
+      [
+       39.897862,
+       32.859151
+      ]
+     ]
+    },
+    {
+     "lat": 39.8978646,
+     "lon": 32.8591706,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.8978443,
+     "lon": 32.8590865,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    }
+   ],
+   "vehicles": 7,
+   "approaching": 1,
+   "boxes": [
+    {
+     "x1": 847.4,
+     "y1": 461.1,
+     "x2": 880.9,
+     "y2": 484.5,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 818.9,
+     "y1": 468.1,
+     "x2": 855.2,
+     "y2": 492.0,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 875.2,
+     "y1": 459.9,
+     "x2": 912.5,
+     "y2": 482.0,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 895.1,
+     "y1": 451.0,
+     "x2": 943.2,
+     "y2": 473.3,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 919.8,
+     "y1": 447.0,
+     "x2": 962.4,
+     "y2": 466.4,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 935.1,
+     "y1": 444.2,
+     "x2": 973.8,
+     "y2": 464.3,
+     "label": "otomobil",
+     "state": "unknown"
+    },
+    {
+     "x1": 886.5,
+     "y1": 457.3,
+     "x2": 932.0,
+     "y2": 479.6,
+     "label": "otomobil",
+     "state": "unknown"
+    }
+   ],
+   "source": {
+    "detection_id": "det-2cfca7d4ce39",
+    "computed_at": "2026-09-26T23:03:40+00:00",
+    "mode": "rule-based"
+   }
+  },
+  {
+   "image_id": "img_003464",
+   "image": "images/img_003464.jpg",
+   "width": 1360,
+   "height": 765,
+   "capture_time": "12:15",
+   "capture_iso": "2025-06-01T12:15:00Z",
+   "zone_id": "kuzey-yolu",
+   "zone": "Kuzey Yolu",
+   "risk_level": "HIGH",
+   "summary": "3 araç üsse yaklaşıyor, en yakını yaklaşık 4 dakika içinde üsse varabilir.",
+   "notes": [
+    "5 aracın nereye gittiği bilinmiyor.",
+    "1 saha raporu gördüklerimizle çelişiyor, dikkate alınmadı."
+   ],
+   "rationale": "5 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 5 nesne izsiz (1 bus, 1 car, 3 truck): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 3 araç üsse yaklaşıyor (en yakını T0028: 2612 m, 3.6 m/s, tahmini varış ~5.2 dk). Patern: DIRECT_APPROACH. Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: HIGH.",
+   "explanation": "5 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 5 nesne izsiz (1 otobüs, 1 otomobil, 3 kamyon): hareket verisi YOK — risk kademesine katılmadı, DÜŞÜK/zararsız varsayılmadı. 3 araç üsse yaklaşıyor (en yakını T0028: 2612 m, 3.6 m/s, tahmini varış ~5.2 dk). Patern: doğrudan yaklaşma. Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: YÜKSEK.",
+   "explanation_source": "rule-based",
+   "explanation_model": null,
+   "footprint": [
+    [
+     39.945679,
+     32.856448
+    ],
+    [
+     39.945679,
+     32.859548
+    ],
+    [
+     39.944343,
+     32.859548
+    ],
+    [
+     39.944343,
+     32.856448
+    ]
+   ],
+   "map_vehicles": [
+    {
+     "lat": 39.9452824,
+     "lon": 32.85763,
+     "state": "approaching",
+     "label": "kamyon",
+     "eta_min": 4.95,
+     "trail": [
+      [
+       39.969618,
+       32.862378
+      ],
+      [
+       39.955523,
+       32.859629
+      ],
+      [
+       39.945283,
+       32.857632
+      ]
+     ]
+    },
+    {
+     "lat": 39.9450396,
+     "lon": 32.8578321,
+     "state": "approaching",
+     "label": "kamyon",
+     "eta_min": 5.16,
+     "trail": [
+      [
+       39.964794,
+       32.861871
+      ],
+      [
+       39.954972,
+       32.859856
+      ],
+      [
+       39.945041,
+       32.857819
+      ]
+     ]
+    },
+    {
+     "lat": 39.9453267,
+     "lon": 32.8585227,
+     "state": "approaching",
+     "label": "kamyon",
+     "eta_min": 4.33,
+     "trail": [
+      [
+       39.977567,
+       32.880117
+      ],
+      [
+       39.962622,
+       32.871175
+      ],
+      [
+       39.945326,
+       32.858524
+      ]
+     ]
+    },
+    {
+     "lat": 39.9454397,
+     "lon": 32.8587671,
+     "state": "other",
+     "label": "kamyon",
+     "eta_min": null,
+     "trail": [
+      [
+       39.928405,
+       32.851329
+      ],
+      [
+       39.938313,
+       32.855622
+      ],
+      [
+       39.945437,
+       32.858766
+      ]
+     ]
+    },
+    {
+     "lat": 39.9453708,
+     "lon": 32.8587904,
+     "state": "unknown",
+     "label": "kamyon",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.9451571,
+     "lon": 32.8589399,
+     "state": "unknown",
+     "label": "kamyon",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.9455154,
+     "lon": 32.8570845,
+     "state": "other",
+     "label": "kamyonet",
+     "eta_min": null,
+     "trail": [
+      [
+       39.937385,
+       32.815433
+      ],
+      [
+       39.941913,
+       32.839635
+      ],
+      [
+       39.945516,
+       32.857085
+      ]
+     ]
+    },
+    {
+     "lat": 39.9455154,
+     "lon": 32.8570845,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.9455083,
+     "lon": 32.8577034,
+     "state": "unknown",
+     "label": "otobüs",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.9455083,
+     "lon": 32.8577034,
+     "state": "unknown",
+     "label": "kamyon",
+     "eta_min": null,
+     "trail": []
+    }
+   ],
+   "vehicles": 10,
+   "approaching": 3,
+   "boxes": [
+    {
+     "x1": 387.5,
+     "y1": 164.7,
+     "x2": 649.6,
+     "y2": 289.5,
+     "label": "kamyon",
+     "state": "approaching"
+    },
+    {
+     "x1": 537.7,
+     "y1": 312.4,
+     "x2": 676.7,
+     "y2": 419.8,
+     "label": "kamyon",
+     "state": "approaching"
+    },
+    {
+     "x1": 846.0,
+     "y1": 165.8,
+     "x2": 974.4,
+     "y2": 237.7,
+     "label": "kamyon",
+     "state": "approaching"
+    },
+    {
+     "x1": 963.5,
+     "y1": 111.2,
+     "x2": 1071.3,
+     "y2": 162.9,
+     "label": "kamyon",
+     "state": "other"
+    },
+    {
+     "x1": 1002.5,
+     "y1": 146.0,
+     "x2": 1052.8,
+     "y2": 207.0,
+     "label": "kamyon",
+     "state": "unknown"
+    },
+    {
+     "x1": 1039.1,
+     "y1": 237.1,
+     "x2": 1147.3,
+     "y2": 360.6,
+     "label": "kamyon",
+     "state": "unknown"
+    },
+    {
+     "x1": 247.2,
+     "y1": 74.6,
+     "x2": 311.3,
+     "y2": 112.7,
+     "label": "kamyonet",
+     "state": "other"
+    },
+    {
+     "x1": 247.2,
+     "y1": 74.6,
+     "x2": 311.3,
+     "y2": 112.7,
+     "label": "otomobil",
+     "state": "unknown"
+    },
+    {
+     "x1": 462.4,
+     "y1": 59.0,
+     "x2": 639.1,
+     "y2": 136.5,
+     "label": "otobüs",
+     "state": "unknown"
+    },
+    {
+     "x1": 462.4,
+     "y1": 59.0,
+     "x2": 639.1,
+     "y2": 136.5,
+     "label": "kamyon",
+     "state": "unknown"
+    }
+   ],
+   "source": {
+    "detection_id": "det-6852343e6e07",
+    "computed_at": "2026-09-26T23:03:43+00:00",
+    "mode": "rule-based"
+   }
+  },
+  {
+   "image_id": "img_004388",
+   "image": "images/img_004388.jpg",
+   "width": 1360,
+   "height": 765,
+   "capture_time": "12:55",
+   "capture_iso": "2025-06-01T12:55:00Z",
+   "zone_id": "kuzey-yolu",
+   "zone": "Kuzey Yolu",
+   "risk_level": "HIGH",
+   "summary": "2 araç üsse yaklaşıyor, en yakını yaklaşık 10 dakika içinde üsse varabilir.",
+   "notes": [
+    "1 aracın nereye gittiği bilinmiyor.",
+    "1 saha raporu gördüklerimizle çelişiyor, dikkate alınmadı."
+   ],
+   "rationale": "5 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 1 nesne izsiz (1 car): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 2 araç üsse yaklaşıyor (en yakını T0137: 3648 m, 3.6 m/s, tahmini varış ~9.8 dk). Patern: DIRECT_APPROACH + LOITERING. Saha raporları kendi verimizle karşılaştırıldı (1 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: HIGH.",
+   "explanation": "5 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 1 nesne izsiz (1 otomobil): hareket verisi YOK — risk kademesine katılmadı, DÜŞÜK/zararsız varsayılmadı. 2 araç üsse yaklaşıyor (en yakını T0137: 3648 m, 3.6 m/s, tahmini varış ~9.8 dk). Patern: doğrudan yaklaşma + bekleme. Saha raporları kendi verimizle karşılaştırıldı (1 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: YÜKSEK.",
+   "explanation_source": "rule-based",
+   "explanation_model": null,
+   "footprint": [
+    [
+     39.954552,
+     32.843202
+    ],
+    [
+     39.954552,
+     32.846364
+    ],
+    [
+     39.953188,
+     32.846364
+    ],
+    [
+     39.953188,
+     32.843202
+    ]
+   ],
+   "map_vehicles": [
+    {
+     "lat": 39.9542139,
+     "lon": 32.8446254,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 12.69,
+     "trail": [
+      [
+       39.97467,
+       32.833001
+      ],
+      [
+       39.963907,
+       32.839688
+      ],
+      [
+       39.954215,
+       32.844623
+      ]
+     ]
+    },
+    {
+     "lat": 39.9539389,
+     "lon": 32.8442946,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 9.85,
+     "trail": [
+      [
+       39.976793,
+       32.83806
+      ],
+      [
+       39.966963,
+       32.840744
+      ],
+      [
+       39.953948,
+       32.844296
+      ]
+     ]
+    },
+    {
+     "lat": 39.9543951,
+     "lon": 32.8459335,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.940754,
+       32.887278
+      ],
+      [
+       39.947833,
+       32.866717
+      ],
+      [
+       39.954396,
+       32.845942
+      ]
+     ]
+    },
+    {
+     "lat": 39.9542238,
+     "lon": 32.8461232,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.923443,
+       32.807946
+      ],
+      [
+       39.939646,
+       32.827295
+      ],
+      [
+       39.954219,
+       32.846139
+      ]
+     ]
+    },
+    {
+     "lat": 39.9545102,
+     "lon": 32.8457715,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.95448,
+       32.845759
+      ],
+      [
+       39.954493,
+       32.845757
+      ],
+      [
+       39.954512,
+       32.845767
+      ]
+     ]
+    },
+    {
+     "lat": 39.9540092,
+     "lon": 32.846253,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    }
+   ],
+   "vehicles": 6,
+   "approaching": 2,
+   "boxes": [
+    {
+     "x1": 566.3,
+     "y1": 129.6,
+     "x2": 658.1,
+     "y2": 249.6,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 418.1,
+     "y1": 253.0,
+     "x2": 521.8,
+     "y2": 434.7,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 1122.1,
+     "y1": 49.1,
+     "x2": 1227.6,
+     "y2": 126.9,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 1192.7,
+     "y1": 135.5,
+     "x2": 1320.2,
+     "y2": 232.6,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 1063.1,
+     "y1": 0.0,
+     "x2": 1147.2,
+     "y2": 46.9,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 1264.5,
+     "y1": 238.1,
+     "x2": 1360.0,
+     "y2": 370.8,
+     "label": "otomobil",
+     "state": "unknown"
+    }
+   ],
+   "source": {
+    "detection_id": "det-8ec3fb4c39a3",
+    "computed_at": "2026-09-26T23:03:46+00:00",
+    "mode": "rule-based"
+   }
+  },
+  {
+   "image_id": "img_000733",
+   "image": "images/img_000733.jpg",
+   "width": 1360,
+   "height": 765,
+   "capture_time": "13:00",
+   "capture_iso": "2025-06-01T13:00:00Z",
+   "zone_id": "guney-kapisi-yaklasimi",
+   "zone": "Güney Kapısı Yaklaşımı",
+   "risk_level": "HIGH",
+   "summary": "3 araç üsse yaklaşıyor, en yakını yaklaşık 7 dakika içinde üsse varabilir.",
+   "notes": [
+    "2 aracın nereye gittiği bilinmiyor.",
+    "1 saha raporu gördüklerimizle çelişiyor, dikkate alınmadı."
+   ],
+   "rationale": "4 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 2 nesne izsiz (2 car): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 3 araç üsse yaklaşıyor (en yakını T0159: 3482 m, 5.1 m/s, tahmini varış ~7.3 dk). Patern: LOITERING. Saha raporları kendi verimizle karşılaştırıldı (1 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: HIGH.",
+   "explanation": "4 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 2 nesne izsiz (2 otomobil): hareket verisi YOK — risk kademesine katılmadı, DÜŞÜK/zararsız varsayılmadı. 3 araç üsse yaklaşıyor (en yakını T0159: 3482 m, 5.1 m/s, tahmini varış ~7.3 dk). Patern: bekleme. Saha raporları kendi verimizle karşılaştırıldı (1 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: YÜKSEK.",
+   "explanation_source": "rule-based",
+   "explanation_model": null,
+   "footprint": [
+    [
+     39.891318,
+     32.845977
+    ],
+    [
+     39.891318,
+     32.848585
+    ],
+    [
+     39.890192,
+     32.848585
+    ],
+    [
+     39.890192,
+     32.845977
+    ]
+   ],
+   "map_vehicles": [
+    {
+     "lat": 39.8906743,
+     "lon": 32.8473672,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 6.59,
+     "trail": [
+      [
+       39.854508,
+       32.840761
+      ],
+      [
+       39.871315,
+       32.843831
+      ],
+      [
+       39.890674,
+       32.847367
+      ]
+     ]
+    },
+    {
+     "lat": 39.8902375,
+     "lon": 32.8474726,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 18.06,
+     "trail": [
+      [
+       39.872688,
+       32.872471
+      ],
+      [
+       39.880654,
+       32.859967
+      ],
+      [
+       39.890236,
+       32.847477
+      ]
+     ]
+    },
+    {
+     "lat": 39.8908431,
+     "lon": 32.8472744,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 7.32,
+     "trail": [
+      [
+       39.858792,
+       32.816282
+      ],
+      [
+       39.873733,
+       32.831456
+      ],
+      [
+       39.890844,
+       32.847275
+      ]
+     ]
+    },
+    {
+     "lat": 39.8910102,
+     "lon": 32.8472365,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.891002,
+       32.847277
+      ],
+      [
+       39.890966,
+       32.847227
+      ],
+      [
+       39.89101,
+       32.847238
+      ]
+     ]
+    },
+    {
+     "lat": 39.8911203,
+     "lon": 32.8480725,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.8911237,
+     "lon": 32.8477704,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    }
+   ],
+   "vehicles": 6,
+   "approaching": 3,
+   "boxes": [
+    {
+     "x1": 706.4,
+     "y1": 414.9,
+     "x2": 743.5,
+     "y2": 459.8,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 745.5,
+     "y1": 703.3,
+     "x2": 814.3,
+     "y2": 764.9,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 663.5,
+     "y1": 306.9,
+     "x2": 689.6,
+     "y2": 338.4,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 648.0,
+     "y1": 200.3,
+     "x2": 665.6,
+     "y2": 218.0,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 1081.9,
+     "y1": 127.6,
+     "x2": 1103.6,
+     "y2": 141.0,
+     "label": "otomobil",
+     "state": "unknown"
+    },
+    {
+     "x1": 926.3,
+     "y1": 125.1,
+     "x2": 944.1,
+     "y2": 138.9,
+     "label": "otomobil",
+     "state": "unknown"
+    }
+   ],
+   "source": {
+    "detection_id": "det-539f3050cebc",
+    "computed_at": "2026-09-26T23:03:49+00:00",
+    "mode": "rule-based"
+   }
+  },
+  {
+   "image_id": "img_004512",
+   "image": "images/img_004512.jpg",
+   "width": 1920,
+   "height": 1080,
+   "capture_time": "13:05",
+   "capture_iso": "2025-06-01T13:05:00Z",
+   "zone_id": "kuzeydogu-kavsagi",
+   "zone": "Kuzeydoğu Kavşağı",
+   "risk_level": "MEDIUM",
+   "summary": "2 araç üsse yaklaşıyor, en yakını yaklaşık 15 dakika içinde üsse varabilir.",
+   "notes": [
+    "3 aracın nereye gittiği bilinmiyor.",
+    "2 saha raporu gördüklerimizle çelişiyor, dikkate alınmadı."
+   ],
+   "rationale": "6 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 3 nesne izsiz (2 car, 1 van): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 2 araç üsse yaklaşıyor (en yakını T0186: 4462 m, 3.3 m/s, tahmini varış ~14.9 dk). Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 2 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: MEDIUM.",
+   "explanation": "6 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 3 nesne izsiz (2 otomobil, 1 kamyonet): hareket verisi YOK — risk kademesine katılmadı, DÜŞÜK/zararsız varsayılmadı. 2 araç üsse yaklaşıyor (en yakını T0186: 4462 m, 3.3 m/s, tahmini varış ~14.9 dk). Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 2 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: ORTA.",
+   "explanation_source": "rule-based",
+   "explanation_model": null,
+   "footprint": [
+    [
+     39.950596,
+     32.888273
+    ],
+    [
+     39.950596,
+     32.891917
+    ],
+    [
+     39.949024,
+     32.891917
+    ],
+    [
+     39.949024,
+     32.888273
+    ]
+   ],
+   "map_vehicles": [
+    {
+     "lat": 39.9501856,
+     "lon": 32.8901042,
+     "state": "approaching",
+     "label": "kamyonet",
+     "eta_min": 14.93,
+     "trail": [
+      [
+       39.96362,
+       32.907662
+      ],
+      [
+       39.956923,
+       32.898909
+      ],
+      [
+       39.950185,
+       32.890104
+      ]
+     ]
+    },
+    {
+     "lat": 39.9503942,
+     "lon": 32.8901714,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.95042,
+       32.890205
+      ],
+      [
+       39.950392,
+       32.890204
+      ],
+      [
+       39.950393,
+       32.890171
+      ]
+     ]
+    },
+    {
+     "lat": 39.950282,
+     "lon": 32.8901106,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 15.03,
+     "trail": [
+      [
+       39.964639,
+       32.908813
+      ],
+      [
+       39.956913,
+       32.898747
+      ],
+      [
+       39.950282,
+       32.89011
+      ]
+     ]
+    },
+    {
+     "lat": 39.9505382,
+     "lon": 32.8900477,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.917783,
+       32.898087
+      ],
+      [
+       39.933984,
+       32.893143
+      ],
+      [
+       39.950538,
+       32.890048
+      ]
+     ]
+    },
+    {
+     "lat": 39.950294,
+     "lon": 32.8903761,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.962942,
+       32.861082
+      ],
+      [
+       39.955769,
+       32.876436
+      ],
+      [
+       39.950293,
+       32.890378
+      ]
+     ]
+    },
+    {
+     "lat": 39.950297,
+     "lon": 32.8906039,
+     "state": "unknown",
+     "label": "kamyonet",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.9503276,
+     "lon": 32.8903527,
+     "state": "other",
+     "label": "kamyonet",
+     "eta_min": null,
+     "trail": [
+      [
+       39.950291,
+       32.890405
+      ],
+      [
+       39.950298,
+       32.890384
+      ],
+      [
+       39.950325,
+       32.890351
+      ]
+     ]
+    },
+    {
+     "lat": 39.9503276,
+     "lon": 32.8903527,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.9496708,
+     "lon": 32.8918409,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    }
+   ],
+   "vehicles": 9,
+   "approaching": 2,
+   "boxes": [
+    {
+     "x1": 943.1,
+     "y1": 256.3,
+     "x2": 986.6,
+     "y2": 307.6,
+     "label": "kamyonet",
+     "state": "approaching"
+    },
+    {
+     "x1": 969.8,
+     "y1": 121.4,
+     "x2": 1030.7,
+     "y2": 155.9,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 950.1,
+     "y1": 196.3,
+     "x2": 986.3,
+     "y2": 235.1,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 917.3,
+     "y1": 25.7,
+     "x2": 952.9,
+     "y2": 53.7,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 1075.7,
+     "y1": 189.3,
+     "x2": 1140.5,
+     "y2": 225.7,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 1198.0,
+     "y1": 188.0,
+     "x2": 1258.3,
+     "y2": 222.8,
+     "label": "kamyonet",
+     "state": "unknown"
+    },
+    {
+     "x1": 1073.6,
+     "y1": 167.3,
+     "x2": 1118.0,
+     "y2": 201.5,
+     "label": "kamyonet",
+     "state": "other"
+    },
+    {
+     "x1": 1073.6,
+     "y1": 167.3,
+     "x2": 1118.0,
+     "y2": 201.5,
+     "label": "otomobil",
+     "state": "unknown"
+    },
+    {
+     "x1": 1839.8,
+     "y1": 606.8,
+     "x2": 1920.0,
+     "y2": 664.5,
+     "label": "otomobil",
+     "state": "unknown"
+    }
+   ],
+   "source": {
+    "detection_id": "det-79cd1f39a99b",
+    "computed_at": "2026-09-26T23:03:52+00:00",
+    "mode": "rule-based"
+   }
+  },
+  {
+   "image_id": "img_003189",
+   "image": "images/img_003189.jpg",
+   "width": 1920,
+   "height": 1080,
+   "capture_time": "13:20",
+   "capture_iso": "2025-06-01T13:20:00Z",
+   "zone_id": "kuzeybati-yolu",
+   "zone": "Kuzeybatı Yolu",
+   "risk_level": "MEDIUM",
+   "summary": "2 araç üsse yaklaşıyor, en yakını yaklaşık 12 dakika içinde üsse varabilir.",
+   "notes": [
+    "1 aracın nereye gittiği bilinmiyor.",
+    "2 saha raporu gördüklerimizle çelişiyor, dikkate alınmadı."
+   ],
+   "rationale": "3 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 1 nesne izsiz (1 car): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 2 araç üsse yaklaşıyor (en yakını T0007: 3456 m, 2.8 m/s, tahmini varış ~11.6 dk). Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 2 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: MEDIUM.",
+   "explanation": "3 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 1 nesne izsiz (1 otomobil): hareket verisi YOK — risk kademesine katılmadı, DÜŞÜK/zararsız varsayılmadı. 2 araç üsse yaklaşıyor (en yakını T0007: 3456 m, 2.8 m/s, tahmini varış ~11.6 dk). Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 2 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: ORTA.",
+   "explanation_source": "rule-based",
+   "explanation_model": null,
+   "footprint": [
+    [
+     39.94706,
+     32.82732
+    ],
+    [
+     39.94706,
+     32.829756
+    ],
+    [
+     39.94601,
+     32.829756
+    ],
+    [
+     39.94601,
+     32.82732
+    ]
+   ],
+   "map_vehicles": [
+    {
+     "lat": 39.9469078,
+     "lon": 32.828699,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 19.26,
+     "trail": [
+      [
+       39.965017,
+       32.8111
+      ],
+      [
+       39.963595,
+       32.812483
+      ],
+      [
+       39.946907,
+       32.8287
+      ]
+     ]
+    },
+    {
+     "lat": 39.9466881,
+     "lon": 32.8288262,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.9469153,
+     "lon": 32.8291017,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 11.62,
+     "trail": [
+      [
+       39.959275,
+       32.817291
+      ],
+      [
+       39.953354,
+       32.822948
+      ],
+      [
+       39.946915,
+       32.829101
+      ]
+     ]
+    },
+    {
+     "lat": 39.9469174,
+     "lon": 32.8288258,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.944898,
+       32.853243
+      ],
+      [
+       39.94612,
+       32.839631
+      ],
+      [
+       39.946917,
+       32.828826
+      ]
+     ]
+    }
+   ],
+   "vehicles": 4,
+   "approaching": 2,
+   "boxes": [
+    {
+     "x1": 1066.7,
+     "y1": 139.1,
+     "x2": 1107.1,
+     "y2": 173.9,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 1130.4,
+     "y1": 322.9,
+     "x2": 1243.9,
+     "y2": 442.2,
+     "label": "otomobil",
+     "state": "unknown"
+    },
+    {
+     "x1": 1380.6,
+     "y1": 133.4,
+     "x2": 1428.0,
+     "y2": 164.2,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 1168.0,
+     "y1": 130.4,
+     "x2": 1205.7,
+     "y2": 162.9,
+     "label": "otomobil",
+     "state": "other"
+    }
+   ],
+   "source": {
+    "detection_id": "det-bee6a7a2dfea",
+    "computed_at": "2026-09-26T23:03:54+00:00",
+    "mode": "rule-based"
+   }
+  },
+  {
+   "image_id": "img_003839",
+   "image": "images/img_003839.jpg",
+   "width": 960,
+   "height": 540,
+   "capture_time": "13:25",
+   "capture_iso": "2025-06-01T13:25:00Z",
+   "zone_id": "kuzey-yolu",
+   "zone": "Kuzey Yolu",
+   "risk_level": "HIGH",
+   "summary": "Bir araç üsse yaklaşıyor, yaklaşık 1 dakika içinde üsse varabilir.",
+   "notes": [
+    "5 aracın nereye gittiği bilinmiyor.",
+    "2 saha raporu gördüklerimizle çelişiyor, dikkate alınmadı."
+   ],
+   "rationale": "4 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 5 nesne izsiz (4 car, 1 van): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 1 araç üsse yaklaşıyor (en yakını T0183: 1742 m, 4.7 m/s, tahmini varış ~1.1 dk). Patern: DIRECT_APPROACH + LOITERING. Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 2 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: HIGH.",
+   "explanation": "T0183 aracı üse doğrudan yaklaşıyor (doğrudan yaklaşma), tahmini varış ~1 dakika, kapanma hızı 3.77 m/s, mesafe ~1.7 km. Diğer izli araçlar (T0047, T0115, T0182) hareketsiz veya uzaklaşıyor, kafile paterni yok. 5 izsiz nesne (4 otomobil, 1 kamyonet) hareket verisi olmadığı için risk değerlendirmesine dahil edilmedi. Saha raporları (35 adet) çoğunlukla ilgisiz veya uyumsuz (kamyon vs otomobil/kamyonet, sayı uyuşmazlığı), istihbarat boş. Kendi hareket+patern verisi belirleyici; YÜKSEK kriteri (doğrudan yaklaşma + tahmini varış ≤ 10 dk) sağlandı.",
+   "explanation_source": "llm",
+   "explanation_model": "nemotron-3-ultra-550b-a55b",
+   "footprint": [
+    [
+     39.93778,
+     32.847904
+    ],
+    [
+     39.93778,
+     32.849658
+    ],
+    [
+     39.937024,
+     32.849658
+    ],
+    [
+     39.937024,
+     32.847904
+    ]
+   ],
+   "map_vehicles": [
+    {
+     "lat": 39.9372076,
+     "lon": 32.8482359,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.908227,
+       32.863535
+      ],
+      [
+       39.925468,
+       32.87312
+      ],
+      [
+       39.937208,
+       32.848238
+      ]
+     ]
+    },
+    {
+     "lat": 39.9373719,
+     "lon": 32.848249,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.937396,
+       32.848276
+      ],
+      [
+       39.937375,
+       32.848259
+      ],
+      [
+       39.937371,
+       32.848247
+      ]
+     ]
+    },
+    {
+     "lat": 39.9370995,
+     "lon": 32.8494098,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.9374117,
+     "lon": 32.8483128,
+     "state": "unknown",
+     "label": "kamyonet",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.9375195,
+     "lon": 32.8486406,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.9372606,
+     "lon": 32.8493958,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 1.07,
+     "trail": [
+      [
+       39.961911,
+       32.815057
+      ],
+      [
+       39.949427,
+       32.832418
+      ],
+      [
+       39.937246,
+       32.849381
+      ]
+     ]
+    },
+    {
+     "lat": 39.9375041,
+     "lon": 32.8484575,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.937408,
+     "lon": 32.849051,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.937415,
+       32.848911
+      ],
+      [
+       39.937402,
+       32.848989
+      ],
+      [
+       39.937401,
+       32.849032
+      ]
+     ]
+    },
+    {
+     "lat": 39.9374117,
+     "lon": 32.8483128,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    }
+   ],
+   "vehicles": 9,
+   "approaching": 1,
+   "boxes": [
+    {
+     "x1": 140.3,
+     "y1": 369.0,
+     "x2": 223.0,
+     "y2": 448.7,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 163.5,
+     "y1": 275.3,
+     "x2": 214.1,
+     "y2": 307.7,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 769.3,
+     "y1": 432.4,
+     "x2": 879.0,
+     "y2": 539.8,
+     "label": "otomobil",
+     "state": "unknown"
+    },
+    {
+     "x1": 197.4,
+     "y1": 246.3,
+     "x2": 250.1,
+     "y2": 279.9,
+     "label": "kamyonet",
+     "state": "unknown"
+    },
+    {
+     "x1": 394.4,
+     "y1": 177.3,
+     "x2": 411.9,
+     "y2": 194.9,
+     "label": "otomobil",
+     "state": "unknown"
+    },
+    {
+     "x1": 776.9,
+     "y1": 336.7,
+     "x2": 856.1,
+     "y2": 405.3,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 291.4,
+     "y1": 186.1,
+     "x2": 314.5,
+     "y2": 208.1,
+     "label": "otomobil",
+     "state": "unknown"
+    },
+    {
+     "x1": 596.2,
+     "y1": 246.9,
+     "x2": 659.4,
+     "y2": 284.5,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 197.4,
+     "y1": 246.3,
+     "x2": 250.1,
+     "y2": 279.9,
+     "label": "otomobil",
+     "state": "unknown"
+    }
+   ],
+   "source": {
+    "detection_id": "det-fe89ae1993c9",
+    "computed_at": "2026-09-26T23:03:57+00:00",
+    "mode": "rule-based"
+   }
+  },
+  {
+   "image_id": "img_005611",
+   "image": "images/img_005611.jpg",
+   "width": 1360,
+   "height": 765,
+   "capture_time": "13:45",
+   "capture_iso": "2025-06-01T13:45:00Z",
+   "zone_id": "bati-yerlesimi",
+   "zone": "Batı Yerleşimi",
+   "risk_level": "MEDIUM",
+   "summary": "Bir araç üsse yaklaşıyor, yaklaşık 16 dakika içinde üsse varabilir.",
+   "notes": [
+    "1 aracın nereye gittiği bilinmiyor.",
+    "1 saha raporu gördüklerimizle çelişiyor, dikkate alınmadı."
+   ],
+   "rationale": "4 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 1 nesne izsiz (1 car): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 1 araç üsse yaklaşıyor (en yakını T0106: 4431 m, 3.0 m/s, tahmini varış ~16.3 dk). Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: MEDIUM.",
+   "explanation": "4 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 1 nesne izsiz (1 otomobil): hareket verisi YOK — risk kademesine katılmadı, DÜŞÜK/zararsız varsayılmadı. 1 araç üsse yaklaşıyor (en yakını T0106: 4431 m, 3.0 m/s, tahmini varış ~16.3 dk). Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: ORTA.",
+   "explanation_source": "rule-based",
+   "explanation_model": null,
+   "footprint": [
+    [
+     39.913745,
+     32.802163
+    ],
+    [
+     39.913745,
+     32.804111
+    ],
+    [
+     39.912905,
+     32.804111
+    ],
+    [
+     39.912905,
+     32.802163
+    ]
+   ],
+   "map_vehicles": [
+    {
+     "lat": 39.9129789,
+     "lon": 32.8022699,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.893563,
+       32.849563
+      ],
+      [
+       39.903237,
+       32.825642
+      ],
+      [
+       39.912978,
+       32.802269
+      ]
+     ]
+    },
+    {
+     "lat": 39.9133532,
+     "lon": 32.8038386,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.928278,
+       32.811799
+      ],
+      [
+       39.921163,
+       32.80809
+      ],
+      [
+       39.913352,
+       32.803847
+      ]
+     ]
+    },
+    {
+     "lat": 39.9135267,
+     "lon": 32.8038778,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.888763,
+       32.846094
+      ],
+      [
+       39.899429,
+       32.827443
+      ],
+      [
+       39.913527,
+       32.803878
+      ]
+     ]
+    },
+    {
+     "lat": 39.9132165,
+     "lon": 32.8023327,
+     "state": "approaching",
+     "label": "kamyonet",
+     "eta_min": 16.33,
+     "trail": [
+      [
+       39.908953,
+       32.777264
+      ],
+      [
+       39.911108,
+       32.789941
+      ],
+      [
+       39.913215,
+       32.802332
+      ]
+     ]
+    },
+    {
+     "lat": 39.9132165,
+     "lon": 32.8023327,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    }
+   ],
+   "vehicles": 5,
+   "approaching": 1,
+   "boxes": [
+    {
+     "x1": 0.3,
+     "y1": 635.1,
+     "x2": 149.0,
+     "y2": 760.3,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 1114.4,
+     "y1": 330.5,
+     "x2": 1225.3,
+     "y2": 383.1,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 1168.9,
+     "y1": 175.1,
+     "x2": 1225.5,
+     "y2": 222.6,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 52.8,
+     "y1": 432.1,
+     "x2": 184.1,
+     "y2": 530.6,
+     "label": "kamyonet",
+     "state": "approaching"
+    },
+    {
+     "x1": 52.8,
+     "y1": 432.1,
+     "x2": 184.1,
+     "y2": 530.6,
+     "label": "otomobil",
+     "state": "unknown"
+    }
+   ],
+   "source": {
+    "detection_id": "det-9f804661a11b",
+    "computed_at": "2026-09-26T23:04:00+00:00",
+    "mode": "rule-based"
+   }
+  },
+  {
+   "image_id": "img_002900",
+   "image": "images/img_002900.jpg",
+   "width": 1360,
+   "height": 765,
+   "capture_time": "13:50",
+   "capture_iso": "2025-06-01T13:50:00Z",
+   "zone_id": "bati-yerlesimi",
+   "zone": "Batı Yerleşimi",
+   "risk_level": "HIGH",
+   "summary": "2 araç üsse yaklaşıyor, en yakını 1 dakikadan kısa sürede üsse varabilir.",
+   "notes": [
+    "1 saha raporu gördüklerimizle çelişiyor, dikkate alınmadı."
+   ],
+   "rationale": "3 araç için kendi tespit ve hareket verisi değerlendirildi. 2 araç üsse yaklaşıyor (en yakını T0069: 1553 m, 6.4 m/s, tahmini varış ~0.1 dk). Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: HIGH.",
+   "explanation": "3 araç için kendi tespit ve hareket verisi değerlendirildi. 2 araç üsse yaklaşıyor (en yakını T0069: 1553 m, 6.4 m/s, tahmini varış ~0.1 dk). Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: YÜKSEK.",
+   "explanation_source": "rule-based",
+   "explanation_model": null,
+   "footprint": [
+    [
+     39.921088,
+     32.833091
+    ],
+    [
+     39.921088,
+     32.835331
+    ],
+    [
+     39.920122,
+     32.835331
+    ],
+    [
+     39.920122,
+     32.833091
+    ]
+   ],
+   "map_vehicles": [
+    {
+     "lat": 39.9202406,
+     "lon": 32.8342849,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.92917,
+       32.854381
+      ],
+      [
+       39.921024,
+       32.843471
+      ],
+      [
+       39.920243,
+       32.834283
+      ]
+     ]
+    },
+    {
+     "lat": 39.920591,
+     "lon": 32.8340078,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 0.55,
+     "trail": [
+      [
+       39.900318,
+       32.803656
+      ],
+      [
+       39.919363,
+       32.815315
+      ],
+      [
+       39.920589,
+       32.834
+      ]
+     ]
+    },
+    {
+     "lat": 39.9205035,
+     "lon": 32.8349406,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 0.14,
+     "trail": [
+      [
+       39.916618,
+       32.782704
+      ],
+      [
+       39.918517,
+       32.808287
+      ],
+      [
+       39.920495,
+       32.834939
+      ]
+     ]
+    }
+   ],
+   "vehicles": 3,
+   "approaching": 2,
+   "boxes": [
+    {
+     "x1": 696.0,
+     "y1": 630.9,
+     "x2": 753.7,
+     "y2": 711.3,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 522.9,
+     "y1": 380.9,
+     "x2": 590.4,
+     "y2": 406.2,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 1087.2,
+     "y1": 443.9,
+     "x2": 1158.8,
+     "y2": 481.9,
+     "label": "otomobil",
+     "state": "approaching"
+    }
+   ],
+   "source": {
+    "detection_id": "det-4c0d4270dfad",
+    "computed_at": "2026-09-26T23:04:02+00:00",
+    "mode": "rule-based"
+   }
+  },
+  {
+   "image_id": "img_002661",
+   "image": "images/img_002661.jpg",
+   "width": 960,
+   "height": 540,
+   "capture_time": "14:00",
+   "capture_iso": "2025-06-01T14:00:00Z",
+   "zone_id": "kuzey-yolu",
+   "zone": "Kuzey Yolu",
+   "risk_level": "MEDIUM",
+   "summary": "Bir araç üsse yaklaşıyor, yaklaşık 12 dakika içinde üsse varabilir.",
+   "notes": [
+    "1 aracın nereye gittiği bilinmiyor.",
+    "1 saha raporu gördüklerimizle çelişiyor, dikkate alınmadı."
+   ],
+   "rationale": "4 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 1 nesne izsiz (1 bus): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 1 araç üsse yaklaşıyor (en yakını T0145: 4370 m, 3.9 m/s, tahmini varış ~12.3 dk). Patern: LOITERING. Saha raporları kendi verimizle karşılaştırıldı (1 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: MEDIUM.",
+   "explanation": "T0145 aracı (otomobil) 3.9 m/s hızıyla üse doğrudan yaklaşıyor (yön sapması 0°), tahmini varış 12.3 dakika ve mesafe 4.37 km — ORTA eşiğine (yaklaşıyor, tahmini varış ≤30 dk / ≤5 km) uyar. T0053 ve T0180 bekleme paterniyle (güven 0.93) üs çevresinde hareketsiz bekliyor. Kafile tespit edilmediği için kademeyi yükseltme yok. İstihbarat boş; raporların 25'i ilgisiz, 1 uyumlu (4 kamyon), 1 uyumsuz (1 kamyon vs 2-5 araç), 2 doğrulanamaz. İz kaydısız 1 otobüs hareket verisi sağlamıyor, risk değerlendirmesine dahil edilmedi.",
+   "explanation_source": "llm",
+   "explanation_model": "nemotron-3-ultra-550b-a55b",
+   "footprint": [
+    [
+     39.961505,
+     32.846729
+    ],
+    [
+     39.961505,
+     32.848477
+    ],
+    [
+     39.960751,
+     32.848477
+    ],
+    [
+     39.960751,
+     32.846729
+    ]
+   ],
+   "map_vehicles": [
+    {
+     "lat": 39.9609045,
+     "lon": 32.8474918,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 12.27,
+     "trail": [
+      [
+       39.983487,
+       32.844275
+      ],
+      [
+       39.971187,
+       32.846028
+      ],
+      [
+       39.960904,
+       32.847493
+      ]
+     ]
+    },
+    {
+     "lat": 39.9612913,
+     "lon": 32.8476178,
+     "state": "other",
+     "label": "kamyon",
+     "eta_min": null,
+     "trail": [
+      [
+       39.961292,
+       32.847594
+      ],
+      [
+       39.961272,
+       32.847623
+      ],
+      [
+       39.961291,
+       32.847618
+      ]
+     ]
+    },
+    {
+     "lat": 39.961319,
+     "lon": 32.8476067,
+     "state": "other",
+     "label": "kamyon",
+     "eta_min": null,
+     "trail": [
+      [
+       39.961334,
+       32.847667
+      ],
+      [
+       39.961332,
+       32.847588
+      ],
+      [
+       39.961318,
+       32.847608
+      ]
+     ]
+    },
+    {
+     "lat": 39.9612913,
+     "lon": 32.8476178,
+     "state": "unknown",
+     "label": "otobüs",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.9612991,
+     "lon": 32.8474591,
+     "state": "other",
+     "label": "kamyonet",
+     "eta_min": null,
+     "trail": [
+      [
+       39.956834,
+       32.869095
+      ],
+      [
+       39.956831,
+       32.869099
+      ],
+      [
+       39.96127,
+       32.847516
+      ]
+     ]
+    }
+   ],
+   "vehicles": 5,
+   "approaching": 1,
+   "boxes": [
+    {
+     "x1": 382.3,
+     "y1": 383.6,
+     "x2": 455.6,
+     "y2": 476.6,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 480.0,
+     "y1": 140.6,
+     "x2": 496.3,
+     "y2": 165.5,
+     "label": "kamyon",
+     "state": "other"
+    },
+    {
+     "x1": 464.9,
+     "y1": 126.2,
+     "x2": 499.2,
+     "y2": 140.2,
+     "label": "kamyon",
+     "state": "other"
+    },
+    {
+     "x1": 480.0,
+     "y1": 140.6,
+     "x2": 496.3,
+     "y2": 165.5,
+     "label": "otobüs",
+     "state": "unknown"
+    },
+    {
+     "x1": 386.8,
+     "y1": 141.1,
+     "x2": 415.1,
+     "y2": 153.8,
+     "label": "kamyonet",
+     "state": "other"
+    }
+   ],
+   "source": {
+    "detection_id": "det-17d29fdefd93",
+    "computed_at": "2026-09-26T23:04:06+00:00",
+    "mode": "rule-based"
+   }
+  },
+  {
+   "image_id": "img_002256",
+   "image": "images/img_002256.jpg",
+   "width": 1360,
+   "height": 765,
+   "capture_time": "14:05",
+   "capture_iso": "2025-06-01T14:05:00Z",
+   "zone_id": "kuzeybati-yolu",
+   "zone": "Kuzeybatı Yolu",
+   "risk_level": "MEDIUM",
+   "summary": "4 araç üsse yaklaşıyor, en yakını yaklaşık 17 dakika içinde üsse varabilir.",
+   "notes": [
+    "2 aracın nereye gittiği bilinmiyor.",
+    "1 saha raporu gördüklerimizle çelişiyor, dikkate alınmadı."
+   ],
+   "rationale": "8 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 2 nesne izsiz (1 car, 1 van): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 4 araç üsse yaklaşıyor (en yakını T0088: 4442 m, 3.8 m/s, tahmini varış ~18.8 dk). Patern: LOITERING. Saha raporları kendi verimizle karşılaştırıldı (2 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: MEDIUM.",
+   "explanation": "8 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 2 nesne izsiz (1 otomobil, 1 kamyonet): hareket verisi YOK — risk kademesine katılmadı, DÜŞÜK/zararsız varsayılmadı. 4 araç üsse yaklaşıyor (en yakını T0088: 4442 m, 3.8 m/s, tahmini varış ~18.8 dk). Patern: bekleme. Saha raporları kendi verimizle karşılaştırıldı (2 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: ORTA.",
+   "explanation_source": "rule-based",
+   "explanation_model": null,
+   "footprint": [
+    [
+     39.944816,
+     32.807875
+    ],
+    [
+     39.944816,
+     32.810929
+    ],
+    [
+     39.943498,
+     32.810929
+    ],
+    [
+     39.943498,
+     32.807875
+    ]
+   ],
+   "map_vehicles": [
+    {
+     "lat": 39.9443648,
+     "lon": 32.8096629,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.944317,
+       32.80968
+      ],
+      [
+       39.944314,
+       32.809689
+      ],
+      [
+       39.944367,
+       32.809661
+      ]
+     ]
+    },
+    {
+     "lat": 39.9441176,
+     "lon": 32.8098199,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 18.84,
+     "trail": [
+      [
+       39.958035,
+       32.782804
+      ],
+      [
+       39.954587,
+       32.789495
+      ],
+      [
+       39.944117,
+       32.809819
+      ]
+     ]
+    },
+    {
+     "lat": 39.9443181,
+     "lon": 32.8099354,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 17.08,
+     "trail": [
+      [
+       39.955354,
+       32.788768
+      ],
+      [
+       39.95053,
+       32.798021
+      ],
+      [
+       39.944321,
+       32.809933
+      ]
+     ]
+    },
+    {
+     "lat": 39.9444719,
+     "lon": 32.8092703,
+     "state": "other",
+     "label": "kamyonet",
+     "eta_min": null,
+     "trail": [
+      [
+       39.964955,
+       32.83463
+      ],
+      [
+       39.955682,
+       32.824059
+      ],
+      [
+       39.944465,
+       32.809301
+      ]
+     ]
+    },
+    {
+     "lat": 39.9447221,
+     "lon": 32.8096286,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.948333,
+       32.819488
+      ],
+      [
+       39.948349,
+       32.819456
+      ],
+      [
+       39.944726,
+       32.809624
+      ]
+     ]
+    },
+    {
+     "lat": 39.9447696,
+     "lon": 32.8096853,
+     "state": "other",
+     "label": "kamyonet",
+     "eta_min": null,
+     "trail": [
+      [
+       39.954445,
+       32.824442
+      ],
+      [
+       39.954417,
+       32.824405
+      ],
+      [
+       39.944771,
+       32.80968
+      ]
+     ]
+    },
+    {
+     "lat": 39.9447906,
+     "lon": 32.8101357,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.9441438,
+     "lon": 32.8087481,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 24.84,
+     "trail": [
+      [
+       39.960434,
+       32.776355
+      ],
+      [
+       39.953459,
+       32.790217
+      ],
+      [
+       39.944144,
+       32.808731
+      ]
+     ]
+    },
+    {
+     "lat": 39.9443363,
+     "lon": 32.8087808,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 20.38,
+     "trail": [
+      [
+       39.954394,
+       32.78898
+      ],
+      [
+       39.953205,
+       32.79132
+      ],
+      [
+       39.944339,
+       32.808772
+      ]
+     ]
+    },
+    {
+     "lat": 39.944596,
+     "lon": 32.8108857,
+     "state": "unknown",
+     "label": "kamyonet",
+     "eta_min": null,
+     "trail": []
+    }
+   ],
+   "vehicles": 10,
+   "approaching": 4,
+   "boxes": [
+    {
+     "x1": 728.9,
+     "y1": 203.6,
+     "x2": 863.5,
+     "y2": 320.2,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 800.5,
+     "y1": 326.3,
+     "x2": 931.7,
+     "y2": 484.4,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 867.9,
+     "y1": 234.2,
+     "x2": 967.2,
+     "y2": 343.8,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 539.0,
+     "y1": 154.6,
+     "x2": 703.7,
+     "y2": 244.8,
+     "label": "kamyonet",
+     "state": "other"
+    },
+    {
+     "x1": 726.9,
+     "y1": 32.3,
+     "x2": 834.9,
+     "y2": 76.7,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 759.4,
+     "y1": 4.0,
+     "x2": 852.9,
+     "y2": 49.9,
+     "label": "kamyonet",
+     "state": "other"
+    },
+    {
+     "x1": 981.7,
+     "y1": 0.2,
+     "x2": 1031.8,
+     "y2": 29.3,
+     "label": "otomobil",
+     "state": "unknown"
+    },
+    {
+     "x1": 270.7,
+     "y1": 339.3,
+     "x2": 506.9,
+     "y2": 441.0,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 327.2,
+     "y1": 210.8,
+     "x2": 479.5,
+     "y2": 346.1,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 1321.6,
+     "y1": 87.2,
+     "x2": 1359.8,
+     "y2": 168.2,
+     "label": "kamyonet",
+     "state": "unknown"
+    }
+   ],
+   "source": {
+    "detection_id": "det-0356740a60c1",
+    "computed_at": "2026-09-26T23:04:09+00:00",
+    "mode": "rule-based"
+   }
+  },
+  {
+   "image_id": "img_000860",
+   "image": "images/img_000860.jpg",
+   "width": 960,
+   "height": 540,
+   "capture_time": "14:10",
+   "capture_iso": "2025-06-01T14:10:00Z",
+   "zone_id": "dogu-yolu",
+   "zone": "Doğu Yolu",
+   "risk_level": "HIGH",
+   "summary": "4 araç üsse yaklaşıyor, en yakını 1 dakikadan kısa sürede üsse varabilir.",
+   "notes": [
+    "1 aracın nereye gittiği bilinmiyor."
+   ],
+   "rationale": "6 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 1 nesne izsiz (1 car): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 4 araç üsse yaklaşıyor (en yakını T0092: 1601 m, 2.6 m/s, tahmini varış ~1.1 dk). Patern: DIRECT_APPROACH. Saha raporları kendi verimizle karşılaştırıldı (2 uyumlu, 0 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: HIGH.",
+   "explanation": "6 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 1 nesne izsiz (1 otomobil): hareket verisi YOK — risk kademesine katılmadı, DÜŞÜK/zararsız varsayılmadı. 4 araç üsse yaklaşıyor (en yakını T0092: 1601 m, 2.6 m/s, tahmini varış ~1.1 dk). Patern: doğrudan yaklaşma. Saha raporları kendi verimizle karşılaştırıldı (2 uyumlu, 0 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: YÜKSEK.",
+   "explanation_source": "rule-based",
+   "explanation_model": null,
+   "footprint": [
+    [
+     39.925651,
+     32.870729
+    ],
+    [
+     39.925651,
+     32.872131
+    ],
+    [
+     39.925045,
+     32.872131
+    ],
+    [
+     39.925045,
+     32.870729
+    ]
+   ],
+   "map_vehicles": [
+    {
+     "lat": 39.9251731,
+     "lon": 32.8713305,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 1.05,
+     "trail": [
+      [
+       39.930985,
+       32.903204
+      ],
+      [
+       39.930869,
+       32.902569
+      ],
+      [
+       39.925172,
+       32.87133
+      ]
+     ]
+    },
+    {
+     "lat": 39.9252826,
+     "lon": 32.8713097,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.925249,
+       32.871336
+      ],
+      [
+       39.925265,
+       32.871306
+      ],
+      [
+       39.925283,
+       32.871309
+      ]
+     ]
+    },
+    {
+     "lat": 39.9253822,
+     "lon": 32.8712973,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 0.43,
+     "trail": [
+      [
+       39.932656,
+       32.908747
+      ],
+      [
+       39.929821,
+       32.89415
+      ],
+      [
+       39.925382,
+       32.871296
+      ]
+     ]
+    },
+    {
+     "lat": 39.9253651,
+     "lon": 32.8713635,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 0.36,
+     "trail": [
+      [
+       39.94044,
+       32.90589
+      ],
+      [
+       39.933476,
+       32.888329
+      ],
+      [
+       39.925364,
+       32.871362
+      ]
+     ]
+    },
+    {
+     "lat": 39.9252642,
+     "lon": 32.871968,
+     "state": "approaching",
+     "label": "kamyon",
+     "eta_min": 0.66,
+     "trail": [
+      [
+       39.933097,
+       32.913908
+      ],
+      [
+       39.930496,
+       32.899849
+      ],
+      [
+       39.925313,
+       32.871833
+      ]
+     ]
+    },
+    {
+     "lat": 39.9254663,
+     "lon": 32.8712836,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.903253,
+       32.84486
+      ],
+      [
+       39.912712,
+       32.857385
+      ],
+      [
+       39.925466,
+       32.87128
+      ]
+     ]
+    },
+    {
+     "lat": 39.9250904,
+     "lon": 32.8713948,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    }
+   ],
+   "vehicles": 7,
+   "approaching": 4,
+   "boxes": [
+    {
+     "x1": 385.7,
+     "y1": 388.9,
+     "x2": 438.0,
+     "y2": 462.8,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 378.6,
+     "y1": 304.4,
+     "x2": 416.6,
+     "y2": 352.1,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 375.7,
+     "y1": 224.5,
+     "x2": 402.6,
+     "y2": 254.6,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 421.0,
+     "y1": 241.2,
+     "x2": 447.9,
+     "y2": 268.4,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 772.3,
+     "y1": 315.7,
+     "x2": 924.5,
+     "y2": 373.7,
+     "label": "kamyon",
+     "state": "approaching"
+    },
+    {
+     "x1": 370.1,
+     "y1": 153.9,
+     "x2": 389.4,
+     "y2": 175.2,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 432.6,
+     "y1": 469.7,
+     "x2": 479.2,
+     "y2": 529.4,
+     "label": "otomobil",
+     "state": "unknown"
+    }
+   ],
+   "source": {
+    "detection_id": "det-57969780c8f1",
+    "computed_at": "2026-09-26T23:04:12+00:00",
+    "mode": "rule-based"
+   }
+  },
+  {
+   "image_id": "img_004416",
+   "image": "images/img_004416.jpg",
+   "width": 960,
+   "height": 540,
+   "capture_time": "14:15",
+   "capture_iso": "2025-06-01T14:15:00Z",
+   "zone_id": "guneydogu-yerlesimi",
+   "zone": "Güneydoğu Yerleşimi",
+   "risk_level": "MEDIUM",
+   "summary": "3 araç üsse yaklaşıyor, en yakını yaklaşık 14 dakika içinde üsse varabilir.",
+   "notes": [
+    "1 aracın nereye gittiği bilinmiyor.",
+    "1 saha raporu gördüklerimizle çelişiyor, dikkate alınmadı."
+   ],
+   "rationale": "6 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 1 nesne izsiz (1 car): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 3 araç üsse yaklaşıyor (en yakını T0162: 4449 m, 3.4 m/s, tahmini varış ~14.4 dk). Patern: LOITERING. Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: MEDIUM.",
+   "explanation": "6 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 1 nesne izsiz (1 otomobil): hareket verisi YOK — risk kademesine katılmadı, DÜŞÜK/zararsız varsayılmadı. 3 araç üsse yaklaşıyor (en yakını T0162: 4449 m, 3.4 m/s, tahmini varış ~14.4 dk). Patern: bekleme. Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: ORTA.",
+   "explanation_source": "rule-based",
+   "explanation_model": null,
+   "footprint": [
+    [
+     39.888318,
+     32.880323
+    ],
+    [
+     39.888318,
+     32.882307
+    ],
+    [
+     39.887462,
+     32.882307
+    ],
+    [
+     39.887462,
+     32.880323
+    ]
+   ],
+   "map_vehicles": [
+    {
+     "lat": 39.8876113,
+     "lon": 32.8806748,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.887582,
+       32.880637
+      ],
+      [
+       39.887638,
+       32.880675
+      ],
+      [
+       39.887612,
+       32.880671
+      ]
+     ]
+    },
+    {
+     "lat": 39.8878178,
+     "lon": 32.8805071,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 14.42,
+     "trail": [
+      [
+       39.871695,
+       32.893518
+      ],
+      [
+       39.879417,
+       32.887288
+      ],
+      [
+       39.887819,
+       32.880509
+      ]
+     ]
+    },
+    {
+     "lat": 39.8875772,
+     "lon": 32.8812787,
+     "state": "other",
+     "label": "kamyonet",
+     "eta_min": null,
+     "trail": [
+      [
+       39.887635,
+       32.881268
+      ],
+      [
+       39.887626,
+       32.881261
+      ],
+      [
+       39.887581,
+       32.881275
+      ]
+     ]
+    },
+    {
+     "lat": 39.8875298,
+     "lon": 32.8815577,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.887529,
+       32.881472
+      ],
+      [
+       39.887544,
+       32.881514
+      ],
+      [
+       39.887528,
+       32.88156
+      ]
+     ]
+    },
+    {
+     "lat": 39.8877652,
+     "lon": 32.8803978,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 21.86,
+     "trail": [
+      [
+       39.87567,
+       32.890096
+      ],
+      [
+       39.875676,
+       32.890091
+      ],
+      [
+       39.887761,
+       32.880397
+      ]
+     ]
+    },
+    {
+     "lat": 39.8876555,
+     "lon": 32.8812359,
+     "state": "approaching",
+     "label": "kamyon",
+     "eta_min": 38.96,
+     "trail": [
+      [
+       39.861415,
+       32.852809
+      ],
+      [
+       39.871833,
+       32.867079
+      ],
+      [
+       39.887656,
+       32.881245
+      ]
+     ]
+    },
+    {
+     "lat": 39.8879169,
+     "lon": 32.8806407,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    }
+   ],
+   "vehicles": 7,
+   "approaching": 3,
+   "boxes": [
+    {
+     "x1": 115.8,
+     "y1": 405.6,
+     "x2": 224.7,
+     "y2": 486.0,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 55.2,
+     "y1": 294.2,
+     "x2": 123.0,
+     "y2": 336.9,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 406.2,
+     "y1": 411.1,
+     "x2": 518.7,
+     "y2": 523.6,
+     "label": "kamyonet",
+     "state": "other"
+    },
+    {
+     "x1": 532.1,
+     "y1": 454.5,
+     "x2": 662.8,
+     "y2": 539.9,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 0.3,
+     "y1": 324.4,
+     "x2": 72.1,
+     "y2": 373.1,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 378.6,
+     "y1": 368.7,
+     "x2": 504.9,
+     "y2": 467.2,
+     "label": "kamyon",
+     "state": "approaching"
+    },
+    {
+     "x1": 131.4,
+     "y1": 238.0,
+     "x2": 176.1,
+     "y2": 268.0,
+     "label": "otomobil",
+     "state": "unknown"
+    }
+   ],
+   "source": {
+    "detection_id": "det-afaa82de33de",
+    "computed_at": "2026-09-26T23:04:14+00:00",
+    "mode": "rule-based"
+   }
+  },
+  {
+   "image_id": "img_008562",
+   "image": "images/img_008562.jpg",
+   "width": 960,
+   "height": 540,
+   "capture_time": "14:20",
+   "capture_iso": "2025-06-01T14:20:00Z",
+   "zone_id": "guneydogu-yerlesimi",
+   "zone": "Güneydoğu Yerleşimi",
+   "risk_level": "MEDIUM",
+   "summary": "Bir araç üsse yaklaşıyor, yaklaşık 11 dakika içinde üsse varabilir.",
+   "notes": [
+    "2 aracın nereye gittiği bilinmiyor.",
+    "1 saha raporu gördüklerimizle çelişiyor, dikkate alınmadı."
+   ],
+   "rationale": "4 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 2 nesne izsiz (1 car, 1 van): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 1 araç üsse yaklaşıyor (en yakını T0194: 3489 m, 3.9 m/s, tahmini varış ~11.2 dk). Patern: LOITERING. Saha raporları kendi verimizle karşılaştırıldı (1 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: MEDIUM.",
+   "explanation": "T0194 doğrudan yaklaşıyor (tahmini varış 11.2 dk, 3.5 km) YÜKSEK eşiğinin (10 dk) hemen üzerinde; T0128 üs çevresinde 3.5 km'de bekleme (60+ dk hareketsiz). Kafile tespit edilmedi. Raporlar T0128'ın durmasını destekliyor (1 uyumlu), kamyon iddiası uyumsuz. İzsiz 2 nesne hareket verisi yok, risk hesaplamasına dahil edilmedi.",
+   "explanation_source": "llm",
+   "explanation_model": "nemotron-3-ultra-550b-a55b",
+   "footprint": [
+    [
+     39.895169,
+     32.873256
+    ],
+    [
+     39.895169,
+     32.87454
+    ],
+    [
+     39.894615,
+     32.87454
+    ],
+    [
+     39.894615,
+     32.873256
+    ]
+   ],
+   "map_vehicles": [
+    {
+     "lat": 39.8946778,
+     "lon": 32.8735294,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 11.21,
+     "trail": [
+      [
+       39.882839,
+       32.908467
+      ],
+      [
+       39.881587,
+       32.883394
+      ],
+      [
+       39.894678,
+       32.873529
+      ]
+     ]
+    },
+    {
+     "lat": 39.8946445,
+     "lon": 32.8733206,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.888748,
+       32.848046
+      ],
+      [
+       39.892312,
+       32.861041
+      ],
+      [
+       39.894645,
+       32.873321
+      ]
+     ]
+    },
+    {
+     "lat": 39.8947211,
+     "lon": 32.874272,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.894708,
+       32.874237
+      ],
+      [
+       39.89471,
+       32.874231
+      ],
+      [
+       39.894723,
+       32.874272
+      ]
+     ]
+    },
+    {
+     "lat": 39.894735,
+     "lon": 32.8736037,
+     "state": "unknown",
+     "label": "kamyonet",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.8949778,
+     "lon": 32.8738626,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.8948132,
+     "lon": 32.8736659,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.92362,
+       32.910477
+      ],
+      [
+       39.908174,
+       32.891305
+      ],
+      [
+       39.894824,
+       32.873666
+      ]
+     ]
+    }
+   ],
+   "vehicles": 6,
+   "approaching": 1,
+   "boxes": [
+    {
+     "x1": 174.9,
+     "y1": 443.1,
+     "x2": 233.9,
+     "y2": 514.5,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 19.7,
+     "y1": 482.4,
+     "x2": 76.9,
+     "y2": 540.0,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 722.2,
+     "y1": 415.8,
+     "x2": 797.0,
+     "y2": 457.3,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 231.6,
+     "y1": 391.4,
+     "x2": 288.3,
+     "y2": 454.7,
+     "label": "kamyonet",
+     "state": "unknown"
+    },
+    {
+     "x1": 443.4,
+     "y1": 175.5,
+     "x2": 463.6,
+     "y2": 197.3,
+     "label": "otomobil",
+     "state": "unknown"
+    },
+    {
+     "x1": 285.5,
+     "y1": 325.6,
+     "x2": 327.5,
+     "y2": 368.0,
+     "label": "otomobil",
+     "state": "other"
+    }
+   ],
+   "source": {
+    "detection_id": "det-6a6b69cb0169",
+    "computed_at": "2026-09-26T23:04:17+00:00",
+    "mode": "rule-based"
+   }
+  },
+  {
+   "image_id": "img_008001",
+   "image": "images/img_008001.jpg",
+   "width": 960,
+   "height": 540,
+   "capture_time": "14:25",
+   "capture_iso": "2025-06-01T14:25:00Z",
+   "zone_id": "dogu-yolu",
+   "zone": "Doğu Yolu",
+   "risk_level": "MEDIUM",
+   "summary": "2 araç üsse yaklaşıyor, en yakını yaklaşık 19 dakika içinde üsse varabilir.",
+   "notes": [
+    "3 aracın nereye gittiği bilinmiyor.",
+    "1 saha raporu gördüklerimizle çelişiyor, dikkate alınmadı."
+   ],
+   "rationale": "7 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 3 nesne izsiz (2 car, 1 truck): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 2 araç üsse yaklaşıyor (en yakını T0149: 4329 m, 2.9 m/s, tahmini varış ~19.3 dk). Saha raporları kendi verimizle karşılaştırıldı (1 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: MEDIUM.",
+   "explanation": "7 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 3 nesne izsiz (2 otomobil, 1 kamyon): hareket verisi YOK — risk kademesine katılmadı, DÜŞÜK/zararsız varsayılmadı. 2 araç üsse yaklaşıyor (en yakını T0149: 4329 m, 2.9 m/s, tahmini varış ~19.3 dk). Saha raporları kendi verimizle karşılaştırıldı (1 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: ORTA.",
+   "explanation_source": "rule-based",
+   "explanation_model": null,
+   "footprint": [
+    [
+     39.925815,
+     32.903278
+    ],
+    [
+     39.925815,
+     32.904528
+    ],
+    [
+     39.925275,
+     32.904528
+    ],
+    [
+     39.925275,
+     32.903278
+    ]
+   ],
+   "map_vehicles": [
+    {
+     "lat": 39.9253588,
+     "lon": 32.9037259,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 19.38,
+     "trail": [
+      [
+       39.927292,
+       32.93156
+      ],
+      [
+       39.926784,
+       32.924243
+      ],
+      [
+       39.925359,
+       32.903725
+      ]
+     ]
+    },
+    {
+     "lat": 39.9255718,
+     "lon": 32.9037028,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.9256418,
+     "lon": 32.9039975,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.961081,
+       32.901088
+      ],
+      [
+       39.945293,
+       32.904263
+      ],
+      [
+       39.925641,
+       32.903998
+      ]
+     ]
+    },
+    {
+     "lat": 39.9256412,
+     "lon": 32.9039177,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.954928,
+       32.904031
+      ],
+      [
+       39.939584,
+       32.904646
+      ],
+      [
+       39.925641,
+       32.903917
+      ]
+     ]
+    },
+    {
+     "lat": 39.9256818,
+     "lon": 32.9039894,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.88584,
+       32.910707
+      ],
+      [
+       39.903539,
+       32.90697
+      ],
+      [
+       39.925681,
+       32.90399
+      ]
+     ]
+    },
+    {
+     "lat": 39.9255537,
+     "lon": 32.9035824,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.909509,
+       32.892314
+      ],
+      [
+       39.917025,
+       32.897913
+      ],
+      [
+       39.925553,
+       32.903583
+      ]
+     ]
+    },
+    {
+     "lat": 39.9255803,
+     "lon": 32.9035879,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 19.28,
+     "trail": [
+      [
+       39.928027,
+       32.936652
+      ],
+      [
+       39.927142,
+       32.924694
+      ],
+      [
+       39.92558,
+       32.903589
+      ]
+     ]
+    },
+    {
+     "lat": 39.9256577,
+     "lon": 32.903898,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.900388,
+       32.905652
+      ],
+      [
+       39.912242,
+       32.904321
+      ],
+      [
+       39.925658,
+       32.903898
+      ]
+     ]
+    },
+    {
+     "lat": 39.9257055,
+     "lon": 32.9038277,
+     "state": "unknown",
+     "label": "kamyon",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.9255938,
+     "lon": 32.9034977,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    }
+   ],
+   "vehicles": 10,
+   "approaching": 2,
+   "boxes": [
+    {
+     "x1": 320.2,
+     "y1": 410.7,
+     "x2": 367.7,
+     "y2": 501.8,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 312.3,
+     "y1": 223.8,
+     "x2": 340.2,
+     "y2": 262.6,
+     "label": "otomobil",
+     "state": "unknown"
+    },
+    {
+     "x1": 529.4,
+     "y1": 163.4,
+     "x2": 575.7,
+     "y2": 183.0,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 479.6,
+     "y1": 163.4,
+     "x2": 503.0,
+     "y2": 184.2,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 535.0,
+     "y1": 124.9,
+     "x2": 557.7,
+     "y2": 141.5,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 217.4,
+     "y1": 240.4,
+     "x2": 250.1,
+     "y2": 282.2,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 222.5,
+     "y1": 219.6,
+     "x2": 253.5,
+     "y2": 249.7,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 463.5,
+     "y1": 147.8,
+     "x2": 488.8,
+     "y2": 166.7,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 414.1,
+     "y1": 100.0,
+     "x2": 430.3,
+     "y2": 119.1,
+     "label": "kamyon",
+     "state": "unknown"
+    },
+    {
+     "x1": 140.3,
+     "y1": 208.2,
+     "x2": 197.1,
+     "y2": 234.2,
+     "label": "otomobil",
+     "state": "unknown"
+    }
+   ],
+   "source": {
+    "detection_id": "det-f86fd2cd9096",
+    "computed_at": "2026-09-26T23:04:19+00:00",
+    "mode": "rule-based"
+   }
+  },
+  {
+   "image_id": "img_003880",
+   "image": "images/img_003880.jpg",
+   "width": 1920,
+   "height": 1080,
+   "capture_time": "14:35",
+   "capture_iso": "2025-06-01T14:35:00Z",
+   "zone_id": "kuzeydogu-kavsagi",
+   "zone": "Kuzeydoğu Kavşağı",
+   "risk_level": "LOW",
+   "summary": "İzlenen 4 aracın hiçbiri üsse yaklaşmıyor, bazıları bölgede bekliyor.",
+   "notes": [
+    "1 saha raporu gördüklerimizle çelişiyor, dikkate alınmadı."
+   ],
+   "rationale": "4 araç için kendi tespit ve hareket verisi değerlendirildi. Hiçbir araç üsse yaklaşmıyor. Patern: LOITERING. Saha raporları kendi verimizle karşılaştırıldı (2 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: LOW.",
+   "explanation": "Dört araç tümü ~5.4-5.5 km mesafede, üs yarıçapının (1.5 km) çok dışında ve hiçbiri üse yaklaşmıyor. İki araç (T0021, T0126) bekleme paterni gösteriyor ancak bu mesafede üs için doğrudan tehdit oluşturmuyor; kafile tespit edilmediği için kademeyi yükseltme kuralı devreye girmiyor. Saha raporları ağır araç yok, yalnızca binek araç olduğunu doğruluyor (2 uyumlu rapor). Kendi hareket ve pattern verisi belirleyici; istihbarat/raporlar yalnızca destekleyici.",
+   "explanation_source": "llm",
+   "explanation_model": "nemotron-3-ultra-550b-a55b",
+   "footprint": [
+    [
+     39.953273,
+     32.900924
+    ],
+    [
+     39.953273,
+     32.904122
+    ],
+    [
+     39.951895,
+     32.904122
+    ],
+    [
+     39.951895,
+     32.900924
+    ]
+   ],
+   "map_vehicles": [
+    {
+     "lat": 39.9522269,
+     "lon": 32.9040057,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.952243,
+       32.90413
+      ],
+      [
+       39.952247,
+       32.904062
+      ],
+      [
+       39.952235,
+       32.904005
+      ]
+     ]
+    },
+    {
+     "lat": 39.9525199,
+     "lon": 32.9027436,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.926959,
+       32.912068
+      ],
+      [
+       39.939717,
+       32.907516
+      ],
+      [
+       39.952518,
+       32.902739
+      ]
+     ]
+    },
+    {
+     "lat": 39.9525086,
+     "lon": 32.9025011,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.961664,
+       32.875289
+      ],
+      [
+       39.961698,
+       32.875326
+      ],
+      [
+       39.952507,
+       32.902502
+      ]
+     ]
+    },
+    {
+     "lat": 39.9531168,
+     "lon": 32.9026138,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.953144,
+       32.90257
+      ],
+      [
+       39.953124,
+       32.902616
+      ],
+      [
+       39.953118,
+       32.902613
+      ]
+     ]
+    }
+   ],
+   "vehicles": 4,
+   "approaching": 0,
+   "boxes": [
+    {
+     "x1": 1780.3,
+     "y1": 708.5,
+     "x2": 1920.0,
+     "y2": 931.3,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 1023.1,
+     "y1": 560.3,
+     "x2": 1161.8,
+     "y2": 620.2,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 885.7,
+     "y1": 569.1,
+     "x2": 1008.0,
+     "y2": 629.1,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 1003.8,
+     "y1": 113.6,
+     "x2": 1025.2,
+     "y2": 131.2,
+     "label": "otomobil",
+     "state": "other"
+    }
+   ],
+   "source": {
+    "detection_id": "det-763e1a107fdc",
+    "computed_at": "2026-09-26T23:04:22+00:00",
+    "mode": "rule-based"
+   }
+  },
+  {
+   "image_id": "img_003201",
+   "image": "images/img_003201.jpg",
+   "width": 960,
+   "height": 540,
+   "capture_time": "14:55",
+   "capture_iso": "2025-06-01T14:55:00Z",
+   "zone_id": "guney-kapisi-yaklasimi",
+   "zone": "Güney Kapısı Yaklaşımı",
+   "risk_level": "MEDIUM",
+   "summary": "3 araç üsse yaklaşıyor, en yakını yaklaşık 24 dakika içinde üsse varabilir.",
+   "notes": [
+    "1 aracın nereye gittiği bilinmiyor.",
+    "3 saha raporu gördüklerimizle çelişiyor, dikkate alınmadı."
+   ],
+   "rationale": "5 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 1 nesne izsiz (1 truck): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 3 araç üsse yaklaşıyor (en yakını T0213: 5406 m, 2.8 m/s, tahmini varış ~28.7 dk). Patern: LOITERING. Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 3 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: MEDIUM.",
+   "explanation": "5 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 1 nesne izsiz (1 kamyon): hareket verisi YOK — risk kademesine katılmadı, DÜŞÜK/zararsız varsayılmadı. 3 araç üsse yaklaşıyor (en yakını T0213: 5406 m, 2.8 m/s, tahmini varış ~28.7 dk). Patern: bekleme. Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 3 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: ORTA.",
+   "explanation_source": "rule-based",
+   "explanation_model": null,
+   "footprint": [
+    [
+     39.87347,
+     32.851566
+    ],
+    [
+     39.87347,
+     32.852906
+    ],
+    [
+     39.872892,
+     32.852906
+    ],
+    [
+     39.872892,
+     32.851566
+    ]
+   ],
+   "map_vehicles": [
+    {
+     "lat": 39.8731249,
+     "lon": 32.8522872,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.881762,
+       32.861063
+      ],
+      [
+       39.88172,
+       32.861053
+      ],
+      [
+       39.873126,
+       32.852286
+      ]
+     ]
+    },
+    {
+     "lat": 39.8731432,
+     "lon": 32.8522844,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.873152,
+       32.852317
+      ],
+      [
+       39.873148,
+       32.852294
+      ],
+      [
+       39.873144,
+       32.852284
+      ]
+     ]
+    },
+    {
+     "lat": 39.8731828,
+     "lon": 32.8522487,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 37.55,
+     "trail": [
+      [
+       39.852603,
+       32.851905
+      ],
+      [
+       39.852642,
+       32.851905
+      ],
+      [
+       39.873184,
+       32.852248
+      ]
+     ]
+    },
+    {
+     "lat": 39.8731554,
+     "lon": 32.851978,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 23.66,
+     "trail": [
+      [
+       39.854648,
+       32.851571
+      ],
+      [
+       39.864609,
+       32.851792
+      ],
+      [
+       39.873156,
+       32.851981
+      ]
+     ]
+    },
+    {
+     "lat": 39.873223,
+     "lon": 32.8522042,
+     "state": "approaching",
+     "label": "otobüs",
+     "eta_min": 28.74,
+     "trail": [
+      [
+       39.85556,
+       32.851893
+      ],
+      [
+       39.856584,
+       32.851911
+      ],
+      [
+       39.873223,
+       32.852204
+      ]
+     ]
+    },
+    {
+     "lat": 39.873223,
+     "lon": 32.8522042,
+     "state": "unknown",
+     "label": "kamyon",
+     "eta_min": null,
+     "trail": []
+    }
+   ],
+   "vehicles": 6,
+   "approaching": 3,
+   "boxes": [
+    {
+     "x1": 505.3,
+     "y1": 311.3,
+     "x2": 528.0,
+     "y2": 333.5,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 504.1,
+     "y1": 295.8,
+     "x2": 525.3,
+     "y2": 314.9,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 481.2,
+     "y1": 261.7,
+     "x2": 497.0,
+     "y2": 275.0,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 281.2,
+     "y1": 282.1,
+     "x2": 309.1,
+     "y2": 305.7,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 450.2,
+     "y1": 221.8,
+     "x2": 464.2,
+     "y2": 239.8,
+     "label": "otobüs",
+     "state": "approaching"
+    },
+    {
+     "x1": 450.2,
+     "y1": 221.8,
+     "x2": 464.2,
+     "y2": 239.8,
+     "label": "kamyon",
+     "state": "unknown"
+    }
+   ],
+   "source": {
+    "detection_id": "det-40dce0c461f6",
+    "computed_at": "2026-09-26T23:04:25+00:00",
+    "mode": "rule-based"
+   }
+  },
+  {
+   "image_id": "img_007171",
+   "image": "images/img_007171.jpg",
+   "width": 1360,
+   "height": 765,
+   "capture_time": "15:00",
+   "capture_iso": "2025-06-01T15:00:00Z",
+   "zone_id": "kuzeydogu-kavsagi",
+   "zone": "Kuzeydoğu Kavşağı",
+   "risk_level": "HIGH",
+   "summary": "2 araç üsse yaklaşıyor, en yakını yaklaşık 9 dakika içinde üsse varabilir.",
+   "notes": [
+    "5 aracın nereye gittiği bilinmiyor."
+   ],
+   "rationale": "6 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 5 nesne izsiz (3 car, 2 van): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 2 araç üsse yaklaşıyor (en yakını T0177: 3434 m, 4.4 m/s, tahmini varış ~9.2 dk). Patern: LOITERING. Saha raporları kendi verimizle karşılaştırıldı (1 uyumlu, 0 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: HIGH.",
+   "explanation": "6 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 5 nesne izsiz (3 otomobil, 2 kamyonet): hareket verisi YOK — risk kademesine katılmadı, DÜŞÜK/zararsız varsayılmadı. 2 araç üsse yaklaşıyor (en yakını T0177: 3434 m, 4.4 m/s, tahmini varış ~9.2 dk). Patern: bekleme. Saha raporları kendi verimizle karşılaştırıldı (1 uyumlu, 0 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: YÜKSEK.",
+   "explanation_source": "rule-based",
+   "explanation_model": null,
+   "footprint": [
+    [
+     39.943193,
+     32.881358
+    ],
+    [
+     39.943193,
+     32.88381
+    ],
+    [
+     39.942135,
+     32.88381
+    ],
+    [
+     39.942135,
+     32.881358
+    ]
+   ],
+   "map_vehicles": [
+    {
+     "lat": 39.9425128,
+     "lon": 32.8829743,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 9.2,
+     "trail": [
+      [
+       39.974464,
+       32.894067
+      ],
+      [
+       39.953487,
+       32.898854
+      ],
+      [
+       39.942513,
+       32.882974
+      ]
+     ]
+    },
+    {
+     "lat": 39.9428544,
+     "lon": 32.8827849,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.942822,
+       32.882807
+      ],
+      [
+       39.94284,
+       32.882788
+      ],
+      [
+       39.942853,
+       32.882784
+      ]
+     ]
+    },
+    {
+     "lat": 39.9429933,
+     "lon": 32.8827003,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.933697,
+       32.857111
+      ],
+      [
+       39.937787,
+       32.869023
+      ],
+      [
+       39.942994,
+       32.882699
+      ]
+     ]
+    },
+    {
+     "lat": 39.9431172,
+     "lon": 32.8825954,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.9430459,
+     "lon": 32.8825814,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.952146,
+       32.866151
+      ],
+      [
+       39.952142,
+       32.866182
+      ],
+      [
+       39.943046,
+       32.882581
+      ]
+     ]
+    },
+    {
+     "lat": 39.9431593,
+     "lon": 32.8822461,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.943218,
+       32.882184
+      ],
+      [
+       39.943204,
+       32.882244
+      ],
+      [
+       39.943158,
+       32.882246
+      ]
+     ]
+    },
+    {
+     "lat": 39.9431593,
+     "lon": 32.8822461,
+     "state": "unknown",
+     "label": "kamyonet",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.9431803,
+     "lon": 32.8824334,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.9431476,
+     "lon": 32.8837794,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.9431365,
+     "lon": 32.8827368,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 9.51,
+     "trail": [
+      [
+       39.970241,
+       32.896266
+      ],
+      [
+       39.954855,
+       32.888931
+      ],
+      [
+       39.943136,
+       32.88274
+      ]
+     ]
+    },
+    {
+     "lat": 39.9430459,
+     "lon": 32.8825814,
+     "state": "unknown",
+     "label": "kamyonet",
+     "eta_min": null,
+     "trail": []
+    }
+   ],
+   "vehicles": 11,
+   "approaching": 2,
+   "boxes": [
+    {
+     "x1": 807.6,
+     "y1": 433.0,
+     "x2": 985.4,
+     "y2": 550.6,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 752.0,
+     "y1": 207.5,
+     "x2": 830.9,
+     "y2": 282.1,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 716.4,
+     "y1": 116.6,
+     "x2": 772.6,
+     "y2": 172.2,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 661.8,
+     "y1": 32.4,
+     "x2": 710.8,
+     "y2": 77.2,
+     "label": "otomobil",
+     "state": "unknown"
+    },
+    {
+     "x1": 653.7,
+     "y1": 78.8,
+     "x2": 703.4,
+     "y2": 133.9,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 468.2,
+     "y1": 0.0,
+     "x2": 517.0,
+     "y2": 48.8,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 468.2,
+     "y1": 0.0,
+     "x2": 517.0,
+     "y2": 48.8,
+     "label": "kamyonet",
+     "state": "unknown"
+    },
+    {
+     "x1": 578.2,
+     "y1": 0.1,
+     "x2": 614.7,
+     "y2": 18.2,
+     "label": "otomobil",
+     "state": "unknown"
+    },
+    {
+     "x1": 1326.1,
+     "y1": 14.6,
+     "x2": 1360.0,
+     "y2": 51.0,
+     "label": "otomobil",
+     "state": "unknown"
+    },
+    {
+     "x1": 736.1,
+     "y1": 21.3,
+     "x2": 793.4,
+     "y2": 60.4,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 653.7,
+     "y1": 78.8,
+     "x2": 703.4,
+     "y2": 133.9,
+     "label": "kamyonet",
+     "state": "unknown"
+    }
+   ],
+   "source": {
+    "detection_id": "det-cf841d42b0aa",
+    "computed_at": "2026-09-26T23:04:27+00:00",
+    "mode": "rule-based"
+   }
+  },
+  {
+   "image_id": "img_001733",
+   "image": "images/img_001733.jpg",
+   "width": 1360,
+   "height": 765,
+   "capture_time": "15:05",
+   "capture_iso": "2025-06-01T15:05:00Z",
+   "zone_id": "kuzeybati-yolu",
+   "zone": "Kuzeybatı Yolu",
+   "risk_level": "MEDIUM",
+   "summary": "Bir araç üsse yaklaşıyor, yaklaşık 12 dakika içinde üsse varabilir.",
+   "notes": [
+    "2 aracın nereye gittiği bilinmiyor.",
+    "1 saha raporu gördüklerimizle çelişiyor, dikkate alınmadı."
+   ],
+   "rationale": "5 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 2 nesne izsiz (2 car): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 1 araç üsse yaklaşıyor (en yakını T0121: 2676 m, 2.9 m/s, tahmini varış ~11.6 dk). Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: MEDIUM.",
+   "explanation": "Kendi hareket verisinde 5 izli araçtan sadece T0121 üsse yaklaşıyor (tahmini varış 11.6 dk, mesafe 2.7 km, kapanma hızı 1.69 m/s). Diğer 4 araç uzaklaşıyor. Patern rastgele, kafile yok. İstihbarat boş; 48 rapordan 45'i ilgisiz, 1'i (r134) bölge sakinliği iddiasıyla kendi yaklaşma verimizle uyumsuz, 2'si eski/doğrulanamaz. 2 izsiz araç hareket verisi yok, risk düşürmez. Tek yaklaşan araç tahmini varış 10-30 dk aralığında → ORTA.",
+   "explanation_source": "llm",
+   "explanation_model": "nemotron-3-ultra-550b-a55b",
+   "footprint": [
+    [
+     39.935015,
+     32.825054
+    ],
+    [
+     39.935015,
+     32.827726
+    ],
+    [
+     39.933863,
+     32.827726
+    ],
+    [
+     39.933863,
+     32.825054
+    ]
+   ],
+   "map_vehicles": [
+    {
+     "lat": 39.9341093,
+     "lon": 32.8266256,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.937914,
+       32.852676
+      ],
+      [
+       39.935915,
+       32.839373
+      ],
+      [
+       39.934108,
+       32.826626
+      ]
+     ]
+    },
+    {
+     "lat": 39.9339603,
+     "lon": 32.8263936,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.893713,
+       32.820324
+      ],
+      [
+       39.910999,
+       32.822176
+      ],
+      [
+       39.933959,
+       32.826391
+      ]
+     ]
+    },
+    {
+     "lat": 39.9345002,
+     "lon": 32.8263657,
+     "state": "approaching",
+     "label": "kamyonet",
+     "eta_min": 11.62,
+     "trail": [
+      [
+       39.955596,
+       32.820721
+      ],
+      [
+       39.94164,
+       32.811312
+      ],
+      [
+       39.9345,
+       32.826366
+      ]
+     ]
+    },
+    {
+     "lat": 39.9348137,
+     "lon": 32.8263795,
+     "state": "other",
+     "label": "kamyonet",
+     "eta_min": null,
+     "trail": [
+      [
+       39.951611,
+       32.864902
+      ],
+      [
+       39.942879,
+       32.846683
+      ],
+      [
+       39.934813,
+       32.826381
+      ]
+     ]
+    },
+    {
+     "lat": 39.9347863,
+     "lon": 32.8263396,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.925228,
+       32.860855
+      ],
+      [
+       39.930918,
+       32.844605
+      ],
+      [
+       39.934786,
+       32.826339
+      ]
+     ]
+    },
+    {
+     "lat": 39.9345002,
+     "lon": 32.8263657,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.9348137,
+     "lon": 32.8263795,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    }
+   ],
+   "vehicles": 7,
+   "approaching": 1,
+   "boxes": [
+    {
+     "x1": 759.7,
+     "y1": 543.2,
+     "x2": 840.1,
+     "y2": 659.7,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 632.9,
+     "y1": 635.9,
+     "x2": 730.8,
+     "y2": 764.9,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 645.1,
+     "y1": 311.3,
+     "x2": 690.2,
+     "y2": 372.4,
+     "label": "kamyonet",
+     "state": "approaching"
+    },
+    {
+     "x1": 666.1,
+     "y1": 124.0,
+     "x2": 683.2,
+     "y2": 143.3,
+     "label": "kamyonet",
+     "state": "other"
+    },
+    {
+     "x1": 645.7,
+     "y1": 143.3,
+     "x2": 663.0,
+     "y2": 160.5,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 645.1,
+     "y1": 311.3,
+     "x2": 690.2,
+     "y2": 372.4,
+     "label": "otomobil",
+     "state": "unknown"
+    },
+    {
+     "x1": 666.1,
+     "y1": 124.0,
+     "x2": 683.2,
+     "y2": 143.3,
+     "label": "otomobil",
+     "state": "unknown"
+    }
+   ],
+   "source": {
+    "detection_id": "det-436e5b6825c8",
+    "computed_at": "2026-09-26T23:04:30+00:00",
+    "mode": "rule-based"
+   }
+  },
+  {
+   "image_id": "img_001643",
+   "image": "images/img_001643.jpg",
+   "width": 1360,
+   "height": 765,
+   "capture_time": "15:10",
+   "capture_iso": "2025-06-01T15:10:00Z",
+   "zone_id": "kuzey-yolu",
+   "zone": "Kuzey Yolu",
+   "risk_level": "LOW",
+   "summary": "İzlenen 3 aracın hiçbiri üsse yaklaşmıyor, bazıları bölgede bekliyor.",
+   "notes": [
+    "1 aracın nereye gittiği bilinmiyor.",
+    "2 saha raporu gördüklerimizle çelişiyor, dikkate alınmadı."
+   ],
+   "rationale": "3 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 1 nesne izsiz (1 car): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. Hiçbir araç üsse yaklaşmıyor. Patern: LOITERING. Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 2 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: LOW.",
+   "explanation": "3 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 1 nesne izsiz (1 otomobil): hareket verisi YOK — risk kademesine katılmadı, DÜŞÜK/zararsız varsayılmadı. Hiçbir araç üsse yaklaşmıyor. Patern: bekleme. Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 2 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: DÜŞÜK.",
+   "explanation_source": "rule-based",
+   "explanation_model": null,
+   "footprint": [
+    [
+     39.970529,
+     32.853993
+    ],
+    [
+     39.970529,
+     32.856825
+    ],
+    [
+     39.969309,
+     32.856825
+    ],
+    [
+     39.969309,
+     32.853993
+    ]
+   ],
+   "map_vehicles": [
+    {
+     "lat": 39.9701786,
+     "lon": 32.8557999,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.970163,
+       32.855803
+      ],
+      [
+       39.970171,
+       32.855781
+      ],
+      [
+       39.970178,
+       32.8558
+      ]
+     ]
+    },
+    {
+     "lat": 39.9696259,
+     "lon": 32.8566792,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.959175,
+       32.874723
+      ],
+      [
+       39.964136,
+       32.865639
+      ],
+      [
+       39.969625,
+       32.85668
+      ]
+     ]
+    },
+    {
+     "lat": 39.9704145,
+     "lon": 32.8563151,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.975543,
+       32.853927
+      ],
+      [
+       39.989668,
+       32.852174
+      ],
+      [
+       39.970415,
+       32.856316
+      ]
+     ]
+    },
+    {
+     "lat": 39.969392,
+     "lon": 32.8560636,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    }
+   ],
+   "vehicles": 4,
+   "approaching": 0,
+   "boxes": [
+    {
+     "x1": 795.3,
+     "y1": 162.3,
+     "x2": 940.1,
+     "y2": 277.1,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 1220.0,
+     "y1": 484.2,
+     "x2": 1360.0,
+     "y2": 648.4,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 1045.1,
+     "y1": 20.0,
+     "x2": 1185.2,
+     "y2": 123.6,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 913.5,
+     "y1": 660.9,
+     "x2": 1075.2,
+     "y2": 765.0,
+     "label": "otomobil",
+     "state": "unknown"
+    }
+   ],
+   "source": {
+    "detection_id": "det-90e50277e1e8",
+    "computed_at": "2026-09-26T23:04:32+00:00",
+    "mode": "rule-based"
+   }
+  },
+  {
+   "image_id": "img_001230",
+   "image": "images/img_001230.jpg",
+   "width": 960,
+   "height": 540,
+   "capture_time": "15:15",
+   "capture_iso": "2025-06-01T15:15:00Z",
+   "zone_id": "guneydogu-yerlesimi",
+   "zone": "Güneydoğu Yerleşimi",
+   "risk_level": "HIGH",
+   "summary": "2 araç üsse yaklaşıyor, en yakını yaklaşık 8 dakika içinde üsse varabilir.",
+   "notes": [
+    "1 saha raporu gördüklerimizle çelişiyor, dikkate alınmadı."
+   ],
+   "rationale": "3 araç için kendi tespit ve hareket verisi değerlendirildi. 2 araç üsse yaklaşıyor (en yakını T0031: 2684 m, 4.1 m/s, tahmini varış ~9.4 dk). Saha raporları kendi verimizle karşılaştırıldı (1 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: HIGH.",
+   "explanation": "3 araç için kendi tespit ve hareket verisi değerlendirildi. 2 araç üsse yaklaşıyor (en yakını T0031: 2684 m, 4.1 m/s, tahmini varış ~9.4 dk). Saha raporları kendi verimizle karşılaştırıldı (1 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: YÜKSEK.",
+   "explanation_source": "rule-based",
+   "explanation_model": null,
+   "footprint": [
+    [
+     39.901901,
+     32.869247
+    ],
+    [
+     39.901901,
+     32.871241
+    ],
+    [
+     39.901041,
+     32.871241
+    ],
+    [
+     39.901041,
+     32.869247
+    ]
+   ],
+   "map_vehicles": [
+    {
+     "lat": 39.9016225,
+     "lon": 32.8702624,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 9.38,
+     "trail": [
+      [
+       39.87394,
+       32.853212
+      ],
+      [
+       39.889896,
+       32.864263
+      ],
+      [
+       39.901622,
+       32.870261
+      ]
+     ]
+    },
+    {
+     "lat": 39.9015208,
+     "lon": 32.8702884,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 8.41,
+     "trail": [
+      [
+       39.882045,
+       32.8868
+      ],
+      [
+       39.883727,
+       32.885374
+      ],
+      [
+       39.90152,
+       32.870288
+      ]
+     ]
+    },
+    {
+     "lat": 39.9010732,
+     "lon": 32.8699701,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.901095,
+       32.86995
+      ],
+      [
+       39.901112,
+       32.869911
+      ],
+      [
+       39.901073,
+       32.869978
+      ]
+     ]
+    }
+   ],
+   "vehicles": 3,
+   "approaching": 2,
+   "boxes": [
+    {
+     "x1": 478.7,
+     "y1": 164.6,
+     "x2": 499.0,
+     "y2": 185.1,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 490.8,
+     "y1": 226.4,
+     "x2": 512.0,
+     "y2": 251.1,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 313.1,
+     "y1": 499.5,
+     "x2": 383.2,
+     "y2": 540.0,
+     "label": "otomobil",
+     "state": "other"
+    }
+   ],
+   "source": {
+    "detection_id": "det-bed0112be3c9",
+    "computed_at": "2026-09-26T23:04:35+00:00",
+    "mode": "rule-based"
+   }
+  },
+  {
+   "image_id": "img_001147",
+   "image": "images/img_001147.jpg",
+   "width": 960,
+   "height": 540,
+   "capture_time": "15:20",
+   "capture_iso": "2025-06-01T15:20:00Z",
+   "zone_id": "guneybati-yolu",
+   "zone": "Güneybatı Yolu",
+   "risk_level": "MEDIUM",
+   "summary": "Bir araç üsse yaklaşıyor, yaklaşık 11 dakika içinde üsse varabilir.",
+   "notes": [
+    "5 aracın nereye gittiği bilinmiyor.",
+    "2 saha raporu gördüklerimizle çelişiyor, dikkate alınmadı."
+   ],
+   "rationale": "4 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 5 nesne izsiz (3 car, 2 truck): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 1 araç üsse yaklaşıyor (en yakını T0107: 3556 m, 4.0 m/s, tahmini varış ~10.9 dk). Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 2 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: MEDIUM.",
+   "explanation": "4 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 5 nesne izsiz (3 otomobil, 2 kamyon): hareket verisi YOK — risk kademesine katılmadı, DÜŞÜK/zararsız varsayılmadı. 1 araç üsse yaklaşıyor (en yakını T0107: 3556 m, 4.0 m/s, tahmini varış ~10.9 dk). Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 2 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: ORTA.",
+   "explanation_source": "rule-based",
+   "explanation_model": null,
+   "footprint": [
+    [
+     39.896338,
+     32.827997
+    ],
+    [
+     39.896338,
+     32.829711
+    ],
+    [
+     39.895598,
+     32.829711
+    ],
+    [
+     39.895598,
+     32.827997
+    ]
+   ],
+   "map_vehicles": [
+    {
+     "lat": 39.895795,
+     "lon": 32.8287931,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.895856,
+       32.828759
+      ],
+      [
+       39.895795,
+       32.828797
+      ],
+      [
+       39.895795,
+       32.828792
+      ]
+     ]
+    },
+    {
+     "lat": 39.8959646,
+     "lon": 32.8292531,
+     "state": "other",
+     "label": "kamyon",
+     "eta_min": null,
+     "trail": [
+      [
+       39.897905,
+       32.793212
+      ],
+      [
+       39.879217,
+       32.81384
+      ],
+      [
+       39.895963,
+       32.829249
+      ]
+     ]
+    },
+    {
+     "lat": 39.8958967,
+     "lon": 32.828678,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.8957357,
+     "lon": 32.8289094,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.885549,
+       32.844454
+      ],
+      [
+       39.89145,
+       32.836309
+      ],
+      [
+       39.895737,
+       32.828908
+      ]
+     ]
+    },
+    {
+     "lat": 39.8959117,
+     "lon": 32.8286556,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 10.9,
+     "trail": [
+      [
+       39.873806,
+       32.829324
+      ],
+      [
+       39.885658,
+       32.829472
+      ],
+      [
+       39.895913,
+       32.828656
+      ]
+     ]
+    },
+    {
+     "lat": 39.8959599,
+     "lon": 32.8286856,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.8959344,
+     "lon": 32.8295876,
+     "state": "unknown",
+     "label": "kamyon",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.8959015,
+     "lon": 32.8288552,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.89594,
+     "lon": 32.8292885,
+     "state": "unknown",
+     "label": "kamyon",
+     "eta_min": null,
+     "trail": []
+    }
+   ],
+   "vehicles": 9,
+   "approaching": 1,
+   "boxes": [
+    {
+     "x1": 433.2,
+     "y1": 383.2,
+     "x2": 458.6,
+     "y2": 409.3,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 666.9,
+     "y1": 260.2,
+     "x2": 740.2,
+     "y2": 284.8,
+     "label": "kamyon",
+     "state": "other"
+    },
+    {
+     "x1": 371.8,
+     "y1": 313.2,
+     "x2": 391.0,
+     "y2": 330.8,
+     "label": "otomobil",
+     "state": "unknown"
+    },
+    {
+     "x1": 498.5,
+     "y1": 423.0,
+     "x2": 523.6,
+     "y2": 456.1,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 359.3,
+     "y1": 303.1,
+     "x2": 378.5,
+     "y2": 319.1,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 375.5,
+     "y1": 270.1,
+     "x2": 395.9,
+     "y2": 281.7,
+     "label": "otomobil",
+     "state": "unknown"
+    },
+    {
+     "x1": 867.6,
+     "y1": 285.5,
+     "x2": 914.2,
+     "y2": 303.6,
+     "label": "kamyon",
+     "state": "unknown"
+    },
+    {
+     "x1": 474.6,
+     "y1": 310.6,
+     "x2": 486.8,
+     "y2": 326.4,
+     "label": "otomobil",
+     "state": "unknown"
+    },
+    {
+     "x1": 698.3,
+     "y1": 282.1,
+     "x2": 748.4,
+     "y2": 298.8,
+     "label": "kamyon",
+     "state": "unknown"
+    }
+   ],
+   "source": {
+    "detection_id": "det-e94724aa496f",
+    "computed_at": "2026-09-26T23:04:37+00:00",
+    "mode": "rule-based"
+   }
+  },
+  {
+   "image_id": "img_007664",
+   "image": "images/img_007664.jpg",
+   "width": 960,
+   "height": 540,
+   "capture_time": "15:25",
+   "capture_iso": "2025-06-01T15:25:00Z",
+   "zone_id": "guney-kapisi-yaklasimi",
+   "zone": "Güney Kapısı Yaklaşımı",
+   "risk_level": "MEDIUM",
+   "summary": "Bir araç üsse yaklaşıyor, yaklaşık 50 dakika içinde üsse varabilir.",
+   "notes": [
+    "3 aracın nereye gittiği bilinmiyor."
+   ],
+   "rationale": "5 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 3 nesne izsiz (2 car, 1 truck): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 1 araç üsse yaklaşıyor (en yakını T0210: 4510 m, 5.0 m/s, tahmini varış ~49.8 dk). Patern: LOITERING. Saha raporları kendi verimizle karşılaştırıldı (2 uyumlu, 0 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: MEDIUM.",
+   "explanation": "5 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 3 nesne izsiz (2 otomobil, 1 kamyon): hareket verisi YOK — risk kademesine katılmadı, DÜŞÜK/zararsız varsayılmadı. 1 araç üsse yaklaşıyor (en yakını T0210: 4510 m, 5.0 m/s, tahmini varış ~49.8 dk). Patern: bekleme. Saha raporları kendi verimizle karşılaştırıldı (2 uyumlu, 0 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: ORTA.",
+   "explanation_source": "rule-based",
+   "explanation_model": null,
+   "footprint": [
+    [
+     39.881991,
+     32.844382
+    ],
+    [
+     39.881991,
+     32.846086
+    ],
+    [
+     39.881255,
+     32.846086
+    ],
+    [
+     39.881255,
+     32.844382
+    ]
+   ],
+   "map_vehicles": [
+    {
+     "lat": 39.8814312,
+     "lon": 32.8454996,
+     "state": "unknown",
+     "label": "kamyon",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.8816024,
+     "lon": 32.8454549,
+     "state": "other",
+     "label": "kamyon",
+     "eta_min": null,
+     "trail": [
+      [
+       39.891026,
+       32.793408
+      ],
+      [
+       39.885852,
+       32.821298
+      ],
+      [
+       39.881602,
+       32.845452
+      ]
+     ]
+    },
+    {
+     "lat": 39.8817299,
+     "lon": 32.845257,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 49.83,
+     "trail": [
+      [
+       39.86658,
+       32.865851
+      ],
+      [
+       39.865828,
+       32.842164
+      ],
+      [
+       39.881729,
+       32.845257
+      ]
+     ]
+    },
+    {
+     "lat": 39.8813789,
+     "lon": 32.8459104,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.881373,
+       32.845895
+      ],
+      [
+       39.881375,
+       32.845904
+      ],
+      [
+       39.881379,
+       32.8459
+      ]
+     ]
+    },
+    {
+     "lat": 39.8818166,
+     "lon": 32.8451993,
+     "state": "other",
+     "label": "kamyon",
+     "eta_min": null,
+     "trail": [
+      [
+       39.903102,
+       32.84938
+      ],
+      [
+       39.892252,
+       32.847249
+      ],
+      [
+       39.881816,
+       32.8452
+      ]
+     ]
+    },
+    {
+     "lat": 39.8815613,
+     "lon": 32.8456849,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.881436,
+     "lon": 32.845768,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.909041,
+       32.827049
+      ],
+      [
+       39.894823,
+       32.835819
+      ],
+      [
+       39.881446,
+       32.845819
+      ]
+     ]
+    },
+    {
+     "lat": 39.8816939,
+     "lon": 32.8449313,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    }
+   ],
+   "vehicles": 8,
+   "approaching": 1,
+   "boxes": [
+    {
+     "x1": 595.9,
+     "y1": 370.7,
+     "x2": 663.4,
+     "y2": 450.7,
+     "label": "kamyon",
+     "state": "unknown"
+    },
+    {
+     "x1": 558.6,
+     "y1": 265.3,
+     "x2": 650.3,
+     "y2": 304.9,
+     "label": "kamyon",
+     "state": "other"
+    },
+    {
+     "x1": 481.8,
+     "y1": 181.8,
+     "x2": 504.1,
+     "y2": 201.4,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 782.4,
+     "y1": 411.7,
+     "x2": 939.7,
+     "y2": 486.5,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 447.2,
+     "y1": 119.6,
+     "x2": 473.7,
+     "y2": 136.3,
+     "label": "kamyon",
+     "state": "other"
+    },
+    {
+     "x1": 687.0,
+     "y1": 293.3,
+     "x2": 781.1,
+     "y2": 337.2,
+     "label": "otomobil",
+     "state": "unknown"
+    },
+    {
+     "x1": 724.7,
+     "y1": 379.7,
+     "x2": 837.0,
+     "y2": 434.7,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 282.5,
+     "y1": 206.2,
+     "x2": 336.4,
+     "y2": 229.8,
+     "label": "otomobil",
+     "state": "unknown"
+    }
+   ],
+   "source": {
+    "detection_id": "det-d6d5a4696d7b",
+    "computed_at": "2026-09-26T23:04:41+00:00",
+    "mode": "rule-based"
+   }
+  },
+  {
+   "image_id": "img_006444",
+   "image": "images/img_006444.jpg",
+   "width": 960,
+   "height": 540,
+   "capture_time": "15:35",
+   "capture_iso": "2025-06-01T15:35:00Z",
+   "zone_id": "guneybati-yolu",
+   "zone": "Güneybatı Yolu",
+   "risk_level": "LOW",
+   "summary": "İzlenen 3 aracın hiçbiri üsse yaklaşmıyor, bazıları bölgede bekliyor.",
+   "notes": [
+    "4 aracın nereye gittiği bilinmiyor.",
+    "2 saha raporu gördüklerimizle çelişiyor, dikkate alınmadı."
+   ],
+   "rationale": "3 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 4 nesne izsiz (1 bus, 2 car, 1 van): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. Hiçbir araç üsse yaklaşmıyor. Patern: LOITERING. Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 2 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: LOW.",
+   "explanation": "3 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 4 nesne izsiz (1 otobüs, 2 otomobil, 1 kamyonet): hareket verisi YOK — risk kademesine katılmadı, DÜŞÜK/zararsız varsayılmadı. Hiçbir araç üsse yaklaşmıyor. Patern: bekleme. Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 2 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: DÜŞÜK.",
+   "explanation_source": "rule-based",
+   "explanation_model": null,
+   "footprint": [
+    [
+     39.886113,
+     32.812058
+    ],
+    [
+     39.886113,
+     32.814046
+    ],
+    [
+     39.885255,
+     32.814046
+    ],
+    [
+     39.885255,
+     32.812058
+    ]
+   ],
+   "map_vehicles": [
+    {
+     "lat": 39.885589,
+     "lon": 32.8131974,
+     "state": "other",
+     "label": "otobüs",
+     "eta_min": null,
+     "trail": [
+      [
+       39.885566,
+       32.813182
+      ],
+      [
+       39.885588,
+       32.813161
+      ],
+      [
+       39.88559,
+       32.813198
+      ]
+     ]
+    },
+    {
+     "lat": 39.8854454,
+     "lon": 32.8129582,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.86872,
+       32.794533
+      ],
+      [
+       39.870132,
+       32.796088
+      ],
+      [
+       39.885445,
+       32.81296
+      ]
+     ]
+    },
+    {
+     "lat": 39.8856139,
+     "lon": 32.8129992,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.899197,
+       32.798613
+      ],
+      [
+       39.893045,
+       32.8038
+      ],
+      [
+       39.885613,
+       32.812999
+      ]
+     ]
+    },
+    {
+     "lat": 39.8855338,
+     "lon": 32.8130573,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.8857101,
+     "lon": 32.8131734,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.8857472,
+     "lon": 32.8131071,
+     "state": "unknown",
+     "label": "otobüs",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.8855338,
+     "lon": 32.8130573,
+     "state": "unknown",
+     "label": "kamyonet",
+     "eta_min": null,
+     "trail": []
+    }
+   ],
+   "vehicles": 7,
+   "approaching": 0,
+   "boxes": [
+    {
+     "x1": 526.1,
+     "y1": 297.9,
+     "x2": 574.3,
+     "y2": 361.7,
+     "label": "otobüs",
+     "state": "other"
+    },
+    {
+     "x1": 413.7,
+     "y1": 394.9,
+     "x2": 455.7,
+     "y2": 445.4,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 442.6,
+     "y1": 301.3,
+     "x2": 466.4,
+     "y2": 327.0,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 463.9,
+     "y1": 343.2,
+     "x2": 501.2,
+     "y2": 385.9,
+     "label": "otomobil",
+     "state": "unknown"
+    },
+    {
+     "x1": 531.4,
+     "y1": 247.6,
+     "x2": 545.8,
+     "y2": 259.6,
+     "label": "otomobil",
+     "state": "unknown"
+    },
+    {
+     "x1": 499.4,
+     "y1": 222.9,
+     "x2": 513.8,
+     "y2": 237.5,
+     "label": "otobüs",
+     "state": "unknown"
+    },
+    {
+     "x1": 463.9,
+     "y1": 343.2,
+     "x2": 501.2,
+     "y2": 385.9,
+     "label": "kamyonet",
+     "state": "unknown"
+    }
+   ],
+   "source": {
+    "detection_id": "det-e3ed18cb1e40",
+    "computed_at": "2026-09-26T23:04:43+00:00",
+    "mode": "rule-based"
+   }
+  },
+  {
+   "image_id": "img_004318",
+   "image": "images/img_004318.jpg",
+   "width": 1920,
+   "height": 1080,
+   "capture_time": "15:45",
+   "capture_iso": "2025-06-01T15:45:00Z",
+   "zone_id": "bati-yerlesimi",
+   "zone": "Batı Yerleşimi",
+   "risk_level": "MEDIUM",
+   "summary": "2 araç üsse yaklaşıyor, en yakını yaklaşık 25 dakika içinde üsse varabilir.",
+   "notes": [],
+   "rationale": "7 araç için kendi tespit ve hareket verisi değerlendirildi. 2 araç üsse yaklaşıyor (en yakını T0140: 5206 m, 3.4 m/s, tahmini varış ~25.0 dk). Saha raporları kendi verimizle karşılaştırıldı (2 uyumlu, 0 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: MEDIUM.",
+   "explanation": "7 araç için kendi tespit ve hareket verisi değerlendirildi. 2 araç üsse yaklaşıyor (en yakını T0140: 5206 m, 3.4 m/s, tahmini varış ~25.0 dk). Saha raporları kendi verimizle karşılaştırıldı (2 uyumlu, 0 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: ORTA.",
+   "explanation_source": "rule-based",
+   "explanation_model": null,
+   "footprint": [
+    [
+     39.919752,
+     32.790882
+    ],
+    [
+     39.919752,
+     32.79342
+    ],
+    [
+     39.918656,
+     32.79342
+    ],
+    [
+     39.918656,
+     32.790882
+    ]
+   ],
+   "map_vehicles": [
+    {
+     "lat": 39.9190588,
+     "lon": 32.7925423,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.911636,
+       32.827061
+      ],
+      [
+       39.91608,
+       32.811504
+      ],
+      [
+       39.919058,
+       32.792538
+      ]
+     ]
+    },
+    {
+     "lat": 39.9192154,
+     "lon": 32.7921239,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.931613,
+       32.809318
+      ],
+      [
+       39.931615,
+       32.809369
+      ],
+      [
+       39.919216,
+       32.792125
+      ]
+     ]
+    },
+    {
+     "lat": 39.9193011,
+     "lon": 32.7921066,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 25.0,
+     "trail": [
+      [
+       39.905215,
+       32.775563
+      ],
+      [
+       39.913418,
+       32.784371
+      ],
+      [
+       39.919301,
+       32.792107
+      ]
+     ]
+    },
+    {
+     "lat": 39.9192803,
+     "lon": 32.7920063,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 36.47,
+     "trail": [
+      [
+       39.918432,
+       32.77178
+      ],
+      [
+       39.918827,
+       32.781212
+      ],
+      [
+       39.91928,
+       32.792006
+      ]
+     ]
+    },
+    {
+     "lat": 39.9192484,
+     "lon": 32.7921045,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.876121,
+       32.813563
+      ],
+      [
+       39.898709,
+       32.800587
+      ],
+      [
+       39.919338,
+       32.792216
+      ]
+     ]
+    },
+    {
+     "lat": 39.9193537,
+     "lon": 32.7921538,
+     "state": "other",
+     "label": "kamyon",
+     "eta_min": null,
+     "trail": [
+      [
+       39.90503,
+       32.794674
+      ],
+      [
+       39.903976,
+       32.773228
+      ],
+      [
+       39.919349,
+       32.792156
+      ]
+     ]
+    },
+    {
+     "lat": 39.9193647,
+     "lon": 32.7921511,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.912004,
+       32.786741
+      ],
+      [
+       39.918007,
+       32.770227
+      ],
+      [
+       39.919363,
+       32.792148
+      ]
+     ]
+    }
+   ],
+   "vehicles": 7,
+   "approaching": 2,
+   "boxes": [
+    {
+     "x1": 1191.6,
+     "y1": 657.7,
+     "x2": 1320.5,
+     "y2": 708.4,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 921.1,
+     "y1": 505.7,
+     "x2": 957.9,
+     "y2": 551.9,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 912.0,
+     "y1": 428.7,
+     "x2": 940.8,
+     "y2": 459.9,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 836.7,
+     "y1": 448.8,
+     "x2": 864.3,
+     "y2": 480.9,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 909.1,
+     "y1": 477.7,
+     "x2": 940.6,
+     "y2": 514.7,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 946.4,
+     "y1": 371.2,
+     "x2": 977.8,
+     "y2": 413.7,
+     "label": "kamyon",
+     "state": "other"
+    },
+    {
+     "x1": 948.5,
+     "y1": 371.1,
+     "x2": 971.7,
+     "y2": 392.2,
+     "label": "otomobil",
+     "state": "other"
+    }
+   ],
+   "source": {
+    "detection_id": "det-2d4e3cf8e3d2",
+    "computed_at": "2026-09-26T23:04:46+00:00",
+    "mode": "rule-based"
+   }
+  },
+  {
+   "image_id": "img_004423",
+   "image": "images/img_004423.jpg",
+   "width": 960,
+   "height": 540,
+   "capture_time": "15:50",
+   "capture_iso": "2025-06-01T15:50:00Z",
+   "zone_id": "kuzeybati-yolu",
+   "zone": "Kuzeybatı Yolu",
+   "risk_level": "MEDIUM",
+   "summary": "Bir araç üsse yaklaşıyor, yaklaşık 25 dakika içinde üsse varabilir.",
+   "notes": [
+    "3 aracın nereye gittiği bilinmiyor.",
+    "1 saha raporu gördüklerimizle çelişiyor, dikkate alınmadı."
+   ],
+   "rationale": "4 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 3 nesne izsiz (1 bus, 1 car, 1 truck): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 1 araç üsse yaklaşıyor (en yakını T0083: 5167 m, 3.1 m/s, tahmini varış ~24.9 dk). Patern: LOITERING. Saha raporları kendi verimizle karşılaştırıldı (1 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: MEDIUM.",
+   "explanation": "4 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 3 nesne izsiz (1 otobüs, 1 otomobil, 1 kamyon): hareket verisi YOK — risk kademesine katılmadı, DÜŞÜK/zararsız varsayılmadı. 1 araç üsse yaklaşıyor (en yakını T0083: 5167 m, 3.1 m/s, tahmini varış ~24.9 dk). Patern: bekleme. Saha raporları kendi verimizle karşılaştırıldı (1 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: ORTA.",
+   "explanation_source": "rule-based",
+   "explanation_model": null,
+   "footprint": [
+    [
+     39.961493,
+     32.819159
+    ],
+    [
+     39.961493,
+     32.820769
+    ],
+    [
+     39.960799,
+     32.820769
+    ],
+    [
+     39.960799,
+     32.819159
+    ]
+   ],
+   "map_vehicles": [
+    {
+     "lat": 39.9608503,
+     "lon": 32.8201372,
+     "state": "approaching",
+     "label": "otomobil",
+     "eta_min": 24.87,
+     "trail": [
+      [
+       39.980826,
+       32.80328
+      ],
+      [
+       39.977093,
+       32.80643
+      ],
+      [
+       39.96085,
+       32.820138
+      ]
+     ]
+    },
+    {
+     "lat": 39.9609622,
+     "lon": 32.8201671,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.959568,
+       32.827312
+      ],
+      [
+       39.976745,
+       32.821676
+      ],
+      [
+       39.960963,
+       32.820166
+      ]
+     ]
+    },
+    {
+     "lat": 39.9611501,
+     "lon": 32.8199606,
+     "state": "other",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": [
+      [
+       39.989082,
+       32.851553
+      ],
+      [
+       39.974168,
+       32.833827
+      ],
+      [
+       39.961149,
+       32.819961
+      ]
+     ]
+    },
+    {
+     "lat": 39.9613172,
+     "lon": 32.819991,
+     "state": "other",
+     "label": "kamyon",
+     "eta_min": null,
+     "trail": [
+      [
+       39.961246,
+       32.819969
+      ],
+      [
+       39.961251,
+       32.820026
+      ],
+      [
+       39.961317,
+       32.819993
+      ]
+     ]
+    },
+    {
+     "lat": 39.9613536,
+     "lon": 32.8200318,
+     "state": "unknown",
+     "label": "kamyon",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.9613172,
+     "lon": 32.819991,
+     "state": "unknown",
+     "label": "otobüs",
+     "eta_min": null,
+     "trail": []
+    },
+    {
+     "lat": 39.961003,
+     "lon": 32.8207466,
+     "state": "unknown",
+     "label": "otomobil",
+     "eta_min": null,
+     "trail": []
+    }
+   ],
+   "vehicles": 7,
+   "approaching": 1,
+   "boxes": [
+    {
+     "x1": 537.9,
+     "y1": 475.4,
+     "x2": 628.6,
+     "y2": 524.8,
+     "label": "otomobil",
+     "state": "approaching"
+    },
+    {
+     "x1": 564.5,
+     "y1": 395.7,
+     "x2": 637.7,
+     "y2": 430.3,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 467.6,
+     "y1": 254.1,
+     "x2": 488.3,
+     "y2": 279.5,
+     "label": "otomobil",
+     "state": "other"
+    },
+    {
+     "x1": 487.1,
+     "y1": 123.0,
+     "x2": 505.1,
+     "y2": 150.6,
+     "label": "kamyon",
+     "state": "other"
+    },
+    {
+     "x1": 514.0,
+     "y1": 99.9,
+     "x2": 526.8,
+     "y2": 117.1,
+     "label": "kamyon",
+     "state": "unknown"
+    },
+    {
+     "x1": 487.1,
+     "y1": 123.0,
+     "x2": 505.1,
+     "y2": 150.6,
+     "label": "otobüs",
+     "state": "unknown"
+    },
+    {
+     "x1": 933.3,
+     "y1": 367.1,
+     "x2": 960.0,
+     "y2": 395.5,
+     "label": "otomobil",
+     "state": "unknown"
+    }
+   ],
+   "source": {
+    "detection_id": "det-58ab3a5bb387",
+    "computed_at": "2026-09-26T23:04:49+00:00",
+    "mode": "rule-based"
+   }
+  }
+ ]
+}

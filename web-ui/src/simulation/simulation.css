@@ -1,0 +1,212 @@
+/* Simülasyon (karşılama) sayfası — yalnızca .sim altında; operasyonel paneli etkilemez. Renk değişkenleri styles.css :root'tan. */
+
+.sim {
+  --risk: var(--muted);
+  min-height: 100vh; min-height: 100dvh;
+  display: flex; flex-direction: column; gap: 14px;
+  padding: 14px 18px 16px; max-width: 1400px; margin: 0 auto;
+}
+.sim.risk-high { --risk: var(--high); }
+.sim.risk-medium { --risk: var(--medium); }
+.sim.risk-low { --risk: var(--low); }
+.sim.analyzing { --risk: var(--accent); }
+.sim-center { align-items: center; justify-content: center; text-align: center; gap: 8px; }
+
+/* ---------------------------------------------------------------- başlık */
+.sim-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.sim-brand { display: flex; align-items: center; gap: 12px; }
+.sim-brand h1 { font-size: 20px; letter-spacing: 0.04em; }
+.sim-brand small { color: var(--muted); font-size: 13px; }
+.sim-live { width: 12px; height: 12px; border-radius: 50%; background: var(--high); flex: none; animation: sim-live 1.6s ease-in-out infinite; }
+@keyframes sim-live { 0%, 100% { box-shadow: 0 0 0 0 rgba(255, 69, 58, 0.6); } 50% { box-shadow: 0 0 0 7px rgba(255, 69, 58, 0); } }
+.sim-head { flex-wrap: nowrap; align-items: flex-start; }
+.sim-login {
+  flex: none; margin-left: auto; padding: 5px 12px; border-radius: 7px; font-size: 13px; line-height: 1.4;
+  background: transparent; border: 1px solid var(--border); color: var(--muted); text-decoration: none; white-space: nowrap;
+  transition: color 0.15s, border-color 0.15s;
+}
+.sim-login:hover, .sim-login:focus-visible { color: var(--text); border-color: var(--muted); }
+
+/* ---------------------------------------------------------------- giriş penceresi (demo arkada sürer) */
+.sim-modal-bg { position: fixed; inset: 0; z-index: 60; display: grid; place-items: center; padding: 16px; background: rgba(5, 8, 12, 0.6); }
+.sim-modal {
+  width: min(380px, 100%); display: flex; flex-direction: column; gap: 10px;
+  background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55);
+}
+.sim-modal-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.sim-modal-head h2 { font-size: 17px; }
+.sim-modal-x { background: transparent; border: 0; font-size: 24px; line-height: 1; padding: 2px 6px; color: var(--muted); }
+.sim-modal p { font-size: 13px; }
+.sim-modal form { display: flex; flex-direction: column; gap: 6px; }
+.sim-modal label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 6px; }
+.sim-modal input {
+  width: 100%; padding: 10px 12px; background: var(--panel-2); color: var(--text); font: inherit; font-size: 16px;
+  border: 1px solid var(--border); border-radius: 8px; outline: none;
+}
+.sim-modal input:focus { border-color: var(--accent); }
+.sim-modal .sim-btn.play { margin-top: 12px; width: 100%; }
+.sim-modal-err { font-size: 13px; padding: 8px 10px; border-radius: 8px; background: rgba(255, 69, 58, 0.1); border: 1px solid rgba(255, 69, 58, 0.45); color: #ffb3ad; }
+
+/* ---------------------------------------------------------------- ana düzen: masaüstü iki sütun */
+.sim-main {
+  display: grid; gap: 14px 18px; align-items: start;
+  grid-template-columns: minmax(0, 1.55fr) minmax(340px, 1fr);
+  grid-template-areas: 'stage info' 'map info';
+}
+.sim-stage { grid-area: stage; }
+.sim-info { grid-area: info; }
+.sim-mapwrap { grid-area: map; min-width: 0; }
+
+.sim-stage { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.sim-frame {
+  position: relative; width: 100%; overflow: hidden; border-radius: 12px; background: #000;
+  border: 2px solid var(--risk); transition: border-color 0.3s;
+}
+.sim-frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: fill; display: block; animation: sim-fade 0.35s ease-out; }
+.sim-frame svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+@keyframes sim-fade { from { opacity: 0.25; } to { opacity: 1; } }
+.bx { fill: none; stroke-width: 2.5; }
+.bx.approaching { stroke: var(--high); stroke-width: 3.5; }
+.bx.other { stroke: rgba(255, 255, 255, 0.85); }
+.bx.unknown { stroke: var(--medium); stroke-dasharray: 6 4; }
+.sim-stamp {
+  position: absolute; left: 10px; top: 10px; padding: 3px 9px; border-radius: 6px;
+  background: rgba(0, 0, 0, 0.6); font: 600 14px var(--mono); letter-spacing: 0.05em;
+}
+.sim-legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: var(--muted); }
+.sim-legend i { display: inline-block; width: 14px; height: 10px; border: 2px solid; margin-right: 5px; vertical-align: -1px; }
+.sim-legend i.approaching { border-color: var(--high); }
+.sim-legend i.other { border-color: rgba(255, 255, 255, 0.85); }
+.sim-legend i.unknown { border-color: var(--medium); border-style: dashed; }
+
+/* ---------------------------------------------------------------- bilgi paneli */
+.sim-info {
+  display: flex; flex-direction: column; gap: 14px; min-width: 0;
+  background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 18px;
+}
+.sim-meta { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; color: var(--muted); font-size: 15px; }
+.sim-meta b { color: var(--text); font-family: var(--mono); }
+.sim-badge {
+  align-self: flex-start; padding: 10px 18px; border-radius: 10px;
+  font-size: 28px; font-weight: 800; letter-spacing: 0.05em; line-height: 1.1;
+  color: #0b0f14; background: var(--risk); animation: sim-pop 0.3s ease-out;
+}
+.sim-badge.high { color: #fff; }
+@keyframes sim-pop { from { transform: scale(0.92); opacity: 0.4; } to { transform: scale(1); opacity: 1; } }
+.sim-summary { font-size: 22px; line-height: 1.35; font-weight: 500; }
+.sim-notes { margin: 0; padding-left: 18px; color: var(--muted); font-size: 14px; display: grid; gap: 3px; }
+
+.sim-progress { height: 4px; border-radius: 2px; background: var(--border); overflow: hidden; }
+.sim-progress > div { height: 100%; background: var(--risk); transition: width 0.1s linear; }
+
+.sim-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.sim-btn {
+  background: #1a2330; border: 1px solid var(--border); border-radius: 8px; padding: 9px 14px; min-height: 42px;
+  transition: background 0.15s;
+}
+.sim-btn:hover:not(:disabled) { background: #223046; }
+.sim-btn:disabled { opacity: 0.6; cursor: default; }
+.sim-btn.play { min-width: 128px; font-weight: 600; background: #16324a; border-color: var(--accent); }
+.sim-btn.icon { min-width: 44px; padding: 9px 10px; display: inline-flex; align-items: center; justify-content: center; }
+.sim-btn.on { background: var(--accent); border-color: var(--accent); color: #0b0f14; font-weight: 700; }
+.sim-btn.ghost { background: transparent; }
+.sim-speed { display: flex; gap: 4px; }
+.sim-count { margin-left: auto; color: var(--muted); font: 14px var(--mono); }
+
+.sim-tally { display: flex; gap: 14px; font-size: 14px; }
+.sim-tally span::before { content: '●'; margin-right: 5px; }
+.sim-tally .high::before { color: var(--high); }
+.sim-tally .medium::before { color: var(--medium); }
+.sim-tally .low::before { color: var(--low); }
+
+.sim-alerts { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding-top: 12px; border-top: 1px solid var(--border); }
+.sim-alerts small { flex-basis: 100%; font-size: 13px; }
+
+/* ---------------------------------------------------------------- olay akışı şeridi */
+.sim-feed { display: grid; grid-template-columns: repeat(40, minmax(0, 1fr)); gap: 3px; }
+.tick { height: 22px; border: 0; border-radius: 3px; padding: 0; background: var(--border); transition: opacity 0.2s, transform 0.2s; }
+.tick.past, .tick.now { opacity: 1; }
+.sim-feed .tick.future { background: var(--border); }  /* gelecekteki olayın riski önceden gösterilmez */
+.tick.high { background: var(--high); }
+.tick.medium { background: var(--medium); }
+.tick.low { background: var(--low); }
+.tick.now { transform: scaleY(1.35); outline: 2px solid var(--text); outline-offset: 1px; }
+
+/* ---------------------------------------------------------------- tüm ekran çerçevesi (bildirim yerine) */
+.sim-glow {
+  --glow: var(--accent);
+  position: fixed; inset: 0; z-index: 40; pointer-events: none;
+  box-shadow: inset 0 0 0 5px var(--glow), inset 0 0 48px 6px color-mix(in srgb, var(--glow) 55%, transparent);
+  transition: box-shadow 0.4s;
+}
+.sim-glow.scan { --glow: color-mix(in srgb, var(--accent) 45%, transparent); box-shadow: inset 0 0 0 3px var(--glow); }
+.sim-glow.high { --glow: var(--high); animation: sim-glow-pulse 0.7s ease-in-out 4; }
+.sim-glow.medium { --glow: var(--medium); animation: sim-glow-in 0.5s ease-out; }
+.sim-glow.low { --glow: var(--low); animation: sim-glow-in 0.5s ease-out; }
+@keyframes sim-glow-pulse {
+  50% { box-shadow: inset 0 0 0 10px var(--glow), inset 0 0 110px 24px color-mix(in srgb, var(--glow) 70%, transparent); }
+}
+@keyframes sim-glow-in { from { opacity: 0; } to { opacity: 1; } }
+
+/* ---------------------------------------------------------------- analiz aşaması */
+.bx.scan { stroke: var(--accent); stroke-width: 2; }
+.sim-scanline {
+  position: absolute; left: 0; right: 0; height: 22%; top: -22%; pointer-events: none;
+  background: linear-gradient(180deg, transparent, rgba(76, 201, 240, 0.22) 70%, rgba(76, 201, 240, 0.7));
+  animation: sim-scan 1.6s linear infinite;
+}
+@keyframes sim-scan { to { top: 100%; } }
+
+.sim-result { min-height: 330px; display: flex; flex-direction: column; gap: 12px; }
+.sim-analysis { display: flex; flex-direction: column; gap: 14px; padding-top: 4px; }
+.sim-analysis-title { font-size: 26px; font-weight: 700; color: var(--accent); letter-spacing: 0.02em; }
+.sim-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; font-size: 18px; }
+.sim-steps li { display: flex; align-items: center; gap: 12px; transition: color 0.2s; }
+.sim-steps li.pending { color: #4a5666; }
+.sim-steps li.active { color: var(--text); }
+.sim-steps li.done { color: var(--muted); }
+.sim-steps .dot { width: 14px; height: 14px; border-radius: 50%; flex: none; border: 2px solid currentColor; }
+.sim-steps li.active .dot { border-color: var(--accent); border-top-color: transparent; animation: sim-spin 0.8s linear infinite; }
+.sim-steps li.done .dot { background: var(--accent); border-color: var(--accent); }
+@keyframes sim-spin { to { transform: rotate(360deg); } }
+
+.sim-explain { background: var(--panel-2); border: 1px solid var(--border); border-left: 3px solid var(--risk); border-radius: 8px; padding: 10px 12px; animation: sim-fade 0.5s ease-out; }
+.sim-explain-label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+.sim-explain p { font-size: 15px; line-height: 1.5; }
+
+.sim-alerts .chip { font-size: 13px; color: var(--muted); padding: 4px 9px; border: 1px solid var(--border); border-radius: 999px; }
+.sim-alerts .chip.ok { color: var(--text); border-color: color-mix(in srgb, var(--low) 60%, transparent); }
+.sim-btn.on-soft { border-color: var(--accent); }
+
+/* ---------------------------------------------------------------- harita */
+.sim-map { width: 100%; height: 320px; border-radius: 12px; border: 1px solid var(--border); background: #0f141b; }
+.sim-map-tip { background: rgba(11, 15, 20, 0.85); color: var(--text); border: 1px solid var(--border); box-shadow: none; font-size: 12px; padding: 2px 6px; }
+.sim-map-tip::before { display: none; }
+.sim-map-tip.eta { color: #fff; background: rgba(179, 38, 30, 0.9); border-color: var(--high); font-weight: 700; }
+
+/* ---------------------------------------------------------------- mobil: dikey, görüntü → sonuç → harita */
+@media (max-width: 860px) {
+  .sim { padding: 10px 12px 14px; gap: 10px; }
+  .sim-main { grid-template-columns: 1fr; grid-template-areas: 'stage' 'info' 'map'; gap: 12px; }
+  .sim-brand h1 { font-size: 17px; }
+  .sim-brand small { font-size: 12px; }
+  .sim-info { padding: 14px; gap: 12px; }
+  .sim-result { min-height: 300px; }
+  .sim-badge { font-size: 30px; align-self: stretch; text-align: center; }
+  .sim-summary { font-size: 21px; }
+  .sim-analysis-title { font-size: 24px; }
+  .sim-steps { font-size: 17px; }
+  .sim-map { height: 300px; }
+  .sim-feed { grid-template-columns: repeat(20, minmax(0, 1fr)); }
+  .sim-controls .sim-btn.play { flex: 1; }
+  .sim-glow { box-shadow: inset 0 0 0 4px var(--glow), inset 0 0 30px 4px color-mix(in srgb, var(--glow) 55%, transparent); }
+}
+@media (max-width: 420px) {
+  .sim-count { margin-left: 0; flex-basis: 100%; text-align: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sim-live, .sim-frame img, .sim-badge, .sim-glow, .sim-scanline, .sim-explain, .sim-steps .dot { animation: none !important; }
+  .tick, .sim-progress > div { transition: none; }
+}

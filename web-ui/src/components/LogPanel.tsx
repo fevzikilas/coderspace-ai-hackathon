@@ -5,7 +5,7 @@ import type { LogEntry, PipelineStep, Run } from '../types'
 const STEP_LABEL: Record<string, string> = {
   event_context: 'Olay bağlamı',
   drone_context: 'Drone bağlamı',
-  detect: 'Tespit (YOLO)',
+  detect: 'Tespit (D-fine)',
   georeference: 'Georef + iz eşleştirme',
   tracks: 'İz + hareket',
   pattern: 'Patern',

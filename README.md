@@ -25,7 +25,8 @@
 ```bash
 docker compose up --build -d            # db + 6 servis + web-ui (ilk derleme birkaç dakika sürer)
 docker compose ps
-# UI:       http://localhost:8080   (anahtar SORMAZ: web-ui'nin nginx'i gateway anahtarını sunucu tarafında ekler; doğrudan :8000 için X-API-Key gerekir, varsayılan dev-key-change-me)
+# Karşılama: http://localhost:8080/        (simülasyon; HERKESE AÇIK, sağ üstte 'Giriş')
+# UI:       http://localhost:8080/panel   (giriş gerekli; anahtar SORMAZ: web-ui'nin nginx'i gateway anahtarını sunucu tarafında ekler; doğrudan :8000 için X-API-Key gerekir, varsayılan dev-key-change-me)
 # Gateway:  http://localhost:8000
 python scripts/eval_events.py --api-key dev-key-change-me    # 40 olayın tamamını değerlendirir, beklenenle karşılaştırır
 ```
@@ -58,7 +59,7 @@ bağımsız çalışır. UI yalnızca `gateway`'e konuşur.
    ┌────────────────┐   ┌────────────────┐ ┌────────────────┐ ┌────────────────┐ ┌──────────────────────────┐
    │ detection-svc  │   │ core-svc       │ │ pattern-svc    │ │ mock-data-svc  │ │ risk-agent-svc           │
    │ :8001          │   │ :8002          │ │ :8003          │ │ :8004          │ │ :8005                    │
-   │ YOLO Stage 1   │   │ image_meta +   │ │ kural tabanlı  │ │ üs · bölgeler  │ │ LLM tool-calling         │
+   │ D-fine Stage 1   │   │ image_meta +   │ │ kural tabanlı  │ │ üs · bölgeler  │ │ LLM tool-calling         │
    │ / mock (ground │   │ tracks.csv     │ │ CONVOY         │ │ saha raporları │ │ + politika (taban/tavan) │
    │  truth bbox)   │   │ köşe-georef    │ │ DIRECT_APPROACH│ │ (as_of süzme)  │ │ + bütçe/kota             │
    └────────────────┘   │ iz eşleştirme  │ │ LOITERING      │ └────────────────┘ │ + kural tabanlı fallback │
@@ -118,7 +119,7 @@ Ayrıntı ve şemalar: [data/README.md](data/README.md).
   `zones.json` (tek üs + bölge merkezleri), `field_reports.json` (`time`, `source: official|third_party`, `text`).
 - **Sentetik set** `data/synthetic/`: 8 bölge × 5 görüntü = **40 olay**, `scenarios.yaml`'dan deterministik üretilir (`scripts/gen_dataset.py`):
   kafile yaklaşması, tek araç yaklaşması, üs yakınında/uzağında bekleme, sivil trafik, uzaklaşan kafile, çelişkili raporlarla yavaş yaklaşma, üs sınırı ihlali.
-  `ground_truth.json` gerçek bbox'ları tutar ve gerçek YOLO gelene kadar mock dedektörü besler; `expected.json` her olayın tasarım niyetidir.
+  `ground_truth.json` gerçek bbox'ları tutar ve gerçek D-fine gelene kadar mock dedektörü besler; `expected.json` her olayın tasarım niyetidir.
 - **Zaman:** her adım `reference_time` (= `capture_time`) kullanır. İzler `until=ref`'e kadar kesilir, saha raporları `as_of=ref`'e kadar süzülür,
   "yaş" (`age_min`) olay anına göre hesaplanır, `stale` = `ref − son_nokta`. `"14:10"` gibi tarihsiz saatler tek bir sabit güne (`DATASET_DATE`) oturtulur.
 - **Bölge ilişkisi:** tek üs vardır; görüntü, konumuna en yakın bölge merkezine atanır. Saha raporları bölgeye bağlı değildir:
@@ -240,6 +241,45 @@ Gerçek veride her iz tek bir olayın görüntüsüne ait olduğundan renk prati
 **Bölge pusula gülü (harita):** `zones.json` bölgelerinin üsse göre yönlerinden, üssü merkez alıp uyarı yarıçapına (8 km) uzanan dilimler: 8 bölgede 8 × 45° (tarayıcıda ölçüldü: sınırlar 22.5°+45°k). Her dilim bölge adıyla etiketli, ince/yarı saydam nötr gri çizgili;
 **yalnızca olayın ait olduğu bölgenin dilimi** beyaz dolgu + kalın kenarla vurgulanır (dilimler bilerek araç renklerinden farklı, nötr). Dilim sınırları komşu bölge yönlerinin ortasındadır, yani bölge sayısı/yönü değişirse gül kendini uyarlar. Bölge adları veri dosyasındaki gibi görünür (ASCII).
 
+### Simülasyon = karşılama sayfası — `/`
+
+Ana domain (`/`, eski `/simulation` adresi de çalışır) doğrudan bu sayfayı gösterir ve **girişsiz açıktır**; ayrı bir landing sayfası yoktur.
+Operasyon paneli `/panel`'dedir ve giriş ister. Yönlendirme:
+
+| Yol | Gösterilen | Erişim (auth-proxy :8080) |
+|---|---|---|
+| `/`, `/simulation` | simülasyon (SPA, `main.tsx` yol kontrolü) | herkese açık |
+| `/assets/*`, `/sim-data/*` | derlenmiş paketler, önceden hesaplanmış simülasyon verisi | herkese açık (gizli bilgi yok: gateway anahtarı sunucu tarafında eklenir) |
+| `/panel` | operasyon paneli (`App`) | giriş gerekli → yoksa 302 `/auth/login?next=/panel` |
+| `/api/*` ve diğer her yol | gateway / SPA | giriş gerekli |
+| `/auth/*` | auth-svc giriş/çıkış | açık (dakikada 10 deneme sınırı) |
+
+Sağ üstteki küçük **Giriş** düğmesi sayfanın üstünde bir pencere açar ve auth-svc'nin mevcut JSON girişine (`POST /auth/login`) bağlıdır (yer tutucu değil):
+başarılı girişte oturum çerezi yazılır ve `/panel`'e geçilir; pencere açıkken demo arkada oynamaya devam eder. Oturum zaten açıksa düğme "Operasyon paneli" bağlantısıdır.
+Operasyonel panelden **tamamen ayrı** ve **canlı backend'e bağlı değil**: hiçbir `/api` isteği atmaz,
+LLM kullanmaz. Gerçek 40 olayın DB'de **önceden hesaplanmış kural tabanlı** sonuçlarını (`web-ui/public/sim-data/events.json` + görüntüler) `capture_time` sırasıyla
+oynatır. Her olay iki aşamalıdır (Normal hızda olay başına 7–8 s; "Hızlı" 3 kat): önce ~3 s **analiz** (araçlar tek tek kutulanır → hareket incelenir →
+saha raporları karşılaştırılır → risk hesaplanır; kutular ve harita bu sırada nötr), sonra **sonuç**: Türkçe risk rozeti, sade tek cümle ve ortadaki kutuda
+gerekçe metni. Gerekçe, aynı görüntü için DB'de aynı risk seviyesinde bir **LLM değerlendirmesi varsa onun metni** (şu an 10 olay), yoksa kural motorunun
+gerekçesidir; kutu kaynağı yazar. Harita (Leaflet/OSM): üs ve 1.5 km sınırı, bölge merkezleri, görüntü alanı, araçlar + son 10 dk izleri, en yakın yaklaşan
+araçtan üsse "~N dk" çizgisi. Oynat/duraklat, önceki/sonraki (← → Boşluk), olay şeridi; sona gelince baştan başlar.
+
+Veriyi yenilemek (yalnızca Postgres + `data/REAL/zones.json`/`tracks.csv` okunur, LLM çağrısı yok; Pillow varsa görüntüler 1280 px'e küçültülür):
+
+```bash
+python scripts/export_simulation_data.py            # sonra web-ui imajını yeniden build edin
+```
+
+**Risk açıklandığında (hepsi best-effort):**
+- **Ekran çerçevesi:** tüm ekranın kenarı risk rengine döner (kırmızı / turuncu / yeşil; analiz sırasında mavi); YÜKSEK RİSK'te birkaç kez nabız atar. Bilgi banner'da değil ortadaki kutudadır.
+- **Ses:** YÜKSEK RİSK'te WebAudio alarmı ("Ses açık/kapalı" düğmesi). Tarayıcılar sesi ancak kullanıcı sayfaya bir kez dokunduktan/tıkladıktan sonra çalar.
+- **Titreşim:** `navigator.vibrate()` — Android Chrome'da çalışır (bir kez etkileşim gerekir). **iOS'ta çalışmaz**: iOS'taki hiçbir tarayıcı Vibration API'yi desteklemez.
+- **Flaş:** standart web API'si yok; yalnızca **Android**'de sayfa açılır açılmaz arka kamera izni istenir ve `torch` kısıtı denenir (bazı Android + Chrome
+  kombinasyonlarında çalışır, **iOS Safari'de çalışmaz**; masaüstünde kamera hiç istenmez). Destek yoksa kamera kapatılır, "Flaş: yok" yazar, hata verilmez.
+- **Bildirim izni** sayfa açılınca istenir (Safari/Firefox gibi yalnızca kullanıcı hareketiyle izin verenlerde ilk dokunuşta yeniden). Sistem bildirimi yalnızca
+  sekme **arka plandayken** gösterilir (ön plandayken çerçeve + ses yeterli). Bildirim ve kamera **yalnızca güvenli bağlamda** (HTTPS — ör. Cloudflare tüneli — veya
+  `localhost`) vardır; Android Chrome `new Notification()` desteklemediğinden (service worker gerekir) orada sistem bildirimi çıkmaz.
+
 ## Servisleri bağımsız çalıştırma
 
 Komutlar **örnektir**; her servis kendi klasöründen çalışır. Tek venv yeterlidir (`python3 -m venv .venv && . .venv/bin/activate`).
@@ -250,7 +290,7 @@ export DATA_DIR=$PWD/data/synthetic DATASET_DATE=2025-06-01
 
 cd mock-data-svc  && pip install -r requirements.txt && uvicorn app.main:app --port 8004
 cd detection-svc  && pip install -r requirements.txt && MOCK_MODE=true uvicorn app.main:app --port 8001
-#   Gerçek YOLO: pip install -r requirements-model.txt ; MOCK_MODE=false MODEL_PATH=models/stage1.pt uvicorn …
+#   Gerçek D-fine: pip install -r requirements-model.txt ; MOCK_MODE=false MODEL_PATH=models/stage1.pt uvicorn …
 cd core-svc       && pip install -r requirements.txt && uvicorn app.main:app --port 8002        # DEMO_MODE=true: eski demo izleri
 cd pattern-svc    && pip install -r requirements.txt && CORE_SVC_URL=http://localhost:8002 uvicorn app.main:app --port 8003
 cd risk-agent-svc && pip install -r requirements.txt && LLM_PROVIDER=openrouter OPENROUTER_API_KEY=... CORE_SVC_URL=http://localhost:8002 \

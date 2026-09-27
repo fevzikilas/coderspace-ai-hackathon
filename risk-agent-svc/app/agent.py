@@ -101,7 +101,14 @@ class RiskAgent:
         self._locks: dict[str, asyncio.Lock] = {}
 
     # ------------------------------------------------------------------ giriş noktası
-    async def assess(self, zone_id: str, detection_id: str, force: bool = False, base_location: dict[str, float] | None = None) -> dict[str, Any]:
+    async def assess(
+        self,
+        zone_id: str,
+        detection_id: str,
+        force: bool = False,
+        base_location: dict[str, float] | None = None,
+        vehicle_link_evidence: list[dict[str, Any]] | None = None,
+    ) -> dict[str, Any]:
         """Aynı (zone, detection) için eşzamanlı çağrılar tek değerlendirmeye indirgenir; sonuç önbelleğe alınır."""
         key = f"{zone_id.upper()}|{detection_id}"
         lock = self._locks.setdefault(key, asyncio.Lock())
@@ -110,7 +117,7 @@ class RiskAgent:
                 if not force and (cached := self._store.find(zone_id, detection_id)) is not None:
                     return {**cached, "cached": True}
                 async with self._sem:
-                    result = await self._assess(zone_id, detection_id, base_location)
+                    result = await self._assess(zone_id, detection_id, base_location, vehicle_link_evidence)
                 self._store.put(result)
                 if self._persist is not None:
                     await asyncio.to_thread(self._persist.save_assessment, result)
@@ -120,7 +127,13 @@ class RiskAgent:
                 self._locks.pop(key, None)
 
     # ------------------------------------------------------------------ asıl akış
-    async def _assess(self, zone_id: str, detection_id: str, base_location: dict[str, float] | None = None) -> dict[str, Any]:
+    async def _assess(
+        self,
+        zone_id: str,
+        detection_id: str,
+        base_location: dict[str, float] | None = None,
+        vehicle_link_evidence: list[dict[str, Any]] | None = None,
+    ) -> dict[str, Any]:
         started = time.perf_counter()
         t0 = time.perf_counter()
         try:
@@ -148,6 +161,7 @@ class RiskAgent:
             reference_time=detection.get("reference_time"),
             event_point=event_point,
             dropped_vehicle_ids=dropped,
+            vehicle_link_evidence=list(vehicle_link_evidence or [])[:40],
         )
         runner = ToolRunner(s, self._up, facts)
         runner.add_log(
@@ -242,6 +256,7 @@ class RiskAgent:
             "own_data_level": LEVELS[own.idx],
             "own_data_reasons": own_reasons,
             "data_gaps": gaps,
+            "vehicle_link_context": facts.vehicle_link_evidence,
             "policy_adjustments": adjustments,
             "report_verification": facts.report_verification,
             "pattern": pattern,

@@ -24,6 +24,8 @@ class Facts:
     reference_time: str | None = None
     # Olayın konumu (tespitlerin ağırlık merkezi): konumlu saha raporlarını süzmek için
     event_point: dict[str, float] | None = None
+    # Cross-event görsel benzerlik yalnızca aday kanıttır; kimlik veya risk truth layer değildir.
+    vehicle_link_evidence: list[dict[str, Any]] = field(default_factory=list)
 
     @property
     def vehicle_ids(self) -> list[str]:

@@ -223,3 +223,52 @@ def test_default_round_limit_and_parallel_tool_call_instruction():
 
     assert Settings().max_rounds == 12
     assert "AYNI turda, paralel çağır" in " ".join(SYSTEM_PROMPT.replace("\\\n", " ").split())
+
+
+VEHICLE_LINK = {
+    "link_id": "vl-test",
+    "source_event_id": "img-a",
+    "source_track_id": "T17",
+    "target_event_id": "img-b",
+    "target_track_id": "T42",
+    "relation": "POSSIBLE_SAME_VEHICLE",
+    "appearance_similarity": 0.87,
+    "temporal_gap_seconds": 420,
+    "spatial_distance_m": 1300.0,
+    "implied_speed_mps": 3.1,
+    "feasibility": {"temporal": True, "spatial": True, "spatial_checked": True},
+}
+
+
+async def test_vehicle_candidate_is_context_not_confirmed_identity_or_risk_signal(make_harness):
+    from app.prompts import SYSTEM_PROMPT
+
+    world = World(movement={vehicle: {**IDLE} for vehicle in VEHICLES}, pattern=RANDOM)
+    baseline = await make_harness(world, None).agent.assess("ZONE-ALPHA", "det-1")
+    with_link = await make_harness(world, None).agent.assess(
+        "ZONE-ALPHA", "det-1", vehicle_link_evidence=[VEHICLE_LINK]
+    )
+
+    assert baseline["risk_level"] == with_link["risk_level"] == "LOW"
+    assert with_link["vehicle_link_context"][0]["relation"] == "POSSIBLE_SAME_VEHICLE"
+    prompt = " ".join(SYSTEM_PROMPT.replace("\\\n", " ").split()).lower()
+    assert "confirmed identity" in prompt
+    assert "tek başına risk" in prompt
+
+
+async def test_vehicle_candidate_summary_is_in_llm_user_context(make_harness):
+    g = script(full_round(), glm_reply([submit("HIGH")]))
+    h = make_harness(World(), g)
+    await h.agent.assess("ZONE-ALPHA", "det-1", vehicle_link_evidence=[VEHICLE_LINK])
+
+    payload = json.loads(g.seen[0]["messages"][1]["content"])
+    assert payload["cross_event_vehicle_candidates"][0] == {
+        "relation": "POSSIBLE_SAME_VEHICLE",
+        "source": "img-a/T17",
+        "target": "img-b/T42",
+        "appearance_similarity": 0.87,
+        "temporal_gap_seconds": 420,
+        "spatial_distance_m": 1300.0,
+        "implied_speed_mps": 3.1,
+    }
+    assert "kesin kimlik" in payload["vehicle_candidate_guard"]

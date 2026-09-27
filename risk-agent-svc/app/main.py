@@ -61,6 +61,11 @@ class AssessRequest(BaseModel):
     detection_id: str
     force: bool = Field(False, description="True: önbelleği yok say, yeniden değerlendir (bütçe harcar)")
     base_location: BaseLocation | None = Field(None, description="Korunan üs (gateway verir; yoksa BASE_* ortam varsayılanı). Değerlendirme anı detection kaydındaki reference_time'dan gelir")
+    vehicle_link_evidence: list[dict[str, Any]] = Field(
+        default_factory=list,
+        max_length=40,
+        description="Cross-event görsel aday bağlantıları; doğrulanmış kimlik veya risk sinyali değildir",
+    )
 
 
 @app.get("/health")
@@ -77,7 +82,13 @@ def health() -> dict:
 async def assess(req: AssessRequest) -> dict[str, Any]:
     """Tespit için gerekçeli risk alarmı üretir: risk_level, rationale, confidence, evidence_breakdown[], tool_calls_log[]."""
     try:
-        return await _state["agent"].assess(req.zone_id, req.detection_id, force=req.force, base_location=req.base_location.model_dump() if req.base_location else None)
+        return await _state["agent"].assess(
+            req.zone_id,
+            req.detection_id,
+            force=req.force,
+            base_location=req.base_location.model_dump() if req.base_location else None,
+            vehicle_link_evidence=req.vehicle_link_evidence,
+        )
     except DetectionNotFound as exc:
         raise HTTPException(404, f"Bilinmeyen detection_id: {exc}") from exc
     except BudgetExceeded as exc:

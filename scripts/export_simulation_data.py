@@ -194,7 +194,6 @@ def build_event(r: dict, tracks: dict[str, list[tuple[int, float, float]]]) -> d
         "rationale": r.get("rationale"),
         "explanation": display_text(llm["rationale"] if use_llm else (r.get("rationale") or "")),
         "explanation_source": "llm" if use_llm else "rule-based",
-        "explanation_model": (llm.get("model") or "").split("/")[-1].replace(":free", "") if use_llm else None,
         "footprint": footprint,
         "map_vehicles": vehicles,
         "vehicles": len(objects),

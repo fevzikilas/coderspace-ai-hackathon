@@ -1,7 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import {
-  type ChannelState,
-  audioReady,
   disableTorch,
   enableTorch,
   flashTorch,
@@ -13,7 +11,6 @@ import {
   torchPossible,
   unlockAudio,
   vibrate,
-  vibrationSupported,
 } from './alerts'
 import LoginModal, { PANEL_PATH, hasSession } from './LoginModal'
 import SimMap, { type SimBase, type SimMapVehicle, type SimZone } from './SimMap'
@@ -79,15 +76,11 @@ export default function SimulationPage() {
   const [speed, setSpeed] = useState<Speed>('normal')
   const [elapsed, setElapsed] = useState(0)
   const [loop, setLoop] = useState(1)
-  const [notif, setNotif] = useState<ChannelState>(notificationState())
-  const [torch, setTorch] = useState<ChannelState>(isAndroid() && torchPossible() ? 'off' : 'unsupported')
-  const [sound, setSound] = useState(true)
-  const [audioOk, setAudioOk] = useState(false)
   const [loginOpen, setLoginOpen] = useState(false)
   const [session, setSession] = useState(false)
 
   useEffect(() => {
-    document.title = 'Üs Koruma — Canlı Simülasyon'
+    document.title = 'TUNGA — Canlı Sinyal'
     fetch(DATA_URL, { cache: 'no-cache' })
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`))))
       .then((d: SimData) => setData(d))
@@ -96,12 +89,12 @@ export default function SimulationPage() {
 
     // İzinler açılışta istenir. Bazı tarayıcılar (Safari, Firefox) izni ve sesi yalnızca kullanıcı hareketiyle verir:
     // ilk dokunuş/tıklama/tuşta ses kilidi açılır ve hâlâ sorulmamış bildirim izni yeniden istenir.
-    if (notificationState() === 'off') void requestNotifications().then(setNotif)
-    if (isAndroid() && torchPossible()) void enableTorch().then(setTorch)
+    // Tüm uyarı kanalları her zaman açıktır; arayüzde ayar yoktur.
+    if (notificationState() === 'off') void requestNotifications()
+    if (isAndroid() && torchPossible()) void enableTorch()
     const onFirst = () => {
       unlockAudio()
-      window.setTimeout(() => setAudioOk(audioReady()), 250)
-      if (notificationState() === 'off') void requestNotifications().then(setNotif)
+      if (notificationState() === 'off') void requestNotifications()
     }
     window.addEventListener('pointerdown', onFirst, { once: true })
     window.addEventListener('keydown', onFirst, { once: true })
@@ -158,11 +151,11 @@ export default function SimulationPage() {
   const revealKey = revealed && ev ? `${loop}-${idx}` : null
   useEffect(() => {
     if (!revealKey || !ev || ev.risk_level !== 'HIGH') return
-    if (sound) playAlarm()
+    playAlarm()
     vibrate()
     void flashTorch()
     if (document.hidden) void notify(`Yüksek risk — ${ev.zone}`, `Saat ${ev.capture_time}: ${ev.summary}`)
-    // yalnızca açıklama anında bir kez (ses tercihi değişince yeniden çalmasın)
+    // yalnızca açıklama anında bir kez
   }, [revealKey])
 
   useEffect(() => {
@@ -183,12 +176,6 @@ export default function SimulationPage() {
     events?.slice(0, revealed ? idx + 1 : idx).forEach((e) => t[e.risk_level]++)
     return t
   }, [events, idx, revealed])
-
-  const toggleSound = () => {
-    unlockAudio()
-    window.setTimeout(() => setAudioOk(audioReady()), 250)
-    setSound((s) => !s)
-  }
 
   if (error) {
     return (
@@ -215,8 +202,7 @@ export default function SimulationPage() {
         <div className="sim-brand">
           <span className="sim-live" aria-hidden />
           <div>
-            <h1>Üs Koruma · Canlı Sinyal</h1>
-            <small>Gerçek 40 olayın önceden hesaplanmış sonuçları, hızlandırılmış oynatım (simülasyon)</small>
+            <h1>TUNGA · Canlı Sinyal</h1>
           </div>
         </div>
         {session ? (
@@ -273,7 +259,7 @@ export default function SimulationPage() {
                 <p className="sim-summary">{ev.summary}</p>
                 <div className="sim-explain">
                   <div className="sim-explain-label">
-                    {ev.explanation_source === 'llm' ? `Yapay zekâ değerlendirmesi · ${ev.explanation_model}` : 'Sistem değerlendirmesi · kural tabanlı'}
+                    {ev.explanation_source === 'llm' ? 'Yapay zekâ değerlendirmesi' : 'Sistem değerlendirmesi'}
                   </div>
                   <p>{ev.explanation}</p>
                 </div>
@@ -309,15 +295,6 @@ export default function SimulationPage() {
             <span className="low">{tally.LOW} düşük</span>
           </div>
 
-          <div className="sim-alerts">
-            <button className={`sim-btn ${sound ? 'on-soft' : ''}`} onClick={toggleSound} aria-pressed={sound}>
-              {sound ? 'Ses açık' : 'Ses kapalı'}
-            </button>
-            <span className={`chip ${notif === 'on' ? 'ok' : ''}`}>Bildirim: {notif === 'on' ? 'açık' : notif === 'unsupported' ? 'yok' : 'izin yok'}</span>
-            <span className={`chip ${vibrationSupported() ? 'ok' : ''}`}>Titreşim: {vibrationSupported() ? 'var' : 'yok'}</span>
-            {isAndroid() && <span className={`chip ${torch === 'on' ? 'ok' : ''}`}>Flaş: {torch === 'on' ? 'açık' : 'yok'}</span>}
-            {sound && !audioOk && <small className="muted">Sesin çalması için ekrana bir kez dokunun.</small>}
-          </div>
         </section>
 
         <section className="sim-mapwrap" aria-label="Harita">

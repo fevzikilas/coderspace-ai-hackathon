@@ -21,13 +21,17 @@ export default function LoginModal({ onClose }: { onClose: () => void }) {
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const userRef = useRef<HTMLInputElement>(null)
+  // Arkadaki simülasyon her 100 ms'de yeniden çizilir ve onClose her seferinde yeni bir fonksiyon olur: effect'i ona bağlamak
+  // odağı her çizimde kullanıcı adı kutusuna geri çekiyordu (şifre yazılamıyordu). Odak yalnızca açılışta; onClose ref'ten okunur.
+  const onCloseRef = useRef(onClose)
+  onCloseRef.current = onClose
 
   useEffect(() => {
     userRef.current?.focus()
-    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose()
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onCloseRef.current()
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [onClose])
+  }, [])
 
   const submit = async (e: FormEvent) => {
     e.preventDefault()

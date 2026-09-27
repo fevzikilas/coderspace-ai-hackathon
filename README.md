@@ -261,7 +261,7 @@ LLM kullanmaz. Gerçek 40 olayın DB'de **önceden hesaplanmış kural tabanlı*
 oynatır. Her olay iki aşamalıdır (Normal hızda olay başına 7–8 s; "Hızlı" 3 kat): önce ~3 s **analiz** (araçlar tek tek kutulanır → hareket incelenir →
 saha raporları karşılaştırılır → risk hesaplanır; kutular ve harita bu sırada nötr), sonra **sonuç**: Türkçe risk rozeti, sade tek cümle ve ortadaki kutuda
 gerekçe metni. Gerekçe, aynı görüntü için DB'de aynı risk seviyesinde bir **LLM değerlendirmesi varsa onun metni** (şu an 10 olay), yoksa kural motorunun
-gerekçesidir; kutu kaynağı yazar. Harita (Leaflet/OSM): üs ve 1.5 km sınırı, bölge merkezleri, görüntü alanı, araçlar + son 10 dk izleri, en yakın yaklaşan
+gerekçesidir; kutu yalnızca "Yapay zekâ değerlendirmesi" / "Sistem değerlendirmesi" yazar (model adı gösterilmez, veride de yok). Harita (Leaflet/OSM): üs ve 1.5 km sınırı, bölge merkezleri, görüntü alanı, araçlar + son 10 dk izleri, en yakın yaklaşan
 araçtan üsse "~N dk" çizgisi. Oynat/duraklat, önceki/sonraki (← → Boşluk), olay şeridi; sona gelince baştan başlar.
 
 Veriyi yenilemek (yalnızca Postgres + `data/REAL/zones.json`/`tracks.csv` okunur, LLM çağrısı yok; Pillow varsa görüntüler 1280 px'e küçültülür):
@@ -272,10 +272,10 @@ python scripts/export_simulation_data.py            # sonra web-ui imajını yen
 
 **Risk açıklandığında (hepsi best-effort):**
 - **Ekran çerçevesi:** tüm ekranın kenarı risk rengine döner (kırmızı / turuncu / yeşil; analiz sırasında mavi); YÜKSEK RİSK'te birkaç kez nabız atar. Bilgi banner'da değil ortadaki kutudadır.
-- **Ses:** YÜKSEK RİSK'te WebAudio alarmı ("Ses açık/kapalı" düğmesi). Tarayıcılar sesi ancak kullanıcı sayfaya bir kez dokunduktan/tıkladıktan sonra çalar.
+- **Ses:** YÜKSEK RİSK'te WebAudio alarmı (her zaman açık; sayfada ses/bildirim ayarı yoktur). Tarayıcılar sesi ancak kullanıcı sayfaya bir kez dokunduktan/tıkladıktan sonra çalar.
 - **Titreşim:** `navigator.vibrate()` — Android Chrome'da çalışır (bir kez etkileşim gerekir). **iOS'ta çalışmaz**: iOS'taki hiçbir tarayıcı Vibration API'yi desteklemez.
 - **Flaş:** standart web API'si yok; yalnızca **Android**'de sayfa açılır açılmaz arka kamera izni istenir ve `torch` kısıtı denenir (bazı Android + Chrome
-  kombinasyonlarında çalışır, **iOS Safari'de çalışmaz**; masaüstünde kamera hiç istenmez). Destek yoksa kamera kapatılır, "Flaş: yok" yazar, hata verilmez.
+  kombinasyonlarında çalışır, **iOS Safari'de çalışmaz**; masaüstünde kamera hiç istenmez). Destek yoksa kamera kapatılır, sessizce pas geçilir.
 - **Bildirim izni** sayfa açılınca istenir (Safari/Firefox gibi yalnızca kullanıcı hareketiyle izin verenlerde ilk dokunuşta yeniden). Sistem bildirimi yalnızca
   sekme **arka plandayken** gösterilir (ön plandayken çerçeve + ses yeterli). Bildirim ve kamera **yalnızca güvenli bağlamda** (HTTPS — ör. Cloudflare tüneli — veya
   `localhost`) vardır; Android Chrome `new Notification()` desteklemediğinden (service worker gerekir) orada sistem bildirimi çıkmaz.

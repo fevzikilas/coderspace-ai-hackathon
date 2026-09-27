@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-26T23:40:04Z",
+ "generated_at": "2026-09-26T23:48:15Z",
  "note": "Önceden hesaplanmış kural tabanlı sonuçlar (LLM kullanılmadı). Canlı sisteme bağlı değildir.",
  "base": {
   "name": "Üs",
@@ -76,7 +76,6 @@
    "rationale": "2 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 5 nesne izsiz (2 car, 3 van): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. Hiçbir araç üsse yaklaşmıyor. Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: MEDIUM.",
    "explanation": "2 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 5 nesne izsiz (2 otomobil, 3 kamyonet): hareket verisi YOK — risk kademesine katılmadı, DÜŞÜK/zararsız varsayılmadı. Hiçbir araç üsse yaklaşmıyor. Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: ORTA.",
    "explanation_source": "rule-based",
-   "explanation_model": null,
    "footprint": [
     [
      39.940508,
@@ -262,7 +261,6 @@
    "rationale": "4 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 4 nesne izsiz (2 car, 1 truck, 1 van): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 2 araç üsse yaklaşıyor (en yakını T0134: 3603 m, 3.2 m/s, tahmini varış ~10.8 dk). Patern: LOITERING. Saha raporları kendi verimizle karşılaştırıldı (3 uyumlu, 0 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: HIGH.",
    "explanation": "4 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 4 nesne izsiz (2 otomobil, 1 kamyon, 1 kamyonet): hareket verisi YOK — risk kademesine katılmadı, DÜŞÜK/zararsız varsayılmadı. 2 araç üsse yaklaşıyor (en yakını T0134: 3603 m, 3.2 m/s, tahmini varış ~10.8 dk). Patern: bekleme. Saha raporları kendi verimizle karşılaştırıldı (3 uyumlu, 0 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: YÜKSEK.",
    "explanation_source": "rule-based",
-   "explanation_model": null,
    "footprint": [
     [
      39.921192,
@@ -490,7 +488,6 @@
    "rationale": "8 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 8 nesne izsiz (8 car): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 1 araç üsse yaklaşıyor (en yakını T0079: 2568 m, 4.5 m/s, tahmini varış ~4.0 dk). Patern: LOITERING. Saha raporları kendi verimizle karşılaştırıldı (3 uyumlu, 0 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: HIGH.",
    "explanation": "8 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 8 nesne izsiz (8 otomobil): hareket verisi YOK — risk kademesine katılmadı, DÜŞÜK/zararsız varsayılmadı. 1 araç üsse yaklaşıyor (en yakını T0079: 2568 m, 4.5 m/s, tahmini varış ~4.0 dk). Patern: bekleme. Saha raporları kendi verimizle karşılaştırıldı (3 uyumlu, 0 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: YÜKSEK.",
    "explanation_source": "rule-based",
-   "explanation_model": null,
    "footprint": [
     [
      39.909646,
@@ -899,7 +896,6 @@
    "rationale": "5 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 1 nesne izsiz (1 bus): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 1 araç üsse yaklaşıyor (en yakını T0070: 2661 m, 2.3 m/s, tahmini varış ~9.6 dk). Patern: LOITERING. Saha raporları kendi verimizle karşılaştırıldı (2 uyumlu, 2 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: HIGH.",
    "explanation": "5 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 1 nesne izsiz (1 otobüs): hareket verisi YOK — risk kademesine katılmadı, DÜŞÜK/zararsız varsayılmadı. 1 araç üsse yaklaşıyor (en yakını T0070: 2661 m, 2.3 m/s, tahmini varış ~9.6 dk). Patern: bekleme. Saha raporları kendi verimizle karşılaştırıldı (2 uyumlu, 2 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: YÜKSEK.",
    "explanation_source": "rule-based",
-   "explanation_model": null,
    "footprint": [
     [
      39.92531,
@@ -1109,7 +1105,6 @@
    "rationale": "6 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 3 nesne izsiz (2 car, 1 van): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 3 araç üsse yaklaşıyor (en yakını T0095: 1803 m, 5.2 m/s, tahmini varış ~1.0 dk). Patern: DIRECT_APPROACH. Saha raporları kendi verimizle karşılaştırıldı (2 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: HIGH.",
    "explanation": "Kendi hareket verisinde T0095 (kamyon, 5.19 m/s) ve T0102 (otomobil, 2.82 m/s) doğrudan yaklaşma paterniyle üsse doğru yaklaşıyor; tahmini varış sırasıyla 1.0 ve 2.0 dakika (≤10 dk kuralı). T0091 de yaklaşıyor ancak tahmini varış 4.7 dk. 3 izsiz nesne (2 otomobil, 1 kamyonet) hareket verisi YOK, risk kademesine katılmadı. Kafile tespit edilmedi; doğrudan yaklaşma + tahmini varış ≤10 dk = YÜKSEK. Raporlar: 2 uyumlu (varlık onayı), 1 uyumsuz (T0109 yaklaşım iddiası çelişiyor), 17 ilgisiz; istihbarat boş.",
    "explanation_source": "llm",
-   "explanation_model": "nemotron-3-ultra-550b-a55b",
    "footprint": [
     [
      39.910284,
@@ -1380,7 +1375,6 @@
    "rationale": "6 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 3 nesne izsiz (2 bus, 1 car): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. Hiçbir araç üsse yaklaşmıyor. Patern: LOITERING. Saha raporları kendi verimizle karşılaştırıldı (1 uyumlu, 2 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: MEDIUM.",
    "explanation": "6 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 3 nesne izsiz (2 otobüs, 1 otomobil): hareket verisi YOK — risk kademesine katılmadı, DÜŞÜK/zararsız varsayılmadı. Hiçbir araç üsse yaklaşmıyor. Patern: bekleme. Saha raporları kendi verimizle karşılaştırıldı (1 uyumlu, 2 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: ORTA.",
    "explanation_source": "rule-based",
-   "explanation_model": null,
    "footprint": [
     [
      39.930833,
@@ -1651,7 +1645,6 @@
    "rationale": "5 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 1 nesne izsiz (1 car): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 2 araç üsse yaklaşıyor (en yakını T0017: 5398 m, 2.2 m/s, tahmini varış ~36.3 dk). Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: LOW.",
    "explanation": "5 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 1 nesne izsiz (1 otomobil): hareket verisi YOK — risk kademesine katılmadı, DÜŞÜK/zararsız varsayılmadı. 2 araç üsse yaklaşıyor (en yakını T0017: 5398 m, 2.2 m/s, tahmini varış ~36.3 dk). Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: DÜŞÜK.",
    "explanation_source": "rule-based",
-   "explanation_model": null,
    "footprint": [
     [
      39.933505,
@@ -1860,7 +1853,6 @@
    "rationale": "7 araç için kendi tespit ve hareket verisi değerlendirildi. 4 araç üsse yaklaşıyor (en yakını T0165: 1655 m, 4.8 m/s, tahmini varış ~0.6 dk). Patern: DIRECT_APPROACH + LOITERING. Saha raporları kendi verimizle karşılaştırıldı (3 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: HIGH.",
    "explanation": "Kendi hareket verisinde 4 araç (T0006, T0089, T0151, T0165) üsse doğrudan yaklaşıyor; T0006 ve T0165 doğrudan yaklaşma paterniyle tahmini varış 0.5-0.6 dk, mesafe ~1.65-1.69 km (üs yarıçapı 1.5 km). Kafile tespit edilmediği için kademeyi yükseltmedi; ancak çoklu doğrudan yaklaşma ve çok kısa tahmini varış YÜKSEK seviyesini gerektirir. İstihbarat boş; raporlar kısmen uyumlu (3 uyumlu, 1 uyumsuz) ama kimlik/dostluk iddiaları doğrulanamaz ve riski düşürmez.",
    "explanation_source": "llm",
-   "explanation_model": "nemotron-3-ultra-550b-a55b",
    "footprint": [
     [
      39.907167,
@@ -2112,7 +2104,6 @@
    "rationale": "4 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 3 nesne izsiz (3 car): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 2 araç üsse yaklaşıyor (en yakını T0163: 1694 m, 2.8 m/s, tahmini varış ~1.1 dk). Patern: LOITERING. Saha raporları kendi verimizle karşılaştırıldı (2 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: HIGH.",
    "explanation": "4 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 3 nesne izsiz (3 otomobil): hareket verisi YOK — risk kademesine katılmadı, DÜŞÜK/zararsız varsayılmadı. 2 araç üsse yaklaşıyor (en yakını T0163: 1694 m, 2.8 m/s, tahmini varış ~1.1 dk). Patern: bekleme. Saha raporları kendi verimizle karşılaştırıldı (2 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: YÜKSEK.",
    "explanation_source": "rule-based",
-   "explanation_model": null,
    "footprint": [
     [
      39.912509,
@@ -2325,7 +2316,6 @@
    "rationale": "7 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 2 nesne izsiz (1 car, 1 van): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 5 araç üsse yaklaşıyor (en yakını T0090: 3564 m, 5.0 m/s, tahmini varış ~7.8 dk). Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 2 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: HIGH.",
    "explanation": "Kendi hareket verisi: 7 izli araçtan 5'i (T0090, T0104, T0144, T0136, T0112) üsse doğrudan yaklaşıyor (yön sapması 27–36°). T0090 ve T0104 tahmini varış ≤ 10 dk (7.8 ve 8.3 dk), mesafe ~3.5 km; kurala göre doğrudan yaklaşma + tahmini varış ≤ 10 dk = YÜKSEK. Patern rastgele, kafile yok; kural uygulanmadı. İstihbarat boş; raporlar (18) çoğu ilgisiz, 2 tanesi (r050, r025) durdurulmuş kamyon iddiasıyla KENDİ verimizle UYUMSUZ (araçlar hareket halinde). 2 izsiz nesne (otomobil, kamyonet) hareket verisi YOK, risk değerlendirmesine dahil edilmedi.",
    "explanation_source": "llm",
-   "explanation_model": "nemotron-3-ultra-550b-a55b",
    "footprint": [
     [
      39.928509,
@@ -2609,7 +2599,6 @@
    "rationale": "5 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 1 nesne izsiz (1 van): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 1 araç üsse yaklaşıyor (en yakını T0219: 2546 m, 5.0 m/s, tahmini varış ~4.8 dk). Patern: LOITERING. Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: HIGH.",
    "explanation": "T0219 aracı üse doğrudan yaklaşıyor, tahmini varış 4.8 dakika (≤10 dk eşiği) ve kapanma hızı 3.63 m/s ile YÜKSEK kriterini karşılıyor. Diğer 4 izli araç (T0003, T0015, T0051, T0118) uzaklaşıyor veya duruyor; T0051 bekleme paterni gösteriyor ama 2.6 km mesafede. Kafile tespit edilmedi. 1 izsiz kamyonet (hareket verisi yok) risk değerlendirmesine dahil edilmedi. İstihbarat boş; 18 rapordan 16'sı ilgisiz, 1 uyumsuz (kamyon iddiası tespitlerimizle çelişiyor), 1 doğrulanamadı — raporlar karar değiştirmez.",
    "explanation_source": "llm",
-   "explanation_model": "nemotron-3-ultra-550b-a55b",
    "footprint": [
     [
      39.92542,
@@ -2819,7 +2808,6 @@
    "rationale": "3 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 1 nesne izsiz (1 car): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. Hiçbir araç üsse yaklaşmıyor. Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 2 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: LOW.",
    "explanation": "3 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 1 nesne izsiz (1 otomobil): hareket verisi YOK — risk kademesine katılmadı, DÜŞÜK/zararsız varsayılmadı. Hiçbir araç üsse yaklaşmıyor. Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 2 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: DÜŞÜK.",
    "explanation_source": "rule-based",
-   "explanation_model": null,
    "footprint": [
     [
      39.891657,
@@ -2970,7 +2958,6 @@
    "rationale": "5 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 2 nesne izsiz (1 car, 1 van): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 2 araç üsse yaklaşıyor (en yakını T0168: 1660 m, 4.1 m/s, tahmini varış ~0.6 dk). Patern: DIRECT_APPROACH + LOITERING. Saha raporları kendi verimizle karşılaştırıldı (1 uyumlu, 0 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: HIGH.",
    "explanation": "Belirleyici veri kendi hareket+patern verimizdir: T0168 doğrudan üsse 4,14 m/s ile yaklaşıyor, tahmini varış ~40 saniye ve mesafe ~1,66 km; bu, doğrudan yaklaşma + tahmini varış ≤ 10 dk kriteriyle YÜKSEK kademesini gerektirir. T0185 de yaklaşmakta (tahmini varış ~1,5 dk), T0154 ise üs sınırına yakın bekleme (bekleme) paterni göstermektedir; kafile tespit edilmediği için patern otomatik yükseltme kuralı uygulanmadı. T0172 ve T0179 uzaklaşmaktadır; 2 izsiz nesne (1 otomobil, 1 kamyonet) hareket verisi olmadığından kademelemeye katılmadı ve DÜŞÜK sayılmadı. R044 resmî rapor T0168'in konum, tip ve hareketi açısından tespitimizle uyumlu ancak 'dost unsur' kimlik iddiası kendi verimizle doğrulanamadığından riski düşürmedi; istihbarat/raporlar yalnızca destekleyici değerlendirildi.",
    "explanation_source": "llm",
-   "explanation_model": "glm-5.3-flash",
    "footprint": [
     [
      39.93141,
@@ -3195,7 +3182,6 @@
    "rationale": "8 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 1 nesne izsiz (1 car): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 4 araç üsse yaklaşıyor (en yakını T0098: 4359 m, 3.5 m/s, tahmini varış ~15.5 dk). Saha raporları kendi verimizle karşılaştırıldı (2 uyumlu, 0 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: MEDIUM.",
    "explanation": "8 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 1 nesne izsiz (1 otomobil): hareket verisi YOK — risk kademesine katılmadı, DÜŞÜK/zararsız varsayılmadı. 4 araç üsse yaklaşıyor (en yakını T0098: 4359 m, 3.5 m/s, tahmini varış ~15.5 dk). Saha raporları kendi verimizle karşılaştırıldı (2 uyumlu, 0 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: ORTA.",
    "explanation_source": "rule-based",
-   "explanation_model": null,
    "footprint": [
     [
      39.892013,
@@ -3492,7 +3478,6 @@
    "rationale": "5 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 2 nesne izsiz (2 car): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 1 araç üsse yaklaşıyor (en yakını T0042: 2716 m, 2.1 m/s, tahmini varış ~11.7 dk). Saha raporları kendi verimizle karşılaştırıldı (1 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: MEDIUM.",
    "explanation": "5 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 2 nesne izsiz (2 otomobil): hareket verisi YOK — risk kademesine katılmadı, DÜŞÜK/zararsız varsayılmadı. 1 araç üsse yaklaşıyor (en yakını T0042: 2716 m, 2.1 m/s, tahmini varış ~11.7 dk). Saha raporları kendi verimizle karşılaştırıldı (1 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: ORTA.",
    "explanation_source": "rule-based",
-   "explanation_model": null,
    "footprint": [
     [
      39.898513,
@@ -3718,7 +3703,6 @@
    "rationale": "5 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 5 nesne izsiz (1 bus, 1 car, 3 truck): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 3 araç üsse yaklaşıyor (en yakını T0028: 2612 m, 3.6 m/s, tahmini varış ~5.2 dk). Patern: DIRECT_APPROACH. Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: HIGH.",
    "explanation": "5 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 5 nesne izsiz (1 otobüs, 1 otomobil, 3 kamyon): hareket verisi YOK — risk kademesine katılmadı, DÜŞÜK/zararsız varsayılmadı. 3 araç üsse yaklaşıyor (en yakını T0028: 2612 m, 3.6 m/s, tahmini varış ~5.2 dk). Patern: doğrudan yaklaşma. Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: YÜKSEK.",
    "explanation_source": "rule-based",
-   "explanation_model": null,
    "footprint": [
     [
      39.945679,
@@ -3992,7 +3976,6 @@
    "rationale": "5 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 1 nesne izsiz (1 car): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 2 araç üsse yaklaşıyor (en yakını T0137: 3648 m, 3.6 m/s, tahmini varış ~9.8 dk). Patern: DIRECT_APPROACH + LOITERING. Saha raporları kendi verimizle karşılaştırıldı (1 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: HIGH.",
    "explanation": "5 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 1 nesne izsiz (1 otomobil): hareket verisi YOK — risk kademesine katılmadı, DÜŞÜK/zararsız varsayılmadı. 2 araç üsse yaklaşıyor (en yakını T0137: 3648 m, 3.6 m/s, tahmini varış ~9.8 dk). Patern: doğrudan yaklaşma + bekleme. Saha raporları kendi verimizle karşılaştırıldı (1 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: YÜKSEK.",
    "explanation_source": "rule-based",
-   "explanation_model": null,
    "footprint": [
     [
      39.954552,
@@ -4202,7 +4185,6 @@
    "rationale": "4 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 2 nesne izsiz (2 car): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 3 araç üsse yaklaşıyor (en yakını T0159: 3482 m, 5.1 m/s, tahmini varış ~7.3 dk). Patern: LOITERING. Saha raporları kendi verimizle karşılaştırıldı (1 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: HIGH.",
    "explanation": "4 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 2 nesne izsiz (2 otomobil): hareket verisi YOK — risk kademesine katılmadı, DÜŞÜK/zararsız varsayılmadı. 3 araç üsse yaklaşıyor (en yakını T0159: 3482 m, 5.1 m/s, tahmini varış ~7.3 dk). Patern: bekleme. Saha raporları kendi verimizle karşılaştırıldı (1 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: YÜKSEK.",
    "explanation_source": "rule-based",
-   "explanation_model": null,
    "footprint": [
     [
      39.891318,
@@ -4399,7 +4381,6 @@
    "rationale": "6 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 3 nesne izsiz (2 car, 1 van): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 2 araç üsse yaklaşıyor (en yakını T0186: 4462 m, 3.3 m/s, tahmini varış ~14.9 dk). Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 2 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: MEDIUM.",
    "explanation": "6 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 3 nesne izsiz (2 otomobil, 1 kamyonet): hareket verisi YOK — risk kademesine katılmadı, DÜŞÜK/zararsız varsayılmadı. 2 araç üsse yaklaşıyor (en yakını T0186: 4462 m, 3.3 m/s, tahmini varış ~14.9 dk). Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 2 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: ORTA.",
    "explanation_source": "rule-based",
-   "explanation_model": null,
    "footprint": [
     [
      39.950596,
@@ -4670,7 +4651,6 @@
    "rationale": "3 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 1 nesne izsiz (1 car): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 2 araç üsse yaklaşıyor (en yakını T0007: 3456 m, 2.8 m/s, tahmini varış ~11.6 dk). Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 2 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: MEDIUM.",
    "explanation": "3 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 1 nesne izsiz (1 otomobil): hareket verisi YOK — risk kademesine katılmadı, DÜŞÜK/zararsız varsayılmadı. 2 araç üsse yaklaşıyor (en yakını T0007: 3456 m, 2.8 m/s, tahmini varış ~11.6 dk). Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 2 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: ORTA.",
    "explanation_source": "rule-based",
-   "explanation_model": null,
    "footprint": [
     [
      39.94706,
@@ -4822,7 +4802,6 @@
    "rationale": "4 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 5 nesne izsiz (4 car, 1 van): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 1 araç üsse yaklaşıyor (en yakını T0183: 1742 m, 4.7 m/s, tahmini varış ~1.1 dk). Patern: DIRECT_APPROACH + LOITERING. Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 2 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: HIGH.",
    "explanation": "T0183 aracı üse doğrudan yaklaşıyor (doğrudan yaklaşma), tahmini varış ~1 dakika, kapanma hızı 3.77 m/s, mesafe ~1.7 km. Diğer izli araçlar (T0047, T0115, T0182) hareketsiz veya uzaklaşıyor, kafile paterni yok. 5 izsiz nesne (4 otomobil, 1 kamyonet) hareket verisi olmadığı için risk değerlendirmesine dahil edilmedi. Saha raporları (35 adet) çoğunlukla ilgisiz veya uyumsuz (kamyon vs otomobil/kamyonet, sayı uyuşmazlığı), istihbarat boş. Kendi hareket+patern verisi belirleyici; YÜKSEK kriteri (doğrudan yaklaşma + tahmini varış ≤ 10 dk) sağlandı.",
    "explanation_source": "llm",
-   "explanation_model": "nemotron-3-ultra-550b-a55b",
    "footprint": [
     [
      39.93778,
@@ -5067,7 +5046,6 @@
    "rationale": "4 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 1 nesne izsiz (1 car): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 1 araç üsse yaklaşıyor (en yakını T0106: 4431 m, 3.0 m/s, tahmini varış ~16.3 dk). Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: MEDIUM.",
    "explanation": "4 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 1 nesne izsiz (1 otomobil): hareket verisi YOK — risk kademesine katılmadı, DÜŞÜK/zararsız varsayılmadı. 1 araç üsse yaklaşıyor (en yakını T0106: 4431 m, 3.0 m/s, tahmini varış ~16.3 dk). Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: ORTA.",
    "explanation_source": "rule-based",
-   "explanation_model": null,
    "footprint": [
     [
      39.913745,
@@ -5247,7 +5225,6 @@
    "rationale": "3 araç için kendi tespit ve hareket verisi değerlendirildi. 2 araç üsse yaklaşıyor (en yakını T0069: 1553 m, 6.4 m/s, tahmini varış ~0.1 dk). Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: HIGH.",
    "explanation": "3 araç için kendi tespit ve hareket verisi değerlendirildi. 2 araç üsse yaklaşıyor (en yakını T0069: 1553 m, 6.4 m/s, tahmini varış ~0.1 dk). Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: YÜKSEK.",
    "explanation_source": "rule-based",
-   "explanation_model": null,
    "footprint": [
     [
      39.921088,
@@ -5383,7 +5360,6 @@
    "rationale": "4 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 1 nesne izsiz (1 bus): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 1 araç üsse yaklaşıyor (en yakını T0145: 4370 m, 3.9 m/s, tahmini varış ~12.3 dk). Patern: LOITERING. Saha raporları kendi verimizle karşılaştırıldı (1 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: MEDIUM.",
    "explanation": "T0145 aracı (otomobil) 3.9 m/s hızıyla üse doğrudan yaklaşıyor (yön sapması 0°), tahmini varış 12.3 dakika ve mesafe 4.37 km — ORTA eşiğine (yaklaşıyor, tahmini varış ≤30 dk / ≤5 km) uyar. T0053 ve T0180 bekleme paterniyle (güven 0.93) üs çevresinde hareketsiz bekliyor. Kafile tespit edilmediği için kademeyi yükseltme yok. İstihbarat boş; raporların 25'i ilgisiz, 1 uyumlu (4 kamyon), 1 uyumsuz (1 kamyon vs 2-5 araç), 2 doğrulanamaz. İz kaydısız 1 otobüs hareket verisi sağlamıyor, risk değerlendirmesine dahil edilmedi.",
    "explanation_source": "llm",
-   "explanation_model": "nemotron-3-ultra-550b-a55b",
    "footprint": [
     [
      39.961505,
@@ -5564,7 +5540,6 @@
    "rationale": "8 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 2 nesne izsiz (1 car, 1 van): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 4 araç üsse yaklaşıyor (en yakını T0088: 4442 m, 3.8 m/s, tahmini varış ~18.8 dk). Patern: LOITERING. Saha raporları kendi verimizle karşılaştırıldı (2 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: MEDIUM.",
    "explanation": "8 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 2 nesne izsiz (1 otomobil, 1 kamyonet): hareket verisi YOK — risk kademesine katılmadı, DÜŞÜK/zararsız varsayılmadı. 4 araç üsse yaklaşıyor (en yakını T0088: 4442 m, 3.8 m/s, tahmini varış ~18.8 dk). Patern: bekleme. Saha raporları kendi verimizle karşılaştırıldı (2 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: ORTA.",
    "explanation_source": "rule-based",
-   "explanation_model": null,
    "footprint": [
     [
      39.944816,
@@ -5876,7 +5851,6 @@
    "rationale": "6 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 1 nesne izsiz (1 car): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 4 araç üsse yaklaşıyor (en yakını T0092: 1601 m, 2.6 m/s, tahmini varış ~1.1 dk). Patern: DIRECT_APPROACH. Saha raporları kendi verimizle karşılaştırıldı (2 uyumlu, 0 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: HIGH.",
    "explanation": "6 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 1 nesne izsiz (1 otomobil): hareket verisi YOK — risk kademesine katılmadı, DÜŞÜK/zararsız varsayılmadı. 4 araç üsse yaklaşıyor (en yakını T0092: 1601 m, 2.6 m/s, tahmini varış ~1.1 dk). Patern: doğrudan yaklaşma. Saha raporları kendi verimizle karşılaştırıldı (2 uyumlu, 0 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: YÜKSEK.",
    "explanation_source": "rule-based",
-   "explanation_model": null,
    "footprint": [
     [
      39.925651,
@@ -6115,7 +6089,6 @@
    "rationale": "6 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 1 nesne izsiz (1 car): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 3 araç üsse yaklaşıyor (en yakını T0162: 4449 m, 3.4 m/s, tahmini varış ~14.4 dk). Patern: LOITERING. Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: MEDIUM.",
    "explanation": "6 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 1 nesne izsiz (1 otomobil): hareket verisi YOK — risk kademesine katılmadı, DÜŞÜK/zararsız varsayılmadı. 3 araç üsse yaklaşıyor (en yakını T0162: 4449 m, 3.4 m/s, tahmini varış ~14.4 dk). Patern: bekleme. Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: ORTA.",
    "explanation_source": "rule-based",
-   "explanation_model": null,
    "footprint": [
     [
      39.888318,
@@ -6354,7 +6327,6 @@
    "rationale": "4 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 2 nesne izsiz (1 car, 1 van): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 1 araç üsse yaklaşıyor (en yakını T0194: 3489 m, 3.9 m/s, tahmini varış ~11.2 dk). Patern: LOITERING. Saha raporları kendi verimizle karşılaştırıldı (1 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: MEDIUM.",
    "explanation": "T0194 doğrudan yaklaşıyor (tahmini varış 11.2 dk, 3.5 km) YÜKSEK eşiğinin (10 dk) hemen üzerinde; T0128 üs çevresinde 3.5 km'de bekleme (60+ dk hareketsiz). Kafile tespit edilmedi. Raporlar T0128'ın durmasını destekliyor (1 uyumlu), kamyon iddiası uyumsuz. İzsiz 2 nesne hareket verisi yok, risk hesaplamasına dahil edilmedi.",
    "explanation_source": "llm",
-   "explanation_model": "nemotron-3-ultra-550b-a55b",
    "footprint": [
     [
      39.895169,
@@ -6551,7 +6523,6 @@
    "rationale": "7 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 3 nesne izsiz (2 car, 1 truck): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 2 araç üsse yaklaşıyor (en yakını T0149: 4329 m, 2.9 m/s, tahmini varış ~19.3 dk). Saha raporları kendi verimizle karşılaştırıldı (1 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: MEDIUM.",
    "explanation": "7 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 3 nesne izsiz (2 otomobil, 1 kamyon): hareket verisi YOK — risk kademesine katılmadı, DÜŞÜK/zararsız varsayılmadı. 2 araç üsse yaklaşıyor (en yakını T0149: 4329 m, 2.9 m/s, tahmini varış ~19.3 dk). Saha raporları kendi verimizle karşılaştırıldı (1 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: ORTA.",
    "explanation_source": "rule-based",
-   "explanation_model": null,
    "footprint": [
     [
      39.925815,
@@ -6850,7 +6821,6 @@
    "rationale": "4 araç için kendi tespit ve hareket verisi değerlendirildi. Hiçbir araç üsse yaklaşmıyor. Patern: LOITERING. Saha raporları kendi verimizle karşılaştırıldı (2 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: LOW.",
    "explanation": "Dört araç tümü ~5.4-5.5 km mesafede, üs yarıçapının (1.5 km) çok dışında ve hiçbiri üse yaklaşmıyor. İki araç (T0021, T0126) bekleme paterni gösteriyor ancak bu mesafede üs için doğrudan tehdit oluşturmuyor; kafile tespit edilmediği için kademeyi yükseltme kuralı devreye girmiyor. Saha raporları ağır araç yok, yalnızca binek araç olduğunu doğruluyor (2 uyumlu rapor). Kendi hareket ve pattern verisi belirleyici; istihbarat/raporlar yalnızca destekleyici.",
    "explanation_source": "llm",
-   "explanation_model": "nemotron-3-ultra-550b-a55b",
    "footprint": [
     [
      39.953273,
@@ -7015,7 +6985,6 @@
    "rationale": "5 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 1 nesne izsiz (1 truck): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 3 araç üsse yaklaşıyor (en yakını T0213: 5406 m, 2.8 m/s, tahmini varış ~28.7 dk). Patern: LOITERING. Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 3 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: MEDIUM.",
    "explanation": "5 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 1 nesne izsiz (1 kamyon): hareket verisi YOK — risk kademesine katılmadı, DÜŞÜK/zararsız varsayılmadı. 3 araç üsse yaklaşıyor (en yakını T0213: 5406 m, 2.8 m/s, tahmini varış ~28.7 dk). Patern: bekleme. Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 3 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: ORTA.",
    "explanation_source": "rule-based",
-   "explanation_model": null,
    "footprint": [
     [
      39.87347,
@@ -7224,7 +7193,6 @@
    "rationale": "6 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 5 nesne izsiz (3 car, 2 van): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 2 araç üsse yaklaşıyor (en yakını T0177: 3434 m, 4.4 m/s, tahmini varış ~9.2 dk). Patern: LOITERING. Saha raporları kendi verimizle karşılaştırıldı (1 uyumlu, 0 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: HIGH.",
    "explanation": "6 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 5 nesne izsiz (3 otomobil, 2 kamyonet): hareket verisi YOK — risk kademesine katılmadı, DÜŞÜK/zararsız varsayılmadı. 2 araç üsse yaklaşıyor (en yakını T0177: 3434 m, 4.4 m/s, tahmini varış ~9.2 dk). Patern: bekleme. Saha raporları kendi verimizle karşılaştırıldı (1 uyumlu, 0 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: YÜKSEK.",
    "explanation_source": "rule-based",
-   "explanation_model": null,
    "footprint": [
     [
      39.943193,
@@ -7527,7 +7495,6 @@
    "rationale": "5 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 2 nesne izsiz (2 car): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 1 araç üsse yaklaşıyor (en yakını T0121: 2676 m, 2.9 m/s, tahmini varış ~11.6 dk). Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: MEDIUM.",
    "explanation": "Kendi hareket verisinde 5 izli araçtan sadece T0121 üsse yaklaşıyor (tahmini varış 11.6 dk, mesafe 2.7 km, kapanma hızı 1.69 m/s). Diğer 4 araç uzaklaşıyor. Patern rastgele, kafile yok. İstihbarat boş; 48 rapordan 45'i ilgisiz, 1'i (r134) bölge sakinliği iddiasıyla kendi yaklaşma verimizle uyumsuz, 2'si eski/doğrulanamaz. 2 izsiz araç hareket verisi yok, risk düşürmez. Tek yaklaşan araç tahmini varış 10-30 dk aralığında → ORTA.",
    "explanation_source": "llm",
-   "explanation_model": "nemotron-3-ultra-550b-a55b",
    "footprint": [
     [
      39.935015,
@@ -7753,7 +7720,6 @@
    "rationale": "3 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 1 nesne izsiz (1 car): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. Hiçbir araç üsse yaklaşmıyor. Patern: LOITERING. Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 2 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: LOW.",
    "explanation": "3 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 1 nesne izsiz (1 otomobil): hareket verisi YOK — risk kademesine katılmadı, DÜŞÜK/zararsız varsayılmadı. Hiçbir araç üsse yaklaşmıyor. Patern: bekleme. Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 2 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: DÜŞÜK.",
    "explanation_source": "rule-based",
-   "explanation_model": null,
    "footprint": [
     [
      39.970529,
@@ -7904,7 +7870,6 @@
    "rationale": "3 araç için kendi tespit ve hareket verisi değerlendirildi. 2 araç üsse yaklaşıyor (en yakını T0031: 2684 m, 4.1 m/s, tahmini varış ~9.4 dk). Saha raporları kendi verimizle karşılaştırıldı (1 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: HIGH.",
    "explanation": "3 araç için kendi tespit ve hareket verisi değerlendirildi. 2 araç üsse yaklaşıyor (en yakını T0031: 2684 m, 4.1 m/s, tahmini varış ~9.4 dk). Saha raporları kendi verimizle karşılaştırıldı (1 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: YÜKSEK.",
    "explanation_source": "rule-based",
-   "explanation_model": null,
    "footprint": [
     [
      39.901901,
@@ -8040,7 +8005,6 @@
    "rationale": "4 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 5 nesne izsiz (3 car, 2 truck): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 1 araç üsse yaklaşıyor (en yakını T0107: 3556 m, 4.0 m/s, tahmini varış ~10.9 dk). Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 2 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: MEDIUM.",
    "explanation": "4 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 5 nesne izsiz (3 otomobil, 2 kamyon): hareket verisi YOK — risk kademesine katılmadı, DÜŞÜK/zararsız varsayılmadı. 1 araç üsse yaklaşıyor (en yakını T0107: 3556 m, 4.0 m/s, tahmini varış ~10.9 dk). Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 2 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: ORTA.",
    "explanation_source": "rule-based",
-   "explanation_model": null,
    "footprint": [
     [
      39.896338,
@@ -8284,7 +8248,6 @@
    "rationale": "5 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 3 nesne izsiz (2 car, 1 truck): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 1 araç üsse yaklaşıyor (en yakını T0210: 4510 m, 5.0 m/s, tahmini varış ~49.8 dk). Patern: LOITERING. Saha raporları kendi verimizle karşılaştırıldı (2 uyumlu, 0 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: MEDIUM.",
    "explanation": "5 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 3 nesne izsiz (2 otomobil, 1 kamyon): hareket verisi YOK — risk kademesine katılmadı, DÜŞÜK/zararsız varsayılmadı. 1 araç üsse yaklaşıyor (en yakını T0210: 4510 m, 5.0 m/s, tahmini varış ~49.8 dk). Patern: bekleme. Saha raporları kendi verimizle karşılaştırıldı (2 uyumlu, 0 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: ORTA.",
    "explanation_source": "rule-based",
-   "explanation_model": null,
    "footprint": [
     [
      39.881991,
@@ -8526,7 +8489,6 @@
    "rationale": "3 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 4 nesne izsiz (1 bus, 2 car, 1 van): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. Hiçbir araç üsse yaklaşmıyor. Patern: LOITERING. Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 2 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: LOW.",
    "explanation": "3 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 4 nesne izsiz (1 otobüs, 2 otomobil, 1 kamyonet): hareket verisi YOK — risk kademesine katılmadı, DÜŞÜK/zararsız varsayılmadı. Hiçbir araç üsse yaklaşmıyor. Patern: bekleme. Saha raporları kendi verimizle karşılaştırıldı (0 uyumlu, 2 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: DÜŞÜK.",
    "explanation_source": "rule-based",
-   "explanation_model": null,
    "footprint": [
     [
      39.886113,
@@ -8723,7 +8685,6 @@
    "rationale": "7 araç için kendi tespit ve hareket verisi değerlendirildi. 2 araç üsse yaklaşıyor (en yakını T0140: 5206 m, 3.4 m/s, tahmini varış ~25.0 dk). Saha raporları kendi verimizle karşılaştırıldı (2 uyumlu, 0 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: MEDIUM.",
    "explanation": "7 araç için kendi tespit ve hareket verisi değerlendirildi. 2 araç üsse yaklaşıyor (en yakını T0140: 5206 m, 3.4 m/s, tahmini varış ~25.0 dk). Saha raporları kendi verimizle karşılaştırıldı (2 uyumlu, 0 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: ORTA.",
    "explanation_source": "rule-based",
-   "explanation_model": null,
    "footprint": [
     [
      39.919752,
@@ -8975,7 +8936,6 @@
    "rationale": "4 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 3 nesne izsiz (1 bus, 1 car, 1 truck): hareket verisi YOK — risk kademesine katılmadı, LOW/zararsız varsayılmadı. 1 araç üsse yaklaşıyor (en yakını T0083: 5167 m, 3.1 m/s, tahmini varış ~24.9 dk). Patern: LOITERING. Saha raporları kendi verimizle karşılaştırıldı (1 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: MEDIUM.",
    "explanation": "4 araç için kendi tespit ve hareket verisi değerlendirildi. Veri boşluğu: 3 nesne izsiz (1 otobüs, 1 otomobil, 1 kamyon): hareket verisi YOK — risk kademesine katılmadı, DÜŞÜK/zararsız varsayılmadı. 1 araç üsse yaklaşıyor (en yakını T0083: 5167 m, 3.1 m/s, tahmini varış ~24.9 dk). Patern: bekleme. Saha raporları kendi verimizle karşılaştırıldı (1 uyumlu, 1 uyumsuz); uyumsuz raporlar esas alınmadı, karar kendi verilerimize dayanıyor. Sonuç: ORTA.",
    "explanation_source": "rule-based",
-   "explanation_model": null,
    "footprint": [
     [
      39.961493,

@@ -47,11 +47,10 @@ def test_same_event_tracks_are_never_candidates():
     assert stats["rejected_same_event"] == 1
 
 
-def test_temporal_order_gap_and_impossible_spatial_speed_are_rejected():
+def test_temporal_gap_and_impossible_spatial_speed_are_rejected():
     store = index(min_similarity=0.0, max_temporal_gap_s=600, max_implied_speed_mps=50)
     store.add_and_match(
         [
-            observation("future", "TF", "2025-06-01T10:10:00Z", [1.0, 0.0]),
             observation("old", "TO", "2025-06-01T09:00:00Z", [1.0, 0.0]),
             observation("far", "TX", "2025-06-01T10:00:00Z", [1.0, 0.0], lat=40.9, lon=32.75),
         ]
@@ -62,8 +61,39 @@ def test_temporal_order_gap_and_impossible_spatial_speed_are_rejected():
     )
 
     assert links == []
-    assert stats["rejected_temporal"] == 2
+    assert stats["rejected_temporal"] == 1
     assert stats["rejected_spatial"] == 1
+
+
+def test_pair_is_oriented_by_capture_time_when_events_are_investigated_out_of_order():
+    store = index(min_similarity=0.0)
+    store.add_and_match([observation("later", "TL", "2025-06-01T10:10:00Z", [1.0, 0.0])])
+
+    links, graph, stats = store.add_and_match(
+        [observation("earlier", "TE", "2025-06-01T10:00:00Z", [1.0, 0.0])]
+    )
+
+    assert len(links) == 1
+    assert links[0]["source_event_id"] == "earlier"
+    assert links[0]["target_event_id"] == "later"
+    assert links[0]["temporal_gap_seconds"] == 600
+    assert graph["edges"] == links
+    assert stats["rejected_temporal"] == 0
+
+
+def test_reprocessing_an_event_replaces_observation_instead_of_duplicating_edges():
+    store = index(min_similarity=0.0, top_k=3)
+    event_a = observation("a", "T1", "2025-06-01T10:00:00Z", [1.0, 0.0])
+    store.add_and_match([event_a])
+    store.add_and_match([event_a])
+
+    links, graph, stats = store.add_and_match(
+        [observation("b", "T2", "2025-06-01T10:05:00Z", [1.0, 0.0])]
+    )
+
+    assert len(links) == 1
+    assert len(graph["edges"]) == 1
+    assert stats["total_pairs"] == 1
 
 
 def test_minimum_similarity_and_top_k_are_applied_per_target_track():

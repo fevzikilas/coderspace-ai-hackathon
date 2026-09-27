@@ -110,14 +110,16 @@ class RiskAgent:
         vehicle_link_evidence: list[dict[str, Any]] | None = None,
     ) -> dict[str, Any]:
         """Aynı (zone, detection) için eşzamanlı çağrılar tek değerlendirmeye indirgenir; sonuç önbelleğe alınır."""
+        requested_link_context = list(vehicle_link_evidence or [])[:40]
         key = f"{zone_id.upper()}|{detection_id}"
         lock = self._locks.setdefault(key, asyncio.Lock())
         try:
             async with lock:
                 if not force and (cached := self._store.find(zone_id, detection_id)) is not None:
-                    return {**cached, "cached": True}
+                    if list(cached.get("vehicle_link_context") or []) == requested_link_context:
+                        return {**cached, "cached": True}
                 async with self._sem:
-                    result = await self._assess(zone_id, detection_id, base_location, vehicle_link_evidence)
+                    result = await self._assess(zone_id, detection_id, base_location, requested_link_context)
                 self._store.put(result)
                 if self._persist is not None:
                     await asyncio.to_thread(self._persist.save_assessment, result)

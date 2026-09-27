@@ -151,6 +151,16 @@ async def test_cache_and_force(make_harness):
     assert a3["assessment_id"] != a1["assessment_id"]
 
 
+async def test_cache_is_invalidated_when_vehicle_candidate_context_changes(make_harness):
+    h = make_harness(World(), None)
+    baseline = await h.agent.assess("ZONE-ALPHA", "det-1")
+    with_link = await h.agent.assess("ZONE-ALPHA", "det-1", vehicle_link_evidence=[VEHICLE_LINK])
+
+    assert with_link.get("cached") is not True
+    assert with_link["assessment_id"] != baseline["assessment_id"]
+    assert with_link["vehicle_link_context"] == [VEHICLE_LINK]
+
+
 async def test_tool_guards_reject_foreign_ids(make_harness):
     g = script(
         glm_reply([tool_call("get_movement_analysis", {"vehicle_id": "V-999"}, "x"), tool_call("get_intel", {"zone_id": "ZONE-BRAVO"}, "y"), tool_call("get_drone_context", {"drone_id": "DRN-01"}, "z")]),

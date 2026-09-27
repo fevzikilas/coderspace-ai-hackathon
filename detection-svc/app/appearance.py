@@ -4,6 +4,7 @@ This module deliberately exposes visual similarity evidence, not vehicle identit
 """
 from __future__ import annotations
 
+import hashlib
 import math
 import threading
 from collections import OrderedDict
@@ -121,6 +122,13 @@ class AppearanceExtractor:
 
     def embed(self, image_id: str, image: Image.Image, crops: list[dict[str, Any]]) -> list[dict[str, Any]]:
         results: list[dict[str, Any]] = []
+        # image_id is catalog metadata, not content identity: the UI can upload
+        # replacement bytes under the same ID. Bind cached features to pixels.
+        image_fingerprint = (
+            image.mode,
+            image.size,
+            hashlib.sha256(image.tobytes()).digest()[:12],
+        )
         for item in crops:
             box = _crop_box(image, item["bbox"], self._padding)
             if box is None:
@@ -128,7 +136,7 @@ class AppearanceExtractor:
             left, top, right, bottom = box
             if right - left < self._min_crop_pixels or bottom - top < self._min_crop_pixels:
                 continue
-            key = (image_id, left, top, right, bottom, self.model_name)
+            key = (image_id, image_fingerprint, left, top, right, bottom, self.model_name)
             with self._lock:
                 cached = self._cache.get(key)
                 if cached is not None:

@@ -59,6 +59,20 @@ def test_extractor_reuses_cached_embedding_for_same_image_and_box():
     assert extractor.cache_info() == {"size": 1, "capacity": 2, "hits": 1, "misses": 1}
 
 
+def test_extractor_does_not_reuse_cache_when_same_image_id_has_new_pixels():
+    from app.appearance import AppearanceExtractor
+
+    backbone = CountingBackbone()
+    extractor = AppearanceExtractor(backbone=backbone, cache_size=2, crop_padding=0.0, min_crop_pixels=4)
+    crops = [{"track_id": "T1", "bbox": {"x1": 2, "y1": 3, "x2": 20, "y2": 22}}]
+
+    extractor.embed("img-1", Image.new("RGB", (30, 30), "navy"), crops)
+    extractor.embed("img-1", Image.new("RGB", (30, 30), "orange"), crops)
+
+    assert backbone.calls == 2
+    assert extractor.cache_info() == {"size": 2, "capacity": 2, "hits": 0, "misses": 2}
+
+
 def test_extractor_skips_tiny_or_degenerate_crops():
     from app.appearance import AppearanceExtractor
 

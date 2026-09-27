@@ -277,6 +277,18 @@ def test_cross_event_candidates_reach_dashboard_and_risk_context(client_factory)
     assert risk_body["vehicle_link_evidence"] == links
 
 
+def test_out_of_order_investigation_builds_graph_without_leaking_future_evidence_to_risk(client_factory):
+    c, w = client_factory()
+    c.post("/pipeline/run", json={"image_id": "img_000861"})
+    earlier = c.post("/pipeline/run", json={"image_id": "img_000860"}).json()
+
+    links = earlier["result"]["candidate_vehicle_links"]
+    assert len(links) == 2
+    assert all(link["source_event_id"] == "img_000860" for link in links)
+    assert all(link["target_event_id"] == "img_000861" for link in links)
+    assert w.requests["POST :8005/assess"]["body"]["vehicle_link_evidence"] == []
+
+
 def test_appearance_outage_keeps_event_pipeline_successful(client_factory):
     world = World(**{"POST :8001/appearance/embed": httpx.Response(503, json={"detail": "weights unavailable"})})
     c, w = client_factory(world)

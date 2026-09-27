@@ -80,19 +80,37 @@ class VehicleEvidenceIndex:
             "rejected_top_k": 0,
         }
         feasible: list[tuple[dict[str, Any], dict[str, Any], dict[str, Any]]] = []
-        prior = list(self._observations)
-        for target in current:
+        # A rerun replaces the same event/track observation. This prevents repeated
+        # investigations from manufacturing duplicate evidence edges.
+        current_by_key = {(item["event_id"], item["track_id"]): item for item in current}
+        current_unique = list(current_by_key.values())
+        prior = [
+            item for item in self._observations
+            if (item["event_id"], item["track_id"]) not in current_by_key
+        ]
+        for incoming in current_unique:
             target_candidates: list[tuple[dict[str, Any], dict[str, Any], dict[str, Any]]] = []
-            for source in prior:
+            for stored in prior:
                 stats["total_pairs"] += 1
-                if source["event_id"] == target["event_id"]:
+                if stored["event_id"] == incoming["event_id"]:
                     stats["rejected_same_event"] += 1
                     continue
                 try:
-                    gap = (_time(target["timestamp"]) - _time(source["timestamp"])).total_seconds()
+                    stored_time = _time(stored["timestamp"])
+                    incoming_time = _time(incoming["timestamp"])
                 except (TypeError, ValueError):
                     stats["rejected_temporal"] += 1
                     continue
+                # Investigation order is not evidence order. Always orient the link
+                # from the chronologically earlier observation to the later one.
+                if stored_time < incoming_time:
+                    source, target = stored, incoming
+                elif incoming_time < stored_time:
+                    source, target = incoming, stored
+                else:
+                    stats["rejected_temporal"] += 1
+                    continue
+                gap = abs((incoming_time - stored_time).total_seconds())
                 if gap <= 0 or gap > self.max_temporal_gap_s:
                     stats["rejected_temporal"] += 1
                     continue
@@ -151,12 +169,14 @@ class VehicleEvidenceIndex:
             degree[target_key] = degree.get(target_key, 0) + 1
             accepted.append(item)
 
-        for observation in current:
-            self._observations.append(observation)
+        self._observations = deque(
+            [*prior, *current_unique],
+            maxlen=self._observations.maxlen,
+        )
 
         links = [item[0] for item in accepted]
         stats["accepted"] = len(links)
-        nodes_by_id = {_node(item)["node_id"]: _node(item) for item in current}
+        nodes_by_id = {_node(item)["node_id"]: _node(item) for item in current_unique}
         for _, source, target in accepted:
             for item in (source, target):
                 node = _node(item)

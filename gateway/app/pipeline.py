@@ -423,13 +423,21 @@ class Pipeline:
     # ------------------------------------------------------------------ 6) risk değerlendirmesi
     async def _assess(self, run: dict[str, Any], ctx: dict[str, Any], geo: dict[str, Any]) -> None:
         async def step():
+            # Risk is an event-time snapshot. A graph candidate may point to an
+            # already-investigated event whose capture time is in this event's
+            # future; keep it visible in the graph but out of this assessment.
+            current_event_id = (run["result"].get("event") or {}).get("image_id")
+            risk_links = [
+                link for link in run["result"].get("candidate_vehicle_links", [])
+                if link.get("target_event_id") == current_event_id
+            ]
             out = await self._svc.call(
                 "risk", "POST", "/assess",
                 json={
                     "zone_id": ctx["zone_id"],
                     "detection_id": geo["detection_id"],
                     "base_location": ctx["base"],
-                    "vehicle_link_evidence": run["result"].get("candidate_vehicle_links", []),
+                    "vehicle_link_evidence": risk_links,
                 },
                 timeout=self._s.risk_timeout_s,
             )

@@ -85,6 +85,7 @@ export default function SimulationPage() {
   const [audioOk, setAudioOk] = useState(false)
   const [loginOpen, setLoginOpen] = useState(false)
   const [session, setSession] = useState(false)
+  const closeLogin = useCallback(() => setLoginOpen(false), [])
 
   useEffect(() => {
     document.title = 'Üs Koruma — Canlı Simülasyon'
@@ -209,7 +210,7 @@ export default function SimulationPage() {
   return (
     <div className={`sim ${revealed ? `risk-${level}` : 'analyzing'}`}>
       <div className={`sim-glow ${revealed ? level : 'scan'}`} key={revealKey ?? `scan-${loop}-${idx}`} aria-hidden />
-      {loginOpen && <LoginModal onClose={() => setLoginOpen(false)} />}
+      {loginOpen && <LoginModal onClose={closeLogin} />}
 
       <header className="sim-head">
         <div className="sim-brand">

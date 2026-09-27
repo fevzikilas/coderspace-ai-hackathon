@@ -28,7 +28,7 @@
 .sim-login:hover, .sim-login:focus-visible { color: var(--text); border-color: var(--muted); }
 
 /* ---------------------------------------------------------------- giriş penceresi (demo arkada sürer) */
-.sim-modal-bg { position: fixed; inset: 0; z-index: 60; display: grid; place-items: center; padding: 16px; background: rgba(5, 8, 12, 0.6); }
+.sim-modal-bg { position: fixed; inset: 0; z-index: 5001; display: grid; place-items: center; padding: 16px; background: rgba(5, 8, 12, 0.6); }
 .sim-modal {
   width: min(380px, 100%); display: flex; flex-direction: column; gap: 10px;
   background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px 20px;

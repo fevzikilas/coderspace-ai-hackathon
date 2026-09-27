@@ -3,9 +3,10 @@ import L from 'leaflet'
 import { Circle, CircleMarker, MapContainer, Marker, Pane, Polygon, Polyline, TileLayer, Tooltip, useMap } from 'react-leaflet'
 import { destination, fmtClock, fovSector } from '../geo'
 import { colorOf } from '../vehicleColors'
+import { findGraphNode, linkLabel } from '../vehicleGraph'
 import ZoneRose from './ZoneRose'
 import { DRONE_STATUS_COLOR, PATTERN_COLOR, PATTERN_LABEL, RISK_COLOR, RISK_LABEL, TILE_URL } from '../theme'
-import type { Base, DetectionObj, Drone, EventInfo, Vehicle, ZoneInfo } from '../types'
+import type { Base, DetectionObj, Drone, EventInfo, Vehicle, VehicleGraph, ZoneInfo } from '../types'
 
 const iconCache = new Map<string, L.DivIcon>()
 
@@ -89,6 +90,9 @@ interface Props {
   /** zones.json bölgeleri: pusula gülü dilimleri */
   zones: ZoneInfo[]
   activeZoneId: string | null
+  vehicleGraph: VehicleGraph
+  selectedVehicleLinkId: string | null
+  onSelectVehicleLink: (linkId: string) => void
   /** haritanın sağ üstüne bindirilen özet kartın genişliği (px, dar ekranda 0): odaklanırken bu alan boş bırakılır */
   insetRight?: number
 }
@@ -98,7 +102,7 @@ const legendOpenInitially = typeof window === 'undefined' || window.matchMedia('
 
 const CORNER_ORDER = ['top_left', 'top_right', 'bottom_right', 'bottom_left'] as const
 
-export default function MapPanel({ base, drones, vehicles, detections, event, selectedId, onSelect, focusKey, focusDroneId, colors, zones, activeZoneId, insetRight = 0 }: Props) {
+export default function MapPanel({ base, drones, vehicles, detections, event, selectedId, onSelect, focusKey, focusDroneId, colors, zones, activeZoneId, vehicleGraph, selectedVehicleLinkId, onSelectVehicleLink, insetRight = 0 }: Props) {
   const [fitTick, setFitTick] = useState(1)
   const [manualFocus, setManualFocus] = useState(0)
   const center: [number, number] = [base.lat, base.lon]
@@ -155,6 +159,38 @@ export default function MapPanel({ base, drones, vehicles, detections, event, se
             </Tooltip>
           </Polygon>
         )}
+
+        {/* Cross-event görsel adaylar: bağımsız kanıt edge'leri, kimlik kümesi değildir. */}
+        <Pane name="vehicle-evidence" style={{ zIndex: 620 }}>
+          {vehicleGraph.edges.map((link) => {
+            const source = findGraphNode(vehicleGraph, link.source_event_id, link.source_track_id)
+            const target = findGraphNode(vehicleGraph, link.target_event_id, link.target_track_id)
+            if (!source?.position || !target?.position) return null
+            const selectedLink = link.link_id === selectedVehicleLinkId
+            return (
+              <Polyline
+                key={link.link_id}
+                positions={[[source.position.lat, source.position.lon], [target.position.lat, target.position.lon]]}
+                pathOptions={{ color: selectedLink ? '#ffffff' : '#f5a524', weight: selectedLink ? 5 : 3, opacity: 0.9, dashArray: '8 7' }}
+                eventHandlers={{ click: () => onSelectVehicleLink(link.link_id) }}
+              >
+                <Tooltip sticky>{linkLabel(link)}<br />Cross-event evidence, confirmed identity değil</Tooltip>
+              </Polyline>
+            )
+          })}
+          {vehicleGraph.nodes.filter((node) => node.position).map((node) => {
+            const endpointSelected = vehicleGraph.edges.some((link) => link.link_id === selectedVehicleLinkId && (
+              (link.source_event_id === node.event_id && link.source_track_id === node.track_id) ||
+              (link.target_event_id === node.event_id && link.target_track_id === node.track_id)
+            ))
+            return (
+              <CircleMarker key={node.node_id} center={[node.position!.lat, node.position!.lon]} radius={endpointSelected ? 8 : 5}
+                pathOptions={{ color: endpointSelected ? '#ffffff' : '#f5a524', weight: 2, fillColor: '#121821', fillOpacity: 0.95 }}>
+                <Tooltip>{node.event_id} · {node.track_id}<br />{fmtClock(node.timestamp)}</Tooltip>
+              </CircleMarker>
+            )
+          })}
+        </Pane>
 
         {/* Drone'lar (yalnızca eski/demo akışı): konum + yön + görüş alanı */}
         {drones.map((d) => {
@@ -271,6 +307,7 @@ export default function MapPanel({ base, drones, vehicles, detections, event, se
             <>
               <i className="lg-sym lg-slice" /><span>Olayın bölgesi (vurgulu dilim)</span>
               <i className="lg-sym lg-fp" /><span>Görüntünün kapladığı alan</span>
+              <i className="lg-sym lg-candidate" /><span>Possible vehicle match (cross-event evidence)</span>
             </>
           )}
         </div>

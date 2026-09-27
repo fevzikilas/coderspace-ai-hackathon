@@ -35,6 +35,8 @@ def test_extractor_clips_crop_normalizes_embedding_and_reports_quality():
     assert result["track_id"] == "T1"
     assert result["model"] == "test-backbone"
     assert result["crop"]["bbox"] == {"x1": 0, "y1": 5, "x2": 12, "y2": 25}
+    assert result["crop"]["image_width"] == 40
+    assert result["crop"]["image_height"] == 30
     assert result["quality"]["width_px"] == 12
     assert result["quality"]["height_px"] == 20
     assert 0.0 <= result["quality"]["score"] <= 1.0

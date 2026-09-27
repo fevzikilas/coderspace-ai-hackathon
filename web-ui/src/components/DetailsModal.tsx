@@ -6,6 +6,7 @@ import LogPanel from './LogPanel'
 import MovementPanel from './MovementPanel'
 import { RiskEvidence, RiskReasoning, RiskToolCalls } from './RiskCard'
 import VehicleTabs from './VehicleTabs'
+import VehicleLinkPanel from './VehicleLinkPanel'
 import type { DetailsTab } from './EventSummary'
 import type { DashboardState, Vehicle } from '../types'
 
@@ -13,6 +14,7 @@ const TABS: { id: DetailsTab; label: string }[] = [
   { id: 'image', label: 'Görüntü' },
   { id: 'reason', label: 'Gerekçe ve kanıt' },
   { id: 'movement', label: 'Hareket' },
+  { id: 'vehicle-links', label: 'Possible Vehicle Matches' },
   { id: 'reports', label: 'Saha raporları' },
   { id: 'tools', label: 'Araç çağrıları' },
 ]
@@ -25,10 +27,12 @@ interface Props {
   colors: Record<string, string>
   selected: Vehicle | null
   onSelectVehicle: (id: string) => void
+  selectedVehicleLinkId: string | null
+  onSelectVehicleLink: (id: string) => void
 }
 
 /** TEKNİK DETAYLAR modalı: ana ekranı kirletmeden tam gerekçe, kanıt dağılımı, araç çağrıları, hareket sayıları, saha raporları. X / Esc / dışına tıklama kapatır. */
-export default function DetailsModal({ tab, onTab, onClose, data, colors, selected, onSelectVehicle }: Props) {
+export default function DetailsModal({ tab, onTab, onClose, data, colors, selected, onSelectVehicle, selectedVehicleLinkId, onSelectVehicleLink }: Props) {
   const boxRef = useRef<HTMLDivElement>(null)
   const a = data.assessment
   const run = data.latest_run
@@ -61,6 +65,7 @@ export default function DetailsModal({ tab, onTab, onClose, data, colors, select
             <button key={t.id} role="tab" aria-selected={tab === t.id} className={tab === t.id ? 'active' : ''} onClick={() => onTab(t.id)}>
               {t.label}
               {t.id === 'reports' && nReports > 0 && <small> {nReports}</small>}
+              {t.id === 'vehicle-links' && (run?.result.candidate_vehicle_links.length ?? 0) > 0 && <small> {run?.result.candidate_vehicle_links.length}</small>}
               {t.id === 'tools' && a && <small> {a.tool_calls_log.length}</small>}
             </button>
           ))}
@@ -83,6 +88,14 @@ export default function DetailsModal({ tab, onTab, onClose, data, colors, select
               <VehicleTabs vehicles={data.vehicles} colors={colors} selected={selected} onSelect={onSelectVehicle} />
               <MovementPanel base={data.base} event={event} selected={selected} colors={colors} />
             </div>
+          )}
+          {tab === 'vehicle-links' && (
+            <VehicleLinkPanel
+              graph={run?.result.vehicle_graph ?? { relation_semantics: 'candidate_edges_are_independent_not_identity_clusters', nodes: [], edges: [] }}
+              links={run?.result.candidate_vehicle_links ?? []}
+              selectedId={selectedVehicleLinkId}
+              onSelect={onSelectVehicleLink}
+            />
           )}
           {tab === 'reports' && (
             <IntelPanel

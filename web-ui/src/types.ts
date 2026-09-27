@@ -139,6 +139,8 @@ export interface Assessment {
   report_verification?: ReportVerification | null
   /** risk hesabına katılamayan nesneler: izsiz tespitler (hareket verisi YOK) ve analiz sınırını aşan araçlar */
   data_gaps?: { untracked_detections: number; untracked_classes: Record<string, number>; vehicles_over_limit: string[]; note: string } | null
+  /** Yalnızca bağlam: doğrulanmış kimlik değildir ve tek başına risk sinyali değildir. */
+  vehicle_link_context?: VehicleLink[]
   usage: { total_tokens: number; llm_calls: number }
   duration_ms: number
   created_at: string
@@ -159,6 +161,59 @@ export interface BBox {
   y1: number
   x2: number
   y2: number
+}
+
+export interface CropRef {
+  image_id: string
+  image_width: number
+  image_height: number
+  bbox: BBox
+}
+
+export interface CropQuality {
+  width_px?: number
+  height_px?: number
+  area_ratio?: number
+  sharpness?: number
+  score?: number
+}
+
+export interface VehicleLink {
+  link_id: string
+  source_event_id: string
+  source_track_id: string
+  target_event_id: string
+  target_track_id: string
+  relation: 'POSSIBLE_SAME_VEHICLE'
+  appearance_similarity: number
+  temporal_gap_seconds: number
+  spatial_distance_m: number | null
+  implied_speed_mps: number | null
+  feasibility: { temporal: boolean; spatial: boolean; spatial_checked: boolean }
+  evidence: {
+    source_crop: CropRef | null
+    target_crop: CropRef | null
+    source_quality: CropQuality | null
+    target_quality: CropQuality | null
+    model: string | (string | null)[]
+  }
+}
+
+export interface VehicleGraphNode {
+  node_id: string
+  event_id: string
+  track_id: string
+  timestamp: string
+  position: { lat: number; lon: number } | null
+  class: string | null
+  crop: CropRef | null
+  crop_quality: CropQuality | null
+}
+
+export interface VehicleGraph {
+  relation_semantics: 'candidate_edges_are_independent_not_identity_clusters'
+  nodes: VehicleGraphNode[]
+  edges: VehicleLink[]
 }
 
 export interface DetectionObj {
@@ -232,6 +287,9 @@ export interface RunResult {
   vehicles: Record<string, unknown>
   pattern: { pattern: PatternName; confidence: number; involved_vehicles: string[] } | null
   assessment: Assessment | null
+  candidate_vehicle_links: VehicleLink[]
+  vehicle_graph: VehicleGraph
+  vehicle_link_diagnostics?: Record<string, unknown> | null
   message: string | null
 }
 

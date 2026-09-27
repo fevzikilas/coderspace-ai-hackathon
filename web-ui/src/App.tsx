@@ -35,6 +35,7 @@ export default function App() {
   const [selectedEvent, setSelectedEvent] = useState<string | null>(null)
   const [droneId, setDroneId] = useState('')
   const [selectedId, setSelectedId] = useState<string | null>(null)
+  const [selectedVehicleLinkId, setSelectedVehicleLinkId] = useState<string | null>(null)
   const [starting, setStarting] = useState(false)
   const [actionError, setActionError] = useState<string | null>(null)
   // Teknik ayrıntılar (tam gerekçe, kanıt yüzdeleri, araç çağrıları, hareket sayıları, raporlar) MODAL içinde; null = kapalı
@@ -90,6 +91,7 @@ export default function App() {
       try {
         await startPipeline(body)
         setSelectedId(null)
+        setSelectedVehicleLinkId(null)
         setDetailsTab(null)
         refresh()
         refreshEvents()
@@ -168,6 +170,9 @@ export default function App() {
                 colors={colors}
                 zones={events.data?.zones ?? []}
                 activeZoneId={event?.zone.zone_id ?? null}
+                vehicleGraph={latest?.result.vehicle_graph ?? { relation_semantics: 'candidate_edges_are_independent_not_identity_clusters', nodes: [], edges: [] }}
+                selectedVehicleLinkId={selectedVehicleLinkId}
+                onSelectVehicleLink={(linkId) => { setSelectedVehicleLinkId(linkId); setDetailsTab('vehicle-links') }}
                 insetRight={wide ? OVERLAY_WIDTH + 20 : 0}
               />
             ) : (
@@ -186,6 +191,7 @@ export default function App() {
             onSelectVehicle={setSelectedId}
             onRun={(imageId) => runEvent({ imageId })}
             onOpenDetails={setDetailsTab}
+            vehicleLinkCount={latest?.result.candidate_vehicle_links.length ?? 0}
           />
           <ImagePanel
             result={latest?.result ?? null}
@@ -199,7 +205,8 @@ export default function App() {
       </div>
 
       {detailsTab && data && (
-        <DetailsModal tab={detailsTab} onTab={setDetailsTab} onClose={closeDetails} data={data} colors={colors} selected={selected} onSelectVehicle={setSelectedId} />
+        <DetailsModal tab={detailsTab} onTab={setDetailsTab} onClose={closeDetails} data={data} colors={colors} selected={selected} onSelectVehicle={setSelectedId}
+          selectedVehicleLinkId={selectedVehicleLinkId} onSelectVehicleLink={setSelectedVehicleLinkId} />
       )}
     </div>
   )

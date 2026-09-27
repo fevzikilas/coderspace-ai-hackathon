@@ -384,6 +384,7 @@ details.map-legend[open] > summary { margin-bottom: 5px; }
 .lg-sym.legend-small { width: 6px; height: 6px; border: 1px solid #c7d2de; background: #0b0f14; }
 .lg-sym.lg-fp { width: 14px; height: 9px; border: 2px dashed #e2e8f0; background: rgba(226, 232, 240, 0.12); border-radius: 1px; }
 .lg-sym.lg-slice { width: 12px; height: 10px; border-radius: 2px; border: 2px solid #f1f5f9; background: rgba(241, 245, 249, 0.2); }
+.lg-sym.lg-candidate { width: 16px; height: 0; border-top: 3px dashed var(--medium); border-radius: 0; }
 .lg-sym.legend-multi { background: conic-gradient(#2ca02c 0 25%, #e377c2 0 50%, #56b4e9 0 75%, #f0e442 0); }
 .rose-label { width: 0; height: 0; }
 .rose-label > span { position: absolute; transform: translate(-50%, -50%); white-space: nowrap; text-align: center; font: 600 11.5px/1.15 system-ui, sans-serif; letter-spacing: 0.02em; color: #b6c1cd; opacity: 0.62; text-shadow: 0 0 3px #0b0f14, 0 0 3px #0b0f14, 0 0 5px #0b0f14; pointer-events: none; }
@@ -439,6 +440,48 @@ details.map-legend[open] > summary { margin-bottom: 5px; }
 .imgview.fit .imgbox { height: 100%; display: flex; align-items: center; justify-content: center; }
 .imgview.fit .imgsvg { max-height: none; background: transparent; border: 0; border-radius: 0; }
 .imgpanel .empty { padding: 40px 8px; }
+
+/* ------------------------------------------------------------------ cross-event araç görsel adayları */
+.reid-summary-link { display: flex; align-items: center; justify-content: space-between; gap: 10px; background: #221c10; border: 1px solid #6b5220; border-radius: 8px; color: #f5d089; padding: 7px 10px; text-align: left; }
+.reid-summary-link:hover { border-color: var(--medium); background: #2a2110; }
+.reid-summary-link span { min-width: 24px; text-align: center; border-radius: 999px; background: #3a2a10; font: 700 12px var(--mono); padding: 2px 6px; }
+.reid-layout { display: grid; grid-template-columns: minmax(230px, 0.65fr) minmax(0, 1.8fr); gap: 16px; min-height: 420px; }
+.reid-list { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.reid-guard { color: #d8bd80; background: #221c10; border: 1px solid #6b5220; border-radius: 8px; padding: 8px 10px; font-size: 13px; margin-bottom: 4px; }
+.reid-list button { display: flex; flex-direction: column; gap: 2px; width: 100%; text-align: left; background: var(--panel-2); border: 1px solid var(--border); border-radius: 8px; padding: 9px 10px; }
+.reid-list button:hover { border-color: #8a6a1f; }
+.reid-list button.active { background: #2a2110; border-color: var(--medium); }
+.reid-list button span { font: 700 13px var(--mono); }
+.reid-list button small { color: #bca66f; }
+.reid-detail { min-width: 0; display: flex; flex-direction: column; gap: 12px; }
+.reid-detail > header { display: flex; align-items: center; justify-content: space-between; gap: 16px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+.reid-detail h3 { margin-top: 5px; font: 700 18px var(--mono); }
+.reid-detail > header strong { color: var(--medium); font: 800 30px var(--mono); }
+.reid-chip { color: #f5d089; border-color: #8a6a1f; }
+.reid-crops { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.reid-crop { margin: 0; min-width: 0; }
+.reid-crop-frame { aspect-ratio: 16 / 10; display: grid; place-items: center; overflow: hidden; background: #080b10; border: 1px solid var(--border); border-radius: 8px; color: var(--muted); }
+.reid-crop-frame svg { width: 100%; height: 100%; display: block; }
+.reid-crop figcaption { color: var(--muted); font: 12px var(--mono); margin-top: 4px; overflow-wrap: anywhere; }
+.reid-metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.reid-metrics div { padding: 9px 10px; min-width: 0; }
+.reid-metrics div + div { border-left: 1px solid var(--border); }
+.reid-metrics dt { color: var(--muted); font-size: 11.5px; }
+.reid-metrics dd { margin: 2px 0 0; font: 700 14px var(--mono); overflow-wrap: anywhere; }
+.reid-meta { color: var(--muted); font-size: 13px; line-height: 1.55; }
+.reid-empty { max-width: 65ch; color: var(--muted); padding: 24px; }
+.reid-empty b { color: var(--text); }
+
+@media (max-width: 760px) {
+  .reid-layout { grid-template-columns: minmax(0, 1fr); }
+  .reid-crops, .reid-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .reid-metrics div:nth-child(3) { border-left: 0; border-top: 1px solid var(--border); }
+  .reid-metrics div:nth-child(4) { border-top: 1px solid var(--border); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reid-summary-link, .reid-list button { transition: none; }
+}
 
 /* ------------------------------------------------------------------ cila: tutarlı köşe, boşluk, odak halkası */
 .rail { border-radius: 12px; padding: 10px; gap: 10px; }

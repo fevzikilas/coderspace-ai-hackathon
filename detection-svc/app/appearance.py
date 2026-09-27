@@ -142,6 +142,8 @@ class AppearanceExtractor:
                     "model": self.model_name,
                     "crop": {
                         "image_id": image_id,
+                        "image_width": image.width,
+                        "image_height": image.height,
                         "bbox": {"x1": left, "y1": top, "x2": right, "y2": bottom},
                     },
                 }

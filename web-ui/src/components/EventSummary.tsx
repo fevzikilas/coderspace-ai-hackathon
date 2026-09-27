@@ -5,7 +5,7 @@ import { zoneLabel } from '../zoneLabels'
 import VehicleTabs from './VehicleTabs'
 import type { Assessment, CatalogEvent, EventInfo, Run, Vehicle } from '../types'
 
-export type DetailsTab = 'image' | 'reason' | 'movement' | 'reports' | 'tools'
+export type DetailsTab = 'image' | 'reason' | 'movement' | 'vehicle-links' | 'reports' | 'tools'
 
 interface Props {
   assessment: Assessment | null
@@ -21,6 +21,7 @@ interface Props {
   onSelectVehicle: (id: string) => void
   onRun: (imageId: string) => void
   onOpenDetails: (tab: DetailsTab) => void
+  vehicleLinkCount: number
 }
 
 /** Büyük, sade risk rozeti: "YÜKSEK RİSK". */
@@ -34,7 +35,7 @@ function BigRisk({ level }: { level: Assessment['risk_level'] | null }) {
 }
 
 /** SEÇİLİ OLAY ÖZETİ (haritanın üstünde, görüntünün solunda): büyük risk rozeti, tek cümle, araç sekmeleri. Teknik ayrıntı YOK → "Detayları Gör" modalı. */
-export default function EventSummary({ assessment: a, run, event, picked, busy, vehicles, colors, selected, onSelectVehicle, onRun, onOpenDetails }: Props) {
+export default function EventSummary({ assessment: a, run, event, picked, busy, vehicles, colors, selected, onSelectVehicle, onRun, onOpenDetails, vehicleLinkCount }: Props) {
   const shownId = event?.image_id ?? null
   const running = busy && run ? run.request.image_id : null
   const pickedPending = picked && picked.image_id !== shownId && !busy ? picked : null
@@ -93,6 +94,11 @@ export default function EventSummary({ assessment: a, run, event, picked, busy, 
         </ul>
       )}
       <VehicleTabs vehicles={vehicles} colors={colors} selected={selected} onSelect={onSelectVehicle} />
+      {vehicleLinkCount > 0 && (
+        <button className="reid-summary-link" onClick={() => onOpenDetails('vehicle-links')}>
+          Possible Vehicle Matches <span>{vehicleLinkCount}</span>
+        </button>
+      )}
       </div>
       <button className="btn details-btn" onClick={() => onOpenDetails('reason')}>Detayları Gör</button>
     </aside>

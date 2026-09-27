@@ -49,9 +49,17 @@ class World:
         if key == "GET :8004/drones":
             return httpx.Response(200, json={"drones": [DRONE, {**DRONE, "id": "DRN-08", "status": "OFFLINE"}]})
         if key == "POST :8001/detect":
-            return httpx.Response(200, json={"image_id": "img-1", "drone_id": "DRN-03", "timestamp": "t", "boxes": BOXES, "image_width": 1920, "image_height": 1080, "mode": "mock", "inference_ms": 1.0})
+            image_id = (body or {}).get("image_id") or "img-1"
+            return httpx.Response(200, json={"image_id": image_id, "drone_id": "DRN-03", "timestamp": "t", "boxes": BOXES, "image_width": 1920, "image_height": 1080, "mode": "mock", "inference_ms": 1.0})
+        if key == "POST :8001/appearance/embed":
+            tracks = []
+            for crop in body["crops"]:
+                vector = [1.0, 0.0] if crop["track_id"] == "V-101" else [0.0, 1.0]
+                tracks.append({"track_id": crop["track_id"], "embedding": vector, "quality": {"score": 0.8}, "model": "test-model", "crop": {"image_id": body["image_id"], "bbox": crop["bbox"]}})
+            return httpx.Response(200, json={"image_id": body["image_id"], "model": "test-model", "tracks": tracks})
         if key == "POST :8002/georeference":
-            return httpx.Response(200, json={"detection_id": "det-1", "image_id": "img-1", "timestamp": "t", "reference_time": "2025-06-01T14:10:00Z", "georef_method": "corners", "detections": [
+            ref = "2025-06-01T14:15:00Z" if body.get("image_id") == "img_000861" else "2025-06-01T14:10:00Z"
+            return httpx.Response(200, json={"detection_id": "det-1", "image_id": body.get("image_id") or "img-1", "timestamp": "t", "reference_time": ref, "georef_method": "corners", "detections": [
                 {"class": "pickup", "conf": 0.9, "lat": 39.88, "lon": 32.77, "vehicle_id": "V-101", "box_index": 0},
                 {"class": "truck", "conf": 0.95, "lat": 39.881, "lon": 32.771, "vehicle_id": "V-102", "box_index": 1}], "skipped": []})
         if path.startswith("/tracks/") and request.method == "GET":
@@ -76,6 +84,8 @@ class World:
             return httpx.Response(200, json={"dataset_date": "2025-06-01", "n_tracks": 1, "errors": [], "images": [IMG, {**IMG, "image_id": "img_000861", "capture_time": "14:15", "capture_iso": "2025-06-01T14:15:00Z", "center": {"lat": 39.92, "lon": 32.89}}]})
         if key == "GET :8002/dataset/images/img_000860":
             return httpx.Response(200, json=IMG)
+        if key == "GET :8002/dataset/images/img_000861":
+            return httpx.Response(200, json={**IMG, "image_id": "img_000861", "capture_time": "14:15", "capture_iso": "2025-06-01T14:15:00Z", "center": {"lat": 39.92, "lon": 32.89}})
         if path.startswith("/dataset/images/"):
             return httpx.Response(404, json={"detail": "Veri setinde image_id yok"})
         if key == "GET :8004/base":
@@ -223,8 +233,8 @@ def test_event_pipeline_uses_capture_time_zone_and_dataset_base(client_factory):
     assert r.status_code == 200, r.text
     run = r.json()
     assert run["mode"] == "event" and run["status"] == "succeeded"
-    assert [s["name"] for s in run["steps"]] == ["event_context", "detect", "georeference", "tracks", "pattern", "assess"]
-    assert [s["status"] for s in run["steps"]] == ["succeeded"] * 6
+    assert [s["name"] for s in run["steps"]] == ["event_context", "detect", "georeference", "tracks", "vehicle_links", "pattern", "assess"]
+    assert [s["status"] for s in run["steps"]] == ["succeeded"] * 7
     ev = run["result"]["event"]
     assert ev["capture_time"] == "14:10" and ev["reference_time"] == "2025-06-01T14:10:00Z"
     assert ev["zone"]["zone_id"] == "kuzey-yolu" and ev["base"]["lat"] == 39.92184  # üs zones.json'dan (env varsayılanı değil)
@@ -245,6 +255,39 @@ def test_event_pipeline_uses_capture_time_zone_and_dataset_base(client_factory):
     assert "GET :8004/drones" not in w.calls and "GET :8002/vehicles" not in w.calls
     # sınıf: tracks.csv'de yok, tespit sınıfı kullanılır; desen araç kartına yazılır
     assert run["result"]["vehicles"]["V-101"]["class"] == "pickup" and run["result"]["vehicles"]["V-101"]["pattern"] == "CONVOY"
+
+
+def test_cross_event_candidates_reach_dashboard_and_risk_context(client_factory):
+    c, w = client_factory()
+    first = c.post("/pipeline/run", json={"image_id": "img_000860"}).json()
+    second = c.post("/pipeline/run", json={"image_id": "img_000861"}).json()
+
+    assert first["result"]["candidate_vehicle_links"] == []
+    assert len(first["result"]["vehicle_graph"]["nodes"]) == 2
+    links = second["result"]["candidate_vehicle_links"]
+    assert len(links) == 2
+    assert all(link["source_event_id"] == "img_000860" for link in links)
+    assert all(link["target_event_id"] == "img_000861" for link in links)
+    assert all(link["relation"] == "POSSIBLE_SAME_VEHICLE" for link in links)
+    assert len(second["result"]["vehicle_graph"]["edges"]) == 2
+
+    state = c.get("/dashboard/state").json()
+    assert state["latest_run"]["result"]["candidate_vehicle_links"] == links
+    risk_body = w.requests["POST :8005/assess"]["body"]
+    assert risk_body["vehicle_link_evidence"] == links
+
+
+def test_appearance_outage_keeps_event_pipeline_successful(client_factory):
+    world = World(**{"POST :8001/appearance/embed": httpx.Response(503, json={"detail": "weights unavailable"})})
+    c, w = client_factory(world)
+    run = c.post("/pipeline/run", json={"image_id": "img_000860"}).json()
+
+    assert run["status"] == "succeeded"
+    assert run["result"]["candidate_vehicle_links"] == []
+    assert run["result"]["vehicle_graph"]["edges"] == []
+    step = next(item for item in run["steps"] if item["name"] == "vehicle_links")
+    assert step["status"] == "succeeded" and "kullanılamadı" in step["detail"]
+    assert w.requests["POST :8005/assess"]["body"]["vehicle_link_evidence"] == []
 
 
 def test_event_dashboard_state_is_event_scoped(client_factory):
@@ -279,7 +322,7 @@ def test_event_unknown_image_fails_at_context(client_factory):
     r = c.post("/pipeline/run", json={"image_id": "img_yok"})
     run = r.json()
     assert r.status_code == 502 and run["error"]["step"] == "event_context" and "image_id" in run["error"]["message"]
-    assert [s["status"] for s in run["steps"]] == ["failed"] + ["skipped"] * 5
+    assert [s["status"] for s in run["steps"]] == ["failed"] + ["skipped"] * 6
 
 
 def test_event_without_track_match_skips_assessment(client_factory):

@@ -19,7 +19,7 @@ from .config import Settings
 from .services import ServiceError, Services
 from .state import GatewayState, now_iso
 
-EVENT_STEPS = ["event_context", "detect", "georeference", "tracks", "pattern", "assess"]
+EVENT_STEPS = ["event_context", "detect", "georeference", "tracks", "vehicle_links", "pattern", "assess"]
 DRONE_STEPS = ["drone_context", "detect", "georeference", "tracks", "pattern", "assess"]
 MAX_TRACK_POINTS = 120
 
@@ -83,6 +83,9 @@ def new_run(req: PipelineRequest, zone_id: str | None) -> dict[str, Any]:
             "vehicles": {},
             "pattern": None,
             "assessment": None,
+            "candidate_vehicle_links": [],
+            "vehicle_graph": {"relation_semantics": "candidate_edges_are_independent_not_identity_clusters", "nodes": [], "edges": []},
+            "vehicle_link_diagnostics": None,
             "message": None,
         },
         "error": None,
@@ -187,10 +190,12 @@ class Pipeline:
                 if not res["detections"]
                 else f"{len(res['detections'])} nesne tespit edildi ancak izle (tracks.csv) eşleşen araç yok; risk değerlendirmesi yapılmadı."
             )
-            self._skip(run, "tracks", "pattern", "assess")
+            self._skip(run, "tracks", *(["vehicle_links"] if req.mode == "event" else []), "pattern", "assess")
             return
 
         await self._tracks(run, ctx, vehicle_ids)
+        if req.mode == "event":
+            await self._vehicle_links(run, ctx, det["image_id"])
         await self._pattern(run, ctx, vehicle_ids)
         await self._assess(run, ctx, geo)
 
@@ -352,6 +357,50 @@ class Pipeline:
 
         res["vehicles"] = await self._step(run, "tracks", step)
 
+    # ------------------------------------------------------------------ cross-event appearance evidence (olay akışı)
+    async def _vehicle_links(self, run: dict[str, Any], ctx: dict[str, Any], image_id: str) -> None:
+        res = run["result"]
+
+        async def step():
+            tracked = [d for d in res["detections"] if d.get("vehicle_id")]
+            body = {
+                "image_id": image_id,
+                "crops": [{"track_id": d["vehicle_id"], "bbox": d["bbox"]} for d in tracked],
+            }
+            try:
+                appearance = await self._svc.call("detection", "POST", "/appearance/embed", json=body)
+            except ServiceError as exc:
+                res["vehicle_link_diagnostics"] = {"status": "unavailable", "reason": str(exc)}
+                return None, f"Araç görünüm kanıtı kullanılamadı; ana pipeline devam etti ({exc})"
+
+            by_track = {d["vehicle_id"]: d for d in tracked}
+            event_id = (res.get("event") or {}).get("image_id") or image_id
+            observations = []
+            for item in appearance.get("tracks", []):
+                detection = by_track.get(item.get("track_id"))
+                if detection is None:
+                    continue
+                observations.append(
+                    {
+                        "event_id": event_id,
+                        "track_id": item["track_id"],
+                        "timestamp": ctx["reference_time"],
+                        "position": {"lat": detection["lat"], "lon": detection["lon"]},
+                        "class": detection["class"],
+                        "crop": item.get("crop"),
+                        "quality": item.get("quality"),
+                        "model": item.get("model") or appearance.get("model"),
+                        "embedding": item.get("embedding") or [],
+                    }
+                )
+            links, graph, stats = self._state.vehicle_evidence.add_and_match(observations)
+            res["candidate_vehicle_links"] = links
+            res["vehicle_graph"] = graph
+            res["vehicle_link_diagnostics"] = {"status": "ok", **stats, "observations": len(observations)}
+            return None, f"{len(observations)} crop temsil edildi; {stats['accepted']} cross-event görsel aday kabul edildi"
+
+        await self._step(run, "vehicle_links", step)
+
     # ------------------------------------------------------------------ 5) patern
     async def _pattern(self, run: dict[str, Any], ctx: dict[str, Any], vehicle_ids: list[str]) -> None:
         res = run["result"]
@@ -376,7 +425,12 @@ class Pipeline:
         async def step():
             out = await self._svc.call(
                 "risk", "POST", "/assess",
-                json={"zone_id": ctx["zone_id"], "detection_id": geo["detection_id"], "base_location": ctx["base"]},
+                json={
+                    "zone_id": ctx["zone_id"],
+                    "detection_id": geo["detection_id"],
+                    "base_location": ctx["base"],
+                    "vehicle_link_evidence": run["result"].get("candidate_vehicle_links", []),
+                },
                 timeout=self._s.risk_timeout_s,
             )
             return out, f"risk={out['risk_level']} güven={out['confidence']:.2f} mod={out['mode']} ({len(out['tool_calls_log'])} araç çağrısı)"

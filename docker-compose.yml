@@ -50,6 +50,7 @@ services:
       dockerfile: ../docker/detection-svc.Dockerfile
       args:
         WITH_MODEL: ${DETECTION_WITH_MODEL:-false}
+        WITH_REID: ${DETECTION_WITH_REID:-true}
     environment:
       <<: *common-env
       MOCK_MODE: ${MOCK_MODE:-true}            # false: gerçek model (yüklenemezse servis AÇILMAZ; MOCK_FALLBACK=true ile mock'a düşer ve /health "degraded" olur)
@@ -57,6 +58,9 @@ services:
       MODEL_BACKEND: ${MODEL_BACKEND:-ultralytics}   # ultralytics | dfine
       MODEL_PATH: ${MODEL_PATH:-/srv/models/stage1.pt}
       CONF_THRESHOLD: ${CONF_THRESHOLD:-0.4}   # 0.25: daha yüksek recall, daha çok izsiz gürültü kutusu
+      APPEARANCE_CACHE_SIZE: ${APPEARANCE_CACHE_SIZE:-256}
+      APPEARANCE_CROP_PADDING: ${APPEARANCE_CROP_PADDING:-0.08}
+      APPEARANCE_MIN_CROP_PIXELS: ${APPEARANCE_MIN_CROP_PIXELS:-8}
     volumes:
       - ./detection-svc/models:/srv/models:ro   # ağırlık: detection-svc/models/stage1.pt (YOLO) veya dfine.pt (D-FINE)
       - ./data:/data:ro
@@ -141,6 +145,11 @@ services:
       PATTERN_SVC_URL: http://pattern-svc:8003
       MOCK_DATA_SVC_URL: http://mock-data-svc:8004
       RISK_AGENT_SVC_URL: http://risk-agent-svc:8005
+      VEHICLE_REID_MIN_SIMILARITY: ${VEHICLE_REID_MIN_SIMILARITY:-0.82}
+      VEHICLE_REID_TOP_K: ${VEHICLE_REID_TOP_K:-2}
+      VEHICLE_REID_MAX_TEMPORAL_GAP_S: ${VEHICLE_REID_MAX_TEMPORAL_GAP_S:-7200}
+      VEHICLE_REID_MAX_IMPLIED_SPEED_MPS: ${VEHICLE_REID_MAX_IMPLIED_SPEED_MPS:-70}
+      VEHICLE_REID_MAX_OBSERVATIONS: ${VEHICLE_REID_MAX_OBSERVATIONS:-500}
     expose:
       - "8000"   # host'a YAYINLANMAZ: dış erişim auth-proxy :8000 üzerinden
     depends_on:

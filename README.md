@@ -148,6 +148,55 @@ Sözleşme kararları:
 - Pattern önceliği: `CONVOY > DIRECT_APPROACH > LOITERING > RANDOM`; eşleşen **tüm** desenler `detail.matched_patterns`, araç başına etiket `detail.per_vehicle` içindedir.
 - Zaman damgaları ISO-8601 UTC (`…Z`); veri seti saatleri UI'da UTC gösterilir (kaymasın diye).
 
+## Cross-event vehicle visual candidate evidence
+
+Olay pipeline'ı, izle eşleşmiş her araç bbox'ından frozen ImageNet-pretrained **MobileNetV3-Small** özelliği çıkarır. Özellikler L2-normalize edilir; crop boyutu, alan oranı ve basit sharpness bilgisi ile birlikte detection-svc LRU cache'inde tutulur. Her olay tek snapshot olduğu için mevcut veriyle track başına tek crop vardır; yeni kamera veya super-resolution üretilmez.
+
+Gateway yalnız **farklı event** gözlemlerini karşılaştırır. Pair'in candidate olabilmesi için:
+
+- cosine similarity ≥ `VEHICLE_REID_MIN_SIMILARITY`,
+- kaynak zamanı hedef zamandan önce ve gap ≤ `VEHICLE_REID_MAX_TEMPORAL_GAP_S`,
+- iki koordinat da varsa düz-çizgi displacement / gap ≤ `VEHICLE_REID_MAX_IMPLIED_SPEED_MPS`,
+- hedef track başına en çok `VEHICLE_REID_TOP_K`
+
+olması gerekir. Koordinat kontrolü gerçek yol/topoloji erişilebilirliği değildir; sentetik/kaba koordinatlarda yalnız fiziksel olarak absürt pair'leri eler. Çıktı **daima** `POSSIBLE_SAME_VEHICLE` relation'lı görsel adaydır. Track ID kalıcı identity değildir; A→B ve B→C edge'leri A/B/C için global kimlik veya transitive cluster oluşturmaz.
+
+Pipeline sonucuna geriye uyumlu iki alan eklenir:
+
+```json
+{
+  "candidate_vehicle_links": [{
+    "link_id": "vl-...",
+    "source_event_id": "img-a",
+    "source_track_id": "T17",
+    "target_event_id": "img-b",
+    "target_track_id": "T42",
+    "relation": "POSSIBLE_SAME_VEHICLE",
+    "appearance_similarity": 0.87,
+    "temporal_gap_seconds": 420,
+    "spatial_distance_m": 1300.0,
+    "implied_speed_mps": 3.1,
+    "feasibility": {"temporal": true, "spatial": true, "spatial_checked": true},
+    "evidence": {"source_crop": {}, "target_crop": {}, "model": "torchvision/mobilenet_v3_small-imagenet1k-v1"}
+  }],
+  "vehicle_graph": {
+    "relation_semantics": "candidate_edges_are_independent_not_identity_clusters",
+    "nodes": [],
+    "edges": []
+  }
+}
+```
+
+UI'da Leaflet üzerinde amber kesikli edge/node görünümü ve teknik detaylarda **Possible Vehicle Matches** sekmesi vardır. Edge seçimi similarity, Δt, displacement, implied straight-line speed ve iki crop'u gösterir. Risk ajanı bu linkleri yalnız bağlam olarak görür; prompt açıkça “candidate linkage ≠ confirmed identity” ve “tek başına risk yükseltmez” kuralını taşır. Mevcut deterministik risk policy değişmemiştir.
+
+Değerlendirilmiş full run JSON'leri için ground-truth'suz diagnostic:
+
+```bash
+python scripts/vehicle_reid_diagnostic.py runs.json --output vehicle-reid-diagnostic.json
+```
+
+Bu rapor similarity dağılımı, track başına candidate sayısı ve accepted/rejected pair sayılarını verir. `data/REAL` görüntülerinde pixel bbox/track-crop eşlemesi bulunmadığından bu branch organizatör verisi için ReID accuracy/precision/recall veya güvenilir contact sheet iddiası üretmez.
+
 ## Risk motoru
 
 `risk-agent-svc`, LLM'e (OpenAI uyumlu `chat/completions` + tool calling) **beş araç** verir:

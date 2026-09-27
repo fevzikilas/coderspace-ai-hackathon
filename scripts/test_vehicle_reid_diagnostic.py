@@ -17,6 +17,7 @@ def test_summarize_runs_reports_distribution_counts_without_accuracy_claims():
                     "rejected_temporal": 2,
                     "rejected_spatial": 2,
                     "rejected_similarity": 4,
+                    "rejected_top_k": 5,
                 },
             }
         }
@@ -31,6 +32,7 @@ def test_summarize_runs_reports_distribution_counts_without_accuracy_claims():
         "rejected_temporal": 2,
         "rejected_spatial": 2,
         "rejected_similarity": 4,
+        "rejected_top_k": 5,
     }
     assert summary["similarity"] == {"count": 3, "min": 0.83, "median": 0.87, "max": 0.91}
     assert summary["candidates_per_target_track"] == {"e2/T2": 2, "e3/T3": 1}

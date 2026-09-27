@@ -122,3 +122,20 @@ def test_edges_do_not_create_global_or_transitive_identity_clusters():
     )
     assert links_c[0]["link_id"].startswith("vl-")
     assert links_c[0]["link_id"] == repeated_links[0]["link_id"]
+
+
+def test_top_k_caps_both_source_and_target_track_degree():
+    store = index(min_similarity=0.0, top_k=1)
+    store.add_and_match([observation("prior", "SOURCE", "2025-06-01T10:00:00Z", [1.0, 0.0])])
+
+    links, graph, stats = store.add_and_match(
+        [
+            observation("current", "TARGET-A", "2025-06-01T10:05:00Z", [1.0, 0.0]),
+            observation("current", "TARGET-B", "2025-06-01T10:06:00Z", [0.99, 0.01]),
+        ]
+    )
+
+    assert len(links) == 1
+    assert links[0]["source_track_id"] == "SOURCE"
+    assert len(graph["edges"]) == 1
+    assert stats["rejected_top_k"] == 1

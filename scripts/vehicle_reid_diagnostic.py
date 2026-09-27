@@ -18,6 +18,7 @@ def summarize_runs(runs: list[dict[str, Any]]) -> dict[str, Any]:
         "rejected_temporal",
         "rejected_spatial",
         "rejected_similarity",
+        "rejected_top_k",
     )
     totals = Counter({key: 0 for key in pair_keys})
     similarities: list[float] = []
@@ -45,6 +46,7 @@ def summarize_runs(runs: list[dict[str, Any]]) -> dict[str, Any]:
             "rejected_temporal": totals["rejected_temporal"],
             "rejected_spatial": totals["rejected_spatial"],
             "rejected_similarity": totals["rejected_similarity"],
+            "rejected_top_k": totals["rejected_top_k"],
         },
         "similarity": distribution,
         "candidates_per_target_track": dict(sorted(per_target.items())),

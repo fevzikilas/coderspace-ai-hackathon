@@ -77,8 +77,9 @@ class VehicleEvidenceIndex:
             "rejected_temporal": 0,
             "rejected_spatial": 0,
             "rejected_similarity": 0,
+            "rejected_top_k": 0,
         }
-        accepted: list[tuple[dict[str, Any], dict[str, Any], dict[str, Any]]] = []
+        feasible: list[tuple[dict[str, Any], dict[str, Any], dict[str, Any]]] = []
         prior = list(self._observations)
         for target in current:
             target_candidates: list[tuple[dict[str, Any], dict[str, Any], dict[str, Any]]] = []
@@ -132,8 +133,23 @@ class VehicleEvidenceIndex:
                     },
                 }
                 target_candidates.append((link, source, target))
-            target_candidates.sort(key=lambda item: (-item[0]["appearance_similarity"], item[0]["temporal_gap_seconds"], item[0]["link_id"]))
-            accepted.extend(target_candidates[: self.top_k])
+            feasible.extend(target_candidates)
+
+        # Sparse demo graph: enforce top-K degree at BOTH endpoints. Edges remain
+        # independent candidates; this is readability control, not clustering.
+        feasible.sort(key=lambda item: (-item[0]["appearance_similarity"], item[0]["temporal_gap_seconds"], item[0]["link_id"]))
+        accepted: list[tuple[dict[str, Any], dict[str, Any], dict[str, Any]]] = []
+        degree: dict[str, int] = {}
+        for item in feasible:
+            link = item[0]
+            source_key = f"{link['source_event_id']}::{link['source_track_id']}"
+            target_key = f"{link['target_event_id']}::{link['target_track_id']}"
+            if degree.get(source_key, 0) >= self.top_k or degree.get(target_key, 0) >= self.top_k:
+                stats["rejected_top_k"] += 1
+                continue
+            degree[source_key] = degree.get(source_key, 0) + 1
+            degree[target_key] = degree.get(target_key, 0) + 1
+            accepted.append(item)
 
         for observation in current:
             self._observations.append(observation)

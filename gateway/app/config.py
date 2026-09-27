@@ -41,6 +41,12 @@ class Settings:
     max_runs: int = field(default_factory=lambda: int(_f("MAX_RUNS", 50)))
     max_logs: int = field(default_factory=lambda: int(_f("MAX_LOGS", 300)))
 
+    vehicle_reid_min_similarity: float = field(default_factory=lambda: _f("VEHICLE_REID_MIN_SIMILARITY", 0.82))
+    vehicle_reid_top_k: int = field(default_factory=lambda: int(_f("VEHICLE_REID_TOP_K", 2)))
+    vehicle_reid_max_temporal_gap_s: float = field(default_factory=lambda: _f("VEHICLE_REID_MAX_TEMPORAL_GAP_S", 7200))
+    vehicle_reid_max_implied_speed_mps: float = field(default_factory=lambda: _f("VEHICLE_REID_MAX_IMPLIED_SPEED_MPS", 70))
+    vehicle_reid_max_observations: int = field(default_factory=lambda: int(_f("VEHICLE_REID_MAX_OBSERVATIONS", 500)))
+
     # Dashboard önbellek süreleri (sn) — UI polling'i alt servisleri boğmasın
     ttl_fast_s: float = field(default_factory=lambda: _f("TTL_FAST_S", 1.0))
     ttl_slow_s: float = field(default_factory=lambda: _f("TTL_SLOW_S", 15.0))

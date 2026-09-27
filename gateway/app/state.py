@@ -7,6 +7,7 @@ from datetime import datetime, timezone
 from typing import Any, Awaitable, Callable
 
 from .config import Settings
+from .vehicle_reid import VehicleEvidenceIndex
 
 
 def now_iso() -> str:
@@ -23,6 +24,13 @@ class GatewayState:
         self.sweep_at: str | None = None
         self._cache: dict[str, tuple[float, Any]] = {}
         self._cache_errors: dict[str, str] = {}
+        self.vehicle_evidence = VehicleEvidenceIndex(
+            min_similarity=s.vehicle_reid_min_similarity,
+            top_k=s.vehicle_reid_top_k,
+            max_temporal_gap_s=s.vehicle_reid_max_temporal_gap_s,
+            max_implied_speed_mps=s.vehicle_reid_max_implied_speed_mps,
+            max_observations=s.vehicle_reid_max_observations,
+        )
 
     # ------------------------------------------------------------------ log paneli
     def log(self, level: str, message: str, run_id: str | None = None, step: str | None = None) -> None:
